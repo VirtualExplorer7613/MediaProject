@@ -27,11 +27,8 @@ public class WhaleController : MonoBehaviour
     {
         //Cursor.visible = false;   // 커서 안보이게
 
-        // Cursor.lockState = CursorLockMode.Confined;
-
         Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
-
+        transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
     }
 
     void Update()
@@ -45,8 +42,6 @@ public class WhaleController : MonoBehaviour
             //GameObject wave = Instantiate(ultrasoundPrefab, shootPoint.position, transform.rotation);
             GameObject wave = Instantiate(ultrasoundPrefab, shootPoint.position, Quaternion.LookRotation(shootDir));
 
-            // 필요하다면 Rigidbody 속도 추가 가능
-            //Debug.Log("Mouse Click");
         }
         // 마우스 입력
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;

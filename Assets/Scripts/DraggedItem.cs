@@ -12,10 +12,23 @@ public class DraggedItem : MonoBehaviour
     [SerializeField]
     private float minDistanceToWhale = 2f;
 
+
+    private Rigidbody rb;
+    private ConstantForce constForce;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        constForce = GetComponent<ConstantForce>();
+    }
+
     void Update()
     {
         if (isDragged && target != null)
         {
+            rb.useGravity = false;
+            constForce.force = new Vector3(0, 0, 0);
+
             Vector3 targetPos = target.position + target.TransformDirection(offset);
             float distance = Vector3.Distance(transform.position, target.position);
 
@@ -30,6 +43,11 @@ public class DraggedItem : MonoBehaviour
                 Vector3 pushDir = (transform.position - target.position).normalized;
                 transform.position = target.position + pushDir * minDistanceToWhale;
             }
+        }
+        else
+        {
+            rb.useGravity = true;
+            constForce.force = new Vector3(0, -0.7f, 0);
         }
     }
 
