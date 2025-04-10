@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ac665d751ef82a6478a5af1911936b33
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 263343
+  packageName: Cans and Bottles Junk
+  packageVersion: 1.0
+  assetPath: Assets/CansandBottles/prefabs/can.prefab
+  uploadId: 658031

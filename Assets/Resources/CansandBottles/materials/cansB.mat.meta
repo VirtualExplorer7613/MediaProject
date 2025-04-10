@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4ca86472b46d9974295a0b585391a02c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 263343
+  packageName: Cans and Bottles Junk
+  packageVersion: 1.0
+  assetPath: Assets/CansandBottles/materials/cansB.mat
+  uploadId: 658031
