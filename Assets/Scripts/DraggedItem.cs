@@ -47,7 +47,7 @@ public class DraggedItem : MonoBehaviour
         else
         {
             rb.useGravity = true;
-            constForce.force = new Vector3(0, -0.7f, 0);
+            constForce.force = new Vector3(0, -1.1f, 0);
         }
     }
 
