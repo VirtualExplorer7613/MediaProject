@@ -12,10 +12,10 @@ public class TitleScene : BaseScene
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Q))
+        /*if (Input.GetKeyUp(KeyCode.Q))
         {
             Managers.Scene.LoadScene(Define.Scene.Game);
-        }
+        }*/
     }
 
     public override void Clear()
@@ -23,5 +23,9 @@ public class TitleScene : BaseScene
         Debug.Log("Title Scene Clear!");
     }
 
+    public void StartGame()
+    {
+        Managers.Scene.LoadScene(Define.Scene.Game);
+    }
     
 }
