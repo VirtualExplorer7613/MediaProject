@@ -1,0 +1,43 @@
+{
+  "character": "crab",
+  "icon_on_detected": true,
+  "expressions": {
+    "default": "Eyes_Blink",
+    "post_interaction": "Sweat_L"
+  },
+  "dialogue_sequence": [
+    {
+      "type": "player_detects",
+      "dialogue": null,
+      "action": "remove_question_icon"
+    },
+    {
+      "type": "crab",
+      "expression": "Eyes_Blink",
+      "dialogue": "저기요~~! 거기 누구 없어요~~?!\n앞이 하나도 안 보여! 누가 나 좀 도와줘요!!"
+    },
+    {
+      "type": "crab",
+      "expression": "Eyes_Blink",
+      "dialogue": "(껍질을 내며) 도대체 이게 뭐야! 여긴 너무 깜깜하다고!"
+    },
+    {
+      "type": "interaction",
+      "dialogue": null,
+      "action": "플라스틱 용기 쓰레기를 초음파로 제거"
+    },
+    {
+      "type": "whale",
+      "dialogue": "괜찮아요? 이 플라스틱 통은 뭐예요?"
+    },
+    {
+      "type": "crab",
+      "expression": "Sweat_L",
+      "dialogue": "하… 드디어 살았다…! 정말 고마워!! 혼자서 이 속에서 얼마나 무서웠는지 몰라.\n분명 길을 가던 중이었는데… 갑자기 위에서 뭔가 '퍽!' 하고 떨어지더니\n순식간에 앞이 깜깜해졌어! 뭔가 했는데 역시나 쓰레기였네!"
+    },
+    {
+      "type": "whale_thought",
+      "dialogue": "떨어진 건 가벼운 쓰레기였겠지만, 누군가에겐 무거운 공포로 다가왔을 수도 있겠다..."
+    }
+  ]
+}

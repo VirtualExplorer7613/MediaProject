@@ -1,0 +1,39 @@
+{
+  "character": "turtle",
+  "icon_on_detected": true,
+  "expressions": {
+    "default": "Eyes_Blink",
+    "start_dialogue": "Eyes_Squint",
+    "post_interaction": "Sweat_L"
+  },
+  "dialogue_sequence": [
+    {
+      "type": "player_detects",
+      "dialogue": null,
+      "action": "remove_question_icon"
+    },
+    {
+      "type": "turtle",
+      "expression": "Eyes_Squint",
+      "dialogue": "으으으… 코에 뭔가가 박혔어… 너무 아파서 숨 쉬기가 힘들구만…\n거기 자네. 혹시 내 코에 박힌 이걸 좀 빼줄 수 있겠나…?"
+    },
+    {
+      "type": "interaction",
+      "dialogue": null,
+      "action": "코에 박힌 빨대를 드래그로 천천히 빼내기, 제거 후 초음파로 정리"
+    },
+    {
+      "type": "whale",
+      "dialogue": "할아버지 어쩌다 코에 빨대가 박히신 거예요…! 정말 위험하실 뻔 했어요."
+    },
+    {
+      "type": "turtle",
+      "expression": "Sweat_L",
+      "dialogue": "먹이를 먹으려고 고개를 숙여 다가갔다가…\n그만 코에 이상한 게 박혀버렸지 뭔가…\n도와줘서 고맙구려. 하마터면 코가 막혀서 자네 말대로 진짜 큰일날 뻔 했어. 허허…"
+    },
+    {
+      "type": "whale_thought",
+      "dialogue": "고작 빨대 하나가 생명을 이렇게까지 위협하다니… 바다에선 아무것도 사소하지 않구나."
+    }
+  ]
+}
