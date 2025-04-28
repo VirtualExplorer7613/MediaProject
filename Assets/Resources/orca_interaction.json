@@ -1,0 +1,43 @@
+{
+  "character": "orca",
+  "icon_on_detected": true,
+  "expressions": {
+    "default": "Eyes_Blink",
+    "start_dialogue": "Eyes_Rabid",
+    "post_interaction": "Sweat_L"
+  },
+  "dialogue_sequence": [
+    {
+      "type": "player_detects",
+      "dialogue": null,
+      "action": "remove_question_icon"
+    },
+    {
+      "type": "whale_thought",
+      "dialogue": "입에 뭘 물고 있는 거지…?\n저건… 쓰레기 같은데…? 내가 도와줘야겠어."
+    },
+    {
+      "type": "interaction",
+      "dialogue": null,
+      "action": "범고래 입에 물린 쓰레기를 마우스로 드래그해 천천히 빼내기, 제거 후 초음파 처리"
+    },
+    {
+      "type": "orca",
+      "expression": "Eyes_Rabid",
+      "dialogue": "…뭐야, 갑자기?\n왜 남이 먹고 있는 먹이를 가로채는 거지?"
+    },
+    {
+      "type": "whale",
+      "dialogue": "그거, 먹을 수 있는 거 아니야. 전부 쓰레기야."
+    },
+    {
+      "type": "orca",
+      "expression": "Sweat_L",
+      "dialogue": "정말 몰랐어…\n배가 고파서 그만… 눈에 보이는 대로 삼켰던 건데…\n알려줘서 고맙다. 앞으로는 아무리 배가 고파도 좀 더 조심해야겠지."
+    },
+    {
+      "type": "whale_thought",
+      "dialogue": "아무리 조심한다고 해도 분명 또 같은 일이 반복될 거야.\n바다에 쓰레기가 더 이상 늘어나면 안 돼."
+    }
+  ]
+}

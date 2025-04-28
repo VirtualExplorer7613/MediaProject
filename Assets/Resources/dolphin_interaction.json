@@ -1,0 +1,39 @@
+{
+  "character": "dolphin",
+  "icon_on_detected": true,
+  "expressions": {
+    "default": "Eyes_Blink",
+    "start_dialogue": "Eyes_Trauma",
+    "post_interaction": "Eyes_Cry"
+  },
+  "dialogue_sequence": [
+    {
+      "type": "player_detects",
+      "dialogue": null,
+      "action": "remove_question_icon"
+    },
+    {
+      "type": "dolphin",
+      "expression": "Eyes_Trauma",
+      "dialogue": "아야야… 누가 나 좀 도와줘요…! 너무 아파…!\n입이 따끔거려서 아무것도 할 수가 없어…!"
+    },
+    {
+      "type": "interaction",
+      "dialogue": null,
+      "action": "입에 박힌 낚싯바늘을 마우스로 드래그해 천천히 빼내기, 제거 후 초음파로 정리"
+    },
+    {
+      "type": "whale",
+      "dialogue": "…어쩌다 이렇게 날카로운 바늘이 입에 박히게 된 거니?"
+    },
+    {
+      "type": "dolphin",
+      "expression": "Eyes_Cry",
+      "dialogue": "오랜만에 수면 위로 수영을 하다가… 우연히 사람들이랑 마주쳤어요.\n그런데 그 사람들이 나를 향해서 뭔가 반짝이는 걸 던졌어요…\n처음엔 장난감인 줄 알고 다가갔거든요.\n근데 갑자기 뭔가 날카로운 게 제 입에 '탁' 하고 걸리더니 그대로 나를 끌고 갔어요…\n응… 너무 아픈데도 무서워서 있는 힘껏 도망쳐서 여기까지 헤엄쳐왔어요.\n고래님이 아니었으면… 나는 정말 큰일날 뻔 했어요. 너무너무 고마워요…"
+    },
+    {
+      "type": "whale_thought",
+      "dialogue": "사람들은 모르겠지. 그 작은 행동들이 얼마나 깊게 남는지.\n무심코 던진 낚싯바늘은 돌고래에게 상처로 남아 오래오래 기억될 거야."
+    }
+  ]
+}

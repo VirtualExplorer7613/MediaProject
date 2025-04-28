@@ -1,0 +1,40 @@
+{
+  "character": "clownfish",
+  "icon_on_detected": true,
+  "expressions": {
+    "default": "Eyes_Blink",
+    "start_dialogue": "Eyes_Annoyed",
+    "post_interaction": "Eyes_Happy"
+  },
+  "dialogue_sequence": [
+    {
+      "type": "player_detects",
+      "dialogue": null,
+      "action": "remove_question_icon"
+    },
+    {
+      "type": "clownfish",
+      "expression": "Eyes_Annoyed",
+      "dialogue": "으으으!! 짜증 나 정말!\n이게 뭐야…! 누가 내 말미잘을 이렇게 더럽힌 거야?!"
+    },
+    {
+      "type": "clownfish",
+      "expression": "Eyes_Annoyed",
+      "dialogue": "여긴 내가 사는 곳이란 말이야!"
+    },
+    {
+      "type": "interaction",
+      "dialogue": null,
+      "action": "쓰레기를 초음파로 하나씩 제거"
+    },
+    {
+      "type": "clownfish",
+      "expression": "Eyes_Happy",
+      "dialogue": "와 고마워. 글쎄, 내가 잠깐 나갔다 온 사이에 누가 내 말미잘을 이렇게 더럽혀놨지 뭐야?\n나한테는 전부 무거운 쓰레기들 뿐이라 혼자서 어떻게 치워야 하나 고민이었거든…\n훨씬 낫네! 이제야 좀 살 것 같아~ 고마워! 너 덕분에 내 말미잘이 다시 깨끗해졌어!"
+    },
+    {
+      "type": "whale_thought",
+      "dialogue": "깨끗한 집 하나 유지하는 것도 이젠 쉬운 일이 아니구나…"
+    }
+  ]
+}

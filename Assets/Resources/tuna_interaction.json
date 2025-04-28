@@ -1,0 +1,39 @@
+{
+  "character": "tuna",
+  "icon_on_detected": true,
+  "expressions": {
+    "default": "Eyes_Blink",
+    "start_dialogue": "Eyes_Shrink",
+    "post_interaction": "Sweat_L"
+  },
+  "dialogue_sequence": [
+    {
+      "type": "player_detects",
+      "dialogue": null,
+      "action": "remove_question_icon"
+    },
+    {
+      "type": "tuna",
+      "expression": "Eyes_Shrink",
+      "dialogue": "여기요오~! 누가 나 좀 제발 꺼내줘요!\n머리가 껴서 도무지 빠지질 않아!"
+    },
+    {
+      "type": "interaction",
+      "dialogue": null,
+      "action": "쓰레기를 드래그 또는 초음파로 하나씩 치우기, 바위 틈에 낀 참치를 마우스로 드래그해 꺼냄"
+    },
+    {
+      "type": "whale",
+      "dialogue": "이게 무슨 일이야… 도대체 어쩌다가 여기에 끼이게 된 거야?"
+    },
+    {
+      "type": "tuna",
+      "expression": "Sweat_L",
+      "dialogue": "휴~ 하마터면 진짜 큰일날 뻔 했네!\n바위 쪽에 맛있어 보이는 물고기들이 잔뜩… 따라와봤더니 쓰레기였지 뭐야.\n이리 눈치 챘을 땐 내 머리가 이 바위 틈에 끼어버린 후였어…\n아무튼 도와줘서 고마워. 덕분에 탈출할 수 있었어!"
+    },
+    {
+      "type": "whale_thought",
+      "dialogue": "언제부터 이렇게 바다에 쓰레기가 많아진 거지…?"
+    }
+  ]
+}
