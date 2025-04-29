@@ -27,10 +27,29 @@ public class Prologue : BaseScene
     private const float baseWidth = 960f; // 기준 가로 크기
     private const float baseHeight = 600; // 기준 세로 크기
 
+
     private void Start()
     {
-        DisplayCurrentStep();
+
         //skipButton?.SetActive(false);
+
+        if (textList.Count == 0)
+        {
+            Debug.Log("text List is null!");
+            textList = new List<string>
+            {
+                "오랜만에 돌아온 나의 고향 바다.\\n" +
+                "활기찼던 예전의 모습은 온데간데 없고,\\n" +
+                "지금의 바다는 어둡고 탁하기만 하다.\\n" +
+                "왜인지 헤엄치면 칠수록 변한 바다 속 풍경이 낯설게만 느껴진다.\\n\\n\\n" +
+                "그리고 무엇보다… 친구들이 보이지 않는다.\\n" +
+                "예전엔 어디서든 반겨주던 목소리들이…\\n" +
+                "지금은 들리지 않는다.\\n" +
+                "무슨 일이 있었던 걸까…?\\n" +
+                "내가 한 번, 직접 둘러봐야겠다.\\n"
+            };
+        }
+        DisplayCurrentStep();
     }
 
     private void Update()
@@ -80,10 +99,26 @@ public class Prologue : BaseScene
         isTyping = true;
         prologueText.text = ""; // 기존 텍스트 지우기
 
-        foreach (char letter in text.ToCharArray())
+        int i = 0;
+        while (i < text.Length)
         {
-            prologueText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            // 만약 줄바꿈 문자 발견하면
+            if (text[i] == '\\' && i + 1 < text.Length && text[i + 1] == 'n')
+            {
+                prologueText.text += '\n'; // 줄바꿈 추가
+                i += 2; // 두 글자 넘기기
+                yield return new WaitForSeconds(typingSpeed * 2f);
+                continue; // 줄바꿈일때 살짝
+            }
+
+            prologueText.text += text[i];
+            i++;
+
+            // 띄어쓰기일 경우 빠르게, 아니면 기본 속도
+            if (prologueText.text[^1] == ' ')
+                yield return new WaitForSeconds(typingSpeed * 0.3f); // 띄어쓰기면 더 빠르게
+            else
+                yield return new WaitForSeconds(typingSpeed);
         }
 
         isTyping = false;
