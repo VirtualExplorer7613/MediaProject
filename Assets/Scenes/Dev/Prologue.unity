@@ -363,21 +363,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prologueImage: {fileID: 896062585}
   prologueText: {fileID: 1750857660}
-  imageList:
-  - {fileID: 21300000, guid: e7f0ea11cf030744ba28248d4d6f5dbc, type: 3}
-  textList:
-  - "\uC624\uB79C\uB9CC\uC5D0 \uB3CC\uC544\uC628 \uB098\uC758 \uACE0\uD5A5 \uBC14\uB2E4.\\n
-    \uD65C\uAE30\uCC3C\uB358 \uC608\uC804\uC758 \uBAA8\uC2B5\uC740 \uC628\uB370\uAC04\uB370
-    \uC5C6\uACE0,\\n \uC9C0\uAE08\uC758 \uBC14\uB2E4\uB294 \uC5B4\uB461\uACE0 \uD0C1\uD558\uAE30\uB9CC
-    \uD558\uB2E4.\\n \uC65C\uC778\uC9C0 \uD5E4\uC5C4\uCE58\uBA74 \uCE60\uC218\uB85D
-    \uBCC0\uD55C \uBC14\uB2E4 \uC18D \uD48D\uACBD\uC774 \uB0AF\uC124\uAC8C\uB9CC
-    \uB290\uAEF4\uC9C4\uB2E4.\\n\\n\\n \uADF8\uB9AC\uACE0 \uBB34\uC5C7\uBCF4\uB2E4\u2026
-    \uCE5C\uAD6C\uB4E4\uC774 \uBCF4\uC774\uC9C0 \uC54A\uB294\uB2E4.\\n \uC608\uC804\uC5D4
-    \uC5B4\uB514\uC11C\uB4E0 \uBC18\uACA8\uC8FC\uB358 \uBAA9\uC18C\uB9AC\uB4E4\uC774\u2026\\n
-    \uC9C0\uAE08\uC740  \uB4E4\uB9AC\uC9C0 \uC54A\uB294\uB2E4. \\n \uBB34\uC2A8 \uC77C\uC774
-    \uC788\uC5C8\uB358 \uAC78\uAE4C\u2026? \\n \uB0B4\uAC00 \uD55C \uBC88, \uC9C1\uC811
-    \uB458\uB7EC\uBD10\uC57C\uACA0\uB2E4.\\n"
-  typingSpeed: 0.1
+  imageList: []
+  textList: []
+  typingSpeed: 0.05
   sceneName: 2
 --- !u!4 &705913028
 Transform:
@@ -413,7 +401,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
-
 --- !u!224 &896062584
 RectTransform:
   m_ObjectHideFlags: 0
@@ -786,7 +773,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Prologue Scene1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 72995f9cb080e884a8d9aefbdd7e08ce, type: 2}
   m_sharedMaterial: {fileID: 4725207234128643385, guid: 72995f9cb080e884a8d9aefbdd7e08ce, type: 2}
