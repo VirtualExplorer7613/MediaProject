@@ -34,6 +34,16 @@ public class Ultrasound : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        TalkableNPC npc = DialogueManager.Instance.CurrentTalkingNPC;
+
+        // 퀘스트 진행 중인 NPC가 있고, 해당 오브젝트가 퀘스트 대상인 경우에만 처리
+        if (npc != null && npc.requiredObjects.Contains(other.gameObject))
+        {
+            Debug.Log("퀘스트 대상 쓰레기 파괴됨!");
+            Destroy(other.gameObject);
+            InteractionSystem.Instance.NotifyInteractionComplete();
+        }
+
         if (other.CompareTag("Trash"))
         {
             // 쓰레기 파괴
