@@ -5,6 +5,11 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
+    public static DialogueManager Instance { get; private set; }
+    public TalkableNPC CurrentTalkingNPC { get; private set; }
+
+    private WhaleController whaleController;
+
     public TMP_Text dialogueText;         // 대화 내용을 표시할 텍스트
     public GameObject dialogueBox;    // 대화창 패널
 
@@ -18,8 +23,30 @@ public class DialogueManager : MonoBehaviour
     private bool waitingForInteraction = false;
     private bool canProceed = false;
 
-    public void StartDialogue(string characterName)
+    private void Awake()
     {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+
+        whaleController = FindObjectOfType<WhaleController>();
+    }
+
+
+    public void StartDialogue(string characterName, TalkableNPC npc)
+    {
+        if (CurrentTalkingNPC != null && !CurrentTalkingNPC.questCleared)
+        {
+            Debug.Log("이미 다른 NPC와 상호작용 중입니다.");
+            return;
+        }
+
+        if (whaleController != null)
+        {
+            whaleController.SetVisible(false);
+        }
+
+        CurrentTalkingNPC = npc;
+
         // Resources 폴더에서 해당 캐릭터 이름에 맞는 JSON 파일을 로드
         TextAsset jsonFile = Resources.Load<TextAsset>($"{characterName}_interaction");
 
@@ -53,13 +80,29 @@ public class DialogueManager : MonoBehaviour
                 currentIndex++;
                 continue;
             }
+    
             else if (entry.type == "interaction")
             {
-                HandleAction(entry);
+                /*HandleAction(entry);
                 waitingForInteraction = true;
                 yield return new WaitUntil(() => waitingForInteraction == false);
                 currentIndex++;
-                continue;
+                continue;*/
+
+                HandleAction(entry);
+                waitingForInteraction = true;
+                PlayerPrefs.SetInt($"{dialogueData.character}_dialogue_index", currentIndex);
+                dialogueBox.SetActive(false);
+                HideCharacter();
+                IsDialoguePlaying = false;
+
+                // 고래 다시 보이기
+                if (whaleController != null)
+                {
+                    whaleController.SetVisible(true);
+                }
+
+                yield break; // 대사 종료
             }
 
             ShowCharacter(entry.type);
@@ -67,14 +110,26 @@ public class DialogueManager : MonoBehaviour
             yield return ShowDialogue(entry.dialogue);
             yield return new WaitUntil(() => canProceed);
             canProceed = false;
-            IsDialoguePlaying = false; //TODO: 플레이어 조작 스크립트 수정
+            //IsDialoguePlaying = false; //TODO: 플레이어 조작 스크립트 수정
 
             currentIndex++;
-            yield return null;
+            //yield return null;
         }
 
+        /*dialogueBox.SetActive(false);
+        HideCharacter();*/
+
+        PlayerPrefs.DeleteKey($"{dialogueData.character}_dialogue_index");
         dialogueBox.SetActive(false);
         HideCharacter();
+
+        if (whaleController != null)
+        { 
+            whaleController.SetVisible(true); 
+        }
+
+        IsDialoguePlaying = false;
+        CurrentTalkingNPC = null;
     }
     void Update()
     {
@@ -165,5 +220,29 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentCharacterModel != null)
             Destroy(currentCharacterModel);
+    }
+
+    public void ContinueDialogue(string characterName)
+    {
+        TextAsset jsonFile = Resources.Load<TextAsset>($"{characterName}_interaction");
+        if (jsonFile != null)
+        {
+            dialogueData = JsonUtility.FromJson<DialogueData>(jsonFile.text);
+
+            // 이전 진행 상태 기억 (PlayerPrefs나 NPC에서 전달도 가능)
+            currentIndex = PlayerPrefs.GetInt($"{characterName}_dialogue_index", 0);
+            if (dialogueData.dialogue_sequence[currentIndex].type == "interaction")
+                currentIndex++; // interaction 건너뛰고 다음으로
+
+            //고래 숨기기
+            if (whaleController != null)
+            {
+                whaleController.SetVisible(false);
+            }
+
+            ShowCharacter(characterName);
+            IsDialoguePlaying = true;
+            StartCoroutine(PlayDialogueSequence());
+        }
     }
 }

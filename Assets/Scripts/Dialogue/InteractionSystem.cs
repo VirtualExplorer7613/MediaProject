@@ -29,8 +29,14 @@ public class InteractionSystem : MonoBehaviour
             if (dialogueManager != null)
             {
                 string characterName = "tuna";  // 예시 캐릭터 이름
-                dialogueManager.StartDialogue(characterName);
+                dialogueManager.StartDialogue(characterName, null);
             }
+        }
+        else if (action.Contains("빨대") || action.Contains("초음파") || action.Contains("쓰레기"))
+        {
+            // 이런 키워드가 들어간 상호작용이면, 실제 상호작용은 외부에서 수행되고,
+            // 완료 시 InteractionSystem.Instance.NotifyInteractionComplete()가 호출됨
+            Debug.Log("▶ 플레이어 상호작용을 기다리는 중...");
         }
         else
         {
@@ -42,5 +48,18 @@ public class InteractionSystem : MonoBehaviour
     {
         // 물음표 아이콘 제거 로직을 여기에 작성
         Debug.Log("[물음표 아이콘 제거] 작업 수행");
+    }
+
+    public void NotifyInteractionComplete()
+    {
+        var npc = DialogueManager.Instance.CurrentTalkingNPC;
+
+        if (npc != null)
+        {
+            Debug.Log($"▶ NPC {npc.characterName}에 퀘스트 완료 알림");
+            npc.CheckQuestCondition();
+        }
+
+        DialogueManager.Instance?.OnInteractionCompleted();
     }
 }

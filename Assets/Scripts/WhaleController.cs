@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class WhaleController : MonoBehaviour
 {
+    [SerializeField] private GameObject whaleVisualRoot;
+
     [Header("Movement")]
     [SerializeField]
     float moveSpeed = 10f;
@@ -18,6 +20,7 @@ public class WhaleController : MonoBehaviour
     float dragDetectionRadius = 10f;
 
     private DraggedItem currentDraggedItem;
+    DialogueManager dialogueManager;
 
 
     float yaw = 0f;   // 좌우 회전
@@ -29,11 +32,21 @@ public class WhaleController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+
+        dialogueManager = FindObjectOfType<DialogueManager>();
     }
 
     void Update()
     {
+
+        if (dialogueManager != null && dialogueManager.IsDialoguePlaying)
+        {
+            // 대화 중이면 아무 조작도 못하게 막음
+            return;
+        }
+
         HandleItemDragging();
+
         if (Input.GetMouseButtonDown(0) && !(Input.GetMouseButton(1)))
         {
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
@@ -43,16 +56,8 @@ public class WhaleController : MonoBehaviour
             GameObject wave = Instantiate(ultrasoundPrefab, shootPoint.position, Quaternion.LookRotation(shootDir));
 
         }
-        // 마우스 입력
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        yaw += mouseX;
-        pitch -= mouseY;
-        pitch = Mathf.Clamp(pitch, -60f, 60f); // 너무 위아래로 돌지 않도록 제한
-
-        // 고래 회전 적용
-        transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+        HandleRotation();
 
         // 이동 입력
         float h = Input.GetAxis("Horizontal"); // A, D
@@ -63,9 +68,29 @@ public class WhaleController : MonoBehaviour
         transform.position += moveDir * moveSpeed * Time.deltaTime;
     }
 
+    void HandleRotation()
+    {
+        if (dialogueManager != null && dialogueManager.IsDialoguePlaying)
+            return;
+
+        // 마우스 입력
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+        yaw += mouseX;
+        pitch -= mouseY;
+        pitch = Mathf.Clamp(pitch, -60f, 60f); // 너무 위아래로 돌지 않도록 제한
+
+        // 고래 회전 적용
+        transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+    }
+
 
     void HandleItemDragging()
     {
+        if (dialogueManager != null && dialogueManager.IsDialoguePlaying)
+            return;
+
         if (Input.GetMouseButtonDown(1))
         {
             TryStartDragging();
@@ -94,5 +119,11 @@ public class WhaleController : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void SetVisible(bool visible)
+    {
+        if (whaleVisualRoot != null)
+            whaleVisualRoot.SetActive(visible);
     }
 }

@@ -17,14 +17,14 @@
       "dialogue": "꼬리에… 저건 뭐지? 뭔가 기다란 쓰레기같은 게 감겨 있는 것 같은데.\n내가 도와줘야겠다."
     },
     {
-      "type": "seahorse",
-      "expression": "Sweat_L",
-      "dialogue": "당신이 제 꼬리에 걸린 빨대를 없애준 건가요?\n정말 고마워요… 이 기다란 게 자꾸 제 꼬리에 걸려서 움직이는 게 불편했거든요."
-    },
-    {
       "type": "interaction",
       "dialogue": null,
       "action": "꼬리에 감겨있는 빨대나 담배꽁초를 드래그로 천천히 빼내기 → 제거 후 초음파 처리"
+    },
+    {
+      "type": "seahorse",
+      "expression": "Sweat_L",
+      "dialogue": "당신이 제 꼬리에 걸린 빨대를 없애준 건가요?\n정말 고마워요… 이 기다란 게 자꾸 제 꼬리에 걸려서 움직이는 게 불편했거든요."
     },
     {
       "type": "seahorse",
