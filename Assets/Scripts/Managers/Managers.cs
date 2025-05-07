@@ -39,6 +39,14 @@ public class Managers : MonoBehaviour
             s_instance = go.GetComponent<Managers>();
 
             s_instance._sound.Init();
+
+            // FadeUI 프리팹 인스턴스화
+            if (GameObject.FindObjectOfType<FadeController>() == null)
+            {
+                GameObject fadeUI = Resource.Instantiate("UI/FadeUI");
+                GameObject.DontDestroyOnLoad(fadeUI);
+            }
+
         }
     }
 
