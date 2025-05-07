@@ -24,14 +24,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242198839832799332}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4755074886199385805}
   m_Father: {fileID: 1489399922681303932}
-  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!1 &2112504356651876091
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1489399922681303932}
   - component: {fileID: 3625781649701661028}
+  - component: {fileID: 5508513917481890722}
   m_Layer: 0
   m_Name: WhalePlayer
   m_TagString: Untagged
@@ -79,11 +80,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e9459f97f7ca44c8f0efaac7d6b611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whaleVisualRoot: {fileID: 0}
+  crosshair: {fileID: 0}
+  minPitch: -60
+  maxPitch: 10
   moveSpeed: 10
   mouseSensitivity: 100
   ultrasoundPrefab: {fileID: 1223265124446189462, guid: 90f1a07466fd3a444bd3603f2babe8f1, type: 3}
   shootPoint: {fileID: 7146740311611469216}
   dragDetectionRadius: 10
+--- !u!114 &5508513917481890722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112504356651876091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ea0cc213e2d7d2459b456577ced7e39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshairTexture: {fileID: 2800000, guid: b132b7d71c105574cb0d4ad228b50baf, type: 3}
+  size: 100
 --- !u!1 &6840858212006473277
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +170,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -246,7 +265,7 @@ Transform:
   m_GameObject: {fileID: 8329711929519806191}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 1.5}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -270,7 +289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9032054871072722360, guid: 7969657f27d1603488c2586b1e1a6b7a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 9032054871072722360, guid: 7969657f27d1603488c2586b1e1a6b7a, type: 3}
       propertyPath: m_LocalRotation.w

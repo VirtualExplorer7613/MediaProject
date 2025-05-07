@@ -4,12 +4,23 @@ public class WhaleController : MonoBehaviour
 {
     [SerializeField] private GameObject whaleVisualRoot;
 
+    [Header("view")]
+    [SerializeField]
+    private Texture2D crosshair;
+    [SerializeField]
+    [Tooltip("上 기울기 조절(-90 ~ 0)")]
+    [Range(-90f, 0f)] private float minPitch = -60f;
+    [SerializeField]
+    [Tooltip("下 시야각 조절(0 ~ 90)")]
+    [Range(0f, 90f)] private float maxPitch = 20f;
+
     [Header("Movement")]
     [SerializeField]
     float moveSpeed = 10f;
     [SerializeField]
     float mouseSensitivity = 100f;
 
+    [Header("Shoot")]
     [SerializeField]
     GameObject ultrasoundPrefab;
     [SerializeField]
@@ -18,6 +29,9 @@ public class WhaleController : MonoBehaviour
     [Header("Dragging")]
     [SerializeField]
     float dragDetectionRadius = 10f;
+
+   
+
 
     private DraggedItem currentDraggedItem;
     DialogueManager dialogueManager;
@@ -79,7 +93,7 @@ public class WhaleController : MonoBehaviour
 
         yaw += mouseX;
         pitch -= mouseY;
-        pitch = Mathf.Clamp(pitch, -60f, 60f); // 너무 위아래로 돌지 않도록 제한
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch); // 너무 위아래로 돌지 않도록 제한
 
         // 고래 회전 적용
         transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
