@@ -25,7 +25,8 @@ public class TitleScene : BaseScene
 
     public void StartGame()
     {
-        Managers.Scene.LoadScene(Define.Scene.Game);
+        //Managers.Scene.LoadScene(Define.Scene.Game);
+        Managers.Scene.LoadSceneAsync(Define.Scene.Prologue, false);
     }
     
 }

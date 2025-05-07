@@ -7,6 +7,7 @@ public class Define
     {
         Unkown,
         Title,
+        Prologue,
         Game,
         Ending,
     };
