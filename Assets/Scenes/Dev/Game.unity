@@ -1522,6 +1522,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WhalePlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 3625781649701661028, guid: 9773bfcdef482424a9d7799b63fe66c7, type: 3}
+      propertyPath: maxPitch
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625781649701661028, guid: 9773bfcdef482424a9d7799b63fe66c7, type: 3}
+      propertyPath: minPitch
+      value: -45
+      objectReference: {fileID: 0}
     - target: {fileID: 7146740311611469216, guid: 9773bfcdef482424a9d7799b63fe66c7, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
