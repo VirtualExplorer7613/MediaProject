@@ -13,9 +13,14 @@ public class TalkableNPC : MonoBehaviour
     private bool hasStartedDialogue = false;   // 첫 대사 했는지
     public bool questCleared = false; // 퀘스트 했는지
 
+    public GameObject questionMarkIcon; // 물음표UI
+    //public GameObject exclamationMarkIcon; // 느낌표 UI
+    private bool dialogueAfterQuestDone = false; // 퀘스트 후 대사까지 완료됐는지
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        UpdateQuestIcon();
     }
 
     private void Update()
@@ -51,14 +56,16 @@ public class TalkableNPC : MonoBehaviour
             hasStartedDialogue = true;
             dialogueManager.StartDialogue(characterName, this);
         }
-        else if (questCleared && !dialogueManager.IsDialoguePlaying)
+        else if (questCleared && !dialogueManager.IsDialoguePlaying && !dialogueAfterQuestDone)
         {
             dialogueManager.ContinueDialogue(characterName); // 이어서 출력
         }
         else
         {
-            Debug.Log("아직 목표를 완료하지 않음");
+            Debug.Log("상호작용 불가능 상태");
         }
+        //상태 변경마다 ICON Update
+        UpdateQuestIcon();
     }
 
     public void CheckQuestCondition()
@@ -68,6 +75,7 @@ public class TalkableNPC : MonoBehaviour
         {
             questCleared = true;
             Debug.Log($"[퀘스트 완료됨]: {characterName}");
+            UpdateQuestIcon();
         }
     }
 
@@ -83,5 +91,30 @@ public class TalkableNPC : MonoBehaviour
         {
             Debug.LogError("DialogueManager를 찾을 수 없습니다!");
         }
+    }
+
+    public void UpdateQuestIcon()
+    {
+        if (!hasStartedDialogue)
+        {
+            questionMarkIcon?.SetActive(true);
+            //exclamationMarkIcon?.SetActive(false);
+        }
+        /*else if (questCleared && !dialogueAfterQuestDone)
+        {
+            questionMarkIcon?.SetActive(false);
+            //exclamationMarkIcon?.SetActive(true);
+        }*/
+        else
+        {
+            questionMarkIcon?.SetActive(false);
+            //exclamationMarkIcon?.SetActive(false);
+        }
+    }
+
+    public void OnDialogueAfterQuestFinished()
+    {
+        dialogueAfterQuestDone = true;
+        UpdateQuestIcon();
     }
 }
