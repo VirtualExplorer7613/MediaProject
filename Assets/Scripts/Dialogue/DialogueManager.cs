@@ -129,7 +129,9 @@ public class DialogueManager : MonoBehaviour
         }
 
         IsDialoguePlaying = false;
+        CurrentTalkingNPC.OnDialogueAfterQuestFinished();
         CurrentTalkingNPC = null;
+
     }
     void Update()
     {
