@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class DialogueManager : MonoBehaviour
 
     public TMP_Text dialogueText;         // 대화 내용을 표시할 텍스트
     public GameObject dialogueBox;    // 대화창 패널
+    public Image characterNameBox; //이름창
+    public TMP_Text characterNameText; //캐릭터이름
 
     public Camera mainCamera;
     public Vector3 spawnOffset = new Vector3(2f, 0f, 3f); // 캐릭터 위치 오프셋 (조절 가능)
@@ -22,6 +25,27 @@ public class DialogueManager : MonoBehaviour
     private int currentIndex = 0;
     private bool waitingForInteraction = false;
     private bool canProceed = false;
+
+    [System.Serializable]
+    public class CharacterInfo
+    {
+        public string displayName;
+        public Color nameColor;
+    }
+
+    private Dictionary<string, CharacterInfo> characterInfoMap = new Dictionary<string, CharacterInfo>
+    {
+        { "whale", new CharacterInfo { displayName = "고래", nameColor = new Color(0.6f, 0.7f, 0.8f) } },
+        { "seahorse", new CharacterInfo { displayName = "해마", nameColor = new Color(1f, 0.85f, 0.6f) } },
+        { "tuna", new CharacterInfo { displayName = "참치", nameColor = new Color(0.6f, 0.75f, 0.85f) } },
+        { "turtle", new CharacterInfo { displayName = "거북", nameColor = new Color(0.7f, 0.85f, 0.6f) } },
+        { "octopus", new CharacterInfo { displayName = "문어", nameColor = new Color(0.85f, 0.6f, 0.7f) } },
+        { "crab", new CharacterInfo { displayName = "게", nameColor = new Color(1f, 0.6f, 0.6f) } },
+        { "clownfish", new CharacterInfo { displayName = "흰동가리", nameColor = new Color(1f, 0.75f, 0.5f) } },
+        { "orca", new CharacterInfo { displayName = "범고래", nameColor = new Color(0.7f, 0.7f, 0.75f) } },
+        { "dolphin", new CharacterInfo { displayName = "돌고래", nameColor = new Color(0.7f, 0.85f, 0.95f) } }
+    };
+
 
     private void Awake()
     {
@@ -107,6 +131,7 @@ public class DialogueManager : MonoBehaviour
 
             ShowCharacter(entry.type);
             ChangeCharacterExpression(entry.expression);
+            SetCharacterNameAndColor(entry.type);
             yield return ShowDialogue(entry.dialogue);
             yield return new WaitUntil(() => canProceed);
             canProceed = false;
@@ -201,6 +226,7 @@ public class DialogueManager : MonoBehaviour
 
             // 방향 결정: 고래는 왼쪽, 나머지는 오른쪽
             Vector3 sideOffset = mainCamera.transform.right * spawnOffset.x;
+
             if (characterName == "whale")
             {
                 basePosition -= sideOffset; // 왼쪽
@@ -216,6 +242,24 @@ public class DialogueManager : MonoBehaviour
         {
             Debug.LogError($"캐릭터 프리팹 {characterName}을(를) 찾을 수 없습니다.");
         }
+
+        GameObject backdropPrefab = Resources.Load<GameObject>("Prefabs/CharacterBackdrop");
+        if (backdropPrefab != null)
+        {
+            GameObject backdrop = Instantiate(backdropPrefab, currentCharacterModel.transform);
+            float zDistance = 5f;
+
+            float frustumHeight = 2.0f * zDistance * Mathf.Tan(Camera.main.fieldOfView * 0.5f * Mathf.Deg2Rad);
+            float frustumWidth = frustumHeight * Camera.main.aspect;
+
+            backdrop.transform.position = Camera.main.transform.position + Camera.main.transform.forward * zDistance;
+            backdrop.transform.rotation = Camera.main.transform.rotation;
+            backdrop.transform.Rotate(-90f, 0f, 0f);
+
+            backdrop.transform.localScale = new Vector3(frustumWidth, 1f, frustumHeight);
+
+        }
+
     }
 
     private void HideCharacter()
@@ -247,4 +291,23 @@ public class DialogueManager : MonoBehaviour
             StartCoroutine(PlayDialogueSequence());
         }
     }
+
+    private void SetCharacterNameAndColor(string characterType)
+    {
+        if (characterInfoMap.TryGetValue(characterType, out CharacterInfo info))
+        {
+            characterNameText.text = info.displayName;
+            characterNameText.color = Color.black;
+            characterNameBox.color = info.nameColor;
+            characterNameText.gameObject.SetActive(true);
+            characterNameBox.gameObject.SetActive(true);
+        }
+        else
+        {
+            characterNameText.text = "";
+            characterNameText.gameObject.SetActive(false);
+            characterNameBox.gameObject.SetActive(false);
+        }
+    }
+
 }

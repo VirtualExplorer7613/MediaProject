@@ -13,7 +13,7 @@
       "action": "remove_question_icon"
     },
     {
-      "type": "whale_thought",
+      "type": "whale",
       "dialogue": "입에 뭘 물고 있는 거지…?\n저건… 쓰레기 같은데…? 내가 도와줘야겠어."
     },
     {
@@ -36,7 +36,7 @@
       "dialogue": "정말 몰랐어…\n배가 고파서 그만… 눈에 보이는 대로 삼켰던 건데…\n알려줘서 고맙다. 앞으로는 아무리 배가 고파도 좀 더 조심해야겠지."
     },
     {
-      "type": "whale_thought",
+      "type": "whale",
       "dialogue": "아무리 조심한다고 해도 분명 또 같은 일이 반복될 거야.\n바다에 쓰레기가 더 이상 늘어나면 안 돼."
     }
   ]
