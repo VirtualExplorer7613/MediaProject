@@ -17,7 +17,7 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text characterNameText; //캐릭터이름
 
     public Camera mainCamera;
-    public Vector3 spawnOffset = new Vector3(2f, 0f, 3f); // 캐릭터 위치 오프셋 (조절 가능)
+    public Vector3 spawnOffset = new Vector3(1.6f, 0.25f, 3f); // 캐릭터 위치 오프셋 (조절 가능)
     private GameObject currentCharacterModel;
     public bool IsDialoguePlaying { get; private set; }
 
@@ -227,16 +227,26 @@ public class DialogueManager : MonoBehaviour
             // 방향 결정: 고래는 왼쪽, 나머지는 오른쪽
             Vector3 sideOffset = mainCamera.transform.right * spawnOffset.x;
 
+            Quaternion offset;
+
             if (characterName == "whale")
             {
                 basePosition -= sideOffset; // 왼쪽
+                offset = Quaternion.Euler(0f, -30f, 0f);
             }
             else
             {
                 basePosition += sideOffset; // 오른쪽
+                offset = Quaternion.Euler(0f, 30f, 0f);
             }
 
-            currentCharacterModel = Instantiate(prefab, basePosition, Quaternion.LookRotation(mainCamera.transform.forward));
+            Vector3 directionToCamera = mainCamera.transform.position - basePosition;
+            directionToCamera.y = 0f;
+
+            Quaternion lookRotation = Quaternion.LookRotation(directionToCamera.normalized);
+            lookRotation *= offset;
+
+            currentCharacterModel = Instantiate(prefab, basePosition, lookRotation);
         }
         else
         {
