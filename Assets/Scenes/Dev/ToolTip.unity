@@ -1027,7 +1027,7 @@ MonoBehaviour:
   characterNameBox: {fileID: 635301846}
   characterNameText: {fileID: 1534854544}
   mainCamera: {fileID: 1973330695530328994}
-  spawnOffset: {x: 2, y: -0.7, z: 3}
+  spawnOffset: {x: 1.6, y: -0.25, z: 3}
 --- !u!4 &946285366
 Transform:
   m_ObjectHideFlags: 0
