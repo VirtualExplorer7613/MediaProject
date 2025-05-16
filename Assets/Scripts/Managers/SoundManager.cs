@@ -6,7 +6,10 @@ public class SoundManager
     AudioSource[] _audioSources = new AudioSource[(int)Define.Sound.MaxCount];
 
     Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
- 
+
+    float _bgmVolume = 30f;
+    float _effectVolume = 30f;
+
     public void Init()
     {
         GameObject root = GameObject.Find("@Sound");
@@ -24,27 +27,26 @@ public class SoundManager
                 go.transform.parent = root.transform;
             }
 
+            //BGM은 루프로 재생
             _audioSources[(int)Define.Sound.Bgm].loop = true;
         }
     }
 
-
+    // Define.Sound type을 지정하지 않으면 effect가 기본
     public void Play(string path, Define.Sound type = Define.Sound.Effect, float pitch = 1.0f)
     {
-        //Sounds/찾고자 하는 sound
-        if (path.Contains("Sounds/") == false)
-            path = $"Sounds/{path}";
+        AudioClip audioClip = GetOrAddAdudioClip(path, type);
+       
+        Play(audioClip, type, pitch);
+    }
+
+    public void Play(AudioClip audioClip, Define.Sound type = Define.Sound.Effect, float pitch = 1.0f)
+    {
+        if (audioClip == null)
+            return;
 
         if (type == Define.Sound.Bgm)
-        {
-            AudioClip audioClip = Managers.Resource.Load<AudioClip>(path);
-            if (audioClip == null )
-            {
-                Debug.Log($"AudioClip Missing ! {path}");
-                return;
-            }
-            //TODO
-            // 타이틀 -> 게임 메인 씬 => 배경음 변경될때
+        {           
             AudioSource audioSource = _audioSources[(int)Define.Sound.Bgm];
 
             if (audioSource.isPlaying)
@@ -56,19 +58,12 @@ public class SoundManager
         }
         else
         {
-            AudioClip audioClip = GetOrAddAdudioClip(path);
-            if (audioClip == null)
-            {
-                Debug.Log($"AudioClip Missing ! {path}");
-                return;
-            }
-
             AudioSource audioSource = _audioSources[(int)Define.Sound.Effect];
             audioSource.pitch = pitch;
             audioSource.PlayOneShot(audioClip);
-
         }
     }
+
 
     public void Clear()
     {
@@ -80,16 +75,45 @@ public class SoundManager
         _audioClips.Clear();
     }
 
-
-    AudioClip GetOrAddAdudioClip(string path)
+    //오디오 클립을 캐싱하는 함수
+    AudioClip GetOrAddAdudioClip(string path, Define.Sound type = Define.Sound.Effect)
     {
+        //Sounds/찾고자 하는 sound
+        if (path.Contains("Sounds/") == false)
+            path = $"Sounds/{path}";
+
         AudioClip audioClip = null;
-        if (_audioClips.TryGetValue(path, out audioClip) == false)
+
+        if (type == Define.Sound.Bgm)
         {
             audioClip = Managers.Resource.Load<AudioClip>(path);
-            _audioClips.Add(path, audioClip);
         }
- 
+        else
+        {
+            if (_audioClips.TryGetValue(path, out audioClip) == false)
+            {
+                audioClip = Managers.Resource.Load<AudioClip>(path);
+                _audioClips.Add(path, audioClip);
+            }
+        }
+
+        if (audioClip == null)
+            Debug.Log($"AudioClip Missing ! {path}");
+
         return audioClip;
+    }
+
+    public void SetVolume(Define.Sound type, float volume)
+    {
+        if (type == Define.Sound.Bgm)
+        {
+            _bgmVolume = volume;
+            _audioSources[(int)Define.Sound.Bgm].volume = _bgmVolume;
+        }
+        else if (type == Define.Sound.Effect)
+        {
+            _effectVolume = volume;
+            _audioSources[(int)Define.Sound.Effect].volume = _effectVolume;
+        }
     }
 }
