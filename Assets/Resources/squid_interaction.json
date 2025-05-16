@@ -1,0 +1,39 @@
+{
+  "character": "squid",
+  "icon_on_detected": true,
+  "expressions": {
+    "default": "Eyes_Dead",
+    "start_dialogue": "Eyes_Dead",
+    "post_interaction": "Eyes_Squint"
+  },
+  "dialogue_sequence": [
+    {
+      "type": "player_detects",
+      "dialogue": null,
+      "action": "remove_question_icon"
+    },
+    {
+      "type": "squid",
+      "expression": "Eyes_Dead",
+      "dialogue": "거기, 너. 멍청하게 쳐다보지만 말고 이 그물 좀 치워봐.\n큼큼… 딱히 도와달란 말은 아니고…\n…야! 그냥 가려고 하지 말고 이 그물 좀 어떻게 해보라고!"
+    },
+    {
+      "type": "interaction",
+      "dialogue": null,
+      "action": "초음파로 그물 제거"
+    },
+    {
+      "type": "whale",
+      "dialogue": "그물이 꽤나 두꺼워 보이던데… 많이 무거웠겠다.\n어디 다친 데는 없어? 그물이 다리에 아주 단단히 엉켜있었어."
+    },
+    {
+      "type": "squid",
+      "expression": "Eyes_Squint",
+      "dialogue": "…흥, 겨우 이런 그물 따위가 날 힘들게 할까 봐? 천만에.\n걱정하지 마. 이런 것쯤은 익숙하니까.\n그냥… 나 혼자서도 빠져 나올 수 있었는데… 네가 굳이 도와준다고 해서 도움받은 것뿐이야.\n아무튼…! 고맙다."
+    },
+    {
+      "type": "whale",
+      "dialogue": "정말 저런 게 익숙해질 수 있는 걸까…\n우리는… 도대체 언제까지 견디기만 해야하는 걸까?"
+    }
+  ]
+}
