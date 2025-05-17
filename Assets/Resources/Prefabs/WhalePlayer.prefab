@@ -87,7 +87,7 @@ MonoBehaviour:
   maxPitch: 10
   moveSpeed: 10
   mouseSensitivity: 100
-  ultrasoundPrefab: {fileID: 1223265124446189462, guid: 90f1a07466fd3a444bd3603f2babe8f1, type: 3}
+  ultrasoundPrefab: {fileID: 2267755636713246667, guid: 69426289c5360c441ac30564e5366257, type: 3}
   shootPoint: {fileID: 7146740311611469216}
   dragDetectionRadius: 10
 --- !u!114 &5508513917481890722
