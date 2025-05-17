@@ -69,6 +69,7 @@ public class WhaleController : MonoBehaviour
             //GameObject wave = Instantiate(ultrasoundPrefab, shootPoint.position, transform.rotation);
             GameObject wave = Instantiate(ultrasoundPrefab, shootPoint.position, Quaternion.LookRotation(shootDir));
 
+            Managers.Sound.Play("Underwater_Impact_02");
         }
 
         HandleRotation();
