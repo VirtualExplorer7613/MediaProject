@@ -1016,6 +1016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5559923668783399107}
   - component: {fileID: 3234050314280760286}
+  - component: {fileID: 3637821644679910080}
   - component: {fileID: 4889356615167472207}
   - component: {fileID: 7079114496179368378}
   - component: {fileID: 3856176347056061953}
@@ -1054,6 +1055,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4088585536889589207}
   m_CullTransparentMesh: 1
+--- !u!114 &3637821644679910080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4088585536889589207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d163d3004b3ac4d8d3bfe04919f509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectName: SFX_UI_Click_Organic_Pop_Negative_1
 --- !u!114 &4889356615167472207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1131,6 +1145,18 @@ MonoBehaviour:
       - m_Target: {fileID: 6943124273995274671}
         m_TargetAssemblyTypeName: OptionUIController, Assembly-CSharp
         m_MethodName: OnContinueButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3637821644679910080}
+        m_TargetAssemblyTypeName: UIButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1741,6 +1767,7 @@ GameObject:
   - component: {fileID: 765952256703705902}
   - component: {fileID: 3214830285169749865}
   - component: {fileID: 809494468878861924}
+  - component: {fileID: 518557581231024768}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -1862,6 +1889,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 518557581231024768}
+        m_TargetAssemblyTypeName: UIButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &809494468878861924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1882,6 +1921,19 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &518557581231024768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7450346983446710852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d163d3004b3ac4d8d3bfe04919f509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectName: SFX_UI_Click_Organic_Pop_Negative_1
 --- !u!1 &7926750526030095357
 GameObject:
   m_ObjectHideFlags: 0

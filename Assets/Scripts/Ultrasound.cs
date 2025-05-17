@@ -43,6 +43,7 @@ public class Ultrasound : MonoBehaviour
         {
             Debug.Log("Äù½ºÆ® ´ë»ó ¾²·¹±â ÆÄ±«µÊ!");
             Destroy(other.gameObject);
+            Managers.Sound.Play("Bubble_Surface_Large_01");
             InteractionSystem.Instance.NotifyInteractionComplete();
             return;
         }
@@ -52,6 +53,7 @@ public class Ultrasound : MonoBehaviour
             Debug.Log("ÀÏ¹Ý ¾²·¹±â ÆÄ±«µÊ!");
             TrashManager.Instance?.DecreaseTrash();
             Destroy(other.gameObject);
+            Managers.Sound.Play("Bubble_Surface_Large_01");
         }
     }
 }
