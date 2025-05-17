@@ -129,7 +129,8 @@ public class Prologue : BaseScene
     {
         Debug.Log("프롤로그 종료");
         // 필요 시 다음 씬으로 전환하거나 다른 이벤트 실행
-        Managers.Scene.LoadScene(sceneName);
+        //Managers.Scene.LoadScene(sceneName);
+        Managers.Scene.LoadSceneAsync(sceneName, false);
     }
 
     public void SkipPrologue()

@@ -5,9 +5,19 @@ using UnityEngine.UI;
 public class FadeController : MonoBehaviour
 {
     public Image fadeImage;
+    private Canvas fadeCanvas;
+
+    private void Awake()
+    {
+        fadeCanvas = GetComponent<Canvas>();
+        if (fadeCanvas != null)
+            fadeCanvas.sortingOrder = 0; // 평상시엔 낮게 유지
+    }
 
     public IEnumerator FadeOut(float duration)
     {
+        if (fadeCanvas != null)
+            fadeCanvas.sortingOrder = 999;
         float time = 0f;
         Color c = fadeImage.color;
         while (time < duration)
@@ -34,5 +44,8 @@ public class FadeController : MonoBehaviour
         }
         c.a = 0;
         fadeImage.color = c;
+
+        if (fadeCanvas != null)
+            fadeCanvas.sortingOrder = 0;
     }
 }
