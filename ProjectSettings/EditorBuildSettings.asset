@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Play/Title.unity
     guid: 29f51f5402865a141bf8925ffdeed0cf
   - enabled: 1
-    path: Assets/Scenes/Dev/Prologue.unity
-    guid: 4ebb6ad695e962145ab665160993db37
+    path: Assets/Scenes/Play/Prologue.unity
+    guid: b2831566c3c915f4fa9f021dfc762a9a
   - enabled: 1
-    path: Assets/Scenes/Dev/Game.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Play/Game.unity
+    guid: 3e830f90e11dff5428898e4891301920
+  - enabled: 1
+    path: Assets/Scenes/Play/Ending.unity
+    guid: c7ac1f399d6db544db97ed7a15fe025d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

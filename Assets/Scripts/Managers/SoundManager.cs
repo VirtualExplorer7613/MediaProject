@@ -7,8 +7,8 @@ public class SoundManager
 
     Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 
-    float _bgmVolume = 30f;
-    float _effectVolume = 30f;
+    float _bgmVolume = 0.5f;
+    float _effectVolume = 0.5f;
 
     public void Init()
     {
@@ -25,6 +25,10 @@ public class SoundManager
                 GameObject go = new GameObject { name = soundNames[i] };
                 _audioSources[i] = go.AddComponent<AudioSource>();
                 go.transform.parent = root.transform;
+                if ((Define.Sound)i == Define.Sound.Bgm)
+                    _audioSources[i].volume = _bgmVolume;
+                else if ((Define.Sound)i == Define.Sound.Effect)
+                    _audioSources[i].volume = _effectVolume;
             }
 
             //BGM은 루프로 재생
@@ -101,6 +105,11 @@ public class SoundManager
             Debug.Log($"AudioClip Missing ! {path}");
 
         return audioClip;
+    }
+
+    public float GetVolume(Define.Sound type)
+    {
+        return _audioSources[(int)type]?.volume ?? 1f;
     }
 
     public void SetVolume(Define.Sound type, float volume)

@@ -13,8 +13,8 @@ public class OptionUIController : MonoBehaviour
     {
         var _ = Managers.Sound;
         // 슬라이더 초기값 지정
-        bgmSlider.value = 1f;
-        effectSlider.value = 1f;
+        bgmSlider.value = Managers.Sound.GetVolume(Define.Sound.Bgm);
+        effectSlider.value = Managers.Sound.GetVolume(Define.Sound.Effect);
 
         // 슬라이더 변경 시 이벤트 연결
         bgmSlider.onValueChanged.AddListener((value) =>
@@ -55,8 +55,16 @@ public class OptionUIController : MonoBehaviour
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            if (Managers.Scene.CurrentScene.SceneType == Define.Scene.Title)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
     }
 
@@ -66,8 +74,16 @@ public class OptionUIController : MonoBehaviour
         optionPanel.SetActive(false);
         Time.timeScale = 1f; // 게임 재개
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        if (Managers.Scene.CurrentScene.SceneType == Define.Scene.Title)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     public void OnExitButtonClicked()
