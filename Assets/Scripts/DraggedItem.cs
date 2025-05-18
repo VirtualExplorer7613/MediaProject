@@ -16,6 +16,10 @@ public class DraggedItem : MonoBehaviour
     private Rigidbody rb;
     private ConstantForce constForce;
 
+    [Tooltip("퀘스트 조건을 위한 거리")]
+    [SerializeField] private float questClearDistance = 5f;
+    private bool hasLeftQuestArea = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -43,11 +47,35 @@ public class DraggedItem : MonoBehaviour
                 Vector3 pushDir = (transform.position - target.position).normalized;
                 transform.position = target.position + pushDir * minDistanceToWhale;
             }
+
+            //TalkableNPC 기준으로 거리 계산 및 제거 처리
+            TryRemoveFromTalkableNPC();
         }
         else
         {
-            rb.useGravity = true;
-            constForce.force = new Vector3(0, -1.1f, 0);
+            //rb.useGravity = true;
+            constForce.force = new Vector3(0, 0f, 0);
+        }
+    }
+
+    private void TryRemoveFromTalkableNPC()
+    {
+        if (hasLeftQuestArea) return;
+
+        TalkableNPC npc = DialogueManager.Instance?.CurrentTalkingNPC;
+        if (npc == null) return;
+
+        if (npc.requiredObjects.Contains(gameObject))
+        {
+            float distToNPC = Vector3.Distance(transform.position, npc.transform.position);
+            if (distToNPC >= questClearDistance)
+            {
+                Debug.Log("쓰레기 드래그 완료 → Trash로 전환");
+                gameObject.tag = "Trash";
+                npc.requiredObjects.Remove(gameObject);
+                npc.CheckQuestCondition();
+                hasLeftQuestArea = true;
+            }
         }
     }
 

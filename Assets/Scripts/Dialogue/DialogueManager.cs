@@ -276,6 +276,10 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentCharacterModel != null)
             Destroy(currentCharacterModel);
+
+        // NameBox Áö¿ì±â
+        characterNameText.gameObject.SetActive(false);
+        characterNameBox.gameObject.SetActive(false);
     }
 
     public void ContinueDialogue(string characterName)
