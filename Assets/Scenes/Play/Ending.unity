@@ -795,6 +795,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BGMPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 6245490406995066586, guid: e0752f74a66266643af288189ab64aa2, type: 3}
+      propertyPath: bgmName
+      value: 03_hearts_separated_by_the_ocean
+      objectReference: {fileID: 0}
     - target: {fileID: 8021604676378987690, guid: e0752f74a66266643af288189ab64aa2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

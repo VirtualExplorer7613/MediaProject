@@ -84,7 +84,7 @@ MonoBehaviour:
   whaleVisualRoot: {fileID: 0}
   crosshair: {fileID: 0}
   minPitch: -60
-  maxPitch: 10
+  maxPitch: 30
   moveSpeed: 10
   mouseSensitivity: 100
   ultrasoundPrefab: {fileID: 2267755636713246667, guid: 69426289c5360c441ac30564e5366257, type: 3}
