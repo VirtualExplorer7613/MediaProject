@@ -17,6 +17,8 @@ public class WhaleController : MonoBehaviour
     [Header("Movement")]
     [SerializeField]
     float moveSpeed = 10f;
+    [SerializeField] 
+    float verticalSpeed = 10f;   // 수직 이동 속도
     [SerializeField]
     float mouseSensitivity = 100f;
 
@@ -78,9 +80,14 @@ public class WhaleController : MonoBehaviour
         float h = Input.GetAxis("Horizontal"); // A, D
         float v = Input.GetAxis("Vertical");   // W, S
 
+        float y = 0f; // Q, E
+        if (Input.GetKey(KeyCode.E)) y = 1f;   // 상승
+        if (Input.GetKey(KeyCode.Q)) y = -1f;   // 하강
+
         // 고래의 방향 기준으로 이동
-        Vector3 moveDir = transform.forward * v + transform.right * h;
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        //Vector3 moveDir = transform.forward * v + transform.right * h;
+        Vector3 velocity = (transform.forward * v + transform.right * h) * moveSpeed + transform.up * y * verticalSpeed;
+        transform.position += velocity * Time.deltaTime;
     }
 
     void HandleRotation()
