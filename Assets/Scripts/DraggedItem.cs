@@ -55,7 +55,11 @@ public class DraggedItem : MonoBehaviour
         {
             // 멀리 가면 자동 파괴
             if (Vector3.Distance(startPos, transform.position) >= destroyDistance)
+            {
+                Managers.Sound.Play("Bubble_Surface_Large_01");
                 Destroy(gameObject);
+            }
+                
 
             return;
         }
