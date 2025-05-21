@@ -43,7 +43,8 @@ public class DialogueManager : MonoBehaviour
         { "crab", new CharacterInfo { displayName = "게", nameColor = new Color(1f, 0.6f, 0.6f) } },
         { "clownfish", new CharacterInfo { displayName = "흰동가리", nameColor = new Color(1f, 0.75f, 0.5f) } },
         { "orca", new CharacterInfo { displayName = "범고래", nameColor = new Color(0.7f, 0.7f, 0.75f) } },
-        { "dolphin", new CharacterInfo { displayName = "돌고래", nameColor = new Color(0.7f, 0.85f, 0.95f) } }
+        { "dolphin", new CharacterInfo { displayName = "돌고래", nameColor = new Color(0.7f, 0.85f, 0.95f) } },
+        { "squid", new CharacterInfo { displayName = "오징어", nameColor = new Color(0.85f, 0.75f, 1f) } },
     };
 
 

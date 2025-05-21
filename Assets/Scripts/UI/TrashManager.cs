@@ -5,7 +5,9 @@ public class TrashManager : MonoBehaviour
 {
     public static TrashManager Instance;
 
-    private int totalTrash = 10;
+    //private int totalTrash;
+    //private int initialTrashCount;
+    private int totalTrash = 60;
     public TextMeshProUGUI trashCountText;
 
     private void Awake()
@@ -15,6 +17,9 @@ public class TrashManager : MonoBehaviour
 
     private void Start()
     {
+        //initialTrashCount = GameObject.FindGameObjectsWithTag("Trash").Length;
+        //totalTrash = initialTrashCount;
+
         UpdateTrashUI();
     }
 
@@ -28,7 +33,8 @@ public class TrashManager : MonoBehaviour
         }
         else
         {
-            trashCountText.text = totalTrash + "/50";
+            trashCountText.text = totalTrash + "/60";
+            //trashCountText.text = totalTrash + "/" + initialTrashCount;
         }
 
         if (totalTrash <= 0)
@@ -40,6 +46,7 @@ public class TrashManager : MonoBehaviour
 
     public void UpdateTrashUI()
     {
-        trashCountText.text = totalTrash + "/50";
+        trashCountText.text = totalTrash + "/60";
+        //trashCountText.text = totalTrash + "/" + initialTrashCount;
     }
 }
