@@ -11,12 +11,16 @@ public class Epliogue : BaseScene
     public Image epliogueImage; // 이미지를 표시할 UI 컴포넌트
     public TextMeshProUGUI epliogueText;  // 텍스트를 표시할 UI 컴포넌트
 
+
+
     public List<VisualTextStep> steps;
 /*    public List<Sprite> imageList; //  이미지 리스트
     public List<string> textList;  //  텍스트 리스트*/
     public float typingSpeed = 0.09f; // 타이핑 속도
     //public GameObject skipButton;
 
+    FadeController fade;
+    bool isTransitioning;
 
 
     [Header("Next Scene")]
@@ -60,12 +64,40 @@ public class Epliogue : BaseScene
 
     private void Update()
     {
+        #region 페이드 없는 버전
         // 입력 감지: 클릭 또는 스페이스바
-        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && !isTyping)
+        /*if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && !isTyping)
         {
             ShowNextStep();
+        }*/
+        #endregion
+
+        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+       && !isTyping && !isTransitioning)
+        {
+            StartCoroutine(AdvanceStepWithFade());
         }
+
+
+
     }
+
+    IEnumerator AdvanceStepWithFade()
+    {
+        isTransitioning = true;                 // 입력 막기
+
+        FadeController fade = FindObjectOfType<FadeController>();
+        if (fade != null)                       // ① 암전 3 초
+            yield return fade.FadeOut(2.0f);
+
+        ShowNextStep();                         // ② 이미지·텍스트 교체
+
+        if (fade != null)                       // ③ 밝아짐 3 초
+            yield return fade.FadeIn(1.5f);
+
+        isTransitioning = false;                // 입력 허용
+    }
+
 
     private void DisplayCurrentStep()
     {
@@ -187,6 +219,21 @@ public class Epliogue : BaseScene
                 rectTransform.sizeDelta = new Vector2(baseHeight * aspectRatio, baseHeight);
             }
         }
+    }
+
+    IEnumerator SimpleFadeOutChange(float time = 3f)
+    {
+        FadeController fade = GameObject.FindObjectOfType<FadeController>();
+        if (fade != null) yield return fade.FadeOut(time);
+
+    }
+
+    IEnumerator SimpleFadeInChange(float time = 3f)
+    {
+        yield return null;
+        FadeController fade = GameObject.FindObjectOfType<FadeController>();
+        if (fade != null)
+            yield return fade.FadeIn(time);
     }
 
     public override void Clear()
