@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 7159596315008431156}
   - component: {fileID: 7159596315008431163}
   - component: {fileID: 7159596315008431162}
-  - component: {fileID: 5371061343577193550}
   - component: {fileID: 6403956383775977903}
+  - component: {fileID: 6751354453768665488}
   m_Layer: 0
   m_Name: vfxgraph_TsunamiWave_v1
   m_TagString: Untagged
@@ -62,8 +62,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5920349903317587874}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -312,21 +312,6 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5371061343577193550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7159596315008431161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 972ecabcee666e24995f4444a545d1f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  scaleSpeed: 1
-  maxDistance: 20
 --- !u!136 &6403956383775977903
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -350,3 +335,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 0
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &6751354453768665488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7159596315008431161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972ecabcee666e24995f4444a545d1f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  scaleSpeed: 1
+  maxDistance: 20
