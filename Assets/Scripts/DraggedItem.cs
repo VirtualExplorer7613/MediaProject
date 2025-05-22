@@ -42,10 +42,12 @@ public class DraggedItem : MonoBehaviour
 
     void Update()
     {
+        TryRemoveFromTalkableNPC();
+
         if (isDragged && target != null)
         {
             FollowWhale();
-            TryRemoveFromTalkableNPC();
+            //TryRemoveFromTalkableNPC();
             return;
         }
 
