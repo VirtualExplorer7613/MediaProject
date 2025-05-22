@@ -60,6 +60,7 @@ public class DraggedItem : MonoBehaviour
             {
                 Managers.Sound.Play("Bubble_Surface_Large_01");
                 Destroy(gameObject);
+                TrashManager.Instance?.DecreaseTrash();
             }
                 
 

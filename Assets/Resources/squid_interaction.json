@@ -2,7 +2,7 @@
   "character": "squid",
   "icon_on_detected": true,
   "expressions": {
-    "default": "Eyes_Dead",
+    "default": "Eyes_Blink",
     "start_dialogue": "Eyes_Dead",
     "post_interaction": "Eyes_Squint"
   },
