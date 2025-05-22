@@ -32,7 +32,7 @@ public class WhaleController : MonoBehaviour
     [SerializeField]
     float dragDetectionRadius = 10f;
 
-   
+
 
 
     private DraggedItem currentDraggedItem;

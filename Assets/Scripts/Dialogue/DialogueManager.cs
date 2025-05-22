@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using TMPro.Examples;
+using UnityEngine.SceneManagement;
+
 
 public class DialogueManager : MonoBehaviour
 {
@@ -16,10 +19,12 @@ public class DialogueManager : MonoBehaviour
     public Image characterNameBox; //이름창
     public TMP_Text characterNameText; //캐릭터이름
 
+
     public Camera mainCamera;
     public Vector3 spawnOffset = new Vector3(1.6f, 0.25f, 3f); // 캐릭터 위치 오프셋 (조절 가능)
     private GameObject currentCharacterModel;
     public bool IsDialoguePlaying { get; private set; }
+    private string currentCharacterName = null;
 
     private DialogueData dialogueData;
     private int currentIndex = 0;
@@ -216,6 +221,12 @@ public class DialogueManager : MonoBehaviour
 
     private void ShowCharacter(string characterName)
     {
+        if (currentCharacterModel != null && currentCharacterName == characterName)
+        {
+            // 같은 캐릭터면 재생성하지 않음
+            return;
+        }
+
         if (currentCharacterModel != null)
             Destroy(currentCharacterModel);
 
@@ -244,10 +255,12 @@ public class DialogueManager : MonoBehaviour
             Vector3 directionToCamera = mainCamera.transform.position - basePosition;
             directionToCamera.y = 0f;
 
-            Quaternion lookRotation = Quaternion.LookRotation(directionToCamera.normalized);
+            Quaternion lookRotation = Quaternion.LookRotation(directionToCamera.normalized)*offset;
             lookRotation *= offset;
 
             currentCharacterModel = Instantiate(prefab, basePosition, lookRotation);
+            currentCharacterModel.transform.localScale = Vector3.one * 2f;
+            currentCharacterName = characterName;
         }
         else
         {
@@ -322,6 +335,25 @@ public class DialogueManager : MonoBehaviour
             characterNameText.text = "";
             characterNameText.gameObject.SetActive(false);
             characterNameBox.gameObject.SetActive(false);
+        }
+    }
+
+    public bool AreAllQuestsCleared()
+    {
+        TalkableNPC[] npcs = FindObjectsOfType<TalkableNPC>();
+        foreach (var npc in npcs)
+        {
+            if (!npc.questCleared)
+                return false;
+        }
+        return true;
+    }
+    public void ForceCompleteAllQuests()
+    {
+        foreach (var npc in FindObjectsOfType<TalkableNPC>())
+        {
+            npc.questCleared = true;
+            // 혹은 필요한 다른 상태도 같이 초기화 or 완료 상태로 변경
         }
     }
 
