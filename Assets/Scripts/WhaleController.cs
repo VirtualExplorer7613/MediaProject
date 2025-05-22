@@ -63,7 +63,7 @@ public class WhaleController : MonoBehaviour
 
         HandleItemDragging();
 
-        if (Input.GetMouseButtonDown(0) && !(Input.GetMouseButton(1)))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             Vector3 shootDir = ray.direction.normalized;

@@ -135,6 +135,10 @@ public class DraggedItem : MonoBehaviour
                 gameObject.tag = "Trash";
                 npc.requiredObjects.Remove(gameObject);
                 npc.CheckQuestCondition();
+
+                if (npc.questCleared)
+                    DialogueManager.Instance.OnInteractionCompleted();
+
                 hasLeftQuestArea = true;
             }
         }
