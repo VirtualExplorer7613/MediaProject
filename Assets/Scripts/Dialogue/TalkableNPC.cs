@@ -3,19 +3,21 @@ using UnityEngine;
 
 public class TalkableNPC : MonoBehaviour
 {
-    public string characterName; // ÀÌ NPC°¡ ¾î¶² Ä³¸¯ÅÍÀÎÁö (ex: tuna, whale)
-    public float interactionDistance = 3f; // »óÈ£ÀÛ¿ë °¡´ÉÇÑ °Å¸®
-    public KeyCode interactionKey = KeyCode.E; // ´ëÈ­ ½ÃÀÛ Å°
+    public string characterName; // ì´ NPCê°€ ì–´ë–¤ ìºë¦­í„°ì¸ì§€ (ex: tuna, whale)
+    public float interactionDistance = 3f; // ìƒí˜¸ì‘ìš© ê°€ëŠ¥í•œ ê±°ë¦¬
+    public KeyCode interactionKey = KeyCode.E; // ëŒ€í™” ì‹œì‘ í‚¤
 
     private Transform player;
 
-    public List<GameObject> requiredObjects; // ¸ñÇ¥ ¿ÀºêÁ§Æ®µé
-    private bool hasStartedDialogue = false;   // Ã¹ ´ë»ç Çß´ÂÁö
-    public bool questCleared = false; // Äù½ºÆ® Çß´ÂÁö
+    public List<GameObject> requiredObjects; // ëª©í‘œ ì˜¤ë¸Œì íŠ¸ë“¤
+    private bool hasStartedDialogue = false;   // ì²« ëŒ€ì‚¬ í–ˆëŠ”ì§€
+    public bool questCleared = false; // í€˜ìŠ¤íŠ¸ í–ˆëŠ”ì§€
 
-    public GameObject questionMarkIcon; // ¹°À½Ç¥UI
-    //public GameObject exclamationMarkIcon; // ´À³¦Ç¥ UI
-    private bool dialogueAfterQuestDone = false; // Äù½ºÆ® ÈÄ ´ë»ç±îÁö ¿Ï·áµÆ´ÂÁö
+    public GameObject questionMarkIcon; // ë¬¼ìŒí‘œUI
+    //public GameObject exclamationMarkIcon; // ëŠë‚Œí‘œ UI
+    private bool dialogueAfterQuestDone = false; // í€˜ìŠ¤íŠ¸ í›„ ëŒ€ì‚¬ê¹Œì§€ ì™„ë£ŒëëŠ”ì§€
+    public GameObject heartIcon;
+    private bool questClearEffectPlayed = false;
 
     private void Start()
     {
@@ -30,7 +32,7 @@ public class TalkableNPC : MonoBehaviour
         {
             if (obj == null) continue;
 
-            // DraggedItemÀÌ ºÙ¾î ÀÖÀ¸¸é interactable Àá±İ
+            // DraggedItemì´ ë¶™ì–´ ìˆìœ¼ë©´ interactable ì ê¸ˆ
             if (obj.TryGetComponent(out DraggedItem di))
                 di.interactable = false;
         }
@@ -44,12 +46,18 @@ public class TalkableNPC : MonoBehaviour
 
         /*if (distance <= interactionDistance)
         {
-            // ÇÃ·¹ÀÌ¾î°¡ °¡±îÀÌ ÀÖÀ» ¶§
+            // í”Œë ˆì´ì–´ê°€ ê°€ê¹Œì´ ìˆì„ ë•Œ
             if (Input.GetKeyDown(interactionKey))
             {
                 StartDialogue();
             }
         }*/
+
+        // í€˜ìŠ¤íŠ¸ ìƒíƒœ ì„ ì œ ê°ì§€
+        if (!questCleared)
+        {
+            CheckQuestCondition(); // ì¡°ê±´ì„ ê³„ì† í™•ì¸
+        }
 
         if (distance <= interactionDistance && Input.GetKeyDown(interactionKey))
         {
@@ -67,19 +75,19 @@ public class TalkableNPC : MonoBehaviour
         if (!questCleared && !hasStartedDialogue)
         {
             hasStartedDialogue = true;
-            // »óÈ£ÀÛ¿ë °¡´ÉÇÏ°Ô ¸¸µé±â
+            // ìƒí˜¸ì‘ìš© ê°€ëŠ¥í•˜ê²Œ ë§Œë“¤ê¸°
             EnableQuestItems();
             dialogueManager.StartDialogue(characterName, this);
         }
         else if (questCleared && !dialogueManager.IsDialoguePlaying && !dialogueAfterQuestDone)
         {
-            dialogueManager.ContinueDialogue(characterName); // ÀÌ¾î¼­ Ãâ·Â
+            dialogueManager.ContinueDialogue(characterName); // ì´ì–´ì„œ ì¶œë ¥
         }
         else
         {
-            Debug.Log("»óÈ£ÀÛ¿ë ºÒ°¡´É »óÅÂ");
+            Debug.Log("ìƒí˜¸ì‘ìš© ë¶ˆê°€ëŠ¥ ìƒíƒœ");
         }
-        //»óÅÂ º¯°æ¸¶´Ù ICON Update
+        //ìƒíƒœ ë³€ê²½ë§ˆë‹¤ ICON Update
         UpdateQuestIcon();
     }
 
@@ -89,7 +97,12 @@ public class TalkableNPC : MonoBehaviour
         if (requiredObjects.Count == 0)
         {
             questCleared = true;
-            Debug.Log($"[Äù½ºÆ® ¿Ï·áµÊ]: {characterName}");
+            Debug.Log($"[í€˜ìŠ¤íŠ¸ ì™„ë£Œë¨]: {characterName}");
+            if (!questClearEffectPlayed)
+            {
+                questClearEffectPlayed = true;
+                ShowHeartIcon();
+            }
             UpdateQuestIcon();
         }
     }
@@ -104,7 +117,7 @@ public class TalkableNPC : MonoBehaviour
         }
         else
         {
-            Debug.LogError("DialogueManager¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù!");
+            Debug.LogError("DialogueManagerë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤!");
         }
     }
 
@@ -132,7 +145,15 @@ public class TalkableNPC : MonoBehaviour
         dialogueAfterQuestDone = true;
         UpdateQuestIcon();
     }
-
+    
+    void ShowHeartIcon()
+    {
+        if (heartIcon != null)
+        {
+            heartIcon.SetActive(true);
+        }
+    }
+    
     void EnableQuestItems()
     {
         foreach (var obj in requiredObjects)
@@ -143,11 +164,12 @@ public class TalkableNPC : MonoBehaviour
             {
                 di.interactable = true;
             }
-            // ¨è ÃÊÀ½ÆÄ-ÆÄ±«Çü(DraggedItem ¾øÀ¸¸é) ¡æ Tag = "Trash" ºÎ¿©
+            // â‘¡ ì´ˆìŒíŒŒ-íŒŒê´´í˜•(DraggedItem ì—†ìœ¼ë©´) â†’ Tag = "Trash" ë¶€ì—¬
             else
             {
                 obj.tag = "Trash";
             }
         }
     }
+    
 }
