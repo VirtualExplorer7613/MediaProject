@@ -28,6 +28,7 @@ public class TrashMonologueTrigger : MonoBehaviour
         {
             played = true;                       // 1회만 재생
             MonologuePopup.Instance.Show(monologue.steps);
+
         }
     }
 }

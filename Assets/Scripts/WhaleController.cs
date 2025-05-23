@@ -134,7 +134,7 @@ public class WhaleController : MonoBehaviour
         foreach (var hit in hits)
         {
             DraggedItem item = hit.GetComponent<DraggedItem>();
-            if (item != null && !item.isDragged)
+            if (item != null && !item.isDragged && !item.isDragged)
             {
                 item.StartDragging(transform);
                 currentDraggedItem = item;

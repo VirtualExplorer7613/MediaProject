@@ -7,6 +7,8 @@ public class OptionUIController : MonoBehaviour
     public Slider bgmSlider;
     public Slider effectSlider;
 
+    [SerializeField] private CrosshairUI crosshairUI;
+
     private bool isOptionOpen = false;
 
     private void Start()
@@ -48,6 +50,9 @@ public class OptionUIController : MonoBehaviour
         // 게임 일시정지 / 재개
         Time.timeScale = isOptionOpen ? 0f : 1f;
 
+        if (crosshairUI != null)
+            crosshairUI.IsVisible = !isOptionOpen;
+
         if (isOptionOpen)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -83,10 +88,13 @@ public class OptionUIController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            if (crosshairUI != null)
+                crosshairUI.IsVisible = true;
         }
     }
 
-    public void OnExitButtonClicked()
+    public void OnExitButtonClicked()   
     {
         //Application.Quit(); // 혹은 Title 씬으로 이동
         Debug.Log("나가기 호출! 테스트를 위해 씬 이동은 막은 상태");

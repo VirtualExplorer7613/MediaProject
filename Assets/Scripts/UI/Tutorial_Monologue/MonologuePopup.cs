@@ -26,6 +26,9 @@ public class MonologuePopup : MonoBehaviour
     bool isTyping;
     float savedTimeScale = 1f;
 
+    private CrosshairUI crosshairUI;
+
+
     void Awake()
     {
         if (Instance == null) Instance = this;
@@ -34,6 +37,8 @@ public class MonologuePopup : MonoBehaviour
         panelGroup.alpha = 0f;
         panelGroup.blocksRaycasts = false;
         gameObject.SetActive(false);
+        if (crosshairUI == null)
+            crosshairUI = FindObjectOfType<CrosshairUI>();
     }
 
     /* ---------- 외부 호출용 ---------- */
@@ -53,6 +58,9 @@ public class MonologuePopup : MonoBehaviour
         panelGroup.alpha = 1f;
         panelGroup.blocksRaycasts = true;
 
+        // 크로스 헤어 숨기기
+        if (crosshairUI != null)
+            crosshairUI.IsVisible = false;
         ShowCurrent();
     }
 
@@ -116,5 +124,8 @@ public class MonologuePopup : MonoBehaviour
         // 상태 리셋
         steps = null;
         dialogueText.text = "";
+
+        if (crosshairUI != null)
+            crosshairUI.IsVisible = true;
     }
 }
