@@ -8,7 +8,7 @@ public class TrashManager : MonoBehaviour
 
     //private int totalTrash;
     //private int initialTrashCount;
-    private int totalTrash = 5;
+    public int totalTrash = 60;
     public TextMeshProUGUI trashCountText;
 
     private void Awake()

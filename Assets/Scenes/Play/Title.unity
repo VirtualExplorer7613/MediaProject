@@ -1827,7 +1827,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Team.\uC544\uC774\uC0BC\n\n\uAE30\uD68D: \uC774\uCC44\uC6D0\n\uBA54\uC778
-    \uAC1C\uBC1C: \uC774\uC7AC\uC6A9\n\uC11C\uBE0C \uAC1C\uBC1C & UI: \uC774\uD604\uACBD"
+    \uAC1C\uBC1C: \uC774\uC7AC\uC6A9\n\uC11C\uBE0C \uAC1C\uBC1C & UI & Map: \uC774\uD604\uACBD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4e7ac135bec5054d814e343f4a36170, type: 2}
   m_sharedMaterial: {fileID: 5111917943915540462, guid: a4e7ac135bec5054d814e343f4a36170, type: 2}
