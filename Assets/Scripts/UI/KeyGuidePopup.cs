@@ -60,7 +60,7 @@ public class KeyGuidePopup : MonoBehaviour
 
     IEnumerator FadeIn()
     {
-        while (group.alpha < 0.7f)
+        while (group.alpha < 1f)
         {
             group.alpha += Time.unscaledDeltaTime * fadeSpeed;
             yield return null;

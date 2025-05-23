@@ -5,7 +5,7 @@ public class TalkableNPC : MonoBehaviour
 {
     public string characterName; // 이 NPC가 어떤 캐릭터인지 (ex: tuna, whale)
     public float interactionDistance = 3f; // 상호작용 가능한 거리
-    public KeyCode interactionKey = KeyCode.E; // 대화 시작 키
+    public KeyCode interactionKey = KeyCode.R; // 대화 시작 키
 
     private Transform player;
 
@@ -17,6 +17,7 @@ public class TalkableNPC : MonoBehaviour
     //public GameObject exclamationMarkIcon; // 느낌표 UI
     private bool dialogueAfterQuestDone = false; // 퀘스트 후 대사까지 완료됐는지
     public GameObject heartIcon;
+    public GameObject questionHintUI;
     private bool questClearEffectPlayed = false;
 
     private void Start()
@@ -44,6 +45,7 @@ public class TalkableNPC : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, player.position);
 
+
         /*if (distance <= interactionDistance)
         {
             // 플레이어가 가까이 있을 때
@@ -52,6 +54,21 @@ public class TalkableNPC : MonoBehaviour
                 StartDialogue();
             }
         }*/
+
+        if(!questCleared && hasStartedDialogue)
+        {
+            ShowquestionHintUI(false);
+        }
+        
+        if(questCleared && !dialogueAfterQuestDone)
+        {
+            ShowquestionHintUI(true);
+        }
+
+        if (dialogueAfterQuestDone)
+        {
+            ShowquestionHintUI(false);
+        }
 
         // 퀘스트 상태 선제 감지
         if (!questCleared)
@@ -128,11 +145,6 @@ public class TalkableNPC : MonoBehaviour
             questionMarkIcon?.SetActive(true);
             //exclamationMarkIcon?.SetActive(false);
         }
-        /*else if (questCleared && !dialogueAfterQuestDone)
-        {
-            questionMarkIcon?.SetActive(false);
-            //exclamationMarkIcon?.SetActive(true);
-        }*/
         else
         {
             questionMarkIcon?.SetActive(false);
@@ -143,6 +155,7 @@ public class TalkableNPC : MonoBehaviour
     public void OnDialogueAfterQuestFinished()
     {
         dialogueAfterQuestDone = true;
+        ShowquestionHintUI(false);
         UpdateQuestIcon();
     }
     
@@ -153,7 +166,16 @@ public class TalkableNPC : MonoBehaviour
             heartIcon.SetActive(true);
         }
     }
-    
+
+    void ShowquestionHintUI(bool show)
+    {
+        if(questionHintUI != null)
+        {
+            questionHintUI.SetActive(show);
+        }
+    }
+
+
     void EnableQuestItems()
     {
         foreach (var obj in requiredObjects)

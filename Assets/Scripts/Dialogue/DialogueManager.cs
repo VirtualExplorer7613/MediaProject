@@ -31,6 +31,8 @@ public class DialogueManager : MonoBehaviour
     private bool waitingForInteraction = false;
     private bool canProceed = false;
 
+    private CrosshairUI crosshairUI;
+
     [System.Serializable]
     public class CharacterInfo
     {
@@ -59,6 +61,7 @@ public class DialogueManager : MonoBehaviour
         else Destroy(gameObject);
 
         whaleController = FindObjectOfType<WhaleController>();
+        crosshairUI = FindAnyObjectByType<CrosshairUI>();
     }
 
 
@@ -73,6 +76,10 @@ public class DialogueManager : MonoBehaviour
         if (whaleController != null)
         {
             whaleController.SetVisible(false);
+
+            if (crosshairUI != null)
+                crosshairUI.IsVisible = false;
+
         }
 
         CurrentTalkingNPC = npc;
@@ -130,6 +137,8 @@ public class DialogueManager : MonoBehaviour
                 if (whaleController != null)
                 {
                     whaleController.SetVisible(true);
+                    if (crosshairUI != null)
+                        crosshairUI.IsVisible = true;
                 }
 
                 yield break; // 대사 종료
@@ -156,7 +165,9 @@ public class DialogueManager : MonoBehaviour
 
         if (whaleController != null)
         { 
-            whaleController.SetVisible(true); 
+            whaleController.SetVisible(true);
+            if (crosshairUI != null)
+                crosshairUI.IsVisible = true;
         }
 
         IsDialoguePlaying = false;
@@ -312,6 +323,9 @@ public class DialogueManager : MonoBehaviour
             if (whaleController != null)
             {
                 whaleController.SetVisible(false);
+
+                if (crosshairUI != null)
+                    crosshairUI.IsVisible = false;
             }
 
             ShowCharacter(characterName);
