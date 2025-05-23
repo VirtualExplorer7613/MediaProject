@@ -16,6 +16,8 @@ public class TalkableNPC : MonoBehaviour
     public GameObject questionMarkIcon; // 물음표UI
     //public GameObject exclamationMarkIcon; // 느낌표 UI
     private bool dialogueAfterQuestDone = false; // 퀘스트 후 대사까지 완료됐는지
+    public GameObject heartIcon;
+    private bool questClearEffectPlayed = false;
 
     private void Start()
     {
@@ -37,6 +39,12 @@ public class TalkableNPC : MonoBehaviour
                 StartDialogue();
             }
         }*/
+
+        // 퀘스트 상태 선제 감지
+        if (!questCleared)
+        {
+            CheckQuestCondition(); // 조건을 계속 확인
+        }
 
         if (distance <= interactionDistance && Input.GetKeyDown(interactionKey))
         {
@@ -75,6 +83,11 @@ public class TalkableNPC : MonoBehaviour
         {
             questCleared = true;
             Debug.Log($"[퀘스트 완료됨]: {characterName}");
+            if (!questClearEffectPlayed)
+            {
+                questClearEffectPlayed = true;
+                ShowHeartIcon();
+            }
             UpdateQuestIcon();
         }
     }
@@ -117,4 +130,12 @@ public class TalkableNPC : MonoBehaviour
         dialogueAfterQuestDone = true;
         UpdateQuestIcon();
     }
+    void ShowHeartIcon()
+    {
+        if (heartIcon != null)
+        {
+            heartIcon.SetActive(true);
+        }
+    }
+
 }

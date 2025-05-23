@@ -33,7 +33,12 @@
     {
       "type": "orca",
       "expression": "Sweat_L",
-      "dialogue": "정말 몰랐어…\n배가 고파서 그만… 눈에 보이는 대로 삼켰던 건데…\n알려줘서 고맙다. 앞으로는 아무리 배가 고파도 좀 더 조심해야겠지."
+      "dialogue": "정말 몰랐어. 배가 고파서 눈에 보이는 대로 삼켰던 건데…."
+    },
+    {
+      "type": "orca",
+      "expression": "Sweat_L",
+      "dialogue": "알려줘서 고맙다. 앞으로는 아무리 배가 고파도 좀 더 조심해야겠지."
     },
     {
       "type": "whale",
