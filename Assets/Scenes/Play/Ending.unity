@@ -448,8 +448,10 @@ MonoBehaviour:
       \uB418\uB3CC\uB9B4 \uC218 \uC5C6\uC744\uC9C0\uB3C4 \uBAA8\uB978\uB2E4.\r\n\uC815\uB9D0
       \uC6B0\uB9AC\uC758 \uBC14\uB2E4\uB97C \uC9C0\uD0A4\uACE0 \uC2F6\uB2E4\uBA74\u2026\r\n\r\n\uC774\uC820,
       \uB108\uD76C\uB4E4\uC774 \uB3C4\uC640\uC904 \uCC28\uB840\uC57C.\r\n"
+  - image: {fileID: 0}
+    text: "\t\t\t    THE END"
   typingSpeed: 0.09
-  sceneName: 0
+  sceneName: 1
 --- !u!1 &896062583
 GameObject:
   m_ObjectHideFlags: 0
