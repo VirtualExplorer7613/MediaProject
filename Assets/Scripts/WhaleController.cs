@@ -63,7 +63,7 @@ public class WhaleController : MonoBehaviour
 
         HandleItemDragging();
 
-        if (Input.GetMouseButtonDown(0) && !(Input.GetMouseButton(1)))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             Vector3 shootDir = ray.direction.normalized;
@@ -134,7 +134,7 @@ public class WhaleController : MonoBehaviour
         foreach (var hit in hits)
         {
             DraggedItem item = hit.GetComponent<DraggedItem>();
-            if (item != null && !item.isDragged)
+            if (item != null && !item.isDragged && !item.isDragged)
             {
                 item.StartDragging(transform);
                 currentDraggedItem = item;

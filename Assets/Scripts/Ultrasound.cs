@@ -29,7 +29,11 @@ public class Ultrasound : MonoBehaviour
 
         // 거리 초과 시 제거
         if (Vector3.Distance(startPos, transform.position) >= maxDistance)
-            Destroy(gameObject);
+        {
+            Destroy(transform.root.gameObject);
+            //Destroy(gameObject);
+        }
+            
     }
 
     void OnTriggerEnter(Collider other)

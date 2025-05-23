@@ -13,6 +13,7 @@ public class DraggedItem : MonoBehaviour
     private Vector3 offset = new Vector3(0, 1f, 2f);
     [SerializeField] float minDistToWhale = 2f;
 
+    public bool interactable = true;
 
 
 
@@ -42,10 +43,14 @@ public class DraggedItem : MonoBehaviour
 
     void Update()
     {
+        if (!interactable) return;
+
+        TryRemoveFromTalkableNPC();
+
         if (isDragged && target != null)
         {
             FollowWhale();
-            TryRemoveFromTalkableNPC();
+            //TryRemoveFromTalkableNPC();
             return;
         }
 
@@ -74,6 +79,8 @@ public class DraggedItem : MonoBehaviour
     /* --------------------------- Drag Á¦¾î --------------------------- */
     public void StartDragging(Transform targetTransform)
     {
+        if (!interactable) return;
+
         isDragged = true;
         target = targetTransform;
 
@@ -136,6 +143,10 @@ public class DraggedItem : MonoBehaviour
                 gameObject.tag = "Trash";
                 npc.requiredObjects.Remove(gameObject);
                 npc.CheckQuestCondition();
+
+                if (npc.questCleared)
+                    DialogueManager.Instance.OnInteractionCompleted();
+
                 hasLeftQuestArea = true;
             }
         }
