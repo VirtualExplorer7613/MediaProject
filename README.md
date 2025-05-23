@@ -74,9 +74,9 @@
 
 | 이름     | 역할            | GitHub |
 |----------|-----------------|--------|
-| 이채원   |  추가예정        | 깃허브 주소 추가예정 |
+| 이채원   |  기획 및 총괄    | [@leecw49](https://github.com/leecw49) |
 | 이재용   |  메인 프로그래밍 | [@VirtualExplorer7613](https://github.com/VirtualExplorer7613) |
-| 이현경   |  추가예정        |  깃허브주소 추가예정 |
+| 이현경   |  서브 프로그래밍 / UI / 맵 디자인 |  [@Ye0nan](https://github.com/Ye0nan) |
 ---
 
 ## 🔗 링크
