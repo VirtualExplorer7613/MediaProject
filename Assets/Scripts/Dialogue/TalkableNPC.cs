@@ -20,7 +20,20 @@ public class TalkableNPC : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        DisableQuestItemsInitially();
         UpdateQuestIcon();
+    }
+
+    void DisableQuestItemsInitially()
+    {
+        foreach (var obj in requiredObjects)
+        {
+            if (obj == null) continue;
+
+            // DraggedItem이 붙어 있으면 interactable 잠금
+            if (obj.TryGetComponent(out DraggedItem di))
+                di.interactable = false;
+        }
     }
 
     private void Update()
@@ -54,6 +67,8 @@ public class TalkableNPC : MonoBehaviour
         if (!questCleared && !hasStartedDialogue)
         {
             hasStartedDialogue = true;
+            // 상호작용 가능하게 만들기
+            EnableQuestItems();
             dialogueManager.StartDialogue(characterName, this);
         }
         else if (questCleared && !dialogueManager.IsDialoguePlaying && !dialogueAfterQuestDone)
@@ -116,5 +131,23 @@ public class TalkableNPC : MonoBehaviour
     {
         dialogueAfterQuestDone = true;
         UpdateQuestIcon();
+    }
+
+    void EnableQuestItems()
+    {
+        foreach (var obj in requiredObjects)
+        {
+            if (obj == null) continue;
+
+            if (obj.TryGetComponent(out DraggedItem di))
+            {
+                di.interactable = true;
+            }
+            // ② 초음파-파괴형(DraggedItem 없으면) → Tag = "Trash" 부여
+            else
+            {
+                obj.tag = "Trash";
+            }
+        }
     }
 }
