@@ -594,6 +594,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3461114723420861162, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -104
+      objectReference: {fileID: 0}
     - target: {fileID: 3480375575302367035, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -616,7 +620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3480375575302367035, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -640
+      value: -744
       objectReference: {fileID: 0}
     - target: {fileID: 3934356289865240936, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_AnchorMax.y
@@ -660,7 +664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5462382609294755527, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -440
+      value: -544
       objectReference: {fileID: 0}
     - target: {fileID: 5559923668783399107, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_AnchorMax.y
@@ -728,7 +732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8156394381474084091, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -520
+      value: -624
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1144,7 +1148,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -94}
   m_SizeDelta: {x: 800, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1069262852
@@ -1822,7 +1826,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Team.\uC544\uC774\uC0BC\n\n\uC774\uCC44\uC6D0\n\uC774\uD604\uACBD\n\uC774\uC7AC\uC6A9\n"
+  m_text: "Team.\uC544\uC774\uC0BC\n\n\uAE30\uD68D: \uC774\uCC44\uC6D0\n\uBA54\uC778
+    \uAC1C\uBC1C: \uC774\uC7AC\uC6A9\n\uC11C\uBE0C \uAC1C\uBC1C & UI: \uC774\uD604\uACBD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4e7ac135bec5054d814e343f4a36170, type: 2}
   m_sharedMaterial: {fileID: 5111917943915540462, guid: a4e7ac135bec5054d814e343f4a36170, type: 2}
@@ -1861,7 +1866,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 15
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
