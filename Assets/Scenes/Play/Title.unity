@@ -1826,8 +1826,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Team.\uC544\uC774\uC0BC\n\n\uAE30\uD68D: \uC774\uCC44\uC6D0\n\uBA54\uC778
-    \uAC1C\uBC1C: \uC774\uC7AC\uC6A9\n\uC11C\uBE0C \uAC1C\uBC1C & UI & Map: \uC774\uD604\uACBD"
+  m_text: "Team. III(\uC544\uC774\uC0BC)\r\n\r\n\uAE30\uD68D \uBC0F \uCD1D\uAD04:
+    \uC774\uCC44\uC6D0  \r\n\uBA54\uC778 \uAC1C\uBC1C: \uC774\uC7AC\uC6A9  \r\n\uC11C\uBE0C
+    \uAC1C\uBC1C / UI / \uB9F5 \uB514\uC790\uC778: \uC774\uD604\uACBD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4e7ac135bec5054d814e343f4a36170, type: 2}
   m_sharedMaterial: {fileID: 5111917943915540462, guid: a4e7ac135bec5054d814e343f4a36170, type: 2}
