@@ -5,7 +5,7 @@ public class TalkableNPC : MonoBehaviour
 {
     public string characterName; // 이 NPC가 어떤 캐릭터인지 (ex: tuna, whale)
     public float interactionDistance = 3f; // 상호작용 가능한 거리
-    public KeyCode interactionKey = KeyCode.E; // 대화 시작 키
+    public KeyCode interactionKey = KeyCode.R; // 대화 시작 키
 
     private Transform player;
 
