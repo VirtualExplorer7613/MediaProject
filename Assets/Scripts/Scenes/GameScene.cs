@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
+    [SerializeField] private KeyGuidePopup keyGuidePopup;
+
     protected override void Init()
     {
         base.Init();
@@ -32,6 +34,15 @@ public class GameScene : BaseScene
         FadeController fade = GameObject.FindObjectOfType<FadeController>();
         if (fade != null)
             yield return fade.FadeIn(1.5f);
+
+        yield return new WaitForSecondsRealtime(0.1f);  // 완충
+
+        if (keyGuidePopup != null)
+            keyGuidePopup.Show();
+        else
+            Debug.LogWarning("KeyGuidePopup reference missing!");
+        yield return new WaitUntil(() => !keyGuidePopup.IsShowing); // IsShowing = false 가 될 때까지
+
     }
 
 }
