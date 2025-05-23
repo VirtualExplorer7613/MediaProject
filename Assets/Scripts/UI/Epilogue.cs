@@ -139,7 +139,7 @@ public class Epliogue : BaseScene
         }
         else if (!isMoving)
         {
-            EndEpilogue();
+            StartCoroutine(GoToTitleWithFade());
             isMoving = true;
         }
     }
@@ -178,11 +178,24 @@ public class Epliogue : BaseScene
     {
         Debug.Log("에필로그 종료");
         // 필요 시 다음 씬으로 전환하거나 다른 이벤트 실행
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Managers.Scene.LoadSceneAsync(Define.Scene.Title, false);
     }
 
     public void SkipEpilogue()
     {
+        EndEpilogue();
+    }
+
+    private IEnumerator GoToTitleWithFade()
+    {
+        isTransitioning = true;
+
+        FadeController fade = FindObjectOfType<FadeController>();
+        if (fade != null)
+            yield return fade.FadeOut(2.0f); // 마지막 페이드 아웃
+
         EndEpilogue();
     }
 
