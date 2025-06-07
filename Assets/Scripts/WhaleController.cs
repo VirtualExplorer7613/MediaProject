@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WhaleController : MonoBehaviour
@@ -32,8 +34,9 @@ public class WhaleController : MonoBehaviour
     [SerializeField]
     float dragDetectionRadius = 10f;
 
-
-
+    // Dialogue snap
+    bool isFrozen = false;
+    Coroutine snapCo;
 
     private DraggedItem currentDraggedItem;
     DialogueManager dialogueManager;
@@ -55,7 +58,7 @@ public class WhaleController : MonoBehaviour
     void Update()
     {
 
-        if (dialogueManager != null && dialogueManager.IsDialoguePlaying)
+        if (isFrozen || dialogueManager != null && dialogueManager.IsDialoguePlaying)
         {
             // 대화 중이면 아무 조작도 못하게 막음
             return;
@@ -148,4 +151,21 @@ public class WhaleController : MonoBehaviour
         if (whaleVisualRoot != null)
             whaleVisualRoot.SetActive(visible);
     }
+
+    #region NPC 대화 앵커 코드
+    public void MoveToAnchor(Vector3 pos, Quaternion rot)
+    {
+        Snap(pos, rot);
+    }
+
+    void Snap(Vector3 targetPos, Quaternion targetRot)
+    {  
+        transform.position = targetPos;
+        transform.rotation = targetRot;
+
+        Vector3 e = transform.eulerAngles;
+        yaw = e.y;
+        pitch = (e.x > 180f) ? e.x - 360f : e.x;   // -180°~180° 범위로 정규화
+    }
+    #endregion
 }

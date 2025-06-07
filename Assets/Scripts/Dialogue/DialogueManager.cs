@@ -75,10 +75,26 @@ public class DialogueManager : MonoBehaviour
 
         if (whaleController != null)
         {
+            Vector3 anchorPos;
+            Quaternion anchorRot;
+
             whaleController.SetVisible(false);
 
             if (crosshairUI != null)
                 crosshairUI.IsVisible = false;
+
+            if (npc.dialogueAnchor != null)
+            {   // 미리 만든 앵커 사용
+                anchorPos = npc.dialogueAnchor.position;
+                anchorRot = npc.dialogueAnchor.rotation;
+
+                whaleController.MoveToAnchor(anchorPos, anchorRot);
+            }
+            else
+            {
+                // 기본값: 현재 플레이어 위치 기준
+                Debug.Log("앵커 미지정!");
+            }
 
         }
 
@@ -272,6 +288,10 @@ public class DialogueManager : MonoBehaviour
             currentCharacterModel = Instantiate(prefab, basePosition, lookRotation);
             currentCharacterModel.transform.localScale = Vector3.one * 2f;
             currentCharacterName = characterName;
+
+            //고래만 크기 줄이기
+            if (currentCharacterName == "whale")
+                currentCharacterModel.transform.localScale = Vector3.one * 1f;
         }
         else
         {
@@ -307,7 +327,7 @@ public class DialogueManager : MonoBehaviour
         characterNameBox.gameObject.SetActive(false);
     }
 
-    public void ContinueDialogue(string characterName)
+    public void ContinueDialogue(string characterName, TalkableNPC npc)
     {
         TextAsset jsonFile = Resources.Load<TextAsset>($"{characterName}_interaction");
         if (jsonFile != null)
@@ -326,6 +346,9 @@ public class DialogueManager : MonoBehaviour
 
                 if (crosshairUI != null)
                     crosshairUI.IsVisible = false;
+
+                if (npc.dialogueAnchor != null)
+                    whaleController.MoveToAnchor(npc.dialogueAnchor.position, npc.dialogueAnchor.rotation);
             }
 
             ShowCharacter(characterName);
