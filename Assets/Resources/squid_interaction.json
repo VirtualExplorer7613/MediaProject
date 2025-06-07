@@ -39,7 +39,12 @@
     {
       "type": "squid",
       "expression": "Eyes_Squint",
-      "dialogue": "나 혼자서도 빠져 나올 수 있었는데…. 네가 굳이 도와준다고 해서 도움받은 것뿐이야.\n아무튼…! 고맙다."
+      "dialogue": "나 혼자서도 빠져 나올 수 있었는데….\n네가 굳이 도와준다고 해서 도움받은 것뿐이야."
+    },
+    {
+      "type": "squid",
+      "expression": "Eyes_Squint",
+      "dialogue": "아무튼…! 고맙다."
     },
     {
       "type": "whale",

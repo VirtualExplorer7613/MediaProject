@@ -24,7 +24,7 @@
     {
       "type": "octopus",
       "expression": "Eyes_Shrink",
-      "dialogue": "...어라?\n어! 너 뭐야! 왜 남의 피신처를 함부로 없애는 거야?!"
+      "dialogue": "...어라? 어! 너 뭐야!\n왜 남의 피신처를 함부로 없애는 거야?!"
     },
     {
       "type": "whale",
@@ -33,12 +33,17 @@
     {
       "type": "octopus",
       "expression": "Eyes_Annoyed",
-      "dialogue": "뭐? 쓰레기?! 지금 내가 그 더럽고 찝찝한 걸 피신처로 쓰고 있었단 말이야?!\n어쩐지… 뭔가 끈적하고 이상했는데 그게 쓰레기였다니. 정말 최악이야."
+      "dialogue": "뭐? 쓰레기?!\n지금 내가 그 더럽고 찝찝한 걸 피신처로 쓰고 있었단 말이야?!"
     },
     {
       "type": "octopus",
       "expression": "Eyes_Annoyed",
-      "dialogue": "…그래도 고마워. 너 아니었으면 이 더러운 걸 계속 쓰고 있을 뻔 했어."
+      "dialogue": "어쩐지… 뭔가 끈적하고 이상했는데 그게 쓰레기였다니. 정말 최악이야."
+    },
+    {
+      "type": "octopus",
+      "expression": "Eyes_Annoyed",
+      "dialogue": "...그래도 고마워. 너 아니었으면 이 더러운 걸 계속 쓰고 있을 뻔 했어."
     },
     {
       "type": "whale",
