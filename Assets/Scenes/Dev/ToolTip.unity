@@ -741,6 +741,9 @@ MonoBehaviour:
   - {fileID: 1804086880795123937}
   questCleared: 0
   questionMarkIcon: {fileID: 1700173459}
+  heartIcon: {fileID: 0}
+  questionHintUI: {fileID: 0}
+  dialogueAnchor: {fileID: 0}
 --- !u!4 &766304822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6206218631769808174, guid: 72f353d8e5db6a74683736821599ea91, type: 3}
@@ -1798,6 +1801,9 @@ MonoBehaviour:
   - {fileID: 328832915}
   questCleared: 0
   questionMarkIcon: {fileID: 573541826}
+  heartIcon: {fileID: 0}
+  questionHintUI: {fileID: 0}
+  dialogueAnchor: {fileID: 0}
 --- !u!4 &1754957294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5282283659001997932, guid: c05e5696eaa5471409fa8d84639d0e14, type: 3}

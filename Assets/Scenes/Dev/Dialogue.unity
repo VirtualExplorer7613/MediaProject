@@ -541,6 +541,10 @@ MonoBehaviour:
   requiredObjects:
   - {fileID: 196335804}
   questCleared: 0
+  questionMarkIcon: {fileID: 0}
+  heartIcon: {fileID: 0}
+  questionHintUI: {fileID: 0}
+  dialogueAnchor: {fileID: 0}
 --- !u!1 &946285364
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,6 +576,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 1509408145}
   dialogueBox: {fileID: 420927151}
+  characterNameBox: {fileID: 0}
+  characterNameText: {fileID: 0}
   mainCamera: {fileID: 1973330695530328994}
   spawnOffset: {x: 2, y: 0, z: 3}
 --- !u!4 &946285366
@@ -1184,6 +1190,10 @@ MonoBehaviour:
   requiredObjects:
   - {fileID: 328832915}
   questCleared: 0
+  questionMarkIcon: {fileID: 0}
+  heartIcon: {fileID: 0}
+  questionHintUI: {fileID: 0}
+  dialogueAnchor: {fileID: 0}
 --- !u!1001 &2056049985
 PrefabInstance:
   m_ObjectHideFlags: 0

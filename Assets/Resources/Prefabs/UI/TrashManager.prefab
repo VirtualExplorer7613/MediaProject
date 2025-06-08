@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e4bde2f95c81c4da3a8b7cf000e150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalTrash: 60
   trashCountText: {fileID: 8406588060033500343}
 --- !u!223 &2586239168578299339
 Canvas:

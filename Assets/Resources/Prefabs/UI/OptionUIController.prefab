@@ -159,6 +159,7 @@ MonoBehaviour:
   optionPanel: {fileID: 2269783706451627381}
   bgmSlider: {fileID: 3540383044880724318}
   effectSlider: {fileID: 8400080789886359837}
+  crosshairUI: {fileID: 0}
 --- !u!1 &814102533169114085
 GameObject:
   m_ObjectHideFlags: 0

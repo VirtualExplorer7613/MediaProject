@@ -178,9 +178,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC4F0\uB808\uAE30 \uC81C\uAC70"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cc57695aac3eed04ca74b3a8b18de4bd, type: 2}
-  m_sharedMaterial: {fileID: 3697559359111029928, guid: cc57695aac3eed04ca74b3a8b18de4bd, type: 2}
-  m_fontSharedMaterials: []
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -1027,6 +1028,9 @@ MonoBehaviour:
   - {fileID: 1804086880795123937}
   questCleared: 0
   questionMarkIcon: {fileID: 1700173459}
+  heartIcon: {fileID: 0}
+  questionHintUI: {fileID: 0}
+  dialogueAnchor: {fileID: 0}
 --- !u!4 &766304822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6206218631769808174, guid: 72f353d8e5db6a74683736821599ea91, type: 3}
@@ -2084,6 +2088,9 @@ MonoBehaviour:
   - {fileID: 328832915}
   questCleared: 0
   questionMarkIcon: {fileID: 573541826}
+  heartIcon: {fileID: 0}
+  questionHintUI: {fileID: 0}
+  dialogueAnchor: {fileID: 0}
 --- !u!4 &1754957294 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5282283659001997932, guid: c05e5696eaa5471409fa8d84639d0e14, type: 3}
@@ -2487,7 +2494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3480375575302367035, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 600
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3480375575302367035, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2531,7 +2538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5462382609294755527, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 600
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5462382609294755527, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2579,7 +2586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8156394381474084091, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 600
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8156394381474084091, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_SizeDelta.y
