@@ -20,6 +20,8 @@ public class TalkableNPC : MonoBehaviour
     public GameObject questionHintUI;
     private bool questClearEffectPlayed = false;
 
+    public Transform dialogueAnchor; // 대화할때 플레어이어의 위치
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -98,7 +100,7 @@ public class TalkableNPC : MonoBehaviour
         }
         else if (questCleared && !dialogueManager.IsDialoguePlaying && !dialogueAfterQuestDone)
         {
-            dialogueManager.ContinueDialogue(characterName); // 이어서 출력
+            dialogueManager.ContinueDialogue(characterName, this); // 이어서 출력
         }
         else
         {
