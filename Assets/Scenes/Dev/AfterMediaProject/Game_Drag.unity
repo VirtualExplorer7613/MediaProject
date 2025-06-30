@@ -138873,6 +138873,10 @@ PrefabInstance:
       value: Orca_Trash01
       objectReference: {fileID: 0}
     - target: {fileID: 3483091371855662072, guid: c4a153bc0370ebc4b9bb23570af0bd91, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3483091371855662072, guid: c4a153bc0370ebc4b9bb23570af0bd91, type: 3}
       propertyPath: m_TagString
       value: Drag
       objectReference: {fileID: 0}
@@ -371797,7 +371801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 450210868124012320, guid: 01276d181b42b6b4d9971c8303e63c4b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -52.770004
+      value: -54.14
       objectReference: {fileID: 0}
     - target: {fileID: 450210868124012320, guid: 01276d181b42b6b4d9971c8303e63c4b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -375917,7 +375921,6 @@ MonoBehaviour:
   interactionKey: 114
   requiredObjects:
   - {fileID: 538343370}
-  - {fileID: 1474899651}
   questCleared: 0
   questionMarkIcon: {fileID: 416494716}
   heartIcon: {fileID: 1804490996}
