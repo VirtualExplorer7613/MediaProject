@@ -15,6 +15,8 @@ public class Prologue : BaseScene
     public float typingSpeed = 0.09f; // 타이핑 속도
     //public GameObject skipButton;
 
+    [Header("Auto Proceed")]
+    [SerializeField] float autoProceedDelay = 1f;
 
 
     [Header("Next Scene")]
@@ -123,6 +125,12 @@ public class Prologue : BaseScene
         }
 
         isTyping = false;
+
+        //타이핑이 끝나면 자동으로 씬 이동
+        if (currentIndex >= Mathf.Min(imageList.Count, textList.Count) - 1 && !isMoving)
+        {
+            StartCoroutine(AutoEndAfterDelay());
+        }
     }
 
     private void EndPrologue()
@@ -170,6 +178,16 @@ public class Prologue : BaseScene
                 // 세로가 기준보다 길 경우
                 rectTransform.sizeDelta = new Vector2(baseHeight * aspectRatio, baseHeight);
             }
+        }
+    }
+
+    IEnumerator AutoEndAfterDelay()
+    {
+        yield return new WaitForSeconds(autoProceedDelay);
+        if (!isMoving)            // 중복 호출 방지
+        {
+            isMoving = true;
+            EndPrologue();
         }
     }
 
