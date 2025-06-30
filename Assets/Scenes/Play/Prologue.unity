@@ -427,6 +427,7 @@ MonoBehaviour:
   imageList: []
   textList: []
   typingSpeed: 0.05
+  autoProceedDelay: 1
   sceneName: 3
 --- !u!4 &705913028
 Transform:
@@ -836,8 +837,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 72995f9cb080e884a8d9aefbdd7e08ce, type: 2}
-  m_sharedMaterial: {fileID: 4725207234128643385, guid: 72995f9cb080e884a8d9aefbdd7e08ce, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 59fad75a2b4bd3d41bbfebfcead9711f, type: 2}
+  m_sharedMaterial: {fileID: -3741053985435818015, guid: 59fad75a2b4bd3d41bbfebfcead9711f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

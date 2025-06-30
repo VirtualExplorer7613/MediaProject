@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: b012263c96dd9bd44b9c4b274e9c69e5
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317035
+  packageName: Outline Engine
+  packageVersion: 1.1.0
+  assetPath: Packages/com.shadergear.outline-engine/Samples~/Chess/GUI/Scripts/GUIManager.cs
+  uploadId: 767454

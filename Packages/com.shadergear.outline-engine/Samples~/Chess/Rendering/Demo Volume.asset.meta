@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 047ee3da7ab9c6b458f0e880ff31f210
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317035
+  packageName: Outline Engine
+  packageVersion: 1.1.0
+  assetPath: Packages/com.shadergear.outline-engine/Samples~/Chess/Rendering/Demo
+    Volume.asset
+  uploadId: 767454

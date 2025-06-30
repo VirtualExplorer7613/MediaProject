@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "com.shadergear.outline-engine": {
+      "version": "file:com.shadergear.outline-engine",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "17.0.4"
+      }
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

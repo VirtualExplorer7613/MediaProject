@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b064ec954af6f604db3f9137fa626780
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317035
+  packageName: Outline Engine
+  packageVersion: 1.1.0
+  assetPath: Packages/com.shadergear.outline-engine/Samples~/Chess/Rendering/Demo
+    Sky.mat
+  uploadId: 767454

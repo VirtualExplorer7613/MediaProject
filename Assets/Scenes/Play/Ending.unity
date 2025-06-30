@@ -451,6 +451,7 @@ MonoBehaviour:
   - image: {fileID: 0}
     text: "\t\t\t    THE END"
   typingSpeed: 0.09
+  autoAdvanceDelay: 3
   sceneName: 1
 --- !u!1 &896062583
 GameObject:
@@ -905,8 +906,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: TEST
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 72995f9cb080e884a8d9aefbdd7e08ce, type: 2}
-  m_sharedMaterial: {fileID: 4725207234128643385, guid: 72995f9cb080e884a8d9aefbdd7e08ce, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 59fad75a2b4bd3d41bbfebfcead9711f, type: 2}
+  m_sharedMaterial: {fileID: -3741053985435818015, guid: 59fad75a2b4bd3d41bbfebfcead9711f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

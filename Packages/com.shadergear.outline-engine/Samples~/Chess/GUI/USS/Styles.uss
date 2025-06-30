@@ -1,0 +1,36 @@
+.unity-slider .unity-label {
+    color: white;
+    font-size: 12px;
+    min-width: 100px;
+}
+
+.unity-enum-field .unity-label {
+    color: white;
+    font-size: 12px;
+    min-width: 100px;
+}
+
+.unity-slider {
+    height: 14px;
+}
+
+.unity-enum-field {
+    height: 24px;
+}
+
+.unity-enum-field__input {
+    padding: 0;
+    padding-left: 5px;
+}
+
+.unity-enum-field__text {
+    font-size: 12px;
+}
+
+.unity-button {
+    background-color: #ece2e2;
+}
+
+.unity-button:active {
+    background-color: #d4cbcb;
+}
