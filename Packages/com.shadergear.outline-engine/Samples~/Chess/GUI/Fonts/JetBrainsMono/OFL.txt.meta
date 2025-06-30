@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e6af3f0cbd255af46a26aa63112fa1b0
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317035
+  packageName: Outline Engine
+  packageVersion: 1.1.0
+  assetPath: Packages/com.shadergear.outline-engine/Samples~/Chess/GUI/Fonts/JetBrainsMono/OFL.txt
+  uploadId: 767454

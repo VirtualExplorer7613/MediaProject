@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4b18138ebf3f84e43b1638b45678f071
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317035
+  packageName: Outline Engine
+  packageVersion: 1.1.0
+  assetPath: Packages/com.shadergear.outline-engine/Samples~/Chess/Chess/Models/Board/chess_set_board.mat
+  uploadId: 767454

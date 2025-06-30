@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 85ebd4fa809120f4782c0c7d5db2419e
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317035
+  packageName: Outline Engine
+  packageVersion: 1.1.0
+  assetPath: Packages/com.shadergear.outline-engine/Samples~/Chess/Demo.unity
+  uploadId: 767454

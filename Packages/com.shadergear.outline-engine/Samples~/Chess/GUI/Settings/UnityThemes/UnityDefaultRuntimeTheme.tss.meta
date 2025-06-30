@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 1f90df536c0894640aa4444b685c70b5
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 12388, guid: 0000000000000000e000000000000000, type: 0}
+  disableValidation: 0
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317035
+  packageName: Outline Engine
+  packageVersion: 1.1.0
+  assetPath: Packages/com.shadergear.outline-engine/Samples~/Chess/GUI/Settings/UnityThemes/UnityDefaultRuntimeTheme.tss
+  uploadId: 767454

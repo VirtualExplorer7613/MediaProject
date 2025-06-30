@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5d6da1e1c5716054b8080675227ba539
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317035
+  packageName: Outline Engine
+  packageVersion: 1.1.0
+  assetPath: Packages/com.shadergear.outline-engine/Samples~/Chess/GUI/Settings/PanelSettings.asset
+  uploadId: 767454

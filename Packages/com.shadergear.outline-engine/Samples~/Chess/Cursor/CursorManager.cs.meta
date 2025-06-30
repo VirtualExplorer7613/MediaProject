@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 44b93aff5866da744b90238d8f868fca
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317035
+  packageName: Outline Engine
+  packageVersion: 1.1.0
+  assetPath: Packages/com.shadergear.outline-engine/Samples~/Chess/Cursor/CursorManager.cs
+  uploadId: 767454

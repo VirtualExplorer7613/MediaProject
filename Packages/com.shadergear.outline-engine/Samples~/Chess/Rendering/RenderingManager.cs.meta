@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 2faf67bac7d4dad49a894de96f084486
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317035
+  packageName: Outline Engine
+  packageVersion: 1.1.0
+  assetPath: Packages/com.shadergear.outline-engine/Samples~/Chess/Rendering/RenderingManager.cs
+  uploadId: 767454

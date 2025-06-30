@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fdb8cd489471e0a41a21ef020bf5b2dc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 317035
+  packageName: Outline Engine
+  packageVersion: 1.1.0
+  assetPath: Packages/com.shadergear.outline-engine/Samples~/Chess/Chess/Models/Pieces/chess_set_pieces_black.mat
+  uploadId: 767454
