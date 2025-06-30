@@ -41,6 +41,14 @@ public class KeyGuidePopup : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K) && !showing)
+        {
+            Show();
+        }
+    }
+
     public void Show()
     {
         Debug.Log($"[KeyGuidePopup Show] {Time.frameCount}");
@@ -89,6 +97,6 @@ public class KeyGuidePopup : MonoBehaviour
         if (crosshairUI != null)
             crosshairUI.IsVisible = true;
 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }

@@ -36,9 +36,9 @@ public class OptionUIController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("P키 눌림");
+            Debug.Log("ESC키 눌림");
             ToggleOptionPanel();
         }
     }
