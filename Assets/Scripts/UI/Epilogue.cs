@@ -22,6 +22,10 @@ public class Epliogue : BaseScene
     FadeController fade;
     bool isTransitioning;
 
+    [Header("Auto-Advance")]
+    [Tooltip("타이핑 완료 후 자동으로 다음 컷으로 넘어갈 때까지 기다리는 시간(초)")]
+    [SerializeField] float autoAdvanceDelay = 3f;
+    Coroutine autoAdvanceCo;
 
     [Header("Next Scene")]
     [SerializeField]
@@ -128,6 +132,12 @@ public class Epliogue : BaseScene
             epliogueText.text = "";
             isTyping = false;
         }
+
+        if (autoAdvanceCo != null)
+        {
+            StopCoroutine(autoAdvanceCo);
+        }
+        autoAdvanceCo = StartCoroutine(AutoAdvanceRoutine(currentIndex));
     }
 
     private void ShowNextStep()
@@ -231,6 +241,21 @@ public class Epliogue : BaseScene
                 // 세로가 기준보다 길 경우
                 rectTransform.sizeDelta = new Vector2(baseHeight * aspectRatio, baseHeight);
             }
+        }
+    }
+
+    IEnumerator AutoAdvanceRoutine(int stepIndex)
+    {
+        /* 1. 타이핑이 끝날 때까지 대기 */
+        yield return new WaitUntil(() => !isTyping);
+
+        /* 2. 읽을 시간을 줌 */
+        yield return new WaitForSeconds(autoAdvanceDelay);
+
+        /* 3. 아직 같은 스텝이고, 페이드/타이핑 중이 아니면 자동 진행 */
+        if (stepIndex == currentIndex && !isTransitioning && !isTyping)
+        {
+            StartCoroutine(AdvanceStepWithFade());
         }
     }
 
