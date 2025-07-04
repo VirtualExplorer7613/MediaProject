@@ -16,6 +16,7 @@ public class MonologuePopup : MonoBehaviour
     [SerializeField] CanvasGroup panelGroup;       // 반투명 패널(알파 0.6~0.8)
     [SerializeField] Image visualImage;      // 선택사항
     [SerializeField] TextMeshProUGUI dialogueText;
+    [SerializeField] GameObject space;
 
     [Header("Typing")]
     [SerializeField] float typingSpeed = 0.08f;    // 초당 글자 수 조절
@@ -27,6 +28,7 @@ public class MonologuePopup : MonoBehaviour
     float savedTimeScale = 1f;
 
     private CrosshairUI crosshairUI;
+    Floating floating;
 
 
     void Awake()
@@ -39,6 +41,8 @@ public class MonologuePopup : MonoBehaviour
         gameObject.SetActive(false);
         if (crosshairUI == null)
             crosshairUI = FindObjectOfType<CrosshairUI>();
+        if(space != null)
+            floating = space.GetComponent<Floating>();
     }
 
     /* ---------- 외부 호출용 ---------- */
@@ -78,6 +82,8 @@ public class MonologuePopup : MonoBehaviour
     {
         if (cur >= steps.Count) { Close(); return; }
 
+        space.SetActive(false);
+
         var step = steps[cur];
 
         if (step.image)
@@ -103,6 +109,9 @@ public class MonologuePopup : MonoBehaviour
             yield return new WaitForSecondsRealtime(delay);
         }
         isTyping = false;
+
+        // 타이핑이 끝났으니 힌트 켜기
+        space.SetActive(true);
     }
 
     void Next()
@@ -127,5 +136,7 @@ public class MonologuePopup : MonoBehaviour
 
         if (crosshairUI != null)
             crosshairUI.IsVisible = true;
+
+        space.SetActive(false);
     }
 }

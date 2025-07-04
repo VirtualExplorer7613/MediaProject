@@ -14,9 +14,10 @@ public class Prologue : BaseScene
     public List<string> textList;  // 프롤로그 텍스트 리스트
     public float typingSpeed = 0.09f; // 타이핑 속도
     //public GameObject skipButton;
+    public GameObject space;
 
     [Header("Auto Proceed")]
-    [SerializeField] float autoProceedDelay = 1f;
+    [SerializeField] float autoProceedDelay = 4f;
 
 
     [Header("Next Scene")]
@@ -34,6 +35,7 @@ public class Prologue : BaseScene
     {
 
         //skipButton?.SetActive(false);
+        space?.SetActive(false);
 
         if (textList.Count == 0)
         {
@@ -66,6 +68,7 @@ public class Prologue : BaseScene
 
     private void DisplayCurrentStep()
     {
+        space?.SetActive(false);
         // 이미지 업데이트
         if (currentIndex < imageList.Count)
         {
@@ -126,6 +129,8 @@ public class Prologue : BaseScene
 
         isTyping = false;
 
+        space?.SetActive(true);
+
         //타이핑이 끝나면 자동으로 씬 이동
         if (currentIndex >= Mathf.Min(imageList.Count, textList.Count) - 1 && !isMoving)
         {
@@ -138,6 +143,7 @@ public class Prologue : BaseScene
         Debug.Log("프롤로그 종료");
         // 필요 시 다음 씬으로 전환하거나 다른 이벤트 실행
         //Managers.Scene.LoadScene(sceneName);
+        space?.SetActive(false);
         Managers.Scene.LoadSceneAsync(sceneName, false);
     }
 
