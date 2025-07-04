@@ -450,9 +450,9 @@ MonoBehaviour:
       \uC6B0\uB9AC\uC758 \uBC14\uB2E4\uB97C \uC9C0\uD0A4\uACE0 \uC2F6\uB2E4\uBA74\u2026\r\n\r\n\uC774\uC820,
       \uB108\uD76C\uB4E4\uC774 \uB3C4\uC640\uC904 \uCC28\uB840\uC57C.\r\n"
   - image: {fileID: 0}
-    text: "\t\t\t    THE END"
+    text: "\t\t\tTHE END"
   typingSpeed: 0.09
-  autoAdvanceDelay: 3
+  autoAdvanceDelay: 5
   sceneName: 1
 --- !u!1001 &857866185
 PrefabInstance:
@@ -500,15 +500,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_LocalPosition.x
