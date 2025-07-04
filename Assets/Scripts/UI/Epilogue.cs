@@ -10,7 +10,7 @@ public class Epliogue : BaseScene
     [Header("Epliogue Settings")]
     public Image epliogueImage; // 이미지를 표시할 UI 컴포넌트
     public TextMeshProUGUI epliogueText;  // 텍스트를 표시할 UI 컴포넌트
-
+    public GameObject space;
 
 
     public List<VisualTextStep> steps;
@@ -26,6 +26,7 @@ public class Epliogue : BaseScene
     [Tooltip("타이핑 완료 후 자동으로 다음 컷으로 넘어갈 때까지 기다리는 시간(초)")]
     [SerializeField] float autoAdvanceDelay = 3f;
     Coroutine autoAdvanceCo;
+    
 
     [Header("Next Scene")]
     [SerializeField]
@@ -42,7 +43,7 @@ public class Epliogue : BaseScene
     {
 
         //skipButton?.SetActive(false);
-
+        space?.SetActive(false);      // 첫 진입 시 OFF
         if (steps == null || steps.Count == 0)
         {
             Debug.Log("step list is empty, assigning default");
@@ -105,6 +106,8 @@ public class Epliogue : BaseScene
 
     private void DisplayCurrentStep()
     {
+        space?.SetActive(false);
+
         if (currentIndex >= steps.Count)
             return;
 
@@ -131,6 +134,7 @@ public class Epliogue : BaseScene
         {
             epliogueText.text = "";
             isTyping = false;
+            space?.SetActive(true);
         }
 
         if (autoAdvanceCo != null)
@@ -182,12 +186,14 @@ public class Epliogue : BaseScene
         }
 
         isTyping = false;
+        space?.SetActive(true);
     }
 
     private void EndEpilogue()
     {
         Debug.Log("에필로그 종료");
         // 필요 시 다음 씬으로 전환하거나 다른 이벤트 실행
+        space?.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Managers.Scene.LoadSceneAsync(Define.Scene.Title, false);
