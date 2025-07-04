@@ -6,6 +6,16 @@ public class Floating : MonoBehaviour
     [SerializeField] float amplitude = 12f;   // ÀÌµ¿ ÇÈ¼¿(¡¾)
     [SerializeField] float frequency = 1.6f;  // ÃÊ´ç ¿Õº¹ È½¼ö
 
+
+    float originalFrequency = 1.6f;
+    public float getOriginalFrequency()
+    {
+        return originalFrequency;
+    }
+    public void setFrequency(float frequency)
+    {
+        this.frequency = frequency;
+    }
     RectTransform rect;
     Vector2 originalPos;
 

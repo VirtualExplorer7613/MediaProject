@@ -135,6 +135,11 @@ public class Epliogue : BaseScene
             epliogueText.text = "";
             isTyping = false;
             space?.SetActive(true);
+            if (space != null)
+            {
+                Floating floating = space.GetComponent<Floating>();
+                floating.setFrequency(0f);
+            }
         }
 
         if (autoAdvanceCo != null)
@@ -186,7 +191,12 @@ public class Epliogue : BaseScene
         }
 
         isTyping = false;
-        space?.SetActive(true);
+        space?.SetActive(false);
+        /*if (space != null)
+        {
+            Floating floating = space.GetComponent<Floating>();
+            floating.setFrequency(floating.getOriginalFrequency());
+        }*/
     }
 
     private void EndEpilogue()
