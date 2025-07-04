@@ -14,12 +14,14 @@
     {
       "type": "crab",
       "expression": "Eyes_Blink",
-      "dialogue": "저기요~~! 거기 누구 없어요~~?!\n앞이 하나도 안 보여! 누가 나 좀 도와줘요!!"
+      "dialogue": "저기요~~! 거기 누구 없어요~~?!\n앞이 하나도 안 보여! 누가 나 좀 도와줘요!!",
+      "voice": "Witch_death_fall_dry_03"
     },
     {
       "type": "crab",
       "expression": "Eyes_Blink",
-      "dialogue": "도대체 이게 뭐야! 여긴 너무 깜깜하다고!"
+      "dialogue": "도대체 이게 뭐야! 여긴 너무 깜깜하다고!",
+      "voice": "Witch_talk_angry_04"
     },
     {
       "type": "interaction",
@@ -33,17 +35,20 @@
     {
       "type": "crab",
       "expression": "Sweat_L",
-      "dialogue": "하… 드디어 살았다…! 정말 고마워!! 혼자서 이 속에서 얼마나 무서웠는지 몰라."
+      "dialogue": "하… 드디어 살았다…! 정말 고마워!! 혼자서 이 속에서 얼마나 무서웠는지 몰라.",
+      "voice": "Witch_win_06"
     },
     {
       "type": "crab",
       "expression": "Sweat_L",
-      "dialogue": "분명 길을 가던 중이었는데…\n갑자기 위에서 뭔가 '퍽!' 하고 떨어지더니 순식간에 앞이 깜깜해졌어!"
+      "dialogue": "분명 길을 가던 중이었는데…\n갑자기 위에서 뭔가 '퍽!' 하고 떨어지더니 순식간에 앞이 깜깜해졌어!",
+      "voice": "Witch_win_06"
     },
     {
       "type": "crab",
       "expression": "Sweat_L",
-      "dialogue": "뭔가 했는데 역시나 쓰레기였네!"
+      "dialogue": "뭔가 했는데 역시나 쓰레기였네!",
+      "voice": "Witch_talk_angry_04"
     },
     {
       "type": "whale",

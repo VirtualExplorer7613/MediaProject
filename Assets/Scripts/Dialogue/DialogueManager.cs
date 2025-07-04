@@ -164,6 +164,12 @@ public class DialogueManager : MonoBehaviour
             ChangeCharacterExpression(entry.expression);
             SetCharacterNameAndColor(entry.type);
             yield return ShowDialogue(entry.dialogue);
+            
+            if (!string.IsNullOrEmpty(entry.voice))
+            {
+                Managers.Sound.Play(entry.voice);
+            }
+            
             yield return new WaitUntil(() => canProceed);
             canProceed = false;
             //IsDialoguePlaying = false; //TODO: 플레이어 조작 스크립트 수정

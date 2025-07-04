@@ -24,12 +24,14 @@
     {
       "type": "seahorse",
       "expression": "Sweat_L",
-      "dialogue": "당신이 제 꼬리에 걸린 빨대를 없애준 건가요?\n정말 고마워요… 이 기다란 게 자꾸 제 꼬리에 걸려서 움직이는 게 불편했거든요."
+      "dialogue": "당신이 제 꼬리에 걸린 빨대를 없애준 건가요?\n정말 고마워요… 이 기다란 게 자꾸 제 꼬리에 걸려서 움직이는 게 불편했거든요.",
+      "voice": "Princess_talk_question_01"
     },
     {
       "type": "seahorse",
       "expression": "Eyes_Happy",
-      "dialogue": "덕분에 한결 몸이 가벼워졌어요."
+      "dialogue": "덕분에 한결 몸이 가벼워졌어요.",
+      "voice": "Princess_talk_wonder_06"
     },
     {
       "type": "whale",
