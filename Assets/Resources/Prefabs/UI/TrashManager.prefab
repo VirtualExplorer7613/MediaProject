@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e4bde2f95c81c4da3a8b7cf000e150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalTrash: 60
   trashCountText: {fileID: 8406588060033500343}
 --- !u!223 &2586239168578299339
 Canvas:
@@ -225,7 +226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15, y: 0}
+  m_AnchoredPosition: {x: 20, y: 0}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8518307320840979101
@@ -258,8 +259,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 50/50
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a4e7ac135bec5054d814e343f4a36170, type: 2}
-  m_sharedMaterial: {fileID: 5111917943915540462, guid: a4e7ac135bec5054d814e343f4a36170, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5ee70bfd81fbd76499b641d0425e3149, type: 2}
+  m_sharedMaterial: {fileID: -5951021667382797521, guid: 5ee70bfd81fbd76499b641d0425e3149, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

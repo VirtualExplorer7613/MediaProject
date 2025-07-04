@@ -7,4 +7,5 @@ public class DialogueEntry
     public string expression;
     public string dialogue;
     public string action;
+    public string voice;
 }

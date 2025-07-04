@@ -15,12 +15,14 @@
     {
       "type": "squid",
       "expression": "Eyes_Dead",
-      "dialogue": "거기, 너. 멍청하게 쳐다보지만 말고 이 그물 좀 치워봐.\n큼큼… 딱히 도와달란 말은 아니고…."
+      "dialogue": "거기, 너. 멍청하게 쳐다보지만 말고 이 그물 좀 치워봐.\n큼큼… 딱히 도와달란 말은 아니고….",
+      "voice": "Gnome_talk_gibberish_06"
     },
     {
       "type": "squid",
       "expression": "Eyes_Dead",
-      "dialogue": "…야! 그냥 가려고 하지 말고 이 그물 좀 어떻게 해보라고!"
+      "dialogue": "…야! 그냥 가려고 하지 말고 이 그물 좀 어떻게 해보라고!",
+      "voice": "Gnome_talk_angry_02"
     },
     {
       "type": "interaction",
@@ -34,17 +36,20 @@
     {
       "type": "squid",
       "expression": "Eyes_Squint",
-      "dialogue": "…흥, 겨우 이런 그물 따위가 날 힘들게 할까 봐? 천만에.\n걱정하지 마. 이런 것쯤은 익숙하니까."
+      "dialogue": "…흥, 겨우 이런 그물 따위가 날 힘들게 할까 봐? 천만에.\n걱정하지 마. 이런 것쯤은 익숙하니까.",
+      "voice": "Gnome_talk_no_03"
     },
     {
       "type": "squid",
       "expression": "Eyes_Squint",
-      "dialogue": "나 혼자서도 빠져 나올 수 있었는데….\n네가 굳이 도와준다고 해서 도움받은 것뿐이야."
+      "dialogue": "나 혼자서도 빠져 나올 수 있었는데….\n네가 굳이 도와준다고 해서 도움받은 것뿐이야.",
+      "voice": "Gnome_talk_no_03"
     },
     {
       "type": "squid",
       "expression": "Eyes_Squint",
-      "dialogue": "아무튼…! 고맙다."
+      "dialogue": "아무튼…! 고맙다.",
+      "voice": "Gnome_win_06"
     },
     {
       "type": "whale",

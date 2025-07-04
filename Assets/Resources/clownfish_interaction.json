@@ -15,12 +15,14 @@
     {
       "type": "clownfish",
       "expression": "Eyes_Annoyed",
-      "dialogue": "으으으!! 짜증 나 정말!\n이게 뭐야…! 누가 내 말미잘을 이렇게 더럽힌 거야?!"
+      "dialogue": "으으으!! 짜증 나 정말!\n이게 뭐야…! 누가 내 말미잘을 이렇게 더럽힌 거야?!",
+      "voice": "Slime_move_hit_01"
     },
     {
       "type": "clownfish",
       "expression": "Eyes_Annoyed",
-      "dialogue": "여긴 내가 사는 곳이란 말이야!"
+      "dialogue": "여긴 내가 사는 곳이란 말이야!",
+      "voice": "Slime_move_hit_01"
     },
     {
       "type": "interaction",
@@ -30,17 +32,20 @@
     {
       "type": "clownfish",
       "expression": "Eyes_Happy",
-      "dialogue": "와 고마워. 글쎄, 내가 잠깐 나갔다 온 사이에 누가 내 말미잘을 이렇게 더럽혀놨지 뭐야?"
+      "dialogue": "와 고마워. 글쎄, 내가 잠깐 나갔다 온 사이에 누가 내 말미잘을 이렇게 더럽혀놨지 뭐야?",
+      "voice": "Slime_win_03"
     },
     {
       "type": "clownfish",
       "expression": "Eyes_Happy",
-      "dialogue": "나한테는 전부 무거운 쓰레기들 뿐이라 혼자서 어떻게 치워야 하나 고민이었거든…."
+      "dialogue": "나한테는 전부 무거운 쓰레기들 뿐이라 혼자서 어떻게 치워야 하나 고민이었거든….",
+      "voice": "Slime_win_03"
     },
     {
       "type": "clownfish",
       "expression": "Eyes_Happy",
-      "dialogue": "훨씬 낫네! 이제야 좀 살 것 같아~ 고마워! 너 덕분에 내 말미잘이 다시 깨끗해졌어!"
+      "dialogue": "훨씬 낫네! 이제야 좀 살 것 같아~ 고마워! 너 덕분에 내 말미잘이 다시 깨끗해졌어!",
+      "voice": "Slime_win_04"
     },
     {
       "type": "whale",
