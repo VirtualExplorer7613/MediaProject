@@ -233188,8 +233188,8 @@ MonoBehaviour:
     \uCD08\uC74C\uD30C\uB97C \uC774\uC6A9\uD574\uC11C \uB208 \uC55E\uC5D0 \uC788\uB294
     \uC4F0\uB808\uAE30\uB97C \uC5C6\uC560\uBCF4\uC790.\u2019\r\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 59fad75a2b4bd3d41bbfebfcead9711f, type: 2}
-  m_sharedMaterial: {fileID: -3741053985435818015, guid: 59fad75a2b4bd3d41bbfebfcead9711f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5ee70bfd81fbd76499b641d0425e3149, type: 2}
+  m_sharedMaterial: {fileID: -5951021667382797521, guid: 5ee70bfd81fbd76499b641d0425e3149, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
