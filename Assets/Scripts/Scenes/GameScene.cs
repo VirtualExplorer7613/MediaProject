@@ -15,8 +15,8 @@ public class GameScene : BaseScene
     private void Update()
     {
         //엔딩 테스트용
-       /* if (Input.GetKey(KeyCode.X))
-            GotoEnding();*/
+        if (Input.GetKey(KeyCode.X))
+            GotoEnding();
     }
 
     public override void Clear()
