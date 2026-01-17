@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Terresquall;
+
 
 public class WhaleController : MonoBehaviour
 {
@@ -23,6 +25,15 @@ public class WhaleController : MonoBehaviour
     float verticalSpeed = 10f;   // 수직 이동 속도
     [SerializeField]
     float mouseSensitivity = 100f;
+
+    [SerializeField] private bool forceMobileInput = false; // 디버그용 플래그
+
+    [Header("Mobile Tuning")]
+    [SerializeField] private float turnSpeed = 120f;   // 조이스틱 X로 회전 속도(도/초)
+
+    [Header("Mobile Vertical Buttons")]
+    [SerializeField] private HoldButton upButton;
+    [SerializeField] private HoldButton downButton;
 
     [Header("Shoot")]
     [SerializeField]
@@ -49,7 +60,9 @@ public class WhaleController : MonoBehaviour
     {
         //Cursor.visible = false;   // 커서 안보이게
 
+#if UNITY_EDITOR || UNITY_STANDALONE
         Cursor.lockState = CursorLockMode.Locked;
+#endif
         transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
 
         dialogueManager = FindObjectOfType<DialogueManager>();
@@ -63,22 +76,34 @@ public class WhaleController : MonoBehaviour
             // 대화 중이면 아무 조작도 못하게 막음
             return;
         }
-
+#if UNITY_EDITOR || UNITY_STANDALONE
         HandleItemDragging();
+#endif
 
+#if UNITY_EDITOR || UNITY_STANDALONE
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-            Vector3 shootDir = ray.direction.normalized;
-
-            //GameObject wave = Instantiate(ultrasoundPrefab, shootPoint.position, transform.rotation);
-            GameObject wave = Instantiate(ultrasoundPrefab, shootPoint.position, Quaternion.LookRotation(shootDir));
-
-            Managers.Sound.Play("Underwater_Impact_02");
+            FireUltrasound();
         }
+#endif
+        // Unity remote 디버그용
+        forceMobileInput = true;
 
-        HandleRotation();
+        bool useMobileInput = Application.isMobilePlatform || forceMobileInput;
 
+        if (useMobileInput)
+        {
+            HandleMobileRotationAndMove();
+        }
+        else
+        {
+            HandleRotationPC();
+            HandleMovePC();
+        }
+    }
+
+    void HandleMovePC()
+    {
         // 이동 입력
         float h = Input.GetAxis("Horizontal"); // A, D
         float v = Input.GetAxis("Vertical");   // W, S
@@ -93,7 +118,7 @@ public class WhaleController : MonoBehaviour
         transform.position += velocity * Time.deltaTime;
     }
 
-    void HandleRotation()
+    void HandleRotationPC()
     {
         if (dialogueManager != null && dialogueManager.IsDialoguePlaying)
             return;
@@ -110,6 +135,35 @@ public class WhaleController : MonoBehaviour
         transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
     }
 
+    void HandleMobileRotationAndMove()
+    {
+        float rawTurn = VirtualJoystick.GetAxis("Horizontal"); // 좌/우 = 회전
+        float rawForward = VirtualJoystick.GetAxis("Vertical"); // 상/하 = 전/후
+
+        yaw += rawTurn * turnSpeed * Time.deltaTime;
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+        transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+
+        // 버튼을 통한 수직 이동
+        float vertical = 0f;
+        if (upButton != null && upButton.IsPressed) vertical += 1f;
+        if (downButton != null && downButton.IsPressed) vertical -= 1f;
+
+
+        Vector3 velocity = transform.forward * (rawForward * moveSpeed) + transform.up * (vertical * verticalSpeed);
+        transform.position += velocity * Time.deltaTime;
+    }
+
+    public void FireUltrasound()
+    {
+        if (ultrasoundPrefab == null || shootPoint == null) return;
+
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        Vector3 shootDir = ray.direction.normalized;
+
+        Instantiate(ultrasoundPrefab, shootPoint.position, Quaternion.LookRotation(shootDir));
+        Managers.Sound.Play("Underwater_Impact_02");
+    }
 
     void HandleItemDragging()
     {
