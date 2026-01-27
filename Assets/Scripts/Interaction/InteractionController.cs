@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class InteractionController : MonoBehaviour
@@ -10,16 +10,24 @@ public class InteractionController : MonoBehaviour
     [SerializeField] private Transform shootPoint;
     [SerializeField] private LayerMask trashLayerMask;
 
+    [Header("Default Item")]
+    [SerializeField] private ItemDefinition defaultItem;
+
     [Header("UI")]
     [SerializeField] private HoldButton interactionHoldButton;
     [SerializeField] private Image interactionButtonIcon;
-    [SerializeField] private Image holdProgressRing; // ÁøÇà·ü
+    [SerializeField] private Image holdProgressRing; // ì§„í–‰ë¥ 
 
     private InteractionContext ctx;
     private IInteractionStrategy currentStrategy;
+    private ItemDefinition currentItemDef;
+    public ItemDefinition CurrentItemDef => currentItemDef;
+    
     private readonly InteractionStateMachine fsm = new();
 
     private bool wasHolding = false;
+    private bool lastCanAcceptInput = true;
+    private bool pressAccepted = false;
 
     private void Awake()
     {
@@ -40,19 +48,29 @@ public class InteractionController : MonoBehaviour
             holdProgressRing.fillAmount = 0f;
     }
 
+    private void Start()
+    {
+        // default itemì´ ìˆìœ¼ë©´ ì„¤ì •
+        if (defaultItem != null)
+        {
+            SetItem(defaultItem);
+        }
+    }
+
     private void Update()
     {
         float dt = Time.deltaTime;
         fsm.Tick(dt);
 
+        bool canAccept = fsm.CanAcceptInput;
         bool isHolding = interactionHoldButton != null && interactionHoldButton.IsPressed;
 
-        // Hold Ã³¸®
-        if (fsm.CanAcceptInput && isHolding && currentStrategy != null)
+        // Hold ì²˜ë¦¬
+        if (canAccept && isHolding && currentStrategy != null)
         {
-            if (!wasHolding)
+            if (!wasHolding || !lastCanAcceptInput)
             {
-                // ¾ÈÀüÀåÄ¡: onPressed ÀÌº¥Æ®°¡ ´©¶ôµÉ ¼ö ÀÖ´Â »óÈ² ´ëºñ
+                // ì•ˆì „ì¥ì¹˜: onPressed ì´ë²¤íŠ¸ê°€ ëˆ„ë½ë  ìˆ˜ ìˆëŠ” ìƒí™© ëŒ€ë¹„
                 HandlePress();
             }
 
@@ -60,7 +78,7 @@ public class InteractionController : MonoBehaviour
             currentStrategy.OnHold(ctx, dt);
         }
 
-        // ÁøÇà·ü UI
+        // ì§„í–‰ë¥  UI
         if (holdProgressRing != null && currentStrategy != null)
         {
             float p = currentStrategy.GetProgress01();
@@ -68,21 +86,23 @@ public class InteractionController : MonoBehaviour
         }
 
         wasHolding = isHolding;
+        lastCanAcceptInput = canAccept;
     }
 
     public void SetItem(ItemDefinition def)
     {
-        // ±âÁ¸ Àü·« ÇØÁ¦
+        // ê¸°ì¡´ ì „ëµ í•´ì œ
         currentStrategy?.OnDeselected(ctx);
 
+        currentItemDef = def;
         currentStrategy = StrategyFactory.Create(def);
         currentStrategy.OnSelected(ctx);
 
-        // ¾ÆÀÌÄÜ °»½Å
+        // ì•„ì´ì½˜ ê°±ì‹ 
         if (interactionButtonIcon != null)
             interactionButtonIcon.sprite = currentStrategy.Icon;
 
-        // ÁøÇà·ü ÃÊ±âÈ­
+        // ì§„í–‰ë¥  ì´ˆê¸°í™”
         if (holdProgressRing != null)
             holdProgressRing.fillAmount = 0f;
 
@@ -93,6 +113,7 @@ public class InteractionController : MonoBehaviour
         if (!fsm.CanAcceptInput) return;
         if (currentStrategy == null) return;
 
+        pressAccepted = true; // í˜„ì¬ ì…ë ¥ì´ ìœ íš¨í•œì§€ ì²´í¬í•˜ëŠ” ë³€ìˆ˜
         fsm.EnterActive();
         currentStrategy.OnPress(ctx);
     }
@@ -101,17 +122,25 @@ public class InteractionController : MonoBehaviour
     {
         if (currentStrategy == null) return;
 
-        // Active »óÅÂ Á¾·á
+        // ì¿¨íƒ€ì„ ì¤‘ì— ëˆŒë €ë‹¤ê°€ ë‹¤ì‹œ ë–¼ëŠ” ê²½ìš°ëŠ” ë¬´íš¨ì²˜ë¦¬
+        if (!pressAccepted)
+        {
+            wasHolding = false;
+            return;
+        }
+
+        // Active ìƒíƒœ ì¢…ë£Œ
         currentStrategy.OnRelease(ctx);
 
-        // ÄğÅ¸ÀÓ ÁøÀÔ
+        // ì¿¨íƒ€ì„ ì§„ì…
         float cd = currentStrategy.CooldownSeconds;
         fsm.StartCooldown(cd);
 
-        // ÁøÇà·ü UI ÃÊ±âÈ­
+        // ì§„í–‰ë¥  UI ì´ˆê¸°í™”
         if (holdProgressRing != null)
             holdProgressRing.fillAmount = 0f;
 
         wasHolding = false;
+        pressAccepted = false;
     }
 }
