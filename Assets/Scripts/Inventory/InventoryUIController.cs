@@ -18,6 +18,8 @@ public class InventoryUIController : MonoBehaviour
 
     private InventoryItemButton selectedButton;
 
+    private readonly Dictionary<ItemDefinition, InventoryItemButton> buttonMap = new();
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,10 +28,20 @@ public class InventoryUIController : MonoBehaviour
 
         BuildButtons();
 
-        // 시작 아이템 자동 선택(첫 번째)
-        if (items.Count > 0 && interactionController != null)
+        ItemDefinition defToSelect = interactionController != null ? interactionController.CurrentItemDef : null;
+
+        if (defToSelect == null && items.Count > 0)
+            defToSelect = items[0];
+
+        if (defToSelect != null && buttonMap.TryGetValue(defToSelect, out var btn))
         {
-            SelectItem(items[0], null);
+            // 버튼 레퍼런스를 넘겨서 선택 표시가 켜지게 함
+            SelectItem(defToSelect, btn);
+        }
+        else if (items.Count > 0 && buttonMap.TryGetValue(items[0], out var firstBtn))
+        {
+            // 마지막 안전장치
+            SelectItem(items[0], firstBtn);
         }
 
         if (inventoryPanel != null)
@@ -46,6 +58,8 @@ public class InventoryUIController : MonoBehaviour
     {
         if (contentRoot == null || itemButtonPrefab == null) return;
 
+        buttonMap.Clear();
+
         // 기존 버튼 제거(에디터 반복 실행 대비)
         for (int i = contentRoot.childCount - 1; i >= 0; i--)
             Destroy(contentRoot.GetChild(i).gameObject);
@@ -54,6 +68,8 @@ public class InventoryUIController : MonoBehaviour
         {
             var btn = Instantiate(itemButtonPrefab, contentRoot);
             btn.Bind(def, this);
+
+            buttonMap[def] = btn;
         }
     }
 

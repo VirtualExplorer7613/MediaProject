@@ -11,11 +11,12 @@ public class DraggedItem : MonoBehaviour
     private float followSpeed = 3f;
     [SerializeField]
     private Vector3 offset = new Vector3(0, 1f, 2f);
-    [SerializeField] float minDistToWhale = 2f;
+    [SerializeField] float minDistToWhale = 1f;
+    [SerializeField] float magnetCollectDistance = 2f;
 
     public bool interactable = true;
 
-
+    public float MagnetCollectDistance => magnetCollectDistance;
 
     private Rigidbody rb;
     private ConstantForce constForce;
@@ -56,7 +57,7 @@ public class DraggedItem : MonoBehaviour
 
         // ───────────────── 드래그 중이 아닐 때 ─────────────────
         // 이미 중력이 켜졌다면 그냥 물리에 맡긴다
-        if (gravityEnabled)
+        /*if (gravityEnabled)
         {
             // 멀리 가면 자동 파괴
             if (Vector3.Distance(startPos, transform.position) >= destroyDistance)
@@ -68,7 +69,7 @@ public class DraggedItem : MonoBehaviour
                 
 
             return;
-        }
+        }*/
 
         // 아직 고정 상태 → 일정 거리 이상 뽑혔으면 물리 활성화
         float distFromStart = Vector3.Distance(startPos, transform.position);
@@ -152,15 +153,28 @@ public class DraggedItem : MonoBehaviour
         }
     }
 
-/*    public void StartDragging(Transform targetTransform)
-    {
-        isDragged = true;
-        target = targetTransform;
-    }
+    /*    public void StartDragging(Transform targetTransform)
+        {
+            isDragged = true;
+            target = targetTransform;
+        }
 
-    public void StopDragging()
+        public void StopDragging()
+        {
+            isDragged = false;
+            target = null;
+        }*/
+
+    public void CollectByMagnet()
     {
+        if (!interactable) return;
+
+        interactable = false;
         isDragged = false;
         target = null;
-    }*/
+
+        Managers.Sound.Play("Bubble_Surface_Large_01");
+        TrashManager.Instance?.DecreaseTrash();
+        Destroy(gameObject);
+    }
 }

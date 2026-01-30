@@ -5,6 +5,10 @@ public class MagnetStrategy : IInteractionStrategy
 {
     private readonly ItemDefinition def;
     private readonly List<DraggedItem> activeDragged = new();
+    // 쓰레기별 누적 타이머
+    private readonly Dictionary<DraggedItem, float> collectTimers = new();
+
+    private const float CollectSeconds = 2.5f;
 
     public MagnetStrategy(ItemDefinition def) => this.def = def;
 
@@ -28,6 +32,47 @@ public class MagnetStrategy : IInteractionStrategy
         // Hold 중에는 주기적으로 대상 갱신(새 쓰레기 추가)
         AcquireTargets(ctx);
 
+        if (ctx.player == null) return;
+
+        for (int i = activeDragged.Count - 1; i >= 0; i--)
+        {
+            var di = activeDragged[i];
+
+            // 이미 파괴되었거나 누락된 부분 정리
+            if (di == null)
+            {
+                activeDragged.RemoveAt(i);
+                continue;
+            }
+
+            // 타이머 초기화(처음 잡힌 경우)
+            if (!collectTimers.ContainsKey(di))
+                collectTimers[di] = 0f;
+
+            float dist = Vector3.Distance(di.transform.position, ctx.player.position);
+            bool closeEnough = dist <= di.MagnetCollectDistance;
+
+            if (closeEnough)
+            {
+                collectTimers[di] += deltaTime;
+
+                if (collectTimers[di] >= CollectSeconds)
+                {
+                    collectTimers.Remove(di);
+                    activeDragged.RemoveAt(i);
+
+                    di.StopDragging();
+                    di.CollectByMagnet();
+                }
+            }
+            else
+            {
+                // 거리를 벗어나면 리셋
+                collectTimers[di] = 0f;
+            }
+
+        }
+
         // DraggedItem 자체가 target(고래)을 따라오도록 Update에서 처리됨
         // 여기서 추가로 할 게 필요하면(속도 증가 등) DraggedItem 확장하면 됨
     }
@@ -41,10 +86,14 @@ public class MagnetStrategy : IInteractionStrategy
 
     private void AcquireTargets(InteractionContext ctx)
     {
+        Debug.Log($"[Magnet] player null? {ctx.player == null}, mask={ctx.trashLayerMask.value}");
+
         if (ctx.player == null) return;
 
         float radius = Mathf.Max(0.1f, def.magnetRadius);
         Collider[] hits = Physics.OverlapSphere(ctx.player.position, radius, ctx.trashLayerMask);
+
+        Debug.Log($"[Magnet] hits={hits.Length}, radius={radius}");
 
         // 이미 충분히 끌고 있으면 종료
         if (activeDragged.Count >= def.magnetMaxTargets) return;
@@ -61,6 +110,8 @@ public class MagnetStrategy : IInteractionStrategy
 
             di.StartDragging(ctx.player);
             activeDragged.Add(di);
+
+            collectTimers[di] = 0f;
         }
     }
 
@@ -72,5 +123,6 @@ public class MagnetStrategy : IInteractionStrategy
                 activeDragged[i].StopDragging();
         }
         activeDragged.Clear();
+        collectTimers.Clear();
     }
 }

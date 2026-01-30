@@ -77,7 +77,7 @@ public class WhaleController : MonoBehaviour
             return;
         }
 #if UNITY_EDITOR || UNITY_STANDALONE
-        HandleItemDragging();
+        //HandleItemDragging();
 #endif
 
 #if UNITY_EDITOR || UNITY_STANDALONE
