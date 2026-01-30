@@ -20,7 +20,7 @@ public class UltrasoundStrategy : IInteractionStrategy
         Vector3 dir = ray.direction.normalized;
 
         Object.Instantiate(ctx.ultrasoundPrefab, ctx.shootPoint.position, Quaternion.LookRotation(dir));
-        // »ç¿îµå
+        Managers.Sound.Play("Underwater_Impact_02");
     }
 
     public void OnHold(InteractionContext ctx, float deltaTime) { }

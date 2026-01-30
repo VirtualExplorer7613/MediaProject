@@ -22,6 +22,8 @@ public class TalkableNPC : MonoBehaviour
 
     public Transform dialogueAnchor; // 대화할때 플레어이어의 위치
 
+    private bool uiInteractPressed = false;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -78,10 +80,14 @@ public class TalkableNPC : MonoBehaviour
             CheckQuestCondition(); // 조건을 계속 확인
         }
 
-        if (distance <= interactionDistance && Input.GetKeyDown(interactionKey))
+        bool inputPressed = Input.GetKeyDown(interactionKey) || uiInteractPressed;
+
+        if (distance <= interactionDistance && inputPressed)
         {
             TryTalk();
         }
+
+        uiInteractPressed = false;
     }
 
     private void TryTalk()
@@ -195,5 +201,10 @@ public class TalkableNPC : MonoBehaviour
             }
         }
     }
-    
+
+    public void OnInteractButtonPressed()
+    {
+        uiInteractPressed = true;
+    }
+
 }
