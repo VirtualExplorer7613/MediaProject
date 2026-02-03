@@ -303382,6 +303382,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2846662264440089722, guid: 0f26f6892a94a2f44bd4231387dc48f8, type: 3}
   m_PrefabInstance: {fileID: 1387617190}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1388081776
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4477159208372948337, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477159208372948337, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477159208372948337, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477159208372948337, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -95.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477159208372948337, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 50.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477159208372948337, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -23.45351
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477159208372948337, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477159208372948337, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477159208372948337, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477159208372948337, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477159208372948337, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477159208372948337, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477159208372948337, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6597635025202670501, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
+      propertyPath: m_Name
+      value: Green Slimes
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e01edbab810cf7749923b0592a2ae9b5, type: 3}
 --- !u!1001 &1388749621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -478180,3 +478249,4 @@ SceneRoots:
   - {fileID: 485424932}
   - {fileID: 2073434160}
   - {fileID: 332720564}
+  - {fileID: 1388081776}
