@@ -1,0 +1,11 @@
+Model Information:
+* title:	Green Slimes / Oozes
+* source:	https://sketchfab.com/3d-models/green-slimes-oozes-c6fd0761e79345bf9cc34dacbdf14f09
+* author:	np-dev (https://sketchfab.com/np-dev)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Green Slimes / Oozes" (https://sketchfab.com/3d-models/green-slimes-oozes-c6fd0761e79345bf9cc34dacbdf14f09) by np-dev (https://sketchfab.com/np-dev) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
