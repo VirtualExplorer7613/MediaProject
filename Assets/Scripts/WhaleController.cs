@@ -87,7 +87,7 @@ public class WhaleController : MonoBehaviour
         }
 #endif
         // Unity remote 디버그용
-        forceMobileInput = false;
+        forceMobileInput = true;
 
         bool useMobileInput = Application.isMobilePlatform || forceMobileInput;
 

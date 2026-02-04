@@ -10,6 +10,9 @@ public class InteractionContext
     public GameObject ultrasoundPrefab;
     public Transform shootPoint;
 
+    [Header("Magnet")]
+    public GameObject magnetVisual;
+
     [Header("Layers")]
     public LayerMask trashLayerMask;
 
@@ -18,4 +21,11 @@ public class InteractionContext
         this.player = player;
         this.cam = cam;
     }
+
+    public void SetMagnetVisual(bool on)
+    {
+        if (magnetVisual != null)
+            magnetVisual.SetActive(on);
+    }
 }
+

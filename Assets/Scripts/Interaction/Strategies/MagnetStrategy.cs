@@ -18,11 +18,14 @@ public class MagnetStrategy : IInteractionStrategy
     public void OnSelected(InteractionContext ctx) { }
     public void OnDeselected(InteractionContext ctx)
     {
+        ctx?.SetMagnetVisual(false);
         StopAll();
     }
 
     public void OnPress(InteractionContext ctx)
     {
+        // 누르면 자석이 보이기 시작
+        ctx?.SetMagnetVisual(true);
         // Press 시 즉시 한 번 탐색해서 끌기 시작 (체감 즉시성)
         AcquireTargets(ctx);
     }
@@ -79,6 +82,7 @@ public class MagnetStrategy : IInteractionStrategy
 
     public void OnRelease(InteractionContext ctx)
     {
+        ctx?.SetMagnetVisual(false);
         StopAll();
     }
 
