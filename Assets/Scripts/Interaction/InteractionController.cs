@@ -7,6 +7,7 @@ public class InteractionController : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject ultrasoundPrefab;
+    [SerializeField] private GameObject magnetVisual;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private LayerMask trashLayerMask;
 
@@ -35,8 +36,11 @@ public class InteractionController : MonoBehaviour
         {
             ultrasoundPrefab = ultrasoundPrefab,
             shootPoint = shootPoint,
-            trashLayerMask = trashLayerMask
+            trashLayerMask = trashLayerMask,
+            magnetVisual = magnetVisual
         };
+
+        ctx.SetMagnetVisual(false);
 
         if (interactionHoldButton != null)
         {
