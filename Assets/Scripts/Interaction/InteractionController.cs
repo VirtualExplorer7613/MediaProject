@@ -20,6 +20,7 @@ public class InteractionController : MonoBehaviour
     [SerializeField] private Image holdProgressRing; // 진행률
 
     private InteractionContext ctx;
+    public InteractionContext CTX => ctx;
     private IInteractionStrategy currentStrategy;
     private ItemDefinition currentItemDef;
     public ItemDefinition CurrentItemDef => currentItemDef;

@@ -89,6 +89,30 @@ public class InventoryUIController : MonoBehaviour
             inventoryPanel.SetActive(false);
     }
 
+    public bool AddItem(ItemDefinition def, bool autoSelect = false)
+    {
+        if (def == null) return false;
+
+        // 중복방지
+        if (items.Contains(def)) return false;
+
+        items.Add(def);
+
+        if (contentRoot != null && itemButtonPrefab != null)
+        {
+            var btn = Instantiate(itemButtonPrefab, contentRoot);
+            btn.Bind(def, this);
+            buttonMap[def] = btn;
+
+            if (autoSelect)
+            {
+                SelectItem(def, btn);
+            }
+        }
+
+        return true;
+    }
+
     // Update is called once per frame
     void Update()
     {

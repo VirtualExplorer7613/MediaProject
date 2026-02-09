@@ -4,7 +4,8 @@ public enum ItemType
 {
     Ultrasound,
     Magnet,
-    Brush
+    Brush,
+    Key,
 }
 
 [CreateAssetMenu(menuName = "Item Definition")]
