@@ -13,6 +13,9 @@ public class InteractionContext
     [Header("Magnet")]
     public GameObject magnetVisual;
 
+    [Header("Chest")]
+    public TreasureChestController currentChest;
+
     [Header("Layers")]
     public LayerMask trashLayerMask;
 
