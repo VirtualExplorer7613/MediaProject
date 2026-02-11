@@ -21,7 +21,7 @@
     {
       "type": "interaction",
       "dialogue": null,
-      "action": "입에 박힌 낚싯바늘을 마우스로 드래그해 천천히 빼내기, 제거 후 초음파로 정리"
+      "action": "입에 박힌 낚싯바늘을 마우스로 드래그해 천천히 빼내기"
     },
     {
       "type": "whale",

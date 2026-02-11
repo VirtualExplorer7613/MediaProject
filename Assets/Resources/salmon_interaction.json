@@ -1,0 +1,63 @@
+{
+    "character": "salmon",
+    "icon_on_detected": true,
+    "expressions": {
+        "default": "Eyes_Blink",
+        "start_dialogue": "Sweat_L",
+        "post_interaction": "Eyes_Happy"
+    },
+    "dialogue_sequence": [
+        {
+            "type": "player_detects",
+            "dialogue": null,
+            "action": "remove_question_icon"
+        },
+        {
+            "type": "salmon",
+            "expression": "Sweat_L",
+            "dialogue": "고래님.\n혹시… 잠깐 도움을 요청해도 괜찮을까요?\n제 아내가 곧 알을 낳아야 하는데\n마땅한 장소를 찾지 못하고 있습니다.",
+            "voice": ""
+        },
+        {
+            "type": "salmon",
+            "expression": "Sweat_L",
+            "dialogue": "알은 깨끗하고 조용한 곳에서 안전하게 부화해야 합니다.\n그런데 보시다시피 이 주변이 전부 쓰레기 투성이예요.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "주변에 고철 쓰레기가 많이 흩어져 있네.\n이 상태로는 알을 낳기 어렵겠어."
+        },
+        {
+            "type": "salmon",
+            "expression": "Eyes_Sad",
+            "dialogue": "네. 아내가 많이 불안해하고 있습니다.\n혹시라도 알이 위험해질까 봐 계속해서 자리를 옮기고만 있어요.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "'이 주변엔 특히 고철 쓰레기가 많은 것 같아.'\n'아까 사용했던 자석을 쓰면 빠르게 치울 수 있겠어.'\n'자석으로 고철 쓰레기들을 정리해보자.'"
+        },
+        {
+            "type": "interaction",
+            "dialogue": null,
+            "action": "자석 아이템 사용해 주변 고철 쓰레기 제거"
+        },
+        {
+            "type": "salmon",
+            "expression": "Eyes_Happy",
+            "dialogue": "고래님 덕분에 주변이 많이 정리됐군요. 바닥도 한결 깨끗해졌습니다.\n정말 감사합니다. 고래님.",
+            "voice": ""
+        },
+        {
+            "type": "salmon",
+            "expression": "Eyes_Happy",
+            "dialogue": "이제 아내도 안심하고이곳에서 알을 낳을 수 있을 것 같아요.\n저는 옆에서 아내와 곧 태어날 우리 아이들을 끝까지 지키겠습니다.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "'알을 낳는 데 필요한 건 거창한 게 아니었어.'\n'깨끗하고 안전한 자리 하나.' 그 당연한 걸 쓰레기가 가로막고 있었던 거야.'"
+        }
+    ]
+}
