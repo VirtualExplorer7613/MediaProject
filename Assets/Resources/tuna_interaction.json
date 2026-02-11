@@ -1,44 +1,61 @@
 {
-  "character": "tuna",
-  "icon_on_detected": true,
-  "expressions": {
-    "default": "Eyes_Blink",
-    "start_dialogue": "Eyes_Shrink",
-    "post_interaction": "Sweat_L"
-  },
-  "dialogue_sequence": [
-    {
-      "type": "player_detects",
-      "dialogue": null,
-      "action": "remove_question_icon"
+    "character": "tuna",
+    "icon_on_detected": true,
+    "expressions": {
+        "default": "Eyes_Blink",
+        "start_dialogue": "Eyes_Squint",
+        "post_interaction": "Eyes_Excited"
     },
-    {
-      "type": "tuna",
-      "expression": "Eyes_Shrink",
-      "dialogue": "여기요오~! 누가 나 좀 제발 꺼내줘요!\n머리가 껴서 도무지 빠지질 않아!"
-    },
-    {
-      "type": "interaction",
-      "dialogue": null,
-      "action": "쓰레기를 드래그 또는 초음파로 하나씩 치우기, 바위 틈에 낀 참치를 마우스로 드래그해 꺼냄"
-    },
-    {
-      "type": "whale",
-      "dialogue": "이게 무슨 일이야… 도대체 어쩌다가 여기에 끼이게 된 거야?"
-    },
-    {
-      "type": "tuna",
-      "expression": "Sweat_L",
-      "dialogue": "휴~ 하마터면 진짜 큰일날 뻔 했네!\n바위 쪽에 맛있어 보이는 물고기들이 잔뜩… 따라와봤더니 쓰레기였지 뭐야."
-    },
-    {
-      "type": "tuna",
-      "expression": "Sweat_L",
-      "dialogue": "눈치 챘을 땐 내 머리가 이 바위 틈에 끼어버린 후였어….\n아무튼 도와줘서 고마워. 덕분에 탈출할 수 있었어!"
-    },
-    {
-      "type": "whale",
-      "dialogue": "'언제부터 이렇게 바다에 쓰레기가 많아진 거지…?'"
-    }
-  ]
+    "dialogue_sequence": [
+        {
+            "type": "player_detects",
+            "dialogue": null,
+            "action": "remove_question_icon"
+        },
+        {
+            "type": "tuna",
+            "expression": "Eyes_Squint",
+            "dialogue": "아야야… 아야! 아!! 아파 죽겠네!\n참치 죽는다~~ 참치 살려~~!\n어어, 거기 고래 친구!! 마침 잘 만났어!\n나 좀 도와주지 않을래?!",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "무슨 일이야?\n몸에… 그건 또 뭐야? 옷걸이처럼 보이는데...\n왜 위험하게 그러고 있어."
+        },
+        {
+            "type": "tuna",
+            "expression": "Eyes_Squint",
+            "dialogue": "먹이 냄새가 나서 급하게 헤엄쳐가다가 그만...\n이 이상한 물건에 끼어버렸지 뭐야!\n아니, 이게 왜 여기 떠다니는 건데?!\n몸통이 너무 아파… 진짜로… 얼른 좀 빼줘!\n움직일수록 더 조여!",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "'옷걸이가 참치 몸에 단단하게 걸려서 그냥 빼기는 힘들겠어.'\n'무언가 자를 수 있는 게 있다면 좋을 텐데.'\n'아까 얻은 가위로 옷걸이를 끊어보자.'"
+        },
+        {
+            "type": "interaction",
+            "dialogue": null,
+            "action": "가위 아이템 사용해 플라스틱 옷걸이 절단"
+        },
+        {
+            "type": "tuna",
+            "expression": "Eyes_Excited",
+            "dialogue": "으아… 빠졌다!! 살았다, 살았어…!\n하… 방금까지 진짜 숨 막혀 죽는 줄 알았네.\n\n고래 친구, 너 아니었으면 나 큰일 날 뻔했어.\n고마워! 진짜로!",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "저건 사람이 버린 플라스틱 옷걸이야.\n바다에 있으면 안 되는 쓰레기인데 왜인지 여기까지 흘러들어와버렸어."
+        },
+        {
+            "type": "tuna",
+            "expression": "Sweat_L",
+            "dialogue": "옷걸이…? 아니 그런 게 왜 바다에 떠다녀…?\n앞만 보고 달리다 이걸 못 봤네.\n요즘들어 부쩍 이런 쓰레기들이 바다에 많이 떠다니는 것 같던데.\n다음부턴 좀 더 조심해야겠어.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "'과연 참치가 조심해야 하는 일이 맞는 걸까?'\n'바다에 쓰레기가 계속해서 늘어나는 한, 누군가는 또 참치처럼 다치고 말거야.'\n'쓰레기가 바다에 흘러들어오지 않게 사람들이 먼저 도울 순 없는 걸까?'"
+        }
+    ]
 }

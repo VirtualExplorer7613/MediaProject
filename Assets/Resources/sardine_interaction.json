@@ -1,0 +1,63 @@
+{
+    "character": "sardine",
+    "icon_on_detected": true,
+    "expressions": {
+        "default": "Eyes_Blink",
+        "start_dialogue": "Eyes_Trauma",
+        "post_interaction": "Eyes_Shrink"
+    },
+    "dialogue_sequence": [
+        {
+            "type": "player_detects",
+            "dialogue": null,
+            "action": "remove_question_icon"
+        },
+        {
+            "type": "sardine",
+            "expression": "Eyes_Trauma",
+            "dialogue": "흑흑… 엄마, 아빠 어디 있는 거야…?\n여긴 너무 깜깜해…\n나 혼자 남겨지긴 싫어…\n누가 좀… 도와주세요…",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "'이건… 정어리 목소리인데?'\n'박스에 갇혀버린 걸지도 몰라.'\n'파도 스킬로 얼른 구해줘야겠어.'"
+        },
+        {
+            "type": "interaction",
+            "dialogue": null,
+            "action": "파도 스킬 사용해 종이박스 제거"
+        },
+        {
+            "type": "sardine",
+            "expression": "Eyes_Shrink",
+            "dialogue": "어… 어라?\n앞이… 보여!\n고래님이 절 구해주신 거군요! 정말 감사해요…",
+            "voice": ""
+        },
+        {
+            "type": "sardine",
+            "expression": "Eyes_Sad",
+            "dialogue": "갑자기 큰 박스 같은 게 날아와서… 순식간에 저를 덮쳐버렸어요.\n분명 가족들을 따라 헤엄치고 있었는데…\n아무 소리도 안 들리고… 앞은 캄캄하고…\n…그렇게 저 혼자 남겨졌어요.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "네 눈앞을 막고 있던 건 종이박스야.\n바다에 떠다니다가 네가 가던 길을 가로막은 것 같아."
+        },
+        {
+            "type": "sardine",
+            "expression": "Eyes_Sad",
+            "dialogue": "그랬군요… 이대로 가족들을 영영 못 만나게 되는 줄 알고 너무 무서웠어요…",
+            "voice": ""
+        },
+        {
+            "type": "sardine",
+            "expression": "Eyes_Happy",
+            "dialogue": "아! 저기… 보여요!\n저기 제 가족들이 있어요!\n전 이만 가족들에게 돌아가야겠어요.\n도와주셔서 정말 고맙습니다.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "'길을 막은 건 겨우 종이박스 하나뿐인데…'\n'종이박스 때문에 정어리는 가족과 영영 헤어질 뻔 했어.'\n'바다에 왜 이런 쓰레기들이 계속 늘어가고 있는 걸까…'"
+        }
+    ]
+}

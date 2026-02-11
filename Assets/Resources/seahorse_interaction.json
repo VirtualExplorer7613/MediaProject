@@ -19,7 +19,7 @@
     {
       "type": "interaction",
       "dialogue": null,
-      "action": "꼬리에 감겨있는 빨대나 담배꽁초를 드래그로 천천히 빼내기 → 제거 후 초음파 처리"
+      "action": "꼬리에 감겨있는 빨대를 드래그로 천천히 빼내기"
     },
     {
       "type": "seahorse",
