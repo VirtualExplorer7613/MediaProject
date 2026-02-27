@@ -10,6 +10,7 @@ public class InteractionController : MonoBehaviour
     [SerializeField] private GameObject magnetVisual;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private LayerMask trashLayerMask;
+    [SerializeField] private ItemUseBroadcaster itemUseBroadcaster;
 
     [Header("Default Item")]
     [SerializeField] private ItemDefinition defaultItem;
@@ -38,7 +39,8 @@ public class InteractionController : MonoBehaviour
             ultrasoundPrefab = ultrasoundPrefab,
             shootPoint = shootPoint,
             trashLayerMask = trashLayerMask,
-            magnetVisual = magnetVisual
+            magnetVisual = magnetVisual,
+            itemUseBroadcaster = itemUseBroadcaster
         };
 
         ctx.SetMagnetVisual(false);

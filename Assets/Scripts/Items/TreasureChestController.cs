@@ -78,6 +78,8 @@ public class TreasureChestController : MonoBehaviour
         if (Vector3.Distance(transform.position, player.position) > useKeyDistance) return false;
 
         StartCoroutine(OpenRoutine());
+        // 상자 열림 트리거
+        ic.CTX.itemUseBroadcaster?.RaiseItemUsed("chest_open");
         return true;
     }
 
