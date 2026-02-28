@@ -15,6 +15,6 @@ MonoBehaviour:
   messageKorean: "\uC5B4? \uC800\uAE30 \uBC18\uC9DD\uC774\uB294 \uD669\uAE08 \uC5F4\uC1E0\uAC00
     \uBCF4\uC5EC\uC694! \uC5BC\uB978 \uAC00\uAE4C\uC774 \uAC00\uC11C \uC7A1\uC544\uBCFC\uAE4C\uC694?"
   messageEnglish: 
-  conditionPrefab: {fileID: 355915398756100229, guid: 736f8f7e717a27c479c99ad29e895df6, type: 3}
+  conditionPrefab: {fileID: 8448348817773122069, guid: fecaab53574c34942baecf72a94661b6, type: 3}
   highlightTargetId: 
   advanceDelay: 0.2

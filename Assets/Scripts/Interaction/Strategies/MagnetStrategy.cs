@@ -66,6 +66,7 @@ public class MagnetStrategy : IInteractionStrategy
 
                     di.StopDragging();
                     di.CollectByMagnet();
+                    ctx.itemUseBroadcaster?.RaiseItemUsed("magnet");
                 }
             }
             else

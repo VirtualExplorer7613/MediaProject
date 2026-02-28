@@ -20,9 +20,16 @@ public class InventoryUIController : MonoBehaviour
 
     private readonly Dictionary<ItemDefinition, InventoryItemButton> buttonMap = new();
 
+    [SerializeField] private ItemUseBroadcaster itemUseBroadcaster;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (itemUseBroadcaster == null)
+        {
+            itemUseBroadcaster = FindAnyObjectByType<ItemUseBroadcaster>();
+        }
+
         if (inventoryToggleButton != null)
             inventoryToggleButton.onClick.AddListener(ToggleInventory);
 
@@ -87,6 +94,13 @@ public class InventoryUIController : MonoBehaviour
         // 선택 후 자동 접힘
         if (inventoryPanel != null)
             inventoryPanel.SetActive(false);
+
+        Debug.Log($"{def.name} equipped!! this is button");
+
+        if (def.name == "Key")
+        {
+            itemUseBroadcaster?.RaiseItemUsed("key_equipped");
+        }
     }
 
     public bool AddItem(ItemDefinition def, bool autoSelect = false)

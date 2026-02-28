@@ -21,12 +21,19 @@ public class UltrasoundStrategy : IInteractionStrategy
         Ray ray = ctx.cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         Vector3 dir = ray.direction.normalized;
 
-        Object.Instantiate(ctx.ultrasoundPrefab, ctx.shootPoint.position, Quaternion.LookRotation(dir));
+        var go = Object.Instantiate(ctx.ultrasoundPrefab, ctx.shootPoint.position, Quaternion.LookRotation(dir));
         Managers.Sound.Play("Underwater_Impact_02");
+        var ultrasound = go.GetComponent<Ultrasound>();
+
+        if (ultrasound != null)
+        {
+            ultrasound.SetBroadcaster(ctx.itemUseBroadcaster);
+        }
+
 
         // 파도(초음파) 사용 이벤트 발행
-        ctx.itemUseBroadcaster?.RaiseItemUsed("wave");
-           
+        //ctx.itemUseBroadcaster?.RaiseItemUsed("wave");
+
     }
 
     public void OnHold(InteractionContext ctx, float deltaTime) { }
