@@ -52,6 +52,11 @@ public class DialogueManager : MonoBehaviour
         { "orca", new CharacterInfo { displayName = "범고래", nameColor = new Color(0.7f, 0.7f, 0.75f) } },
         { "dolphin", new CharacterInfo { displayName = "돌고래", nameColor = new Color(0.7f, 0.85f, 0.95f) } },
         { "squid", new CharacterInfo { displayName = "오징어", nameColor = new Color(0.85f, 0.75f, 1f) } },
+        { "lobster", new CharacterInfo { displayName = "가재", nameColor = new Color(1f, 0.6f, 0.6f) } },
+        { "sardine", new CharacterInfo { displayName = "정어리", nameColor = new Color(0.7f, 0.8f, 1f) } },
+        { "jellyfish", new CharacterInfo { displayName = "해파리", nameColor = new Color(0.9f, 0.9f, 1f) } },
+        { "salmon", new CharacterInfo { displayName = "연어", nameColor = new Color(1f, 0.7f, 0.7f) } },
+        { "prawn", new CharacterInfo { displayName = "새우", nameColor = new Color(1f, 0.8f, 0.6f) } },
     };
 
 

@@ -1,0 +1,77 @@
+{
+    "character": "jellyfish",
+    "icon_on_detected": true,
+    "expressions": {
+        "default": "Eyes_Blink",
+        "start_dialogue": "Eyes_Shrink",
+        "post_interaction": "Eyes_Sad"
+    },
+    "dialogue_sequence": [
+        {
+            "type": "player_detects",
+            "dialogue": null,
+            "action": "remove_question_icon"
+        },
+        {
+            "type": "whale",
+            "dialogue": "저 비닐봉지는 뭐지?\n안에서 뭔가 움직이는 것 같은데…"
+        },
+        {
+            "type": "whale",
+            "dialogue": "파도 스킬을 이용해서 한 번 밀어내 볼까?"
+        },
+        {
+            "type": "interaction",
+            "dialogue": null,
+            "action": "파도 스킬 사용해 비닐봉지를 제거"
+        },
+        {
+            "type": "jellyfish",
+            "expression": "Eyes_Shrink",
+            "dialogue": "앗…! 깜짝 놀랐어요.\n고래님이 절 구해주신 거군요.",
+            "voice": ""
+        },
+        {
+            "type": "jellyfish",
+            "expression": "Eyes_Shrink",
+            "dialogue": "눈 앞에 검정색 무언가가 떠다니길래\n신기해서 들여다보다가 그만… 그대로 갇혀버렸네요.",
+            "voice": ""
+        },
+        {
+            "type": "jellyfish",
+            "expression": "Eyes_Shrink",
+            "dialogue": "앞도 안 보이고…\n위로도, 아래로도 움직일 수가 없었어요.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "그랬구나. 그건 바다에 버려진 쓰레기야.\n너랑 같이 떠다니는 게 아니야."
+        },
+        {
+            "type": "jellyfish",
+            "expression": "Eyes_Sad",
+            "dialogue": "쓰레기였군요…\n전 그냥 원래 바다에 있던 건 줄 알았어요.",
+            "voice": ""
+        },
+        {
+            "type": "jellyfish",
+            "expression": "Eyes_Sad",
+            "dialogue": "요즘엔 주변에 부쩍 이런 쓰레기들이 많아진 것 같아요.\n다른 해파리들도 저처럼 궁금해 하다가 갑자기 갇히게 되진 않을까요…?",
+            "voice": ""
+        },
+        {
+            "type": "jellyfish",
+            "expression": "Eyes_Blink",
+            "dialogue": "걱정이 이만저만이 아니네요…\n도와주셔서 고맙습니다.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "'바다에 쓰레기가 너무 많아져서…\n이제는 친구들이 구분조차 하기 어려워진 건 아닐까.'"
+        },
+        {
+            "type": "whale",
+            "dialogue": "'다음에 누군가 또 이렇게 아무 말도 못 한 채로 갇히게 될 지 몰라.'"
+        }
+    ]
+}

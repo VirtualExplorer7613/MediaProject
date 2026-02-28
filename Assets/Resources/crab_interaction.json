@@ -33,10 +33,10 @@
       "dialogue": "괜찮아요? 이 플라스틱 통은 뭐예요?"
     },
     {
-      "type": "crab",
-      "expression": "Sweat_L",
-      "dialogue": "하… 드디어 살았다…! 정말 고마워!! 혼자서 이 속에서 얼마나 무서웠는지 몰라.",
-      "voice": "Witch_win_06"
+        "type": "crab",
+        "expression": "Sweat_L",
+        "dialogue": "하… 드디어 살았다…!\n정말 고마워!! 혼자서 이 속에서 얼마나 무서웠는지 몰라.",
+        "voice": "Witch_win_06"
     },
     {
       "type": "crab",
@@ -51,8 +51,8 @@
       "voice": "Witch_talk_angry_04"
     },
     {
-      "type": "whale",
-      "dialogue": "'떨어진 건 가벼운 쓰레기였겠지만, 누군가에겐 무거운 공포로 다가왔을 수도 있겠다....'"
+        "type": "whale",
+        "dialogue": "'떨어진 건 가벼운 쓰레기였겠지만, 누군가에겐 무거운 공포로 다가왔을 수도 있겠다…'"
     }
   ]
 }
