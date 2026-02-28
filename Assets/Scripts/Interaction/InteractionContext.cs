@@ -19,6 +19,8 @@ public class InteractionContext
     [Header("Layers")]
     public LayerMask trashLayerMask;
 
+    public ItemUseBroadcaster itemUseBroadcaster;
+
     public InteractionContext(Transform player, Camera cam)
     {
         this.player = player;

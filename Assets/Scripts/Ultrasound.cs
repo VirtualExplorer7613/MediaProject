@@ -11,9 +11,22 @@ public class Ultrasound : MonoBehaviour
 
     Vector3 startPos;
 
+    [SerializeField] private ItemUseBroadcaster itemUseBroadcaster;
+    private bool hasReportedTrashClean = false;
+
+    public void SetBroadcaster(ItemUseBroadcaster Broadcaster)
+    {
+        itemUseBroadcaster = Broadcaster;
+    }
+
     private void Start()
     {
         startPos = transform.position;
+    }
+
+    private void Awake()
+    {
+        itemUseBroadcaster = FindAnyObjectByType<ItemUseBroadcaster>();
     }
 
     private void Update()
@@ -58,6 +71,13 @@ public class Ultrasound : MonoBehaviour
             TrashManager.Instance?.DecreaseTrash();
             Destroy(other.gameObject);
             Managers.Sound.Play("Bubble_Surface_Large_01");
+            itemUseBroadcaster?.RaiseItemUsed("wave");
+
+            if (!hasReportedTrashClean)
+            {
+                hasReportedTrashClean = true;
+                itemUseBroadcaster?.RaiseItemUsed("wave");
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ public class TreasureChestController : MonoBehaviour
 
     private InteractionController ic;
     private InventoryUIController invUI;
+    [SerializeField] private ItemUseBroadcaster itemUseBroadcaster;
 
     public enum ChestState { Closed, Opening, Opened, Looted }
     public ChestState State => state;
@@ -35,6 +36,10 @@ public class TreasureChestController : MonoBehaviour
 
     private void Awake()
     {
+        if (itemUseBroadcaster == null)
+        {
+            itemUseBroadcaster = FindAnyObjectByType<ItemUseBroadcaster>();
+        }
         if (animator == null) animator = GetComponentInChildren<Animator>();
 
         ic = FindFirstObjectByType<InteractionController>();
@@ -78,6 +83,8 @@ public class TreasureChestController : MonoBehaviour
         if (Vector3.Distance(transform.position, player.position) > useKeyDistance) return false;
 
         StartCoroutine(OpenRoutine());
+        // 상자 열림 트리거
+        ic.CTX.itemUseBroadcaster?.RaiseItemUsed("chest_open");
         return true;
     }
 
@@ -122,6 +129,10 @@ public class TreasureChestController : MonoBehaviour
         {
             bool added = invUI.AddItem(rewardItem);
             Debug.Log($"[Chest] AddItem result = {added}");
+            if (added)
+                itemUseBroadcaster?.RaiseItemUsed("magnet_earned");
+
+            // 아이템 획득 트리거
         }
         else
         {

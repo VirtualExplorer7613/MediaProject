@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ac8c441721fd9749983415fffd47577, type: 3}
+  m_Name: TutorialStep_09_Item_Equipped
+  m_EditorClassIdentifier: 
+  messageKorean: "\uAC00\uBC29 \uC18D \uC544\uC774\uD15C\uC744 \uD55C \uBC88 \uB20C\uB7EC\uBCF4\uC138\uC694!
+    '\uC9E0!' \uD558\uACE0 \uC544\uC774\uD15C\uC744 \uC7A5\uCC29\uD558\uBA74 \uC0AC\uC6A9\uD560
+    \uC900\uBE44 \uC644\uB8CC!"
+  messageEnglish: 
+  conditionPrefab: {fileID: 8448348817773122069, guid: 8ee3160276ec3624b92b733a162a20b6, type: 3}
+  highlightTargetId: 
+  advanceDelay: 0.2
