@@ -15,22 +15,40 @@
         {
             "type": "lobster",
             "expression": "Eyes_Annoyed",
-            "dialogue": "이봐, 고래!! 나 좀 도와줘!\n젠장… 몸이 안 움직여!!\n이 밧줄이 내 몸통을 꽉 묶고 있어서 꼼짝도 못 하겠어!\n으으… 내 집게발로도 해결이 안 돼!\n아무리 힘을 줘도 더 조여들기만 하잖아…!",
+            "dialogue": "이봐, 고래!! 나 좀 도와줘!\n젠장… 몸이 안 움직여!!",
             "voice": ""
-        },
-        {
-            "type": "whale",
-            "dialogue": "진정해. 무슨 일이야?\n몸에… 밧줄이 잔뜩 감겨 있네. 이러다 다치겠어."
         },
         {
             "type": "lobster",
             "expression": "Eyes_Annoyed",
-            "dialogue": "그러니까 도와달라는 거잖아!!\n갑자기 어디서 이런 밧줄이 떠내려와서는…\n내가 가만히 있다가 그대로 묶여버렸다고!",
+            "dialogue": "이 밧줄이 내 몸통을 꽉 묶고 있어서 꼼짝도 못 하겠어!\n으으… 내 집게발로도 해결이 안 돼!",
+            "voice": ""
+        },
+        {
+            "type": "lobster",
+            "expression": "Eyes_Annoyed",
+            "dialogue": "아무리 힘을 줘도 더 조여들기만 하잖아…!",
             "voice": ""
         },
         {
             "type": "whale",
-            "dialogue": "'밧줄이 단단하게 묶여 있어서 그냥 풀기는 힘들겠어.'\n'가위라면… 이 밧줄을 안전하게 자를 수 있을 것 같아.'"
+            "dialogue": "진정해. 무슨 일이야?\n아… 몸에 밧줄이 잔뜩 감겨 있네. 이러다 다치겠어."
+        },
+        {
+            "type": "lobster",
+            "expression": "Eyes_Annoyed",
+            "dialogue": "그러니까 도와달라는 거잖아!!",
+            "voice": ""
+        },
+        {
+            "type": "lobster",
+            "expression": "Eyes_Annoyed",
+            "dialogue": "갑자기 어디서 이런 밧줄이 떠내려와서는…\n내가 가만히 있다가 꼼짝없이 그대로 묶여버렸다고!",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "'밧줄이 단단하게 묶여 있어서 그냥 풀기는 힘들겠어.\n가위라면… 이 밧줄을 안전하게 자를 수 있을 것 같아.'"
         },
         {
             "type": "interaction",
@@ -40,7 +58,13 @@
         {
             "type": "lobster",
             "expression": "Eyes_Shrink",
-            "dialogue": "으악…!\n…어?\n풀렸다… 풀렸어!\n하… 진짜… 꽁꽁 묶이는 바람에 답답해서 죽는 줄 알았잖아.\n고래! 진짜 고맙다.\n너가 아니었으면 정말 큰일날 뻔 했어.",
+            "dialogue": "으악! …어?\n풀렸다, 풀렸어!",
+            "voice": ""
+        },
+        {
+            "type": "lobster",
+            "expression": "Eyes_Shrink",
+            "dialogue": "하, 꽁꽁 묶이는 바람에 답답해서 죽는 줄 알았네.\n고래! 진짜 고맙다. 너가 아니었으면 정말 큰일날 뻔 했어.",
             "voice": ""
         },
         {
@@ -50,12 +74,22 @@
         {
             "type": "lobster",
             "expression": "Eyes_Annoyed",
-            "dialogue": "사람들이 버린 쓰레기… 또 그거냐.\n이렇게 질기고 단단한 게 돌아다니면…\n나같은 녀석들은 피할 틈도 없다고.",
+            "dialogue": "사람들이 버린 쓰레기… 또 그거냐.\n이젠 정말 지긋지긋하군.",
+            "voice": ""
+        },
+        {
+            "type": "lobster",
+            "expression": "Eyes_Annoyed",
+            "dialogue": "이렇게 질기고 단단한 게 돌아다니면…\n아무리 나처럼 강한 녀석들이라도 피할 틈이 없다고.",
             "voice": ""
         },
         {
             "type": "whale",
-            "dialogue": "'가재까지 꼼짝없이 당해버리다니.'\n'바다가 점점 위험한 곳으로 바뀌는 느낌이야.'\n'이 상태를 그냥 두면 안 될 것 같아…'"
+            "dialogue": "'가재까지 꼼짝없이 당해버리다니.\n바다가 점점 위험한 곳으로 바뀌고 있는 느낌이 드는 걸.'"
+        },
+        {
+            "type": "whale",
+            "dialogue": "'우리의 바다를 지금 이대로 방치했다간 정말 큰일날 것 같아…'"
         }
     ]
 }
