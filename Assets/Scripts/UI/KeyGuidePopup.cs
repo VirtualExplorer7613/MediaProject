@@ -97,6 +97,6 @@ public class KeyGuidePopup : MonoBehaviour
         if (crosshairUI != null)
             crosshairUI.IsVisible = true;
 
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }
