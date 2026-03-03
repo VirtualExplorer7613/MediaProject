@@ -123,6 +123,8 @@ public class InteractionController : MonoBehaviour
         pressAccepted = true; // 현재 입력이 유효한지 체크하는 변수
         fsm.EnterActive();
         currentStrategy.OnPress(ctx);
+        Debug.Log("Handle Press!!");
+
     }
 
     public void HandleRelease()
@@ -135,7 +137,7 @@ public class InteractionController : MonoBehaviour
             wasHolding = false;
             return;
         }
-
+        Debug.Log("Handle Release!!");
         // Active 상태 종료
         currentStrategy.OnRelease(ctx);
 

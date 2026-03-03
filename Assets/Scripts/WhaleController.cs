@@ -63,6 +63,14 @@ public class WhaleController : MonoBehaviour
 #if UNITY_EDITOR || UNITY_STANDALONE
         Cursor.lockState = CursorLockMode.Locked;
 #endif
+
+        Vector3 e = transform.eulerAngles;
+        yaw = e.y;
+        pitch = (e.x > 180f) ? e.x - 360f : e.x;   // -180~180 보정
+
+        // pitch 제한 적용
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+
         transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
 
         dialogueManager = FindObjectOfType<DialogueManager>();
@@ -87,7 +95,7 @@ public class WhaleController : MonoBehaviour
         }
 #endif
         // Unity remote 디버그용
-        forceMobileInput = false;
+        forceMobileInput = true;
 
         bool useMobileInput = Application.isMobilePlatform || forceMobileInput;
 
