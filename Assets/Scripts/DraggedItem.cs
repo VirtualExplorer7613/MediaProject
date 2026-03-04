@@ -12,7 +12,7 @@ public class DraggedItem : MonoBehaviour
     [SerializeField]
     private Vector3 offset = new Vector3(0, 1f, 2f);
     [SerializeField] float minDistToWhale = 1f;
-    [SerializeField] float magnetCollectDistance = 2f;
+    [SerializeField] float magnetCollectDistance = 3f;
 
     public bool interactable = true;
 
