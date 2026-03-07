@@ -53,6 +53,10 @@ public class Ultrasound : MonoBehaviour
     {
         if (other == null) return;
 
+        // 해머 전용 쓰레기는 초음파 무시
+        if (other.GetComponent<HammerableTrash>() != null)
+            return;
+
         TalkableNPC npc = DialogueManager.Instance?.CurrentTalkingNPC;
 
         // 퀘스트 진행 중인 NPC가 있고, 해당 오브젝트가 퀘스트 대상인 경우에만 처리

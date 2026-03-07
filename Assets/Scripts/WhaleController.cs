@@ -56,6 +56,13 @@ public class WhaleController : MonoBehaviour
     float yaw = 0f;   // 좌우 회전
     float pitch = 0f; // 상하 기울기
 
+    private Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     private void Start()
     {
         //Cursor.visible = false;   // 커서 안보이게

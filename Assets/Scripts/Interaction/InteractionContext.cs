@@ -13,6 +13,12 @@ public class InteractionContext
     [Header("Magnet")]
     public GameObject magnetVisual;
 
+    [Header("Hammer")]
+    public HammerVisual hammerVisual;
+
+    [Header("Scissor")]
+    public ScissorVisual scissorVisual;
+
     [Header("Chest")]
     public TreasureChestController currentChest;
 
