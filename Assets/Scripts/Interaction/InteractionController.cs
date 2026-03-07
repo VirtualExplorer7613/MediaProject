@@ -8,6 +8,8 @@ public class InteractionController : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject ultrasoundPrefab;
     [SerializeField] private GameObject magnetVisual;
+    [SerializeField] private HammerVisual hammerVisual;
+    [SerializeField] private ScissorVisual scissorVisual;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private LayerMask trashLayerMask;
     [SerializeField] private ItemUseBroadcaster itemUseBroadcaster;
@@ -40,7 +42,9 @@ public class InteractionController : MonoBehaviour
             shootPoint = shootPoint,
             trashLayerMask = trashLayerMask,
             magnetVisual = magnetVisual,
-            itemUseBroadcaster = itemUseBroadcaster
+            itemUseBroadcaster = itemUseBroadcaster,
+            hammerVisual = hammerVisual,
+            scissorVisual = scissorVisual
         };
 
         ctx.SetMagnetVisual(false);
@@ -75,11 +79,11 @@ public class InteractionController : MonoBehaviour
         // Hold 처리
         if (canAccept && isHolding && currentStrategy != null)
         {
-            if (!wasHolding || !lastCanAcceptInput)
+            /*if (!wasHolding || !lastCanAcceptInput)
             {
                 // 안전장치: onPressed 이벤트가 누락될 수 있는 상황 대비
                 HandlePress();
-            }
+            }*/
 
             fsm.EnterActive();
             currentStrategy.OnHold(ctx, dt);
@@ -124,6 +128,7 @@ public class InteractionController : MonoBehaviour
         fsm.EnterActive();
         currentStrategy.OnPress(ctx);
         Debug.Log("Handle Press!!");
+        Debug.Log($"[Interaction] HandlePress currentStrategy = {currentStrategy?.GetType().Name ?? "NULL"}");
 
     }
 

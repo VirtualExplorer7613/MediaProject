@@ -6,6 +6,8 @@ public enum ItemType
     Magnet,
     Brush,
     Key,
+    Hammer,
+    Scissor,
 }
 
 [CreateAssetMenu(menuName = "Item Definition")]
