@@ -45,6 +45,12 @@ public class WhaleController : MonoBehaviour
     [SerializeField]
     float dragDetectionRadius = 10f;
 
+    [SerializeField] private CapsuleCollider capsule;
+    [SerializeField] private float skinWidth = 0.02f;
+    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private float groundCheckDistance = 0.3f;
+    [SerializeField] private float groundProbeRadius = 0.4f;
+
     // Dialogue snap
     bool isFrozen = false;
     Coroutine snapCo;
@@ -57,6 +63,7 @@ public class WhaleController : MonoBehaviour
     float pitch = 0f; // 상하 기울기
 
     private Rigidbody rb;
+    private Vector3 moveInput;
 
     private void Awake()
     {
@@ -89,6 +96,7 @@ public class WhaleController : MonoBehaviour
         if (isFrozen || dialogueManager != null && dialogueManager.IsDialoguePlaying)
         {
             // 대화 중이면 아무 조작도 못하게 막음
+            moveInput = Vector3.zero;
             return;
         }
 #if UNITY_EDITOR || UNITY_STANDALONE
@@ -102,7 +110,7 @@ public class WhaleController : MonoBehaviour
         }
 #endif
         // Unity remote 디버그용
-        forceMobileInput = true;
+        //forceMobileInput = true;
 
         bool useMobileInput = Application.isMobilePlatform || forceMobileInput;
 
@@ -129,8 +137,10 @@ public class WhaleController : MonoBehaviour
 
         // 고래의 방향 기준으로 이동
         //Vector3 moveDir = transform.forward * v + transform.right * h;
-        Vector3 velocity = (transform.forward * v + transform.right * h) * moveSpeed + transform.up * y * verticalSpeed;
-        transform.position += velocity * Time.deltaTime;
+       /* Vector3 velocity = (transform.forward * v + transform.right * h) * moveSpeed + transform.up * y * verticalSpeed;
+        transform.position += velocity * Time.deltaTime;*/
+
+        moveInput = new Vector3(h, y, v);
     }
 
     void HandleRotationPC()
@@ -165,8 +175,10 @@ public class WhaleController : MonoBehaviour
         if (downButton != null && downButton.IsPressed) vertical -= 1f;
 
 
-        Vector3 velocity = transform.forward * (rawForward * moveSpeed) + transform.up * (vertical * verticalSpeed);
-        transform.position += velocity * Time.deltaTime;
+        //Vector3 velocity = transform.forward * (rawForward * moveSpeed) + transform.up * (vertical * verticalSpeed);
+        //transform.position += velocity * Time.deltaTime;
+
+        moveInput = new Vector3(0f, vertical, rawForward);
     }
 
     public void FireUltrasound()
@@ -206,13 +218,193 @@ public class WhaleController : MonoBehaviour
         foreach (var hit in hits)
         {
             DraggedItem item = hit.GetComponent<DraggedItem>();
-            if (item != null && !item.isDragged && !item.isDragged)
+            if (item != null && !item.isDragged)
             {
                 item.StartDragging(transform);
                 currentDraggedItem = item;
                 break;
             }
         }
+    }
+
+    // 플레이어 바로 아래에 지면이 가까이 있으면 true
+    bool IsBlockedDownward()
+    {
+        Vector3 origin = rb.position;
+
+        return Physics.SphereCast(
+            origin,
+            groundProbeRadius,
+            Vector3.down,
+            out RaycastHit hit,
+            groundCheckDistance,
+            groundMask,
+            QueryTriggerInteraction.Ignore
+        );
+    }
+
+    private void FixedUpdate()
+    {
+        if (rb == null || capsule == null)
+        {
+            Debug.LogError("No Rigidbody or Capsule collider!");
+            return;
+        }
+
+        Vector3 currentPos = rb.position;
+
+        Vector3 flatForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+        Vector3 flatRight = Vector3.ProjectOnPlane(transform.right, Vector3.up).normalized;
+
+        if (flatForward.sqrMagnitude < 0.0001f) flatForward = Vector3.forward;
+        if (flatRight.sqrMagnitude < 0.0001f) flatRight = Vector3.right;
+
+        // 수평 이동
+        Vector3 horizontalMove = (flatForward * moveInput.z + flatRight * moveInput.x) * moveSpeed;
+        Vector3 horizontalDelta = horizontalMove * Time.fixedDeltaTime;
+
+        Vector3 posAfterHorizontal = ResolveCapsuleMove(currentPos, horizontalDelta);
+        posAfterHorizontal = ResolveOverlaps(posAfterHorizontal);
+
+        // 수직 이동
+        float verticalAmount = moveInput.y * verticalSpeed * Time.fixedDeltaTime;
+        Vector3 verticalDelta = Vector3.up * verticalAmount;
+
+        Vector3 finalPos = ResolveVerticalMove(posAfterHorizontal, verticalDelta);
+
+        finalPos = ResolveOverlaps(finalPos);
+
+        rb.MovePosition(finalPos);
+
+        /*Vector3 move =
+            (transform.forward * moveInput.z + transform.right * moveInput.x) * moveSpeed +
+            transform.up * moveInput.y * verticalSpeed;*/
+
+        /*Vector3 move = 
+            (transform.forward * moveInput.z + transform.right * moveInput.x) * moveSpeed + 
+            Vector3.up * moveInput.y * verticalSpeed;*/
+
+        #region 1st renewal movement
+        /*Vector3 flatForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+        Vector3 flatRight = Vector3.ProjectOnPlane(transform.right, Vector3.up).normalized;
+
+        Vector3 horizontalMove = (flatForward * moveInput.z + flatRight * moveInput.x) * moveSpeed;
+        Vector3 horizontalDelta = horizontalMove * Time.fixedDeltaTime;
+
+        // 수평 이동
+        MoveWithSweep(horizontalDelta);
+
+        // 수직 이동
+        float vertical = moveInput.y * verticalSpeed;
+        Vector3 verticalDelta = Vector3.up * vertical * Time.fixedDeltaTime;
+
+        if (verticalDelta.y < 0f)
+        {
+            // 아래로 이동하려는 경우, 바닥 가까우면 차단
+            if (!IsBlockedDownward())
+            {
+                MoveWithSweep(verticalDelta);
+            }
+        }
+        else if (verticalDelta.y > 0f)
+        {
+            MoveWithSweep(verticalDelta);
+        }*/
+        #endregion
+
+        //rb.MovePosition(rb.position + move * Time.fixedDeltaTime);
+    }
+
+    private void MoveWithSweep(Vector3 delta)
+    {
+        if (delta.sqrMagnitude <= 0.00001f) return;
+
+        if (rb.SweepTest(delta.normalized, out RaycastHit hit, delta.magnitude + 0.02f))
+        {
+            float safeDistance = Mathf.Max(hit.distance - 0.01f, 0f);
+            rb.MovePosition(rb.position + delta.normalized * safeDistance);
+        }
+        else
+        {
+            rb.MovePosition(rb.position + delta);
+        }
+    }
+
+    private Vector3 ResolveCapsuleMove(Vector3 startPos, Vector3 delta)
+    {
+        if (delta.sqrMagnitude <= 0.000001f) return startPos;
+
+        GetCapsuleWorldPoints(startPos, out Vector3 p1, out Vector3 p2, out float radius);
+
+        Vector3 dir = delta.normalized;
+        float dist = delta.magnitude;
+
+        if (Physics.CapsuleCast(p1, p2, radius, dir, out RaycastHit hit, dist + skinWidth, ~0, QueryTriggerInteraction.Ignore))
+        {
+            float safeDist = Mathf.Max(hit.distance - skinWidth, 0f);
+            return startPos + dir * safeDist;
+        }
+
+        return startPos + delta;
+    }
+
+    private Vector3 ResolveVerticalMove(Vector3 startPos, Vector3 delta)
+    {
+        if (Mathf.Abs(delta.y) <= 0.000001f) return startPos;
+
+        GetCapsuleWorldPoints(startPos, out Vector3 p1, out Vector3 p2, out float radius);
+
+        Vector3 dir = delta.y > 0f ? Vector3.up : Vector3.down;
+        float dist = Mathf.Abs(delta.y);
+
+        Debug.Log($"Vertical cast dir={dir}, dist={dist}, mask={groundMask.value}");
+
+        if (Physics.CapsuleCast(p1, p2, radius, dir, out RaycastHit hit, dist + skinWidth, groundMask, QueryTriggerInteraction.Ignore))
+        {
+            Debug.Log($"Vertical hit: {hit.collider.name}, dist={hit.distance}");
+            float safeDist = Mathf.Max(hit.distance - skinWidth, 0f);
+            return startPos + dir * safeDist;
+        }
+
+        return startPos + delta;
+    }
+
+    private void GetCapsuleWorldPoints(Vector3 basePosition, out Vector3 p1, out Vector3 p2, out float radius)
+    {
+        Vector3 scale = transform.lossyScale;
+
+        radius = capsule.radius * Mathf.Max(scale.x, scale.z);
+        float height = Mathf.Max(capsule.height * scale.y, radius * 2f);
+
+        Vector3 center = basePosition + transform.TransformDirection(capsule.center);
+        float half = height * 0.5f - radius;
+
+        p1 = center + Vector3.up * half;
+        p2 = center - Vector3.up * half;
+    }
+
+    private Vector3 ResolveOverlaps(Vector3 position)
+    {
+        GetCapsuleWorldPoints(position, out Vector3 p1, out Vector3 p2, out float radius);
+
+        Collider[] overlaps = Physics.OverlapCapsule(p1, p2, radius, ~0, QueryTriggerInteraction.Ignore);
+
+        Vector3 corrected = position;
+
+        foreach (var col in overlaps)
+        {
+            if (col == capsule) continue;
+
+            if (Physics.ComputePenetration(
+                capsule, corrected, transform.rotation,
+                col, col.transform.position, col.transform.rotation,
+                out Vector3 direction, out float distance))
+            {
+                corrected += direction * (distance + skinWidth);
+            }
+        }
+
+        return corrected;
     }
 
     public void SetVisible(bool visible)

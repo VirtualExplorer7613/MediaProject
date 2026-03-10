@@ -38,11 +38,11 @@ public class GameScene : BaseScene
 
         yield return new WaitForSecondsRealtime(0.1f);  // 완충
 
-        if (keyGuidePopup != null)
+        /*if (keyGuidePopup != null)
             keyGuidePopup.Show();
         else
             Debug.LogWarning("KeyGuidePopup reference missing!");
-        yield return new WaitUntil(() => !keyGuidePopup.IsShowing); // IsShowing = false 가 될 때까지
+        yield return new WaitUntil(() => !keyGuidePopup.IsShowing); // IsShowing = false 가 될 때까지*/
 
     }
 
