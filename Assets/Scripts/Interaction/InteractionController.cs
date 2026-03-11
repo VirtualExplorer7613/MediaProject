@@ -10,6 +10,9 @@ public class InteractionController : MonoBehaviour
     [SerializeField] private GameObject magnetVisual;
     [SerializeField] private HammerVisual hammerVisual;
     [SerializeField] private ScissorVisual scissorVisual;
+    [SerializeField] private GameObject spongeVisual;
+    [SerializeField] private LayerMask spongeSurfaceMask;
+    [SerializeField] private LayerMask oilStainMask;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private LayerMask trashLayerMask;
     [SerializeField] private ItemUseBroadcaster itemUseBroadcaster;
@@ -44,10 +47,14 @@ public class InteractionController : MonoBehaviour
             magnetVisual = magnetVisual,
             itemUseBroadcaster = itemUseBroadcaster,
             hammerVisual = hammerVisual,
-            scissorVisual = scissorVisual
+            scissorVisual = scissorVisual,
+            spongeVisual = spongeVisual,
+            spongeSurfaceMask = spongeSurfaceMask,
+            oilStainMask = oilStainMask,
         };
 
         ctx.SetMagnetVisual(false);
+        ctx.SetSpongeVisual(false);
 
         if (interactionHoldButton != null)
         {
