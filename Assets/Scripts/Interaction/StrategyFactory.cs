@@ -9,6 +9,7 @@ public static class StrategyFactory
             ItemType.Key => new KeyStrategy(def),
             ItemType.Hammer => new HammerStrategy(def),
             ItemType.Scissor => new ScissorStrategy(def),
+            ItemType.Sponge => new SpongeStrategy(def),
             //ItemType.Brush => new BrushStrategy(def),
             _ => new UltrasoundStrategy(def)
         };

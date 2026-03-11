@@ -19,6 +19,12 @@ public class InteractionContext
     [Header("Scissor")]
     public ScissorVisual scissorVisual;
 
+    [Header("Sponge")]
+    public GameObject spongeVisual;
+    public LayerMask spongeSurfaceMask;
+    public LayerMask oilStainMask;
+
+
     [Header("Chest")]
     public TreasureChestController currentChest;
 
@@ -37,6 +43,12 @@ public class InteractionContext
     {
         if (magnetVisual != null)
             magnetVisual.SetActive(on);
+    }
+
+    public void SetSpongeVisual(bool on)
+    {
+        if (spongeVisual != null)
+            spongeVisual.SetActive(on);
     }
 }
 
