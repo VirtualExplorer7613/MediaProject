@@ -1,3 +1,5 @@
+using TMPro.Examples;
+
 public static class StrategyFactory
 {
     public static IInteractionStrategy Create(ItemDefinition def)
@@ -10,7 +12,7 @@ public static class StrategyFactory
             ItemType.Hammer => new HammerStrategy(def),
             ItemType.Scissor => new ScissorStrategy(def),
             ItemType.Sponge => new SpongeStrategy(def),
-            //ItemType.Brush => new BrushStrategy(def),
+            ItemType.Pull => new PullTrashStrategy(def),
             _ => new UltrasoundStrategy(def)
         };
     }

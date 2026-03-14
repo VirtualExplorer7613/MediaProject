@@ -9,6 +9,7 @@ public enum ItemType
     Hammer,
     Scissor,
     Sponge,
+    Pull,
 }
 
 [CreateAssetMenu(menuName = "Item Definition")]
@@ -28,4 +29,7 @@ public class ItemDefinition : ScriptableObject
     public float brushHoldSeconds = 1.5f;
     public float brushCleanRadius = 5f;
     public int brushMaxCleanCount = 10;
+
+    [Header("Pull")]
+    public float pullMaxDistance = 8f;
 }
