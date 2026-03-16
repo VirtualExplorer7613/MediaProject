@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2015203178593367225}
   - component: {fileID: 1648336539965071047}
   m_Layer: 5
-  m_Name: Space
+  m_Name: Next
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ba8e9ba435c38bd4f82bdf9a61a35e24, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1911001058f92ff4791090027decffb1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -172,4 +172,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amplitude: 12
-  frequency: 1.6
+  frequency: 0

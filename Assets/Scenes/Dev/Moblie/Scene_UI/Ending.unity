@@ -424,7 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   epliogueImage: {fileID: 896062585}
   epliogueText: {fileID: 1750857660}
-  space: {fileID: 1344539350}
+  space: {fileID: 1607434465411556978, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
   steps:
   - image: {fileID: 21300000, guid: 9e4e91cfd0c40354d9d443c377edd449, type: 3}
     text: 
@@ -500,15 +500,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -562,6 +562,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7344884639137710972, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1911001058f92ff4791090027decffb1, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -852,7 +856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
@@ -967,11 +971,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0752f74a66266643af288189ab64aa2, type: 3}
---- !u!1 &1344539350 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1607434465411556978, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
-  m_PrefabInstance: {fileID: 857866185}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1750857658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,6 +1066,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

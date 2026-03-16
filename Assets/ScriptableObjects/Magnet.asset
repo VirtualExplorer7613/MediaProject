@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Magnet
   m_EditorClassIdentifier: 
   itemType: 1
-  icon: {fileID: 21300000, guid: 06077333f3ac6304886236f5db64c9a2, type: 3}
+  icon: {fileID: 21300000, guid: 5802c062b6b73be4099d833ef1fa4fc8, type: 3}
   cooldownSeconds: 0
   magnetRadius: 8
   magnetMaxTargets: 3
