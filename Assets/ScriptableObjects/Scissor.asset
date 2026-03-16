@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scissor
   m_EditorClassIdentifier: 
   itemType: 5
-  icon: {fileID: 21300000, guid: 288a93a551d473b4a807e10c1e961df6, type: 3}
+  icon: {fileID: 21300000, guid: 29ab40c1834f839418fdd7a9eeefddc9, type: 3}
   cooldownSeconds: 0
   magnetRadius: 8
   magnetMaxTargets: 3

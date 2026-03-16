@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sponge
   m_EditorClassIdentifier: 
   itemType: 6
-  icon: {fileID: 21300000, guid: 474c79573afc9834494d825bdf8492f8, type: 3}
+  icon: {fileID: 21300000, guid: 7d2a6cfc88c21f94a9eb81843722e1dc, type: 3}
   cooldownSeconds: 0
   magnetRadius: 8
   magnetMaxTargets: 3
