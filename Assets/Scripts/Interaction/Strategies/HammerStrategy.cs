@@ -9,8 +9,8 @@ public class HammerStrategy : IInteractionStrategy
     private const float MinTapInterval = 0.12f;
 
     // 튜닝(원하면 ItemDefinition에 빼도 됨)
-    private const float Range = 10.0f;      // 망치 유효 거리
-    private const float Radius = 0.6f;     // 판정 반경(크면 쉬워짐)
+    private const float Range = 20.0f;      // 망치 유효 거리
+    private const float Radius = 1f;     // 판정 반경(크면 쉬워짐)
     private const int DamagePerTap = 1;
 
     public HammerStrategy(ItemDefinition def) => this.def = def;
@@ -82,7 +82,21 @@ public class HammerStrategy : IInteractionStrategy
             // 특정 쓰레기만: HammerableTrash 있는 애만 반응
             if (hit.collider.TryGetComponent<HammerableTrash>(out var hammerable))
             {
+                QuestTarget qt = hammerable.GetComponent<QuestTarget>();
+
+                //퀘스트 쓰레기면서 Hammer로 부술 없는 경우
+                if (qt != null && !qt.CanBeProcessedBy(QuestItemType.Hammer))
+                {
+                    return;
+                }
+
+                // 여기까지 오면 해머로 부서지는 일반 OR 퀘스트 쓰레기
                 bool broke = hammerable.ApplyHit(DamagePerTap);
+
+                if (broke && qt != null)
+                {
+                    qt.CompleteQuestTarget();
+                }
 
                 // 원하면 부서짐 사운드/이펙트 분기
                 // if (broke) Managers.Sound.Play("TrashBreak");

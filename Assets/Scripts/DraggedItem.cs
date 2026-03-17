@@ -22,13 +22,13 @@ public class DraggedItem : MonoBehaviour
     private ConstantForce constForce;
 
     [Tooltip("퀘스트 조건을 위한 거리")]
-    [SerializeField] private float questClearDistance = 5f;
+    //[SerializeField] private float questClearDistance = 5f;
     [SerializeField] float releaseEnableGravity = 1.5f; // 시작 위치에서 이 만큼 벗어나면 중력 ON
     [SerializeField] float destroyDistance = 10f;  // 이 거리 넘으면 파괴
 
     Vector3 startPos;          // 최초 위치
     bool gravityEnabled = false;
-    private bool hasLeftQuestArea = false;
+    //private bool hasLeftQuestArea = false;
 
     private void Awake()
     {
@@ -46,7 +46,7 @@ public class DraggedItem : MonoBehaviour
     {
         if (!interactable) return;
 
-        TryRemoveFromTalkableNPC();
+        //TryRemoveFromTalkableNPC();
 
         if (isDragged && target != null)
         {
@@ -128,7 +128,7 @@ public class DraggedItem : MonoBehaviour
     }
 
 
-    private void TryRemoveFromTalkableNPC()
+/*    private void TryRemoveFromTalkableNPC()
     {
         if (hasLeftQuestArea) return;
 
@@ -151,7 +151,7 @@ public class DraggedItem : MonoBehaviour
                 hasLeftQuestArea = true;
             }
         }
-    }
+    }*/
 
     /*    public void StartDragging(Transform targetTransform)
         {

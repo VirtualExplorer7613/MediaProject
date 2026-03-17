@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -108,6 +109,13 @@ public class PullTrashStrategy : IInteractionStrategy
                         bool completed = currentTarget.ApplyDrag(touch.deltaPosition, ctx.cam);
                         if (completed)
                         {
+                            // 퀘스트 쓰레기인지 체크
+                            QuestTarget qt = currentTarget.GetComponent<QuestTarget>();
+                            if (qt != null)
+                            {
+                                qt.CompleteQuestTarget();
+                            }
+
                             ClearCurrent(resetProgress: false);
                             activeFingerId = -1;
                             isDragging = false;
@@ -149,6 +157,11 @@ public class PullTrashStrategy : IInteractionStrategy
 
             if (completed)
             {
+                QuestTarget qt = currentTarget.GetComponent<QuestTarget>();
+                if (qt != null)
+                {
+                    qt.CompleteQuestTarget();
+                }
                 ClearCurrent(resetProgress: false);
                 isDragging = false;
             }
@@ -178,6 +191,13 @@ public class PullTrashStrategy : IInteractionStrategy
 
             if (target == null)
                 return false;
+
+            QuestTarget qt = target.GetComponent<QuestTarget>();
+            if (qt != null)
+            {
+                if (!qt.CanBeProcessedBy(QuestItemType.Pull))
+                    return false;
+            }
 
             if (!target.CanStartPull(ctx.player))
                 return false;
