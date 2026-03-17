@@ -81,6 +81,13 @@ public class ScissorStrategy : IInteractionStrategy
 
         if (holdTimer >= currentTarget.RequiredHoldSeconds)
         {
+            // 퀘스트 쓰레기인지 체크
+            QuestTarget qt = currentTarget.GetComponent<QuestTarget>();
+            if(qt != null)
+            {
+                qt.CompleteQuestTarget();
+            }
+
             currentTarget.CutComplete();
             ctx.itemUseBroadcaster?.RaiseItemUsed("scissor");
 
@@ -119,7 +126,18 @@ public class ScissorStrategy : IInteractionStrategy
         if (Physics.SphereCast(origin, SearchRadius, dir, out RaycastHit hit, SearchRange,
             ctx.trashLayerMask, QueryTriggerInteraction.Ignore))
         {
-            return hit.collider.GetComponentInParent<ScissorableTrash>();
+            ScissorableTrash target = hit.collider.GetComponentInParent<ScissorableTrash>();
+            if (target == null) return null;
+
+            QuestTarget qt = target.GetComponentInParent<QuestTarget>();
+            // 퀘스트 쓰레기지만 가위로 파괴 불가능한 경우
+            if(qt != null && !qt.CanBeProcessedBy(QuestItemType.Scissor))
+            {
+                return null;
+            }
+
+            return target;
+            
         }
 
         return null;

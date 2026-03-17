@@ -9,7 +9,10 @@ public class TalkableNPC : MonoBehaviour
 
     private Transform player;
 
-    public List<GameObject> requiredObjects; // 목표 오브젝트들
+    // 새로 개정된 퀘스트 완료에 필요한 목표물
+    [SerializeField] private List<QuestTarget> requiredTargets = new();
+
+    //public List<GameObject> requiredObjects; // 목표 오브젝트들
     private bool hasStartedDialogue = false;   // 첫 대사 했는지
     public bool questCleared = false; // 퀘스트 했는지
 
@@ -27,20 +30,15 @@ public class TalkableNPC : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        DisableQuestItemsInitially();
-        UpdateQuestIcon();
-    }
 
-    void DisableQuestItemsInitially()
-    {
-        foreach (var obj in requiredObjects)
+        foreach (var target in requiredTargets)
         {
-            if (obj == null) continue;
-
-            // DraggedItem이 붙어 있으면 interactable 잠금
-            if (obj.TryGetComponent(out DraggedItem di))
-                di.interactable = false;
+            if (target == null) continue;
+            target.BindOwner(this);
+            target.SetQuestEnabled(false);
         }
+
+        UpdateQuestIcon();
     }
 
     private void Update()
@@ -118,20 +116,23 @@ public class TalkableNPC : MonoBehaviour
 
     public void CheckQuestCondition()
     {
-        requiredObjects.RemoveAll(obj => obj == null);
-        if (requiredObjects.Count == 0)
+        requiredTargets.RemoveAll(t => t == null);
+        foreach (var target in requiredTargets)
         {
-            questCleared = true;
-            Debug.Log($"[퀘스트 완료됨]: {characterName}");
-            if (!questClearEffectPlayed)
-            {
-                questClearEffectPlayed = true;
-                ShowHeartIcon();
-            }
-            UpdateQuestIcon();
+            if (target != null && !target.Completed)
+                return;
         }
-    }
 
+        questCleared = true;
+        Debug.Log($"[퀘스트 완료됨]: {characterName}");
+
+        if (!questClearEffectPlayed)
+        {
+            questClearEffectPlayed = true;
+            ShowHeartIcon();
+        }
+        UpdateQuestIcon();
+    }
 
     private void StartDialogue()
     {
@@ -183,23 +184,18 @@ public class TalkableNPC : MonoBehaviour
         }
     }
 
-
-    void EnableQuestItems()
+    private void EnableQuestItems()
     {
-        foreach (var obj in requiredObjects)
+        foreach (var target in requiredTargets)
         {
-            if (obj == null) continue;
-
-            if (obj.TryGetComponent(out DraggedItem di))
-            {
-                di.interactable = true;
-            }
-            // ② 초음파-파괴형(DraggedItem 없으면) → Tag = "Trash" 부여
-            else
-            {
-                obj.tag = "Trash";
-            }
+            if (target == null) continue;
+            target.SetQuestEnabled(true);
         }
+    }
+
+    public void NotifyQuestTargetCompleted(QuestTarget target)
+    {
+        CheckQuestCondition();
     }
 
     public void OnInteractButtonPressed()

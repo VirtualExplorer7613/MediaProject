@@ -73,7 +73,21 @@ public class SpongeStrategy : IInteractionStrategy
 
         if (movedDistance >= MinMoveThreshold && stain != null)
         {
+            QuestTarget qt = stain.GetComponent<QuestTarget>();
+            if (qt != null && !qt.CanBeProcessedBy(QuestItemType.Sponge))
+            {
+                lastWorldPos = worldPos;
+                hasLastWorldPos = true;
+                currentStain = stain;
+                return;
+            }
+
             stain.AddScrub(movedDistance, deltaTime);
+
+            if (stain.IsCleaned && qt != null)
+            {
+                qt.CompleteQuestTarget();
+            }
         }
 
         lastWorldPos = worldPos;

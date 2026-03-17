@@ -61,10 +61,17 @@ public class MagnetStrategy : IInteractionStrategy
 
                 if (collectTimers[di] >= CollectSeconds)
                 {
+                    QuestTarget qt = di.GetComponent<QuestTarget>();
+
                     collectTimers.Remove(di);
                     activeDragged.RemoveAt(i);
 
                     di.StopDragging();
+
+                    // 퀘스트 쓰레기
+                    if (qt != null)
+                        qt.CompleteQuestTarget();
+
                     di.CollectByMagnet();
                     ctx.itemUseBroadcaster?.RaiseItemUsed("magnet");
                 }
@@ -110,7 +117,17 @@ public class MagnetStrategy : IInteractionStrategy
             DraggedItem di = hits[i].GetComponent<DraggedItem>();
             if (di == null) continue;
 
+            // Quest 쓰레기인지 확인
+            QuestTarget qt = di.GetComponent<QuestTarget>();
+
+            if (qt != null)
+            {
+                if (!qt.CanBeProcessedBy(QuestItemType.Magnet))
+                    continue;
+            }
+
             // 이미 다른 이유로 드래그 중이면 스킵
+            if (activeDragged.Contains(di)) continue;
             if (di.isDragged) continue;
 
             di.StartDragging(ctx.player);

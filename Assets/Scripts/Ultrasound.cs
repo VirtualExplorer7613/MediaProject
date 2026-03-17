@@ -57,23 +57,44 @@ public class Ultrasound : MonoBehaviour
         if (other.GetComponent<HammerableTrash>() != null)
             return;
 
-        TalkableNPC npc = DialogueManager.Instance?.CurrentTalkingNPC;
+        // TalkableNPC npc = DialogueManager.Instance?.CurrentTalkingNPC;
 
-        // 퀘스트 진행 중인 NPC가 있고, 해당 오브젝트가 퀘스트 대상인 경우에만 처리
-        if (npc != null && npc.requiredObjects.Contains(other.gameObject)&& other.CompareTag("Trash"))
+        /* // 퀘스트 진행 중인 NPC가 있고, 해당 오브젝트가 퀘스트 대상인 경우에만 처리
+         if (npc != null && npc.requiredObjects.Contains(other.gameObject)&& other.CompareTag("Trash"))
+         {
+             Debug.Log("퀘스트 대상 쓰레기 파괴됨!");
+             Destroy(other.gameObject);
+             Managers.Sound.Play("Bubble_Surface_Large_01");
+             InteractionSystem.Instance.NotifyInteractionComplete();
+             return;
+         }*/
+
+        QuestTarget questTarget = other.GetComponent<QuestTarget>();
+
+        if (questTarget != null)
         {
+            // 초음파로 처리 가능한 상태가 아니면 무시
+            if (!questTarget.CanBeProcessedBy(QuestItemType.Ultrasound))
+                return;
+
             Debug.Log("퀘스트 대상 쓰레기 파괴됨!");
-            Destroy(other.gameObject);
+
+            questTarget.CompleteQuestTarget();
+
             Managers.Sound.Play("Bubble_Surface_Large_01");
             InteractionSystem.Instance.NotifyInteractionComplete();
+
+            Destroy(other.gameObject);
             return;
         }
 
         if (other.CompareTag("Trash"))
         {
             Debug.Log("일반 쓰레기 파괴됨!");
+
             TrashManager.Instance?.DecreaseTrash();
             Destroy(other.gameObject);
+
             Managers.Sound.Play("Bubble_Surface_Large_01");
             itemUseBroadcaster?.RaiseItemUsed("wave");
 
