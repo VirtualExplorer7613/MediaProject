@@ -74613,7 +74613,8 @@ MonoBehaviour:
   characterName: seahorse
   interactionDistance: 6
   interactionKey: 114
-  requiredTargets: []
+  requiredTargets:
+  - {fileID: 703400822}
   questCleared: 0
   questionMarkIcon: {fileID: 1502233064}
   heartIcon: {fileID: 783385010}
@@ -137844,7 +137845,8 @@ MonoBehaviour:
   characterName: turtle
   interactionDistance: 6
   interactionKey: 114
-  requiredTargets: []
+  requiredTargets:
+  - {fileID: 908374843}
   questCleared: 0
   questionMarkIcon: {fileID: 1986489753}
   heartIcon: {fileID: 726322728839102724}
@@ -200718,7 +200720,8 @@ MonoBehaviour:
   characterName: octopus
   interactionDistance: 6
   interactionKey: 114
-  requiredTargets: []
+  requiredTargets:
+  - {fileID: 1445358486}
   questCleared: 0
   questionMarkIcon: {fileID: 1803817047}
   heartIcon: {fileID: 851779078}
@@ -202526,7 +202529,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -202546,7 +202549,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -244984,7 +244987,8 @@ MonoBehaviour:
   characterName: dolphin
   interactionDistance: 6
   interactionKey: 114
-  requiredTargets: []
+  requiredTargets:
+  - {fileID: 506371739}
   questCleared: 0
   questionMarkIcon: {fileID: 1779985600}
   heartIcon: {fileID: 1000961265}
@@ -305605,8 +305609,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3480375575302367035, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3934356289865240936, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5462382609294755527, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6813719657500958484, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
@@ -305619,6 +305631,10 @@ PrefabInstance:
       objectReference: {fileID: 1334789985}
     - target: {fileID: 6982115152372959445, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8156394381474084091, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -311770,7 +311786,8 @@ MonoBehaviour:
   characterName: tuna
   interactionDistance: 6
   interactionKey: 114
-  requiredTargets: []
+  requiredTargets:
+  - {fileID: 671411363}
   questCleared: 0
   questionMarkIcon: {fileID: 524150380}
   heartIcon: {fileID: 700085428}
@@ -407238,7 +407255,8 @@ MonoBehaviour:
   characterName: sardine
   interactionDistance: 6
   interactionKey: 114
-  requiredTargets: []
+  requiredTargets:
+  - {fileID: 1585980835}
   questCleared: 0
   questionMarkIcon: {fileID: 258238772}
   heartIcon: {fileID: 459899546}
@@ -424737,7 +424755,8 @@ MonoBehaviour:
   characterName: jellyfish
   interactionDistance: 6
   interactionKey: 114
-  requiredTargets: []
+  requiredTargets:
+  - {fileID: 842677545}
   questCleared: 0
   questionMarkIcon: {fileID: 1564445301}
   heartIcon: {fileID: 177579261}
@@ -447928,7 +447947,8 @@ MonoBehaviour:
   characterName: salmon
   interactionDistance: 6
   interactionKey: 114
-  requiredTargets: []
+  requiredTargets:
+  - {fileID: 1768980281}
   questCleared: 0
   questionMarkIcon: {fileID: 1775621930}
   heartIcon: {fileID: 335544810}
@@ -493260,7 +493280,8 @@ MonoBehaviour:
   characterName: clownfish
   interactionDistance: 6
   interactionKey: 114
-  requiredTargets: []
+  requiredTargets:
+  - {fileID: 0}
   questCleared: 0
   questionMarkIcon: {fileID: 1208552683}
   heartIcon: {fileID: 1583204984}

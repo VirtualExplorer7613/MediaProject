@@ -208,6 +208,16 @@ public class DialogueManager : MonoBehaviour
         {
             OnPlayerPressedNext();
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            OnPlayerPressedNext();
+        }
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            OnPlayerPressedNext();
+        }
     }
 
     private void HandleAction(DialogueEntry entry)
@@ -240,6 +250,7 @@ public class DialogueManager : MonoBehaviour
     public void OnInteractionCompleted()
     {
         waitingForInteraction = false;
+        canProceed = false;
     }
 
     private void ChangeCharacterExpression(string expressionName)
@@ -344,6 +355,12 @@ public class DialogueManager : MonoBehaviour
         if (jsonFile != null)
         {
             dialogueData = JsonUtility.FromJson<DialogueData>(jsonFile.text);
+
+            #region WIP Fixing bug
+            waitingForInteraction = false;
+            canProceed = false;
+            CurrentTalkingNPC = npc;
+            #endregion
 
             // 이전 진행 상태 기억 (PlayerPrefs나 NPC에서 전달도 가능)
             currentIndex = PlayerPrefs.GetInt($"{characterName}_dialogue_index", 0);
