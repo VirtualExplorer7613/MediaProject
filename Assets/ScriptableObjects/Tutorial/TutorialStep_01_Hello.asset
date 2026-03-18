@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac8c441721fd9749983415fffd47577, type: 3}
   m_Name: TutorialStep_01_Hello
   m_EditorClassIdentifier: 
-  messageKorean: "\uACE0\uB798\uB2D8, \uBC18\uAC00\uC6CC\uC694! \uC6B0\uB9AC \uAC19\uC774
+  messageKorean: "\uACE0\uB798\uB2D8, \uBC18\uAC00\uC6CC\uC694!\n\uC6B0\uB9AC \uAC19\uC774
     \uC18C\uC911\uD55C \uBC14\uB2E4\uB97C \uAD6C\uD558\uB7EC \uB5A0\uB098 \uBCFC\uAE4C\uC694?"
   messageEnglish: Hello!
   conditionPrefab: {fileID: 355915398756100229, guid: 736f8f7e717a27c479c99ad29e895df6, type: 3}

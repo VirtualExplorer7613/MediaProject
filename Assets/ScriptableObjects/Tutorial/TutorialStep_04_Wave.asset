@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: TutorialStep_04_Wave
   m_EditorClassIdentifier: 
   messageKorean: "\uC624\uB978\uCABD \uBC84\uD2BC\uC744 \uB204\uB974\uBA74 '\uD30C\uB3C4
-    \uC2A4\uD0AC'\uC774 \uB098\uAC00\uC694! \uC774 \uD798\uC73C\uB85C \uB208 \uC55E\uC5D0
+    \uC2A4\uD0AC'\uC774 \uB098\uAC00\uC694!\n\uC774 \uD798\uC73C\uB85C \uB208 \uC55E\uC5D0
     \uC788\uB294 \uC4F0\uB808\uAE30\uB97C \uAE68\uB057\uD558\uAC8C \uC5C6\uC568 \uC218
-    \uC788\uB2F5\uB2C8\uB2E4. \uD55C \uBC88 \uC0AC\uC6A9\uD574 \uBCFC\uAE4C\uC694?"
+    \uC788\uB2F5\uB2C8\uB2E4.\n\uD55C \uBC88 \uC0AC\uC6A9\uD574 \uBCFC\uAE4C\uC694?"
   messageEnglish: 
   conditionPrefab: {fileID: 8448348817773122069, guid: 7a10b5a85c7f8194ea7a8776b765b7f8, type: 3}
   highlightTargetId: 

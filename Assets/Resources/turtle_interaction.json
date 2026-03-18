@@ -1,47 +1,67 @@
 {
-  "character": "turtle",
-  "icon_on_detected": true,
-  "expressions": {
-    "default": "Eyes_Blink",
-    "start_dialogue": "Eyes_Squint",
-    "post_interaction": "Sweat_L"
-  },
-  "dialogue_sequence": [
-    {
-      "type": "player_detects",
-      "dialogue": null,
-      "action": "remove_question_icon"
+    "character": "turtle",
+    "icon_on_detected": true,
+    "expressions": {
+        "default": "Eyes_Blink",
+        "start_dialogue": "Eyes_Squint",
+        "post_interaction": "Sweat_L"
     },
-    {
-      "type": "turtle",
-      "expression": "Eyes_Squint",
-      "dialogue": "으으으… 코에 뭔가가 박혔어…. 너무 아파서 숨 쉬기가 힘들구만….\n거기 자네. 혹시 내 코에 박힌 이걸 좀 빼줄 수 있겠나…?",
-      "voice": "Troll_death_short_03"
-    },
-    {
-      "type": "interaction",
-      "dialogue": null,
-      "action": "코에 박힌 빨대를 드래그로 천천히 빼내기"
-    },
-    {
-      "type": "whale",
-      "dialogue": "할아버지 어쩌다 코에 빨대가 박히신 거예요…! 정말 위험하실 뻔 했어요."
-    },
-    {
-      "type": "turtle",
-      "expression": "Sweat_L",
-      "dialogue": "먹이를 먹으려고 고개를 숙여 다가갔다가 그만 코에 이상한 게 박혀버렸지 뭔가….",
-      "voice": "Troll_other_cough_01"
-    },
-    {
-      "type": "turtle",
-      "expression": "Sweat_L",
-      "dialogue": "도와줘서 고맙구려. 하마터면 코가 막혀서 자네 말대로 진짜 큰일날 뻔 했어. 허허….",
-      "voice": "Troll_talk_laugh_01"
-    },
-    {
-      "type": "whale",
-      "dialogue": "'고작 빨대 하나가 생명을 이렇게까지 위협하다니… 바다에선 아무것도 사소하지 않구나.'"
-    }
-  ]
+    "dialogue_sequence": [
+        {
+            "type": "player_detects",
+            "dialogue": null,
+            "action": "remove_question_icon"
+        },
+        {
+            "type": "turtle",
+            "expression": "Eyes_Squint",
+            "dialogue": "으으으… 코에 뭔가가 박혔어…. 너무 아파서 숨 쉬기가 힘들구만….\n거기 자네. 혹시 내 코에 박힌 이걸 좀 빼줄 수 있겠나…?",
+            "voice": "Troll_death_short_03"
+        },
+        {
+            "type": "interaction",
+            "dialogue": null,
+            "action": "코에 박힌 빨대를 드래그로 천천히 빼내기"
+        },
+        {
+            "type": "whale",
+            "dialogue": "할아버지 어쩌다 코에 빨대가 박히신 거예요…! 정말 위험하실 뻔 했어요."
+        },
+        {
+            "type": "turtle",
+            "expression": "Sweat_L",
+            "dialogue": "먹이를 먹으려고 고개를 숙여 다가갔다가 그만 코에 이상한 게 박혀버렸지 뭔가….",
+            "voice": "Troll_other_cough_01"
+        },
+        {
+            "type": "turtle",
+            "expression": "Sweat_L",
+            "dialogue": "도와줘서 고맙구려. 하마터면 코가 막혀서 자네 말대로 진짜 큰일날 뻔 했어. 허허….",
+            "voice": "Troll_talk_laugh_01"
+        },
+        {
+            "type": "whale",
+            "dialogue": "정말 다행이에요. 참, 할아버지!\n혹시 제가 오기 전에 이 근처에서 <color=#42A5F5>어떤 목소리</color>나 울림 같은 걸 듣지 못하셨나요?"
+        },
+        {
+            "type": "turtle",
+            "expression": "Eyes_Blink",
+            "dialogue": "목소리라… 너무 아파서 정신이 없긴 했다만,\n신기하게도 <color=#42A5F5>잔잔한 물살</color>이 계속 내 등을 토닥여주는 느낌은 들었지.",
+            "voice": ""
+        },
+        {
+            "type": "turtle",
+            "expression": "Eyes_Happy",
+            "dialogue": "꼭 누군가 곁에서 조금만 참으라고 위로해 주는 것 같았어. 허허….",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "'역시 내 착각이 아니었어.\n나를 부른 그 목소리가 보이지 않는 곳에서 계속 친구들을 보살피고 있었던 거야.'"
+        },
+        {
+            "type": "whale",
+            "dialogue": "'그나저나 고작 빨대 하나가 생명을 이렇게까지 위협하다니…\n바다에선 역시 아무것도 사소하지 않구나.'"
+        }
+    ]
 }

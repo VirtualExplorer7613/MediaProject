@@ -61,6 +61,22 @@
         },
         {
             "type": "salmon",
+            "expression": "Eyes_Blink",
+            "dialogue": "사실 길을 잃고 막막했을 때, 어디선가 <color=#42A5F5>다정한 노랫소리</color>가 저희를 이쪽으로 이끌어 주었습니다.",
+            "voice": ""
+        },
+        {
+            "type": "salmon",
+            "expression": "Eyes_Blink",
+            "dialogue": "마치 이곳에서 조금만 기다리면, 당신이 와서 도와줄 거라고 미리 알려주는 것 같았지요.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "'<color=#42A5F5>다정한 노랫소리</color>…\n지금까지 친구들을 보살펴준 그 존재가 날 믿고 기다리고 있었던 거야!\n이제 정말 거의 다 왔어.'"
+        },
+        {
+            "type": "salmon",
             "expression": "Eyes_Happy",
             "dialogue": "이제 아내도 안심하고 이곳에서 알을 낳을 수 있을 것 같군요.\n저는 이 곳에서 아내와 곧 태어날 우리 아이들을 끝까지 지키겠습니다.",
             "voice": ""

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TutorialStep_08_Inventory
   m_EditorClassIdentifier: 
   messageKorean: "\uAC00\uBC29 \uBC84\uD2BC\uC744 \uD55C \uBC88 \uB204\uB974\uBA74
-    \uD3BC\uCCD0\uC9C0\uACE0, \uB2E4\uC2DC \uD55C \uBC88 \uB204\uB974\uBA74 \uB2EB\uD600\uC694.
+    \uD3BC\uCCD0\uC9C0\uACE0,\n\uB2E4\uC2DC \uD55C \uBC88 \uB204\uB974\uBA74 \uB2EB\uD600\uC694.
     \uCC38 \uC27D\uC8E0?"
   messageEnglish: 
   conditionPrefab: {fileID: 8448348817773122069, guid: f8fba1d01be872a4c811aa5b9aace41a, type: 3}

@@ -68,8 +68,28 @@
             "voice": ""
         },
         {
+            "type": "lobster",
+            "expression": "Eyes_Annoyed",
+            "dialogue": "근데 넌 여기까지 어떻게 알고 찾아온 거냐?\n내 예민한 수염에 아까부터 계속 <color=#42A5F5>미세한 진동</color>이 느껴지긴 했는데.",
+            "voice": ""
+        },
+        {
+            "type": "lobster",
+            "expression": "Eyes_Shrink",
+            "dialogue": "누가 계속 노래라도 부르는 것처럼 울려서 더 신경 쓰였단 말이야.\n설마 네가 낸 소리였어?",
+            "voice": ""
+        },
+        {
             "type": "whale",
-            "dialogue": "밧줄은 원래 바다에 있으면 안 되는 물건인데…\n가재 너 정말 위험할 뻔 했어."
+            "dialogue": "'<color=#42A5F5>미세한 진동…?</color>\n거북이 할아버지께서 말씀하셨던 그 <color=#42A5F5>잔잔한 물살</color>과 같은 걸까?'"
+        },
+        {
+            "type": "whale",
+            "dialogue": "'누군가 계속 나를 이쪽으로 부르고 있는 게 분명해.'"
+        },
+        {
+            "type": "whale",
+            "dialogue": "난 아무 소리도 안 냈어. 그나저나 밧줄은 원래 바다에 있으면 안 되는 물건인데…\n가재 너 정말 위험할 뻔 했어."
         },
         {
             "type": "lobster",
