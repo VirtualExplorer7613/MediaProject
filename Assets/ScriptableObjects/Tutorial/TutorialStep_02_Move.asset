@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TutorialStep_02_Move
   m_EditorClassIdentifier: 
   messageKorean: "\uC6B0\uC120 \uC67C\uCABD \uC544\uB798\uC5D0 \uC788\uB294 \uC2A4\uD2F1\uC744
-    \uC6C0\uC9C1\uC5EC\uC11C \uC790\uC720\uB86D\uAC8C \uD5E4\uC5C4\uCCD0 \uBCF4\uC138\uC694!"
+    \uC6C0\uC9C1\uC5EC\uC11C\n\uC790\uC720\uB86D\uAC8C \uD5E4\uC5C4\uCCD0 \uBCF4\uC138\uC694!"
   messageEnglish: 
   conditionPrefab: {fileID: 4432564931315804121, guid: b1536063f6e605b4383541b9e5689e9e, type: 3}
   highlightTargetId: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TutorialStep_12_Magnet
   m_EditorClassIdentifier: 
   messageKorean: "\uCD95\uD558\uD574\uC694! [\uC790\uC11D \uC544\uC774\uD15C]\uC744
-    \uC5BB\uC5C8\uB124\uC694! \uC774\uC81C \uBB34\uAC70\uC6B4 \uACE0\uCCA0 \uC4F0\uB808\uAE30\uB3C4
+    \uC5BB\uC5C8\uB124\uC694!\n\uC774\uC81C \uBB34\uAC70\uC6B4 \uACE0\uCCA0 \uC4F0\uB808\uAE30\uB3C4
     \uCC99\uCC99 \uB04C\uC5B4\uB2F9\uAE38 \uC218 \uC788\uC744 \uAC70\uC608\uC694!"
   messageEnglish: 
   conditionPrefab: {fileID: 355915398756100229, guid: 736f8f7e717a27c479c99ad29e895df6, type: 3}

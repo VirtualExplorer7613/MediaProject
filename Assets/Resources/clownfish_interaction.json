@@ -74,13 +74,17 @@
         {
             "type": "clownfish",
             "expression": "Eyes_Sad",
-            "dialogue": "우리 가족들에게 말미잘은 집이에요.",
+            "dialogue": "우리 가족들에게 이 말미잘은 그냥 집이 아니에요.\n예전에 쉴 곳이 없어 헤맬 때, 어디선가 들려온 <color=#42A5F5>따뜻한 목소리</color>가 알려준 곳이거든요.",
             "voice": ""
+        },
+        {
+            "type": "whale",
+            "dialogue": "'따뜻한 목소리…? 혹시 나를 이곳으로 부른 그 목소리의 주인공일까?'"
         },
         {
             "type": "clownfish",
             "expression": "Eyes_Sad",
-            "dialogue": "그런데 그런 집에서 살 수 없게 된다면…\n우리 가족은 정말 어디로 가야 할지 모르겠어요.",
+            "dialogue": "그 목소리가 찾아준 소중한 집인데…\n여기서 살 수 없게 된다면, 우린 정말 어디로 가야 할지 모르겠어요.",
             "voice": ""
         },
         {

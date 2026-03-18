@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac8c441721fd9749983415fffd47577, type: 3}
   m_Name: TutorialStep_11_Chest_Opened
   m_EditorClassIdentifier: 
-  messageKorean: "\uC0C1\uC790\uAC00 \uC5F4\uB838\uC5B4\uC694! \uC0C1\uC790 \uC18D\uC5D0\uB294
+  messageKorean: "\uC0C1\uC790\uAC00 \uC5F4\uB838\uC5B4\uC694!\n\uC0C1\uC790 \uC18D\uC5D0\uB294
     \uCE5C\uAD6C\uB4E4\uC744 \uB3C4\uC640\uC904 \uC720\uC6A9\uD55C \uC544\uC774\uD15C\uB4E4\uC774
-    \uB4E4\uC5B4\uC788\uB2F5\uB2C8\uB2E4. \uACFC\uC5F0 \uBB34\uC5C7\uC774 \uB098\uC62C\uAE4C\uC694?"
+    \uB4E4\uC5B4\uC788\uB2F5\uB2C8\uB2E4.\n\uACFC\uC5F0 \uBB34\uC5C7\uC774 \uB098\uC62C\uAE4C\uC694?"
   messageEnglish: 
   conditionPrefab: {fileID: 8448348817773122069, guid: ba93d73b02546ed4194a0f2bd2495277, type: 3}
   highlightTargetId: 
