@@ -431777,6 +431777,10 @@ PrefabInstance:
       propertyPath: characterNameText
       value: 
       objectReference: {fileID: 688326334}
+    - target: {fileID: 8070660539486871583, guid: 5098d15f3aee1a247813cbf0b38c8ea0, type: 3}
+      propertyPath: dialogueStartInputBlockTime
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
