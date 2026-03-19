@@ -14,11 +14,27 @@
         },
         {
             "type": "whale",
-            "dialogue": "입에 뭘 물고 있는 거지…?\n저건… 고철 쓰레기 같은데…? 내가 도와줘야겠어!"
+            "expression": "Eyes_LookIn",
+            "dialogue": "입에 뭘 물고 있는 거지?",
+            "voice": "Dubbing_Orca/audio_0_Whale_01"
         },
         {
             "type": "whale",
-            "dialogue": "'아까 얻은 자석을 이용해서 범고래 앞에 있는 고철 쓰레기들을 정리해보자.'"
+            "expression": "Eyes_LookIn",
+            "dialogue": "저건… 자세히 보니 고철 쓰레기 같은데?",
+            "voice": "Dubbing_Orca/audio_1_Whale_02"
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Blink",
+            "dialogue": "내가 도와줘야겠어!",
+            "voice": "Dubbing_Orca/audio_2_Whale_03"
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Blink",
+            "dialogue": "'아까 얻은 자석 아이템을 이용해서, 범고래 앞에 있는 고철 쓰레기들을 정리해보자!'",
+            "voice": "Dubbing_Orca/audio_3_Whale_04"
         },
         {
             "type": "interaction",
@@ -28,28 +44,42 @@
         {
             "type": "orca",
             "expression": "Eyes_Rabid",
-            "dialogue": "뭐야, 갑자기?\n왜 남이 먹고 있는 먹이를 가로채는 거지?",
-            "voice": "Troll_talk_question_06"
+            "dialogue": "뭐야, 갑자기?\n왜 남이 먹고 있는 먹이를 가로채는 거야?",
+            "voice": "Dubbing_Orca/audio_4_Orca_01"
         },
         {
             "type": "whale",
-            "dialogue": "그거, 먹을 수 있는 거 아니야. 전부 쓰레기야."
+            "dialogue": "그거, 먹을 수 있는 거 아니야. 전부 쓰레기야.",
+            "voice": "Dubbing_Orca/audio_5_Whale_05"
         },
         {
             "type": "orca",
             "expression": "Sweat_L",
-            "dialogue": "정말 몰랐어. 배가 고파서 눈에 보이는 대로 삼켰던 건데….",
-            "voice": "Troll_talk_short_05"
+            "dialogue": "뭐?! 정말 몰랐어. 배가 고파서 그냥 눈에 보이는 대로 삼켰던 건데…",
+            "voice": "Dubbing_Orca/audio_6_Orca_02"
         },
         {
             "type": "orca",
             "expression": "Sweat_L",
-            "dialogue": "알려줘서 고맙다. 앞으로는 아무리 배가 고파도 좀 더 조심해야겠어.",
-            "voice": "Troll_talk_wonder_07"
+            "dialogue": "내가 그동안 먹었던 것들이 전부 쓰레기였다니… 정말 큰일날 뻔 했네!",
+            "voice": "Dubbing_Orca/audio_7_Orca_03"
+        },
+        {
+            "type": "orca",
+            "expression": "Sweat_L",
+            "dialogue": "알려줘서 고마워. 앞으로는 아무리 배가 고파도 좀 더 조심해야겠어.",
+            "voice": "Dubbing_Orca/audio_8_Orca_04"
         },
         {
             "type": "whale",
-            "dialogue": "'아무리 조심한다고 해도 분명 또 같은 일이 반복될 거야.\n바다에 쓰레기가 더 이상 늘어나면 안 돼.'"
+            "expression": "Eyes_Sad",
+            "dialogue": "'아무리 조심한다고 해도 분명 또 같은 일이 반복될 거야.'",
+            "voice": "Dubbing_Orca/audio_9_Whale_06"
+        },
+        {
+            "type": "whale",
+            "dialogue": "'바다에 쓰레기가 더 이상 늘어나면 안 돼.'",
+            "voice": "Dubbing_Orca/audio_10_Whale_07"
         }
     ]
 }
