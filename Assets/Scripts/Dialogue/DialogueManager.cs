@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 using System.Collections.Generic;
 using TMPro.Examples;
@@ -19,6 +20,8 @@ public class DialogueManager : MonoBehaviour
     public Image characterNameBox; //이름창
     public TMP_Text characterNameText; //캐릭터이름
 
+    private float inputBlockUntil = 0f;
+    [SerializeField] private float dialogueStartInputBlockTime = 0.2f;
 
     public Camera mainCamera;
     public Vector3 spawnOffset = new Vector3(1.6f, 0.25f, 3f); // 캐릭터 위치 오프셋 (조절 가능)
@@ -72,6 +75,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(string characterName, TalkableNPC npc)
     {
+        inputBlockUntil = Time.unscaledTime + dialogueStartInputBlockTime;
+
         if (CurrentTalkingNPC != null && !CurrentTalkingNPC.questCleared)
         {
             Debug.Log("이미 다른 NPC와 상호작용 중입니다.");
@@ -204,18 +209,51 @@ public class DialogueManager : MonoBehaviour
     }
     void Update()
     {
+        if (!IsDialoguePlaying) return;
+
+        if (Time.unscaledTime < inputBlockUntil) return;
+
         if (IsDialoguePlaying && Input.GetKeyDown(KeyCode.Space))
         {
             OnPlayerPressedNext();
+            return;
         }
+
+        /*if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+            {
+                if (EventSystem.current != null &&
+                    EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                    return;
+
+                OnPlayerPressedNext();
+            }
+            return;
+        }
+
+        // 터치가 없을 때만 마우스 처리
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (EventSystem.current != null &&
+                EventSystem.current.IsPointerOverGameObject())
+                return;
+
+            OnPlayerPressedNext();
+        }
+*/
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (IsPointerOverUI()) return;
             OnPlayerPressedNext();
+            return;
         }
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
+            if (IsPointerOverUI()) return;
             OnPlayerPressedNext();
         }
     }
@@ -351,6 +389,8 @@ public class DialogueManager : MonoBehaviour
 
     public void ContinueDialogue(string characterName, TalkableNPC npc)
     {
+        inputBlockUntil = Time.unscaledTime + dialogueStartInputBlockTime;
+
         TextAsset jsonFile = Resources.Load<TextAsset>($"{characterName}_interaction");
         if (jsonFile != null)
         {
@@ -420,6 +460,17 @@ public class DialogueManager : MonoBehaviour
             npc.questCleared = true;
             // 혹은 필요한 다른 상태도 같이 초기화 or 완료 상태로 변경
         }
+    }
+
+
+    private bool IsPointerOverUI()
+    {
+        if (EventSystem.current == null) return false;
+
+        if (Input.touchCount > 0)
+            return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
+
+        return EventSystem.current.IsPointerOverGameObject();
     }
 
 }
