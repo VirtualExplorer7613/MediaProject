@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dev/Moblie/Scene_UI/Ending.unity
     guid: 2663f03977cd6984fa956b1b6786a06a
+  - enabled: 1
+    path: Assets/Scenes/Dev/Moblie/Renewal_Quest/Npc Test.unity
+    guid: b8babd27ce07f1846b9712e43bae349f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
