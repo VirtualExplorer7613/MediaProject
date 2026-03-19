@@ -6,6 +6,15 @@ using Terresquall;
 
 public class WhaleController : MonoBehaviour
 {
+
+    private enum MobileControlMode
+    {
+        Legacy,
+        ImprovedLegacy
+    }
+
+
+    [SerializeField] private MobileControlMode mobileControlMode = MobileControlMode.ImprovedLegacy;
     [SerializeField] private GameObject whaleVisualRoot;
 
     [Header("view")]
@@ -30,6 +39,13 @@ public class WhaleController : MonoBehaviour
 
     [Header("Mobile Tuning")]
     [SerializeField] private float turnSpeed = 120f;   // 조이스틱 X로 회전 속도(도/초)
+
+    [SerializeField] private float mobileDeadZone = 0.18f;
+    [SerializeField] private float inputSmoothTime = 0.08f;
+    [SerializeField] private float backwardTurnMultiplier = 0.75f; // 후진 중 회전 감도 감소
+    [SerializeField] private float maxForwardSpeedMultiplier = 1f;
+    [SerializeField] private float maxBackwardSpeedMultiplier = 0.75f;
+
 
     [Header("Mobile Vertical Buttons")]
     [SerializeField] private HoldButton upButton;
@@ -65,6 +81,12 @@ public class WhaleController : MonoBehaviour
     private Rigidbody rb;
     private Vector3 moveInput;
 
+    [Header("Vertical Collision")]
+    [SerializeField] private LayerMask verticalBlockMask;     // 상하 이동 막을 레이어
+
+    private Vector2 mobileInput;
+    private Vector2 mobileInputVelocity;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -88,6 +110,9 @@ public class WhaleController : MonoBehaviour
         transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
 
         dialogueManager = FindObjectOfType<DialogueManager>();
+
+        if (verticalBlockMask.value == 0)
+            verticalBlockMask = groundMask;
     }
 
     void Update()
@@ -162,23 +187,69 @@ public class WhaleController : MonoBehaviour
 
     void HandleMobileRotationAndMove()
     {
-        float rawTurn = VirtualJoystick.GetAxis("Horizontal"); // 좌/우 = 회전
-        float rawForward = VirtualJoystick.GetAxis("Vertical"); // 상/하 = 전/후
+        float rawX = VirtualJoystick.GetAxis("Horizontal");
+        float rawY = VirtualJoystick.GetAxis("Vertical");
 
-        yaw += rawTurn * turnSpeed * Time.deltaTime;
+        if (mobileControlMode == MobileControlMode.Legacy)
+        {
+            float verticalMove = 0f;
+            if (upButton != null && upButton.IsPressed) verticalMove += 1f;
+            if (downButton != null && downButton.IsPressed) verticalMove -= 1f;
+
+            yaw += rawX * turnSpeed * Time.deltaTime;
+            pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+            transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+
+            moveInput = new Vector3(0f, verticalMove, rawY);
+            return;
+        }
+
+        // ImprovedLegacy
+        Vector2 raw = new Vector2(rawX, rawY);
+
+        // 1. 데드존
+        if (raw.magnitude < mobileDeadZone)
+        {
+            raw = Vector2.zero;
+        }
+        else
+        {
+            float scaledMag = Mathf.InverseLerp(mobileDeadZone, 1f, raw.magnitude);
+            raw = raw.normalized * scaledMag;
+        }
+
+        // 2. 입력 스무딩
+        mobileInput = Vector2.SmoothDamp(
+            mobileInput,
+            raw,
+            ref mobileInputVelocity,
+            inputSmoothTime
+        );
+
+        float turnInput = mobileInput.x;
+        float forwardInput = mobileInput.y;
+
+        // 3. 뒤로 갈 때 회전 감도 약간 감소
+        float turnMultiplier = (forwardInput < -0.05f) ? backwardTurnMultiplier : 1f;
+
+        // 4. 작은 입력에서는 천천히, 큰 입력에서는 빠르게 회전
+        float curvedTurn = Mathf.Sign(turnInput) * turnInput * turnInput;
+
+        yaw += curvedTurn * turnSpeed * turnMultiplier * Time.deltaTime;
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
         transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
 
-        // 버튼을 통한 수직 이동
+        // 5. 후진 속도 약간 감소
+        float adjustedForward =
+            forwardInput >= 0f
+            ? forwardInput * maxForwardSpeedMultiplier
+            : forwardInput * maxBackwardSpeedMultiplier;
+
         float vertical = 0f;
         if (upButton != null && upButton.IsPressed) vertical += 1f;
         if (downButton != null && downButton.IsPressed) vertical -= 1f;
 
-
-        //Vector3 velocity = transform.forward * (rawForward * moveSpeed) + transform.up * (vertical * verticalSpeed);
-        //transform.position += velocity * Time.deltaTime;
-
-        moveInput = new Vector3(0f, vertical, rawForward);
+        moveInput = new Vector3(0f, vertical, adjustedForward);
     }
 
     public void FireUltrasound()
@@ -259,8 +330,24 @@ public class WhaleController : MonoBehaviour
         if (flatForward.sqrMagnitude < 0.0001f) flatForward = Vector3.forward;
         if (flatRight.sqrMagnitude < 0.0001f) flatRight = Vector3.right;
 
+        bool useMobileInput = Application.isMobilePlatform || forceMobileInput;
+
+        Vector3 horizontalMove;
+
         // 수평 이동
-        Vector3 horizontalMove = (flatForward * moveInput.z + flatRight * moveInput.x) * moveSpeed;
+        //horizontalMove = (flatForward * moveInput.z + flatRight * moveInput.x) * moveSpeed;
+
+        if (useMobileInput)
+        {
+            // 모바일은 탱크식 유지: 전진/후진만
+            horizontalMove = flatForward * moveInput.z * moveSpeed;
+        }
+        else
+        {
+            // PC는 기존처럼 좌우 이동 허용
+            horizontalMove = (flatForward * moveInput.z + flatRight * moveInput.x) * moveSpeed;
+        }
+
         Vector3 horizontalDelta = horizontalMove * Time.fixedDeltaTime;
 
         Vector3 posAfterHorizontal = ResolveCapsuleMove(currentPos, horizontalDelta);
@@ -359,7 +446,9 @@ public class WhaleController : MonoBehaviour
 
         Debug.Log($"Vertical cast dir={dir}, dist={dist}, mask={groundMask.value}");
 
-        if (Physics.CapsuleCast(p1, p2, radius, dir, out RaycastHit hit, dist + skinWidth, groundMask, QueryTriggerInteraction.Ignore))
+        LayerMask maskToUse = verticalBlockMask.value == 0 ? groundMask : verticalBlockMask;
+
+        if (Physics.CapsuleCast(p1, p2, radius, dir, out RaycastHit hit, dist + skinWidth, maskToUse, QueryTriggerInteraction.Ignore))
         {
             Debug.Log($"Vertical hit: {hit.collider.name}, dist={hit.distance}");
             float safeDist = Mathf.Max(hit.distance - skinWidth, 0f);
