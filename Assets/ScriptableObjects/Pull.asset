@@ -20,4 +20,4 @@ MonoBehaviour:
   brushHoldSeconds: 1.5
   brushCleanRadius: 5
   brushMaxCleanCount: 10
-  pullMaxDistance: 8
+  pullMaxDistance: 10
