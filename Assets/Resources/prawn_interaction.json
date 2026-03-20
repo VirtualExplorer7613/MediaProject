@@ -56,18 +56,18 @@
         },
         {
             "type": "whale",
-            "dialogue": "'흠… 단단한 유리컵을 깨뜨릴 수 있는 도구가 필요할 것 같은데…'",
+            "dialogue": "(흠… 단단한 유리컵을 깨뜨릴 수 있는 도구가 필요할 것 같은데…)",
             "voice": "Dubbing_Prawn/audio_7_Whale_02"
         },
         {
             "type": "whale",
             "expression": "Eyes_Shrink",
-            "dialogue": "'그래, 망치라면 이 단단한 유리컵도 깨뜨릴 수 있지 않을까?'",
+            "dialogue": "(그래, 망치라면 이 단단한 유리컵도 깨뜨릴 수 있지 않을까?)",
             "voice": "Dubbing_Prawn/audio_8_Whale_03"
         },
         {
             "type": "whale",
-            "dialogue": "'아까 주운 망치 아이템을 이용해서 얼른 유리컵을 깨뜨려보자!'",
+            "dialogue": "(아까 주운 망치 아이템을 이용해서 얼른 유리컵을 깨뜨려보자!)",
             "voice": "Dubbing_Prawn/audio_9_Whale_04"
         },
         {
@@ -112,18 +112,18 @@
         },
         {
             "type": "whale",
-            "dialogue": "'이렇게 무겁고 단단한 쓰레기들은…\n새우처럼 작고 힘이 약한 친구들을 순식간에 가둬버려.'",
+            "dialogue": "(이렇게 무겁고 단단한 쓰레기들은…\n새우처럼 작고 힘이 약한 친구들을 순식간에 가둬버려.)",
             "voice": "Dubbing_Prawn/audio_16_Whale_07"
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "'다음엔 누가 발견조차 못 한 채로 갇혀 있을지도 몰라…'",
+            "dialogue": "(다음엔 누가 발견조차 못 한 채로 갇혀 있을지도 몰라…)",
             "voice": "Dubbing_Prawn/audio_17_Whale_08"
         },
         {
             "type": "whale",
-            "dialogue": "'이런 게 더는 바다에 떨어지지 않게 해야 해.'",
+            "dialogue": "(이런 게 더는 바다에 떨어지지 않게 해야 해.)",
             "voice": "Dubbing_Prawn/audio_18_Whale_09"
         }
     ]
