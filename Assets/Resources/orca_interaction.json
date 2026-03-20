@@ -33,7 +33,7 @@
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "'아까 얻은 자석 아이템을 이용해서, 범고래 앞에 있는 고철 쓰레기들을 정리해보자!'",
+            "dialogue": "(아까 얻은 자석 아이템을 이용해서, 범고래 앞에 있는 고철 쓰레기들을 정리해보자!)",
             "voice": "Dubbing_Orca/audio_3_Whale_04"
         },
         {
@@ -73,12 +73,12 @@
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "'아무리 조심한다고 해도 분명 또 같은 일이 반복될 거야.'",
+            "dialogue": "(아무리 조심한다고 해도 분명 또 같은 일이 반복될 거야.)",
             "voice": "Dubbing_Orca/audio_9_Whale_06"
         },
         {
             "type": "whale",
-            "dialogue": "'바다에 쓰레기가 더 이상 늘어나면 안 돼.'",
+            "dialogue": "(바다에 쓰레기가 더 이상 늘어나면 안 돼.)",
             "voice": "Dubbing_Orca/audio_10_Whale_07"
         }
     ]
