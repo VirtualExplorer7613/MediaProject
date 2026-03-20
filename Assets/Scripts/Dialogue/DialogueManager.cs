@@ -24,7 +24,14 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private float dialogueStartInputBlockTime = 0.2f;
 
     public Camera mainCamera;
-    public Vector3 spawnOffset = new Vector3(1.6f, 0.25f, 3f); // 캐릭터 위치 오프셋 (조절 가능)
+    //public Vector3 spawnOffset = new Vector3(1.6f, 0.25f, 3f); // 캐릭터 위치 오프셋 (조절 가능)
+    [SerializeField] private Transform leftCharacterAnchor;
+    [SerializeField] private Transform rightCharacterAnchor;
+
+    [SerializeField] private Vector3 whaleLocalEuler = new Vector3(0f, 0f, 0f);
+    [SerializeField] private Vector3 npcLocalEuler = new Vector3(0f, 180f, 0f);
+    private GameObject currentBackdrop;
+
     private GameObject currentCharacterModel;
     public bool IsDialoguePlaying { get; private set; }
     private string currentCharacterName = null;
@@ -306,7 +313,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void ShowCharacter(string characterName)
+    /*private void ShowCharacter(string characterName)
     {
         if (currentCharacterModel != null && currentCharacterName == characterName)
         {
@@ -375,6 +382,76 @@ public class DialogueManager : MonoBehaviour
 
         }
 
+    }*/
+
+    private void ShowCharacter(string characterName)
+    {
+        if (currentCharacterModel != null && currentCharacterName == characterName)
+            return;
+
+        HideCharacterOnlyModel();
+
+        GameObject prefab = Resources.Load<GameObject>($"Characters/{characterName}");
+        if (prefab == null)
+        {
+            Debug.LogError($"캐릭터 프리팹 {characterName}을(를) 찾을 수 없습니다.");
+            return;
+        }
+
+        bool isWhale = characterName == "whale";
+        Transform anchor = isWhale ? leftCharacterAnchor : rightCharacterAnchor;
+
+        if (anchor == null)
+        {
+            Debug.LogError(isWhale
+                ? "leftCharacterAnchor가 연결되지 않았습니다."
+                : "rightCharacterAnchor가 연결되지 않았습니다.");
+            return;
+        }
+
+        currentCharacterModel = Instantiate(prefab, anchor.position, anchor.rotation);
+        currentCharacterModel.transform.SetParent(anchor, true);
+
+        currentCharacterModel.transform.localPosition = Vector3.zero;
+        currentCharacterModel.transform.localRotation = Quaternion.Euler(isWhale ? whaleLocalEuler : npcLocalEuler);
+
+        if (isWhale)
+            currentCharacterModel.transform.localScale = Vector3.one * 1f;
+        else
+            currentCharacterModel.transform.localScale = Vector3.one * 2f;
+
+        currentCharacterName = characterName;
+
+        CreateBackdrop(anchor, isWhale);
+    }
+
+    private void HideCharacterOnlyModel()
+    {
+        if (currentCharacterModel != null)
+        {
+            Destroy(currentCharacterModel);
+            currentCharacterModel = null;
+        }
+
+        if (currentBackdrop != null)
+        {
+            Destroy(currentBackdrop);
+            currentBackdrop = null;
+        }
+
+        currentCharacterName = null;
+    }
+
+    private void CreateBackdrop(Transform anchor, bool isWhale)
+    {
+        GameObject backdropPrefab = Resources.Load<GameObject>("Prefabs/CharacterBackdrop");
+        if (backdropPrefab == null) return;
+
+        currentBackdrop = Instantiate(backdropPrefab, anchor);
+        currentBackdrop.transform.localPosition = new Vector3(0f, 0f, 1.5f);
+        //currentBackdrop.transform.localRotation = Quaternion.identity;
+        currentBackdrop.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+        currentBackdrop.transform.localScale = new Vector3(3f, 3f, 1f);
     }
 
     private void HideCharacter()
@@ -382,6 +459,7 @@ public class DialogueManager : MonoBehaviour
         if (currentCharacterModel != null)
             Destroy(currentCharacterModel);
 
+        HideCharacterOnlyModel();
         // NameBox 지우기
         characterNameText.gameObject.SetActive(false);
         characterNameBox.gameObject.SetActive(false);
