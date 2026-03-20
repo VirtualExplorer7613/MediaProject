@@ -6,6 +6,7 @@ using TMPro;
 using System.Collections.Generic;
 using TMPro.Examples;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 
 public class DialogueManager : MonoBehaviour
@@ -19,6 +20,9 @@ public class DialogueManager : MonoBehaviour
     public GameObject dialogueBox;    // 대화창 패널
     public Image characterNameBox; //이름창
     public TMP_Text characterNameText; //캐릭터이름
+
+    //숨길 모바일 UI
+    [SerializeField] private GameObject mobileUI;
 
     private float inputBlockUntil = 0f;
     [SerializeField] private float dialogueStartInputBlockTime = 0.2f;
@@ -96,6 +100,7 @@ public class DialogueManager : MonoBehaviour
             Quaternion anchorRot;
 
             whaleController.SetVisible(false);
+            SetGameplayUIVisible(false);
 
             if (crosshairUI != null)
                 crosshairUI.IsVisible = false;
@@ -172,6 +177,7 @@ public class DialogueManager : MonoBehaviour
                     whaleController.SetVisible(true);
                     if (crosshairUI != null)
                         crosshairUI.IsVisible = true;
+                    SetGameplayUIVisible(true);
                 }
 
                 yield break; // 대사 종료
@@ -207,6 +213,7 @@ public class DialogueManager : MonoBehaviour
             whaleController.SetVisible(true);
             if (crosshairUI != null)
                 crosshairUI.IsVisible = true;
+            SetGameplayUIVisible(true);
         }
 
         IsDialoguePlaying = false;
@@ -258,7 +265,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == UnityEngine.TouchPhase.Began)
         {
             if (IsPointerOverUI()) return;
             OnPlayerPressedNext();
@@ -489,6 +496,7 @@ public class DialogueManager : MonoBehaviour
             if (whaleController != null)
             {
                 whaleController.SetVisible(false);
+                SetGameplayUIVisible(false);
 
                 if (crosshairUI != null)
                     crosshairUI.IsVisible = false;
@@ -549,6 +557,15 @@ public class DialogueManager : MonoBehaviour
             return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
 
         return EventSystem.current.IsPointerOverGameObject();
+    }
+
+    private void SetGameplayUIVisible(bool visible)
+    {
+        if (crosshairUI != null)
+            crosshairUI.IsVisible = visible;
+
+        if (mobileUI != null)
+            mobileUI.SetActive(visible);
     }
 
 }
