@@ -20,14 +20,52 @@ public class TapToContinueCondition : TutorialCondition
     [Tooltip("UI 위를 탭/클릭한 입력은 무시할지 여부")]
     [SerializeField] private bool ignoreWhenPointerOverUI = false;
 
+    [Header("Timing")]
+    [Tooltip("이 시간 전에는 입력해도 넘기지 않음")]
+    [SerializeField] private float minimumWaitSeconds = 1.75f;
+
+    [Tooltip("이 시간이 지나면 자동으로 다음 대사로 진행. 0 이하이면 자동 진행 안 함")]
+    [SerializeField] private float autoAdvanceSeconds = 4f;
+
+    [Tooltip("최소 대기 시간이 끝난 뒤 입력 유도 로그 출력 여부")]
+    [SerializeField] private bool showReadyLog = false;
+
+    private float elapsedTime;
+    private bool readyForInputLogged;
+
+
     public override void Activate(TutorialContext context)
     {
         base.Activate(context);
+        elapsedTime = 0f;
+        readyForInputLogged = false;
     }
 
     private void Update()
     {
         if (!isActive || isCompleted) return;
+
+        elapsedTime += Time.unscaledDeltaTime;
+
+        // 최소 대기 시간이 끝났을 때 1회 알림용
+        if (!readyForInputLogged && elapsedTime >= minimumWaitSeconds)
+        {
+            readyForInputLogged = true;
+
+            if (showReadyLog)
+                Debug.Log("[TapToContinueCondition] 이제 입력으로 진행할 수 있습니다.");
+        }
+
+        // 자동 진행
+        if (autoAdvanceSeconds > 0f && elapsedTime >= autoAdvanceSeconds)
+        {
+            Complete();
+            return;
+        }
+
+        // 최소 대기 시간 전에는 입력 무시
+        if (elapsedTime < minimumWaitSeconds)
+            return;
 
         if (ignoreWhenPointerOverUI && IsPointerOverUI())
             return;
