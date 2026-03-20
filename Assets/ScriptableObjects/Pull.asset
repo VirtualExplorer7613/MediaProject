@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pull
   m_EditorClassIdentifier: 
   itemType: 7
-  icon: {fileID: 21300000, guid: 078621d2b36a01d4e8d757eda4422094, type: 3}
+  icon: {fileID: 21300000, guid: 7fb200c43c9a3514b86fb40f78af9f9f, type: 3}
   cooldownSeconds: 0
   magnetRadius: 8
   magnetMaxTargets: 3
