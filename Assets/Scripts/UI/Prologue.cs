@@ -16,6 +16,12 @@ public class Prologue : BaseScene
     //public GameObject skipButton;
     public GameObject space;
 
+    // [새로 추가된 부분 1] 보이스 재생을 위한 변수 추가
+    [Header("Voice Settings")]
+    public AudioSource audioSource; // 음성을 재생할 오디오 소스 컴포넌트
+    public List<AudioClip> voiceList; // 텍스트 순서에 맞춘 보이스 파일 리스트
+    // ----------------------------------------------------
+
     [Header("Auto Proceed")]
     [SerializeField] float autoProceedDelay = 4f;
 
@@ -42,15 +48,15 @@ public class Prologue : BaseScene
             Debug.Log("text List is null!");
             textList = new List<string>
             {
-                "오랜만에 돌아온 내 고향 바다…\\n" +
-                "그런데 왜인지, 느낌이 다른 걸?\\n\\n" +
+                "오랜만에 돌아온 내 고향 바다…\n" +
+                "그런데 왜인지, 느낌이 다른 걸?\n\n" +
 
-                "바다는 예전 모습 그대로인데,\\n" +
-                "기억 속 그 느낌이 아니야.\\n" +
+                "바다는 예전 모습 그대로인데,\n" +
+                "기억 속 그 느낌이 아니야.\n" +
 
-                "예전엔 이쯤에서 반가운 소리들이 들렸는데…\\n\\n" +
+                "예전엔 이쯤에서 반가운 소리들이 들렸는데…\n\n" +
 
-                "내가 없는 동안 무슨 일이 있었던 걸까?\\n" +
+                "내가 없는 동안 무슨 일이 있었던 걸까?\n" +
                 "직접, 확인해봐야겠다."
             };
         }
@@ -75,6 +81,20 @@ public class Prologue : BaseScene
             prologueImage.sprite = imageList[currentIndex];
             AdjustImageSize();
         }
+
+        // [새로 추가된 부분 2] 텍스트가 뜰 때 해당 인덱스의 보이스 재생
+        if (audioSource != null)
+        {
+            audioSource.Stop(); // 유저가 스페이스바를 빨리 눌러서 넘겼을 때 이전 대사 끊어주기
+
+            // 현재 인덱스에 해당하는 보이스 파일이 있는지 확인 후 재생
+            if (currentIndex < voiceList.Count && voiceList[currentIndex] != null)
+            {
+                audioSource.clip = voiceList[currentIndex];
+                audioSource.Play();
+            }
+        }
+        // ----------------------------------------------------
 
         // 텍스트 타이핑 효과 시작
         if (currentIndex < textList.Count)
@@ -141,6 +161,14 @@ public class Prologue : BaseScene
     private void EndPrologue()
     {
         Debug.Log("프롤로그 종료");
+
+        // [새로 추가된 부분 3] 씬이 넘어갈 때 재생 중인 보이스 정지
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
+        // ----------------------------------------------------
+
         // 필요 시 다음 씬으로 전환하거나 다른 이벤트 실행
         //Managers.Scene.LoadScene(sceneName);
         space?.SetActive(false);
@@ -151,15 +179,6 @@ public class Prologue : BaseScene
     {
         EndPrologue();
     }
-
-    /* private IEnumerator LoadNextSceneAfterFade()
-     {
-         if (fadeOutAudio != null)
-             yield return new WaitForSeconds(fadeOutAudio.fadeDuration);
-
-         mySceneManager.ChangeScene(nextScene);
-     }*/
-
 
     private void AdjustImageSize()
     {
