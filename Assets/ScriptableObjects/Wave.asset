@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Wave
   m_EditorClassIdentifier: 
   itemType: 0
-  icon: {fileID: 21300000, guid: 132f475ccc991774fb40beea1eb86be2, type: 3}
+  icon: {fileID: 21300000, guid: 4e40ab6fa81216e4aa9cb25ac61e9ce3, type: 3}
   cooldownSeconds: 2
   magnetRadius: 8
   magnetMaxTargets: 3
   brushHoldSeconds: 1.5
   brushCleanRadius: 5
   brushMaxCleanCount: 10
+  pullMaxDistance: 8
