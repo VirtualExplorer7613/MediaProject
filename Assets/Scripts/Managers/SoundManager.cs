@@ -63,6 +63,8 @@ public class SoundManager
         else
         {
             AudioSource audioSource = _audioSources[(int)Define.Sound.Effect];
+            if (audioSource.isPlaying)
+                audioSource.Stop();
             audioSource.pitch = pitch;
             audioSource.PlayOneShot(audioClip);
         }
