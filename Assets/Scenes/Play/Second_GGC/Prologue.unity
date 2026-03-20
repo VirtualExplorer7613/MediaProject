@@ -439,15 +439,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -521,6 +521,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705913028}
   - component: {fileID: 705913027}
+  - component: {fileID: 705913029}
   m_Layer: 0
   m_Name: Prologue
   m_TagString: Untagged
@@ -542,10 +543,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prologueImage: {fileID: 896062585}
   prologueText: {fileID: 1750857660}
-  imageList: []
-  textList: []
-  typingSpeed: 0.05
+  imageList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  textList:
+  - "\uB3C4\uC640\uC918..."
+  - "...\uB3C4\uC640\uC918."
+  - "\uD639\uC2DC \uB0B4 \uBAA9\uC18C\uB9AC\uAC00 \uB4E4\uB9AC\uB2C8?"
+  - "\uC9C0\uAE08 \uBC14\uB2E4\uB294 \uC704\uD5D8\uC5D0 \uBE60\uC84C\uC5B4."
+  - "\uC774\uC820 \uC815\uB9D0 \uC2DC\uAC04\uC774 \uC5BC\uB9C8 \uB0A8\uC9C0 \uC54A\uC558\uC5B4."
+  - "\uC9C0\uAE08 \uB0B4 \uBAA9\uC18C\uB9AC\uAC00 \uB4E4\uB9B0\uB2E4\uBA74..."
+  - "\uBC14\uB2E4\uC640 \uCE5C\uAD6C\uB4E4\uC744 \uAD6C\uD558\uACE0, \uB098\uB97C
+    \uB9CC\uB098\uB7EC \uC640 \uC918."
+  - "\uBD80\uB514, \uB2A6\uC9C0 \uC54A\uAC8C \uC640 \uC918."
+  - "\uAE30\uB2E4\uB9AC\uACE0 \uC788\uC744\uAC8C... \uC6B0\uB9AC\uC758 \uBC14\uB2E4\uB97C,
+    \uBD80\uD0C1\uD574."
+  typingSpeed: 0.1
   space: {fileID: 717833874}
+  audioSource: {fileID: 705913029}
+  voiceList:
+  - {fileID: 8300000, guid: 044373d65e297e34d9060b5f2568544a, type: 3}
+  - {fileID: 8300000, guid: e53c6fe6db8ff314e82b26d99b3d8832, type: 3}
+  - {fileID: 8300000, guid: 048bfac2bb4df8849b47a899a5cb0bce, type: 3}
+  - {fileID: 8300000, guid: 467ff5a2b3c46774c9a83c21b9ab70c3, type: 3}
+  - {fileID: 8300000, guid: 104844d8e83018c4c89ef8995fc3cfc6, type: 3}
+  - {fileID: 8300000, guid: 06245d044c5245d4a9dd6d3019ec93e0, type: 3}
+  - {fileID: 8300000, guid: 8fc2d6e07b571544399af340f110c7c7, type: 3}
+  - {fileID: 8300000, guid: 52995ab53e845e54abd9a01dc5858926, type: 3}
+  - {fileID: 8300000, guid: 87a888cb56e751e4ca0de0d5126de756, type: 3}
   autoProceedDelay: 4
   sceneName: 3
 --- !u!4 &705913028
@@ -558,12 +590,109 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1092595637}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &705913029
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705913026}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &717833874 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1607434465411556978, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
@@ -937,8 +1066,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -900, y: 0}
-  m_SizeDelta: {x: 1100, y: 500}
+  m_AnchoredPosition: {x: -1000, y: 0}
+  m_SizeDelta: {x: 1200, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1750857660
 MonoBehaviour:
@@ -962,8 +1091,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 59fad75a2b4bd3d41bbfebfcead9711f, type: 2}
-  m_sharedMaterial: {fileID: -3741053985435818015, guid: 59fad75a2b4bd3d41bbfebfcead9711f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5ee70bfd81fbd76499b641d0425e3149, type: 2}
+  m_sharedMaterial: {fileID: -5951021667382797521, guid: 5ee70bfd81fbd76499b641d0425e3149, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -987,17 +1116,18 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
