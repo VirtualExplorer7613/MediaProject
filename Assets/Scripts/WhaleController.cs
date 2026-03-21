@@ -204,7 +204,7 @@ public class WhaleController : MonoBehaviour
             return;
         }
 
-        // ImprovedLegacy
+        /*// ImprovedLegacy
         Vector2 raw = new Vector2(rawX, rawY);
 
         // 1. 데드존
@@ -218,16 +218,59 @@ public class WhaleController : MonoBehaviour
             raw = raw.normalized * scaledMag;
         }
 
-        // 2. 입력 스무딩
-        mobileInput = Vector2.SmoothDamp(
-            mobileInput,
-            raw,
-            ref mobileInputVelocity,
+        // X만 살짝 스무딩
+        mobileInput.x = Mathf.SmoothDamp(
+            mobileInput.x,
+            raw.x,
+            ref mobileInputVelocity.x,
             inputSmoothTime
         );
 
-        float turnInput = mobileInput.x;
-        float forwardInput = mobileInput.y;
+        mobileInput.y = raw.y;
+
+        float absX = Mathf.Abs(raw.x);
+        float absY = Mathf.Abs(raw.y);
+
+        float turnInput = 0f;
+        float forwardInput = 0f;
+
+        const float axisBias = 0.08f;
+        *//*
+                // 전진/후진 입력이 강할수록 회전을 줄임
+                float forwardAbs = Mathf.Abs(forwardInput);
+
+                // forwardAbs가 커질수록 turnWeight가 작아짐
+                // 전진 중 회전 100% 허용이 아니라 20~30% 정도만 남김
+                float turnWeight = Mathf.Lerp(1f, 0.15f, forwardAbs);
+
+                // 조이스틱을 거의 위/아래로 밀었을 땐 잔여 X 제거
+                *//*if (Mathf.Abs(rawX) < 0.08f && forwardAbs > 0.5f)
+                    turnInput = 0f;*//*
+
+                // 거의 위/아래로 밀고 있으면 좌우 잔류 제거
+                if (Mathf.Abs(raw.x) < 0.08f && forwardAbs > 0.45f)
+                    turnInput = 0f;*//*
+
+        if (absX > absY + axisBias)
+        {
+            // 회전 우선
+            turnInput = mobileInput.x;
+            forwardInput = 0f;
+        }
+        else if (absY > absX + axisBias)
+        {
+            // 이동 우선
+            turnInput = 0f;
+            forwardInput = mobileInput.y;
+        }
+        else
+        {
+            // 애매한 대각선 구간: 직전 의도 유지 대신
+            // 여기서는 이동 우선으로 두는 편이 체감상 더 안정적
+            turnInput = 0f;
+            forwardInput = mobileInput.y;
+        }
+
 
         // 3. 뒤로 갈 때 회전 감도 약간 감소
         float turnMultiplier = (forwardInput < -0.05f) ? backwardTurnMultiplier : 1f;
@@ -235,6 +278,8 @@ public class WhaleController : MonoBehaviour
         // 4. 작은 입력에서는 천천히, 큰 입력에서는 빠르게 회전
         float curvedTurn = Mathf.Sign(turnInput) * turnInput * turnInput;
 
+        //yaw += curvedTurn * turnSpeed * turnMultiplier * Time.deltaTime;
+        // yaw += curvedTurn * turnSpeed * turnMultiplier * turnWeight * Time.deltaTime;
         yaw += curvedTurn * turnSpeed * turnMultiplier * Time.deltaTime;
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
         transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
@@ -244,6 +289,28 @@ public class WhaleController : MonoBehaviour
             forwardInput >= 0f
             ? forwardInput * maxForwardSpeedMultiplier
             : forwardInput * maxBackwardSpeedMultiplier;
+
+        float vertical = 0f;
+        if (upButton != null && upButton.IsPressed) vertical += 1f;
+        if (downButton != null && downButton.IsPressed) vertical -= 1f;
+
+        moveInput = new Vector3(0f, vertical, adjustedForward);*/
+
+        // 축별 데드존: X/Y를 따로 처리
+        if (Mathf.Abs(rawX) < mobileDeadZone) rawX = 0f;
+        if (Mathf.Abs(rawY) < mobileDeadZone) rawY = 0f;
+
+        // X는 회전 전용
+        yaw += rawX * turnSpeed * Time.deltaTime;
+
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+        transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+
+        // Y는 무조건 전진/후진
+        float adjustedForward =
+            rawY >= 0f
+            ? rawY * maxForwardSpeedMultiplier
+            : rawY * maxBackwardSpeedMultiplier;
 
         float vertical = 0f;
         if (upButton != null && upButton.IsPressed) vertical += 1f;
