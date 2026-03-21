@@ -15,8 +15,8 @@ public class TreasureChestController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private string openTriggerName = "Open";
     [Header("Distances")]
-    [SerializeField] private float useKeyDistance = 3f;
-    [SerializeField] private float collectDistance = 3f;
+    [SerializeField] private float useKeyDistance = 6f;
+    [SerializeField] private float collectDistance = 6f;
 
     [Header("Reward (¿É¼Ç)")]
     [SerializeField] private ItemDefinition rewardItem;
