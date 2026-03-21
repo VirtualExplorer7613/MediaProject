@@ -327953,6 +327953,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2253394692327071739, guid: 1d8822ccb77637540a7bc44465ce7e17, type: 3}
+      propertyPath: m_Size.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2253394692327071739, guid: 1d8822ccb77637540a7bc44465ce7e17, type: 3}
+      propertyPath: m_Size.z
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5402660463250441537, guid: 1d8822ccb77637540a7bc44465ce7e17, type: 3}
       propertyPath: m_Controller
       value: 
@@ -327969,6 +327977,14 @@ PrefabInstance:
       propertyPath: rewardPrefab
       value: 
       objectReference: {fileID: 6723131180120199062, guid: 7e0fa7b67a30a8942b750fa811452c96, type: 3}
+    - target: {fileID: 7359853956166121953, guid: 1d8822ccb77637540a7bc44465ce7e17, type: 3}
+      propertyPath: useKeyDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7359853956166121953, guid: 1d8822ccb77637540a7bc44465ce7e17, type: 3}
+      propertyPath: collectDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7359853956166121953, guid: 1d8822ccb77637540a7bc44465ce7e17, type: 3}
       propertyPath: rewardSpawnPoint
       value: 
