@@ -28,6 +28,7 @@ public class InteractionController : MonoBehaviour
     private InteractionContext ctx;
     public InteractionContext CTX => ctx;
     private IInteractionStrategy currentStrategy;
+    private bool isDialogueOpen = false;
     private ItemDefinition currentItemDef;
     public ItemDefinition CurrentItemDef => currentItemDef;
     
@@ -54,6 +55,7 @@ public class InteractionController : MonoBehaviour
         };
 
         ctx.SetMagnetVisual(false);
+        ctx.hammerVisual?.SetVisible(false);
         ctx.SetSpongeVisual(false);
 
         if (interactionHoldButton != null)
@@ -163,5 +165,21 @@ public class InteractionController : MonoBehaviour
 
         wasHolding = false;
         pressAccepted = false;
+    }
+
+    public void OnDialogueOpened()
+    {
+        isDialogueOpen = true;
+
+        if (currentStrategy is HammerStrategy)
+            hammerVisual?.SetVisible(false);
+    }
+
+    public void OnDialogueClosed()
+    {
+        isDialogueOpen = false;
+
+        if (currentStrategy is HammerStrategy)
+            hammerVisual?.SetVisible(true);
     }
 }

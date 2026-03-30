@@ -157380,10 +157380,10 @@ MonoBehaviour:
   requiredPullAmount: 300
   useDirectionalCheck: 1
   pullAxis: 0
-  requiredDirectionDot: 0.5
+  requiredDirectionDot: 0.3
   movementPerDragUnit: 0.002
-  maxVisualPullDistance: 0.5
-  maxPlayerDistance: 4
+  maxVisualPullDistance: 2
+  maxPlayerDistance: 8
 --- !u!1001 &703838725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -203255,13 +203255,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1535cc4b5abc27244b22cf06a32069b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredPullAmount: 500
+  requiredPullAmount: 300
   useDirectionalCheck: 1
   pullAxis: 4
-  requiredDirectionDot: 0.5
+  requiredDirectionDot: 0.3
   movementPerDragUnit: 0.002
-  maxVisualPullDistance: 20
-  maxPlayerDistance: 4
+  maxVisualPullDistance: 2
+  maxPlayerDistance: 8
 --- !u!1001 &908587190
 PrefabInstance:
   m_ObjectHideFlags: 0
