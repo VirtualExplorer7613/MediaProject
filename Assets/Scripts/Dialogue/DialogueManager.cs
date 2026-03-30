@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     public TalkableNPC CurrentTalkingNPC { get; private set; }
 
     private WhaleController whaleController;
+    private InteractionController interactionController;
 
     public TMP_Text dialogueText;         // 대화 내용을 표시할 텍스트
     public GameObject dialogueBox;    // 대화창 패널
@@ -81,6 +82,7 @@ public class DialogueManager : MonoBehaviour
 
         whaleController = FindObjectOfType<WhaleController>();
         crosshairUI = FindAnyObjectByType<CrosshairUI>();
+        interactionController = FindAnyObjectByType<InteractionController>();
     }
 
 
@@ -104,6 +106,8 @@ public class DialogueManager : MonoBehaviour
 
             if (crosshairUI != null)
                 crosshairUI.IsVisible = false;
+
+            interactionController?.OnDialogueOpened();
 
             if (npc.dialogueAnchor != null)
             {   // 미리 만든 앵커 사용
@@ -179,7 +183,7 @@ public class DialogueManager : MonoBehaviour
                         crosshairUI.IsVisible = true;
                     SetGameplayUIVisible(true);
                 }
-
+                interactionController?.OnDialogueClosed();
                 yield break; // 대사 종료
             }
 
@@ -215,6 +219,8 @@ public class DialogueManager : MonoBehaviour
                 crosshairUI.IsVisible = true;
             SetGameplayUIVisible(true);
         }
+
+        interactionController?.OnDialogueClosed();
 
         IsDialoguePlaying = false;
         CurrentTalkingNPC.OnDialogueAfterQuestFinished();
@@ -500,6 +506,8 @@ public class DialogueManager : MonoBehaviour
 
                 if (crosshairUI != null)
                     crosshairUI.IsVisible = false;
+
+                interactionController?.OnDialogueOpened();
 
                 if (npc.dialogueAnchor != null)
                     whaleController.MoveToAnchor(npc.dialogueAnchor.position, npc.dialogueAnchor.rotation);

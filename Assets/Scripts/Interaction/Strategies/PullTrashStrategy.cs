@@ -9,7 +9,7 @@ public class PullTrashStrategy : IInteractionStrategy
     private PullableTrash currentTarget;
     private int activeFingerId = -1;
     private bool isDragging = false;
-    private const float AcquireRadius = 0.35f;
+    private const float AcquireRadius = 0.9f;
 
     public PullTrashStrategy(ItemDefinition def) => this.def = def;
 
