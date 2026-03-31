@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Terresquall;
+using UnityEngine.EventSystems;
+using TMPro;
+using UnityEngine.UI;
+
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem.EnhancedTouch;
+#endif
 
 
 public class WhaleController : MonoBehaviour
@@ -11,6 +18,57 @@ public class WhaleController : MonoBehaviour
     {
         Legacy,
         ImprovedLegacy
+    }
+
+    private struct MobileTouch
+    {
+        public Vector2 position;
+        public int fingerId;
+        public TouchPhase phase;
+    }
+
+    private int GetMobileTouchCount()
+    {
+#if ENABLE_INPUT_SYSTEM
+#if !ENABLE_LEGACY_INPUT_MANAGER
+    return UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches.Count;
+#else
+        return Input.touchCount;
+#endif
+#else
+    return Input.touchCount;
+#endif
+    }
+
+    private MobileTouch GetMobileTouch(int index)
+    {
+#if ENABLE_INPUT_SYSTEM
+#if !ENABLE_LEGACY_INPUT_MANAGER
+    var t = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches[index];
+    return new MobileTouch
+    {
+        position = t.screenPosition,
+        fingerId = t.finger.index,
+        phase = (TouchPhase)Enum.Parse(typeof(TouchPhase), t.phase.ToString())
+    };
+#else
+        var t = Input.GetTouch(index);
+        return new MobileTouch
+        {
+            position = t.position,
+            fingerId = t.fingerId,
+            phase = t.phase
+        };
+#endif
+#else
+    var t = Input.GetTouch(index);
+    return new MobileTouch
+    {
+        position = t.position,
+        fingerId = t.fingerId,
+        phase = t.phase
+    };
+#endif
     }
 
 
@@ -40,27 +98,38 @@ public class WhaleController : MonoBehaviour
     [Header("Mobile Tuning")]
     [SerializeField] private float turnSpeed = 120f;   // 조이스틱 X로 회전 속도(도/초)
 
+    [Header("Mobile Move")]
     [SerializeField] private float mobileDeadZone = 0.18f;
+    [SerializeField] private float maxMoveMagnitude = 1f;
+
+    [Header("Mobile Look")]
+    [SerializeField] private float lookSensitivityX = 0.15f;
+    [SerializeField] private float lookSensitivityY = 0.12f;
+    [SerializeField] private bool invertY = false;
+
+
     [SerializeField] private float inputSmoothTime = 0.08f;
     [SerializeField] private float backwardTurnMultiplier = 0.75f; // 후진 중 회전 감도 감소
     [SerializeField] private float maxForwardSpeedMultiplier = 1f;
     [SerializeField] private float maxBackwardSpeedMultiplier = 0.75f;
 
 
+    #region Mobile Vertical Buttons(Legacy)
+    /*
     [Header("Mobile Vertical Buttons")]
     [SerializeField] private HoldButton upButton;
     [SerializeField] private HoldButton downButton;
+    */
+    #endregion
 
     [Header("Shoot")]
-    [SerializeField]
-    GameObject ultrasoundPrefab;
-    [SerializeField]
-    Transform shootPoint;
+    [SerializeField] GameObject ultrasoundPrefab;
+    [SerializeField] Transform shootPoint;
 
     [Header("Dragging")]
-    [SerializeField]
-    float dragDetectionRadius = 10f;
+    [SerializeField] float dragDetectionRadius = 10f;
 
+    [Header("Collision")]
     [SerializeField] private CapsuleCollider capsule;
     [SerializeField] private float skinWidth = 0.02f;
     [SerializeField] private LayerMask groundMask;
@@ -74,9 +143,8 @@ public class WhaleController : MonoBehaviour
     private DraggedItem currentDraggedItem;
     DialogueManager dialogueManager;
 
-
-    float yaw = 0f;   // 좌우 회전
-    float pitch = 0f; // 상하 기울기
+    private float yaw = 0f;   // 좌우 회전
+    private float pitch = 0f; // 상하 기울기
 
     private Rigidbody rb;
     private Vector3 moveInput;
@@ -84,8 +152,14 @@ public class WhaleController : MonoBehaviour
     [Header("Vertical Collision")]
     [SerializeField] private LayerMask verticalBlockMask;     // 상하 이동 막을 레이어
 
-    private Vector2 mobileInput;
-    private Vector2 mobileInputVelocity;
+    // 모바일/에디터 look 입력 추적
+    private int lookFingerId = -1;
+    private Vector2 lastLookTouchPos;
+    private bool isMouseLookDragging = false;
+    private Vector2 lastMouseLookPos;
+
+    /*private Vector2 mobileInput;
+    private Vector2 mobileInputVelocity;*/
 
     private void Awake()
     {
@@ -97,7 +171,7 @@ public class WhaleController : MonoBehaviour
         //Cursor.visible = false;   // 커서 안보이게
 
 #if UNITY_EDITOR || UNITY_STANDALONE
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
 #endif
 
         Vector3 e = transform.eulerAngles;
@@ -122,6 +196,7 @@ public class WhaleController : MonoBehaviour
         {
             // 대화 중이면 아무 조작도 못하게 막음
             moveInput = Vector3.zero;
+            ClearLookState();
             return;
         }
 #if UNITY_EDITOR || UNITY_STANDALONE
@@ -141,7 +216,9 @@ public class WhaleController : MonoBehaviour
 
         if (useMobileInput)
         {
-            HandleMobileRotationAndMove();
+            // HandleMobileRotationAndMove();
+            HandleMobileMove();
+            HandleMobileLook();
         }
         else
         {
@@ -185,6 +262,7 @@ public class WhaleController : MonoBehaviour
         transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
     }
 
+    #region Mobile Movement(legacy)
     void HandleMobileRotationAndMove()
     {
         float rawX = VirtualJoystick.GetAxis("Horizontal");
@@ -193,8 +271,8 @@ public class WhaleController : MonoBehaviour
         if (mobileControlMode == MobileControlMode.Legacy)
         {
             float verticalMove = 0f;
-            if (upButton != null && upButton.IsPressed) verticalMove += 1f;
-            if (downButton != null && downButton.IsPressed) verticalMove -= 1f;
+            // if (upButton != null && upButton.IsPressed) verticalMove += 1f;
+            // if (downButton != null && downButton.IsPressed) verticalMove -= 1f;
 
             yaw += rawX * turnSpeed * Time.deltaTime;
             pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
@@ -313,10 +391,148 @@ public class WhaleController : MonoBehaviour
             : rawY * maxBackwardSpeedMultiplier;
 
         float vertical = 0f;
-        if (upButton != null && upButton.IsPressed) vertical += 1f;
-        if (downButton != null && downButton.IsPressed) vertical -= 1f;
+        //if (upButton != null && upButton.IsPressed) vertical += 1f;
+        //if (downButton != null && downButton.IsPressed) vertical -= 1f;
 
         moveInput = new Vector3(0f, vertical, adjustedForward);
+    }
+
+    #endregion
+
+    private void HandleMobileMove()
+    {
+        float rawX = VirtualJoystick.GetAxis("Horizontal");
+        float rawY = VirtualJoystick.GetAxis("Vertical");
+
+        if (Mathf.Abs(rawX) < mobileDeadZone) rawX = 0f;
+        if (Mathf.Abs(rawY) < mobileDeadZone) rawY = 0f;
+
+        Vector2 raw = new Vector2(rawX, rawY);
+        raw = Vector2.ClampMagnitude(raw, maxMoveMagnitude);
+
+        // 모바일에서는 수직 이동 제거
+        moveInput = new Vector3(raw.x, 0f, raw.y);
+    }
+
+    private void HandleMobileLook()
+    {
+        int touchCount = GetMobileTouchCount();
+
+        // 모바일이거나, 에디터 테스트 중인데 실제 터치가 들어오면 터치 회전 사용
+        if (Application.isMobilePlatform || touchCount > 0)
+        {
+            HandleTouchLook();
+        }
+        else if (forceMobileInput)
+        {
+            HandleMouseLookForEditorTest();
+        }
+    }
+
+    private void HandleTouchLook()
+    {
+        int touchCount = GetMobileTouchCount();
+        bool fingerStillExists = false;
+
+        for (int i = 0; i < touchCount; i++)
+        {
+            var touch = GetMobileTouch(i);
+
+            // 이미 회전용 손가락을 잡고 있으면 그 손가락만 추적
+            if (lookFingerId != -1 && touch.fingerId == lookFingerId)
+            {
+                fingerStillExists = true;
+
+                if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
+                {
+                    Vector2 delta = touch.position - lastLookTouchPos;
+                    lastLookTouchPos = touch.position;
+                    ApplyLookDelta(delta);
+                }
+                else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                {
+                    lookFingerId = -1;
+                }
+
+                return;
+            }
+        }
+
+        // 기존 회전 손가락이 사라졌으면 해제
+        if (lookFingerId != -1 && !fingerStillExists)
+            lookFingerId = -1;
+
+        // 아직 회전용 손가락이 없으면 새로 잡기
+        if (lookFingerId == -1)
+        {
+            for (int i = 0; i < touchCount; i++)
+            {
+                var touch = GetMobileTouch(i);
+
+                if (touch.phase != TouchPhase.Began)
+                    continue;
+
+                // 오른쪽 절반만 회전 입력으로 인정
+                if (touch.position.x < Screen.width * 0.5f)
+                    continue;
+
+                // UI 위 터치는 제외
+                if (EventSystem.current != null &&
+                    EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                    continue;
+
+                lookFingerId = touch.fingerId;
+                lastLookTouchPos = touch.position;
+                return;
+            }
+        }
+    }
+
+    private void HandleMouseLookForEditorTest()
+    {
+        // forceMobileInput일 때 에디터에서 오른쪽 절반 마우스 드래그로 회전 테스트 가능
+        if (Input.GetMouseButtonDown(0))
+        {
+            DebugUIRaycastHits();
+            Debug.Log($"MouseDown pos={Input.mousePosition}, overUI={IsPointerOverUI()}");
+
+            if (Input.mousePosition.x >= Screen.width * 0.5f && !IsPointerOverUI())
+            {
+                isMouseLookDragging = true;
+                lastMouseLookPos = Input.mousePosition;
+            }
+        }
+
+        if (Input.GetMouseButton(0) && isMouseLookDragging)
+        {
+            Vector2 currentMousePos = Input.mousePosition;
+            Vector2 delta = currentMousePos - lastMouseLookPos;
+            lastMouseLookPos = currentMousePos;
+
+            ApplyLookDelta(delta);
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            isMouseLookDragging = false;
+        }
+    }
+
+    private void ApplyLookDelta(Vector2 delta)
+    {
+        float ySign = invertY ? 1f : -1f;
+
+        yaw += delta.x * lookSensitivityX;
+        pitch += delta.y * lookSensitivityY * ySign;
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+
+        transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+    }
+
+    private void ClearLookState()
+    {
+        lookFingerId = -1;
+        isMouseLookDragging = false;
     }
 
     public void FireUltrasound()
@@ -397,6 +613,8 @@ public class WhaleController : MonoBehaviour
         if (flatForward.sqrMagnitude < 0.0001f) flatForward = Vector3.forward;
         if (flatRight.sqrMagnitude < 0.0001f) flatRight = Vector3.right;
 
+        #region Movememt(legacy)
+        /*
         bool useMobileInput = Application.isMobilePlatform || forceMobileInput;
 
         Vector3 horizontalMove;
@@ -426,6 +644,24 @@ public class WhaleController : MonoBehaviour
 
         Vector3 finalPos = ResolveVerticalMove(posAfterHorizontal, verticalDelta);
 
+        finalPos = ResolveOverlaps(finalPos);
+
+        rb.MovePosition(finalPos);
+        */
+        #endregion
+
+        // 모바일/PC 공통: 좌우 + 전후 이동 모두 허용
+        Vector3 horizontalMove = (flatForward * moveInput.z + flatRight * moveInput.x) * moveSpeed;
+        Vector3 horizontalDelta = horizontalMove * Time.fixedDeltaTime;
+
+        Vector3 posAfterHorizontal = ResolveCapsuleMove(currentPos, horizontalDelta);
+        posAfterHorizontal = ResolveOverlaps(posAfterHorizontal);
+
+        // 모바일에서는 moveInput.y = 0, PC에서는 Q/E 사용 가능
+        float verticalAmount = moveInput.y * verticalSpeed * Time.fixedDeltaTime;
+        Vector3 verticalDelta = Vector3.up * verticalAmount;
+
+        Vector3 finalPos = ResolveVerticalMove(posAfterHorizontal, verticalDelta);
         finalPos = ResolveOverlaps(finalPos);
 
         rb.MovePosition(finalPos);
@@ -563,6 +799,16 @@ public class WhaleController : MonoBehaviour
         return corrected;
     }
 
+    private bool IsPointerOverUI()
+    {
+        if (EventSystem.current == null) return false;
+
+        if (Application.isMobilePlatform && Input.touchCount > 0)
+            return EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId);
+
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+
     public void SetVisible(bool visible)
     {
         if (whaleVisualRoot != null)
@@ -585,4 +831,60 @@ public class WhaleController : MonoBehaviour
         pitch = (e.x > 180f) ? e.x - 360f : e.x;   // -180°~180° 범위로 정규화
     }
     #endregion
+
+
+    private void DebugUIRaycastHits()
+    {
+        if (EventSystem.current == null)
+        {
+            Debug.Log("[UI Raycast] EventSystem.current == null");
+            return;
+        }
+
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        Debug.Log($"[UI Raycast] mouse={Input.mousePosition}, hitCount={results.Count}");
+
+        for (int i = 0; i < results.Count; i++)
+        {
+            GameObject go = results[i].gameObject;
+
+            Image image = go.GetComponent<Image>();
+            Button button = go.GetComponent<Button>();
+            ScrollRect scrollRect = go.GetComponent<ScrollRect>();
+            Scrollbar scrollbar = go.GetComponent<Scrollbar>();
+            Slider slider = go.GetComponent<Slider>();
+            TMP_Text tmpText = go.GetComponent<TMP_Text>();
+            CanvasGroup canvasGroup = go.GetComponent<CanvasGroup>();
+
+            string path = GetHierarchyPath(go.transform);
+
+            Debug.Log(
+                $"[UI Raycast] #{i} " +
+                $"name={go.name}, path={path}, layer={LayerMask.LayerToName(go.layer)}, " +
+                $"Image={(image != null ? $"Y(rayTarget={image.raycastTarget})" : "N")}, " +
+                $"Button={(button != null ? "Y" : "N")}, " +
+                $"ScrollRect={(scrollRect != null ? "Y" : "N")}, " +
+                $"Scrollbar={(scrollbar != null ? "Y" : "N")}, " +
+                $"Slider={(slider != null ? "Y" : "N")}, " +
+                $"TMP_Text={(tmpText != null ? "Y" : "N")}, " +
+                $"CanvasGroup={(canvasGroup != null ? $"Y(blocksRaycasts={canvasGroup.blocksRaycasts})" : "N")}"
+            );
+        }
+    }
+
+    private string GetHierarchyPath(Transform t)
+    {
+        string path = t.name;
+        while (t.parent != null)
+        {
+            t = t.parent;
+            path = t.name + "/" + path;
+        }
+        return path;
+    }
 }
