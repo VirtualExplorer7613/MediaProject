@@ -158,6 +158,7 @@ public class WhaleController : MonoBehaviour
     private bool isMouseLookDragging = false;
     private Vector2 lastMouseLookPos;
 
+    private Quaternion targetRotation;
     /*private Vector2 mobileInput;
     private Vector2 mobileInputVelocity;*/
 
@@ -181,7 +182,9 @@ public class WhaleController : MonoBehaviour
         // pitch 제한 적용
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
-        transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+        targetRotation = Quaternion.Euler(pitch, yaw, 0f);
+        rb.rotation = targetRotation;
+        transform.rotation = targetRotation;
 
         dialogueManager = FindObjectOfType<DialogueManager>();
 
@@ -259,7 +262,8 @@ public class WhaleController : MonoBehaviour
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch); // 너무 위아래로 돌지 않도록 제한
 
         // 고래 회전 적용
-        transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+        //transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+        targetRotation = Quaternion.Euler(pitch, yaw, 0f);
     }
 
     #region Mobile Movement(legacy)
@@ -419,72 +423,79 @@ public class WhaleController : MonoBehaviour
         int touchCount = GetMobileTouchCount();
 
         // 모바일이거나, 에디터 테스트 중인데 실제 터치가 들어오면 터치 회전 사용
-        if (Application.isMobilePlatform || touchCount > 0)
+        if (touchCount > 0 || Application.isMobilePlatform || forceMobileInput)
         {
+            isMouseLookDragging = false;
             HandleTouchLook();
         }
-        else if (forceMobileInput)
+       /* else if (forceMobileInput)
         {
             HandleMouseLookForEditorTest();
-        }
+        }*/
     }
 
     private void HandleTouchLook()
     {
         int touchCount = GetMobileTouchCount();
-        bool fingerStillExists = false;
 
-        for (int i = 0; i < touchCount; i++)
-        {
-            var touch = GetMobileTouch(i);
-
-            // 이미 회전용 손가락을 잡고 있으면 그 손가락만 추적
-            if (lookFingerId != -1 && touch.fingerId == lookFingerId)
-            {
-                fingerStillExists = true;
-
-                if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
-                {
-                    Vector2 delta = touch.position - lastLookTouchPos;
-                    lastLookTouchPos = touch.position;
-                    ApplyLookDelta(delta);
-                }
-                else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
-                {
-                    lookFingerId = -1;
-                }
-
-                return;
-            }
-        }
-
-        // 기존 회전 손가락이 사라졌으면 해제
-        if (lookFingerId != -1 && !fingerStillExists)
-            lookFingerId = -1;
-
-        // 아직 회전용 손가락이 없으면 새로 잡기
-        if (lookFingerId == -1)
+        // 이미 회전용으로 잡은 손가락이 있으면 그 손가락만 추적
+        if (lookFingerId != -1)
         {
             for (int i = 0; i < touchCount; i++)
             {
                 var touch = GetMobileTouch(i);
 
-                if (touch.phase != TouchPhase.Began)
+                if (touch.fingerId != lookFingerId)
                     continue;
 
-                // 오른쪽 절반만 회전 입력으로 인정
-                if (touch.position.x < Screen.width * 0.5f)
-                    continue;
+                if (touch.phase == TouchPhase.Moved)
+                {
+                    Vector2 delta = touch.position - lastLookTouchPos;
+                    lastLookTouchPos = touch.position;
+                    ApplyLookDelta(delta);
+                }
+                else if (touch.phase == TouchPhase.Stationary)
+                {
+                    // stationary는 회전 적용 X
+                    lastLookTouchPos = touch.position;
+                }
+                else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                {
+                    Debug.Log($"[LOOK END BEFORE] yaw={yaw}, pitch={pitch}, rot={transform.eulerAngles}");
 
-                // UI 위 터치는 제외
-                if (EventSystem.current != null &&
-                    EventSystem.current.IsPointerOverGameObject(touch.fingerId))
-                    continue;
+                    lookFingerId = -1;
 
-                lookFingerId = touch.fingerId;
-                lastLookTouchPos = touch.position;
+                    transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+                    Debug.Log($"[LOOK END AFTER] yaw={yaw}, pitch={pitch}, rot={transform.eulerAngles}");
+                }
+
                 return;
             }
+
+            lookFingerId = -1;
+            return;
+
+        }
+
+        // 회전 손가락이 없을 때만 새로 잡음
+        // 반드시 "오른쪽 절반에서 새로 Began한 터치"만 회전용으로 인정
+        for (int i = 0; i < touchCount; i++)
+        {
+            var touch = GetMobileTouch(i);
+
+            if (touch.phase != TouchPhase.Began)
+                continue;
+
+            if (touch.position.x < Screen.width * 0.5f)
+                continue;
+
+            if (EventSystem.current != null &&
+                EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                continue;
+
+            lookFingerId = touch.fingerId;
+            lastLookTouchPos = touch.position;
+            return;
         }
     }
 
@@ -526,13 +537,16 @@ public class WhaleController : MonoBehaviour
         pitch += delta.y * lookSensitivityY * ySign;
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
-        transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+        //transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+        targetRotation = Quaternion.Euler(pitch, yaw, 0f);
+        //Debug.Log($"[LOOK MOVE] delta={delta}, yaw={yaw}, pitch={pitch}, rot={transform.eulerAngles}");
     }
 
     private void ClearLookState()
     {
         lookFingerId = -1;
         isMouseLookDragging = false;
+
     }
 
     public void FireUltrasound()
@@ -664,6 +678,7 @@ public class WhaleController : MonoBehaviour
         Vector3 finalPos = ResolveVerticalMove(posAfterHorizontal, verticalDelta);
         finalPos = ResolveOverlaps(finalPos);
 
+        rb.MoveRotation(targetRotation);
         rb.MovePosition(finalPos);
 
         /*Vector3 move =
