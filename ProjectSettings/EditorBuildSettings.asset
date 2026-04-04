@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Dev/Mobile/1stTest/Prologue.unity
     guid: 8c240b3987dfd0a4eab1159fd50a0323
   - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/1stTest/Game.unity
-    guid: 322b46777b8ae60408cdb20d07f7397b
+    path: Assets/Scenes/Dev/Mobile/Update_Player_Movement/Game_Update_Player_Controller(Multi_Touch).unity
+    guid: 3e3126d70c6c2f3489e30a005f942b92
   - enabled: 1
     path: Assets/Scenes/Dev/Mobile/1stTest/Ending.unity
     guid: a23a73d80b8092845b394fd35fb2d3d7

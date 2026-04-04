@@ -96,7 +96,7 @@ public class OptionUIController : MonoBehaviour
         }
     }
 
-    public void OnExitButtonClicked()   
+    public void OnExitButtonClicked(bool goToTitle = true)   
     {
         //Application.Quit(); // 혹은 Title 씬으로 이동
         Debug.Log("나가기 호출! 테스트를 위해 씬 이동은 막은 상태");
@@ -106,13 +106,18 @@ public class OptionUIController : MonoBehaviour
         {
             StartCoroutine(QuitGameRoutine());
         }
-        else
+        else if (goToTitle)
         {
             //Managers.Scene.LoadSceneAsync(Define.Scene.Title, false);
             StartCoroutine(ReturnToTitleRoutine());
         }
+        else
+        {
+            StartCoroutine(QuitGameRoutine());
+        }
            
     }
+
 
     private IEnumerator PlayFadeOut(float duration)
     {
@@ -135,7 +140,7 @@ public class OptionUIController : MonoBehaviour
     /// <summary>페이드 후 타이틀 씬으로 이동</summary>
     private IEnumerator ReturnToTitleRoutine()
     {
-        yield return PlayFadeOut(1.0f);
+        yield return PlayFadeOut(1.5f);
         Managers.Scene.LoadScene(Define.Scene.Title);   // 필요하면 LoadSceneAsync
     }
 
