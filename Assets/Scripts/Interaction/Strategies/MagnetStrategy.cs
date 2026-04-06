@@ -73,7 +73,7 @@ public class MagnetStrategy : IInteractionStrategy
                         qt.CompleteQuestTarget();
 
                     di.CollectByMagnet();
-                    ctx.itemUseBroadcaster?.RaiseItemUsed("magnet");
+                    ctx.itemUseBroadcaster?.RaiseItemUsed("magnet_used");
                 }
             }
             else

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ac8c441721fd9749983415fffd47577, type: 3}
+  m_Name: TutorialStep_03
+  m_EditorClassIdentifier: 
+  messageKorean: "\uC624\uB978\uCABD \uBE48 \uD654\uBA74\uC744 \uC774\uB9AC\uC800\uB9AC
+    \uBB38\uC9C8\uB7EC\uC11C\\n\uC8FC\uBCC0\uC744 \uB458\uB7EC\uBCFC\uAE4C\uC694?"
+  messageEnglish: 
+  conditionPrefab: {fileID: 3717916204013299111, guid: 694922c1fe4a2004ea5b133bfaeb96c0, type: 3}
+  highlightTargetId: look_area
+  targetsToShow: []
+  targetsToHide: []
+  advanceDelay: 0.2
