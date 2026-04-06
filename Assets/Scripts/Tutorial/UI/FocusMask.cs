@@ -4,9 +4,22 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CanvasRenderer))]
 public class FocusMask : MaskableGraphic
 {
+    public enum HoleShape
+    {
+        Rectangle,
+        Circle
+    }
+
     [Header("Hole Rect (screen space target)")]
     [SerializeField] private RectTransform target;
     [SerializeField] private Vector2 padding = new Vector2(20f, 20f);
+
+    [Header("Shape")]
+    [SerializeField] private HoleShape holeShape = HoleShape.Circle;
+
+    [Header("Circle Settings")]
+    [SerializeField] private int circleSegments = 64;
+    [SerializeField] private float softEdgeWidth = 20f;
 
     [Header("Behavior")]
     [SerializeField] private bool followTarget = true;
@@ -123,6 +136,20 @@ public class FocusMask : MaskableGraphic
             return;
         }
 
+        if (holeShape == HoleShape.Rectangle)
+        {
+            DrawRectangleHole(vh, rect);
+        }
+        else
+        {
+            DrawCircleHole(vh, rect);
+        }
+
+        
+    }
+
+    private void DrawRectangleHole(VertexHelper vh, Rect rect)
+    {
         float left = Mathf.Clamp(holeRectCanvasSpace.xMin, rect.xMin, rect.xMax);
         float right = Mathf.Clamp(holeRectCanvasSpace.xMax, rect.xMin, rect.xMax);
         float bottom = Mathf.Clamp(holeRectCanvasSpace.yMin, rect.yMin, rect.yMax);
@@ -162,6 +189,81 @@ public class FocusMask : MaskableGraphic
                 new Vector2(right, bottom),
                 new Vector2(rect.xMax, top),
                 color);
+        }
+    }
+
+    private void DrawCircleHole(VertexHelper vh, Rect rect)
+    {
+        Vector2 center = holeRectCanvasSpace.center;
+
+        float innerRadius = Mathf.Max(holeRectCanvasSpace.width, holeRectCanvasSpace.height) * 0.5f;
+        float outerRadius = innerRadius + Mathf.Max(softEdgeWidth, 0.01f);
+
+        Color32 baseColor = color;
+        Color32 transparent = new Color32(baseColor.r, baseColor.g, baseColor.b, 0);
+
+        /*// 화면 전체 배경 먼저 깔기
+        AddQuad(vh,
+            new Vector2(rect.xMin, rect.yMin),
+            new Vector2(rect.xMax, rect.yMax),
+            color);*/
+
+        int seg = Mathf.Max(circleSegments, 24);
+
+        // inner circle + outer soft ring를 "지우는" 대신
+        // 가운데 투명 원과 가장자리 페이드 링을 덮어쓴다.
+        // Unity UI는 알파 블렌딩이므로, 배경 위에 투명 버텍스를 그리면
+        // 완전 erase는 안 되므로 여기서는 ring만 따로 만들기 위해
+        // 실제론 원형 주변을 세분화한 사다리꼴들로 구성한다.
+        //
+        // 방법:
+        // - 투명 원 내부는 따로 geometry를 만들지 않음
+        // - 배경 전체 위에, 원 외곽을 제외한 부분만 triangulation 하긴 복잡하므로
+        //   soft edge 포함 원형 mask는 "구멍" 방식 대신
+        //   4방향 큰 quad + 원형 ring으로 표현한다.
+        //
+        // 그래서 아래처럼:
+        // 1) soft edge 바깥 기준 bounding rect 밖 4방향 quad
+        // 2) outerRadius ~ innerRadius 사이 ring (outer=color, inner=transparent)
+
+        // 화면 4코너 중 center에서 가장 먼 거리
+        float farRadius = 0f;
+        farRadius = Mathf.Max(farRadius, Vector2.Distance(center, new Vector2(rect.xMin, rect.yMin)));
+        farRadius = Mathf.Max(farRadius, Vector2.Distance(center, new Vector2(rect.xMin, rect.yMax)));
+        farRadius = Mathf.Max(farRadius, Vector2.Distance(center, new Vector2(rect.xMax, rect.yMin)));
+        farRadius = Mathf.Max(farRadius, Vector2.Distance(center, new Vector2(rect.xMax, rect.yMax)));
+
+        // 1) 안쪽 투명 -> 바깥 dim 으로 부드럽게 넘어가는 링
+        AddRing(vh, center, innerRadius, outerRadius, transparent, baseColor, seg);
+
+        // 2) soft edge 바깥부터 화면 끝까지는 완전 dim
+        AddRing(vh, center, outerRadius, farRadius, baseColor, baseColor, seg);
+    }
+
+    private void AddRing(VertexHelper vh, Vector2 center, float innerRadius, float outerRadius, Color32 innerColor, Color32 outerColor, int segments)
+    {
+        int startIndex = vh.currentVertCount;
+
+        for (int i = 0; i <= segments; i++)
+        {
+            float t = i / (float)segments;
+            float angle = t * Mathf.PI * 2f;
+            float cos = Mathf.Cos(angle);
+            float sin = Mathf.Sin(angle);
+
+            Vector2 inner = center + new Vector2(cos, sin) * innerRadius;
+            Vector2 outer = center + new Vector2(cos, sin) * outerRadius;
+
+            vh.AddVert(inner, innerColor, Vector2.zero);
+            vh.AddVert(outer, outerColor, Vector2.zero);
+
+            if (i < segments)
+            {
+                int idx = startIndex + i * 2;
+
+                vh.AddTriangle(idx, idx + 1, idx + 3);
+                vh.AddTriangle(idx, idx + 3, idx + 2);
+            }
         }
     }
 
