@@ -26,7 +26,7 @@ public class TutorialHighlighter : MonoBehaviour
 
     [Header("Registered Targets")]
     [SerializeField] private List<HighlightTarget> targets = new();
-    [SerializeField] private bool disableOthers = true;
+    //[SerializeField] private bool disableOthers = true;
 
     [Header("Overlay References")]
     [SerializeField] private FocusMask focusMask;
@@ -36,6 +36,9 @@ public class TutorialHighlighter : MonoBehaviour
     [Header("Visual Tuning")]
     [SerializeField] private Vector2 padding = new Vector2(22f, 22f);
     [SerializeField] private bool keepFollowingTarget = true;
+
+    [Header("Frame Shape")]
+    [SerializeField] private bool useCircularFrame = true;
 
     private readonly Dictionary<string, HighlightTarget> map = new(StringComparer.OrdinalIgnoreCase);
     private HighlightTarget currentTarget;
@@ -127,14 +130,14 @@ public class TutorialHighlighter : MonoBehaviour
         if (focusMask != null)
             focusMask.SetTarget(holeTarget, padding);
 
-        if (frameAnchor != null && focusFrame != null)
+        /*if (frameAnchor != null && focusFrame != null)
         {
-            ApplyRectToOverlay(frameAnchor, focusFrame, padding);
+            ApplyRectToOverlay(frameAnchor, focusFrame, padding, useCircularFrame);
             focusFrame.gameObject.SetActive(true);
-        }
+        }*/
     }
 
-    private void ApplyRectToOverlay(RectTransform source, RectTransform target, Vector2 extraPadding)
+    private void ApplyRectToOverlay(RectTransform source, RectTransform target, Vector2 extraPadding, bool circular)
     {
         if (source == null || target == null)
             return;
@@ -145,6 +148,12 @@ public class TutorialHighlighter : MonoBehaviour
         Vector3 center = (corners[0] + corners[2]) * 0.5f;
         Vector2 size = corners[2] - corners[0];
         size += extraPadding * 2f;
+
+        if (circular)
+        {
+            float diameter = Mathf.Max(size.x, size.y);
+            size = new Vector2(diameter, diameter);
+        }
 
         target.position = center;
         target.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size.x);
