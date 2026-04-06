@@ -1,0 +1,201 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using static UnityEngine.AudioSettings;
+
+public class ItemPickupPopup : MonoBehaviour
+{
+    public static ItemPickupPopup Instance { get; private set; }
+
+    [Header("Root")]
+    [SerializeField] private GameObject root;
+
+    [Header("Texts")]
+    [SerializeField] private TMP_Text itemNameText;
+    [SerializeField] private TMP_Text descriptionText;
+
+    [Header("Buttons")]
+    [SerializeField] private Button closeButton;
+    [SerializeField] private Button acquireButton;
+
+    [Header("Preview")]
+    //[SerializeField] private Transform previewRoot;
+
+    [SerializeField] private Transform previewSpawnRoot;
+    [SerializeField] private RawImage previewImage;
+    [SerializeField] private RenderTexture previewTexture;
+    [SerializeField] private Camera previewCamera;
+
+    [Header("Optional UI To Hide")]
+    [SerializeField] private GameObject mobileUI;
+
+    [Header("Options")]
+    [SerializeField] private bool pauseGameWhileOpen = true;
+    [SerializeField] private bool autoEquipOnPickup = false;
+
+    private InventoryUIController inventoryUI;
+    private InteractionController interactionController;
+
+    private ItemDefinition currentItem;
+    private GameObject currentPreviewInstance;
+    private bool alreadyConfirmed = false;
+    private float prevTimeScale = 1f;
+
+    public bool IsShowing => root != null && root.activeSelf;
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        inventoryUI = FindFirstObjectByType<InventoryUIController>();
+        interactionController = FindFirstObjectByType<InteractionController>();
+
+        if (closeButton != null)
+            closeButton.onClick.AddListener(ConfirmPickup);
+
+        if (acquireButton != null)
+            acquireButton.onClick.AddListener(ConfirmPickup);
+
+        if (root != null)
+            root.SetActive(false);
+
+        if (previewImage != null && previewTexture != null)
+            previewImage.texture = previewTexture;
+
+        if (previewCamera != null && previewTexture != null)
+            previewCamera.targetTexture = previewTexture;
+    }
+
+    public void Show(ItemDefinition item)
+    {
+        if (item == null)
+        {
+            Debug.LogWarning("[ItemPickupPopup] item is null");
+            return;
+        }
+
+        currentItem = item;
+        alreadyConfirmed = false;
+
+        if (itemNameText != null)
+        {
+            itemNameText.text = string.IsNullOrEmpty(item.displayName) ? item.name : item.displayName;
+        }
+
+        if (descriptionText != null)
+        {
+            descriptionText.text = item.description;
+        }
+
+        CreatePreview(item);
+
+        if (root != null)
+            root.SetActive(true);
+
+        if (mobileUI != null)
+            mobileUI.SetActive(false);
+
+        if (pauseGameWhileOpen)
+        {
+            prevTimeScale = Time.timeScale;
+            Time.timeScale = 0f;
+        }
+
+    }
+
+    private void CreatePreview(ItemDefinition item)
+    {
+        ClearPreview();
+
+        if (previewSpawnRoot == null)
+        {
+            Debug.LogWarning("[ItemPickupPopup] previewRoot is null");
+            return;
+        }
+
+        if (previewImage != null && previewTexture != null)
+            previewImage.texture = previewTexture;
+
+        if (previewCamera != null && previewTexture != null)
+            previewCamera.targetTexture = previewTexture;
+
+        if (item.previewPrefab == null)
+        {
+            Debug.LogWarning($"[ItemPickupPopup] previewPrefab missing for {item.name}");
+            return;
+        }
+
+        currentPreviewInstance = Instantiate(item.previewPrefab, previewSpawnRoot);
+        currentPreviewInstance.transform.localPosition = item.previewLocalPosition;
+        currentPreviewInstance.transform.localRotation = Quaternion.Euler(item.previewLocalEuler);
+        currentPreviewInstance.transform.localScale = item.previewLocalScale;
+
+        var rotator = currentPreviewInstance.GetComponent<ItemPreviewRotator>();
+        if (rotator == null)
+            rotator = currentPreviewInstance.AddComponent<ItemPreviewRotator>();
+
+        rotator.SetSpeed(item.previewRotateSpeed);
+
+    }
+
+    private void ConfirmPickup()
+    {
+        if (alreadyConfirmed) return;
+        alreadyConfirmed = true;
+
+        if (currentItem != null && inventoryUI != null)
+        {
+            bool added = inventoryUI.AddItem(currentItem, autoEquipOnPickup);
+
+            if (added)
+            {
+                Debug.Log($"[ItemPickupPopup] Added item: {currentItem.name}");
+                // 획득 사운드 재생
+                // Managers.Sound.Play("재생하고자 하는 사운드");
+            }
+            else
+            {
+                Debug.Log($"[ItemPickupPopup] Item already exists: {currentItem.name}");
+            }
+        }
+        Close();
+    }
+
+    public void Close()
+    {
+        ClearPreview();
+
+        currentItem = null;
+
+        if (root != null)
+            root.SetActive(false);
+
+        if (mobileUI != null)
+            mobileUI.SetActive(true);
+
+        if (pauseGameWhileOpen)
+            Time.timeScale = prevTimeScale;
+    }
+
+    private void ClearPreview()
+    {
+        if (currentPreviewInstance != null)
+        {
+            Destroy(currentPreviewInstance);
+            currentPreviewInstance = null;
+        }
+
+        if (previewSpawnRoot != null)
+        {
+            for (int i = previewSpawnRoot.childCount - 1; i >= 0; i--)
+            {
+                Destroy(previewSpawnRoot.GetChild(i).gameObject);
+            }
+        }
+    }
+}

@@ -18,6 +18,17 @@ public class ItemDefinition : ScriptableObject
     public ItemType itemType;
     public Sprite icon;
 
+    [Header("Popup Info")]
+    public string displayName;
+    [TextArea(2, 4)] public string description;
+    public GameObject previewPrefab;
+
+    [Header("Preview Transform")]
+    public Vector3 previewLocalPosition = Vector3.zero;
+    public Vector3 previewLocalEuler = Vector3.zero;
+    public Vector3 previewLocalScale = Vector3.one;
+    public float previewRotateSpeed = 50f;
+
     [Header("Common")]
     public float cooldownSeconds = 0f;
 

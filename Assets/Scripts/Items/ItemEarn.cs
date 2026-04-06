@@ -11,6 +11,8 @@ public class ItemEarn : MonoBehaviour
     [SerializeField] private ItemDefinition rewardItem;
     private string itemName;
 
+    [SerializeField] private WorldItemPickup rewardPickup;
+
     private void Awake()
     {
         itemName = gameObject.name;
@@ -43,7 +45,12 @@ public class ItemEarn : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        if (invUI != null && rewardItem != null)
+
+        if (rewardPickup != null)
+        {
+            rewardPickup.ShowPickupPopup();
+        }
+        else if (invUI != null && rewardItem != null)
         {
             bool added = invUI.AddItem(rewardItem);
             Debug.Log($"{itemName} AddItem result = {added}");
