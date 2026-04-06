@@ -97,9 +97,13 @@ public class InventoryUIController : MonoBehaviour
 
         Debug.Log($"{def.name} equipped!! this is button");
 
-        if (def.name == "Key")
+        if (def.itemType == ItemType.Key)
         {
             itemUseBroadcaster?.RaiseItemUsed("key_equipped");
+        }
+        else if (def.itemType == ItemType.Magnet)
+        {
+            itemUseBroadcaster?.RaiseItemUsed("magnet_equipped");
         }
     }
 

@@ -16,6 +16,10 @@ public class TutorialStepAsset : ScriptableObject
     [Header("Highlight (Optional)")]
     public string highlightTargetId;
 
+    [Header("UI Control")]
+    public string[] targetsToShow;
+    public string[] targetsToHide;
+
     [Header("Flow")]
     public float advanceDelay = 0.2f;
 

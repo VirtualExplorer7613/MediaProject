@@ -14,6 +14,7 @@ public class TutorialRunner : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private ItemUseBroadcaster itemUseBroadcaster;
     [SerializeField] private TutorialHighlighter highlighter;
+    [SerializeField] private Transform orcaTarget;
 
     private int index = -1;
     private TutorialCondition currentCondition;
@@ -24,7 +25,8 @@ public class TutorialRunner : MonoBehaviour
         context = new TutorialContext
         {
             player = player,
-            itemUseBroadcaster = itemUseBroadcaster
+            itemUseBroadcaster = itemUseBroadcaster,
+            orcaTarget = orcaTarget
         };
     }
 
@@ -59,6 +61,20 @@ public class TutorialRunner : MonoBehaviour
 
         if (highlighter != null)
         {
+            if (step.targetsToHide != null)
+            {
+                foreach (var id in step.targetsToHide)
+                {
+                    highlighter.ShowTarget(id, false);
+                }
+            }
+
+            if (step.targetsToShow != null)
+            {
+                foreach (var id in step.targetsToShow)
+                    highlighter.ShowTarget(id, true);
+            }
+
             if (!string.IsNullOrEmpty(step.highlightTargetId))
                 highlighter.Highlight(step.highlightTargetId);
             else

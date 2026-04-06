@@ -23,7 +23,7 @@ public class TutorialUI : MonoBehaviour
         if (instant)
         {
             canvasGroup.alpha = visible ? 1f : 0f;
-            canvasGroup.blocksRaycasts = visible;
+            canvasGroup.blocksRaycasts = false;
             canvasGroup.interactable = visible;
             return;
         }
@@ -36,8 +36,11 @@ public class TutorialUI : MonoBehaviour
         float start = canvasGroup.alpha;
         float t = 0f;
 
-        canvasGroup.blocksRaycasts = target > 0.5f;
-        canvasGroup.interactable = target > 0.5f;
+        /*canvasGroup.blocksRaycasts = target > 0.5f;
+        canvasGroup.interactable = target > 0.5f;*/
+
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup.interactable = false;
 
         while (t < fadeDuration)
         {
