@@ -15,8 +15,7 @@ MonoBehaviour:
   messageKorean: "\uAC00\uC11C \uB9D0\uC744 \uAC78\uC5B4 \uBCFC\uAE4C\uC694?"
   messageEnglish: 
   conditionPrefab: {fileID: 355915398756100229, guid: 736f8f7e717a27c479c99ad29e895df6, type: 3}
-  highlightTargetId: npc_talk_button
-  targetsToShow:
-  - npc_talk_button
+  highlightTargetId: 
+  targetsToShow: []
   targetsToHide: []
   advanceDelay: 0.2

@@ -16,8 +16,7 @@ MonoBehaviour:
     \uB20C\uB7EC\uBCF4\uC138\uC694!"
   messageEnglish: 
   conditionPrefab: {fileID: 8448348817773122069, guid: 7a10b5a85c7f8194ea7a8776b765b7f8, type: 3}
-  highlightTargetId: "\uC624\uB978\uCABD \uC544\uB798 '\uD30C\uB3C4 \uBC84\uD2BC'\uC744
-    \uB20C\uB7EC\uBCF4\uC138\uC694!"
+  highlightTargetId: wave_button
   targetsToShow:
   - wave_button
   targetsToHide: []
