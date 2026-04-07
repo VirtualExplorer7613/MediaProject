@@ -48,6 +48,15 @@ MonoBehaviour:
   cam: {fileID: 0}
   ultrasoundPrefab: {fileID: 2267755636713246667, guid: 69426289c5360c441ac30564e5366257, type: 3}
   magnetVisual: {fileID: 0}
+  hammerVisual: {fileID: 0}
+  scissorVisual: {fileID: 0}
+  spongeVisual: {fileID: 0}
+  spongeSurfaceMask:
+    serializedVersion: 2
+    m_Bits: 0
+  oilStainMask:
+    serializedVersion: 2
+    m_Bits: 0
   shootPoint: {fileID: 0}
   trashLayerMask:
     serializedVersion: 2
