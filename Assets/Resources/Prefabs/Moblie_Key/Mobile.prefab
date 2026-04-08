@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 6077120056096959678}
   - component: {fileID: 7994155005816887194}
   - component: {fileID: 2284338163186777184}
+  - component: {fileID: 4039963056617413989}
   m_Layer: 5
   m_Name: Wave_BTN
   m_TagString: Untagged
@@ -422,6 +423,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4039963056617413989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3156291445953452801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18acdfaf7114e6b4c939f6e1b2762aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveButton: {fileID: 7994155005816887194}
+  whaleController: {fileID: 0}
+  cooldown: 1
 --- !u!1 &3517748708690319497
 GameObject:
   m_ObjectHideFlags: 0
