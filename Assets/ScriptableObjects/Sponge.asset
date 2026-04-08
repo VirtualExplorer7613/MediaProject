@@ -14,9 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 6
   icon: {fileID: 21300000, guid: 7d2a6cfc88c21f94a9eb81843722e1dc, type: 3}
+  displayName: 
+  description: "\uB048\uC801\uD55C \uD754\uC801\uB3C4 \uBF40\uB4DD\uBF40\uB4DD!\n\uC9C0\uC800\uBD84\uD55C
+    \uAC83\uC744 \uB9D0\uB054\uD788 \uB2E6\uC544\uC8FC\uB294 \uC2A4\uD3F0\uC9C0"
+  previewPrefab: {fileID: 0}
+  previewLocalPosition: {x: 0, y: 0, z: 0}
+  previewLocalEuler: {x: 0, y: 0, z: 0}
+  previewLocalScale: {x: 1, y: 1, z: 1}
+  previewRotateSpeed: 50
   cooldownSeconds: 0
   magnetRadius: 8
   magnetMaxTargets: 3
   brushHoldSeconds: 1.5
   brushCleanRadius: 5
   brushMaxCleanCount: 10
+  pullMaxDistance: 8
