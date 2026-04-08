@@ -120,43 +120,55 @@ public class Prologue : BaseScene
         }
     }
 
+    // ==== [여기서부터 수정된 TypeText 코루틴] ====
     private IEnumerator TypeText(string text)
     {
         isTyping = true;
-        prologueText.text = ""; // 기존 텍스트 지우기
 
-        int i = 0;
-        while (i < text.Length)
+        // 인스펙터에서 작성한 \n 기호를 실제 줄바꿈으로 인식하도록 안전하게 변환
+        string parsedText = text.Replace("\\n", "\n");
+
+        // 1. 텍스트 전체를 먼저 넣고 화면 업데이트 강제 실행 (태그를 색상으로 파싱)
+        prologueText.text = parsedText;
+        prologueText.maxVisibleCharacters = 0; // 글자 숨기기
+        prologueText.ForceMeshUpdate();
+
+        // 2. 태그(<color> 등)를 제외한 '실제 화면에 보이는 글자 수' 가져오기
+        int totalVisibleCharacters = prologueText.textInfo.characterCount;
+
+        // 3. 한 글자씩 보이게 처리
+        for (int i = 0; i < totalVisibleCharacters; i++)
         {
-            // 만약 줄바꿈 문자 발견하면
-            if (text[i] == '\\' && i + 1 < text.Length && text[i + 1] == 'n')
+            prologueText.maxVisibleCharacters = i + 1;
+
+            // 방금 출력된 글자가 무엇인지 확인 (기존 딜레이 로직 유지를 위해)
+            char c = prologueText.textInfo.characterInfo[i].character;
+
+            if (c == '\n')
             {
-                prologueText.text += '\n'; // 줄바꿈 추가
-                i += 2; // 두 글자 넘기기
-                yield return new WaitForSeconds(typingSpeed * 2f);
-                continue; // 줄바꿈일때 살짝
+                yield return new WaitForSeconds(typingSpeed * 2f); // 줄바꿈일때 살짝
             }
-
-            prologueText.text += text[i];
-            i++;
-
-            // 띄어쓰기일 경우 빠르게, 아니면 기본 속도
-            if (prologueText.text[^1] == ' ')
+            else if (c == ' ')
+            {
                 yield return new WaitForSeconds(typingSpeed * 0.3f); // 띄어쓰기면 더 빠르게
+            }
             else
-                yield return new WaitForSeconds(typingSpeed);
+            {
+                yield return new WaitForSeconds(typingSpeed); // 기본 속도
+            }
         }
 
         isTyping = false;
 
         space?.SetActive(true);
 
-        //타이핑이 끝나면 자동으로 씬 이동
+        // 타이핑이 끝나면 자동으로 씬 이동
         if (currentIndex >= Mathf.Min(imageList.Count, textList.Count) - 1 && !isMoving)
         {
             StartCoroutine(AutoEndAfterDelay());
         }
     }
+    // ==== [수정된 부분 끝] ====
 
     private void EndPrologue()
     {
