@@ -5,6 +5,7 @@ public class ScissorVisual : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private GameObject visualRoot;
     [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource cutLoopAudioSource;
 
     [Header("Placement")]
     [SerializeField] private Vector3 offset = new Vector3(0.45f, 0.22f, 0f);
@@ -25,18 +26,30 @@ public class ScissorVisual : MonoBehaviour
     {
         if (visualRoot != null)
             visualRoot.SetActive(visible);
+
+        if (!visible)
+            StopCutLoop();
     }
 
     public void StartCutLoop()
     {
         if (animator != null)
             animator.SetBool(cutBoolName, true);
+
+        if (cutLoopAudioSource != null && !cutLoopAudioSource.isPlaying)
+        {
+            cutLoopAudioSource.loop = true;
+            cutLoopAudioSource.Play();
+        }
     }
 
     public void StopCutLoop()
     {
         if (animator != null)
             animator.SetBool(cutBoolName, false);
+
+        if (cutLoopAudioSource != null && cutLoopAudioSource.isPlaying)
+            cutLoopAudioSource.Stop();
     }
 
     private void LateUpdate()

@@ -14,6 +14,10 @@ public class Ultrasound : MonoBehaviour
     [SerializeField] private ItemUseBroadcaster itemUseBroadcaster;
     private bool hasReportedTrashClean = false;
 
+    [SerializeField] private GameObject trashBreakVfxPrefab;
+    [SerializeField] private Vector3 vfxOffset = Vector3.zero;
+    [SerializeField] private float vfxDestroyDelay = 1.5f;
+
     public void SetBroadcaster(ItemUseBroadcaster Broadcaster)
     {
         itemUseBroadcaster = Broadcaster;
@@ -80,7 +84,9 @@ public class Ultrasound : MonoBehaviour
             Debug.Log("Äù½ºÆ® ´ë»ó ¾²·¹±â ÆÄ±«µÊ!");
 
             questTarget.CompleteQuestTarget();
+            SpawnTrashBreakVfx(other.bounds.center);
 
+            TrashVfxUtility.SpawnOneShot(trashBreakVfxPrefab, other.transform.position, vfxOffset, vfxDestroyDelay);
             Managers.Sound.Play("Bubble_Surface_Large_01");
             InteractionSystem.Instance.NotifyInteractionComplete();
 
@@ -90,6 +96,8 @@ public class Ultrasound : MonoBehaviour
 
         if (other.CompareTag("Trash"))
         {
+            SpawnTrashBreakVfx(other.bounds.center);
+            TrashVfxUtility.SpawnOneShot(trashBreakVfxPrefab, other.transform.position, vfxOffset, vfxDestroyDelay);
             Debug.Log("ÀÏ¹Ý ¾²·¹±â ÆÄ±«µÊ!");
 
             TrashManager.Instance?.DecreaseTrash();
@@ -104,5 +112,15 @@ public class Ultrasound : MonoBehaviour
                 itemUseBroadcaster?.RaiseItemUsed("wave");
             }
         }
+    }
+
+    private void SpawnTrashBreakVfx(Vector3 position)
+    {
+        TrashVfxUtility.SpawnOneShot(
+            trashBreakVfxPrefab,
+            position,
+            vfxOffset,
+            vfxDestroyDelay
+        );
     }
 }

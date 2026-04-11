@@ -9,6 +9,7 @@ public class MagnetStrategy : IInteractionStrategy
     private readonly Dictionary<DraggedItem, float> collectTimers = new();
 
     private const float CollectSeconds = 2.5f;
+    private const string MagnetLoopSfx = "SFX/Magnet";
 
     public MagnetStrategy(ItemDefinition def) => this.def = def;
 
@@ -19,6 +20,7 @@ public class MagnetStrategy : IInteractionStrategy
     public void OnDeselected(InteractionContext ctx)
     {
         ctx?.SetMagnetVisual(false);
+        Managers.Sound.StopLoopEffect();
         StopAll();
     }
 
@@ -27,6 +29,7 @@ public class MagnetStrategy : IInteractionStrategy
         // 누르면 자석이 보이기 시작
         ctx?.SetMagnetVisual(true);
         // Press 시 즉시 한 번 탐색해서 끌기 시작 (체감 즉시성)
+        Managers.Sound.Play(MagnetLoopSfx, Define.Sound.LoopEffect);
         AcquireTargets(ctx);
     }
 
@@ -91,6 +94,7 @@ public class MagnetStrategy : IInteractionStrategy
     public void OnRelease(InteractionContext ctx)
     {
         ctx?.SetMagnetVisual(false);
+        Managers.Sound.StopLoopEffect();
         StopAll();
     }
 

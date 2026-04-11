@@ -36,6 +36,10 @@ public class ItemPickupPopup : MonoBehaviour
     [Header("Tutorial")]
     [SerializeField] private ItemUseBroadcaster itemUseBroadcaster;
 
+    [Header("SFX")]
+    [SerializeField] private string popupOpenSfx = "SFX/Item Popup";
+    [SerializeField] private string clickSfx = "SFX/Click";
+
 
     private InventoryUIController inventoryUI;
     private InteractionController interactionController;
@@ -113,6 +117,8 @@ public class ItemPickupPopup : MonoBehaviour
             Time.timeScale = 0f;
         }
 
+        // 팝업 등장 사운드
+        Managers.Sound.Play(popupOpenSfx);
     }
 
     private void CreatePreview(ItemDefinition item)
@@ -154,6 +160,9 @@ public class ItemPickupPopup : MonoBehaviour
     {
         if (alreadyConfirmed) return;
         alreadyConfirmed = true;
+
+        // 버튼 클릭음
+        Managers.Sound.Play(clickSfx);
 
         if (currentItem != null && inventoryUI != null)
         {

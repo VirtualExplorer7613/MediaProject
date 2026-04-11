@@ -114,6 +114,13 @@ public class WhaleController : MonoBehaviour
     [SerializeField] private float maxBackwardSpeedMultiplier = 0.75f;
 
 
+    [SerializeField] private float hoverHeight = 3f;          // 바닥과 유지할 목표 거리
+    [SerializeField] private float hoverAdjustSpeed = 8f;       // 높이 보정 속도
+    [SerializeField] private float hoverProbeDistance = 5f;     // 바닥 탐색 거리
+    [SerializeField] private float maxHoverCorrection = 0.2f;   // 한 프레임 최대 보정량
+    [SerializeField] private float slopeLimit = 45f;            // 오를 수 있는 최대 경사각
+
+
     #region Mobile Vertical Buttons(Legacy)
     /*
     [Header("Mobile Vertical Buttons")]
