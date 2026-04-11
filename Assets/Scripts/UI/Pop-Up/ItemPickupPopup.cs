@@ -33,6 +33,10 @@ public class ItemPickupPopup : MonoBehaviour
     [SerializeField] private bool pauseGameWhileOpen = true;
     [SerializeField] private bool autoEquipOnPickup = false;
 
+    [Header("Tutorial")]
+    [SerializeField] private ItemUseBroadcaster itemUseBroadcaster;
+
+
     private InventoryUIController inventoryUI;
     private InteractionController interactionController;
 
@@ -54,6 +58,9 @@ public class ItemPickupPopup : MonoBehaviour
 
         inventoryUI = FindFirstObjectByType<InventoryUIController>();
         interactionController = FindFirstObjectByType<InteractionController>();
+
+        if (itemUseBroadcaster == null)
+            itemUseBroadcaster = FindFirstObjectByType<ItemUseBroadcaster>();
 
         if (closeButton != null)
             closeButton.onClick.AddListener(ConfirmPickup);
@@ -155,6 +162,7 @@ public class ItemPickupPopup : MonoBehaviour
             if (added)
             {
                 Debug.Log($"[ItemPickupPopup] Added item: {currentItem.name}");
+                RaisePickupEventByItemType(currentItem);
                 // 획득 사운드 재생
                 // Managers.Sound.Play("재생하고자 하는 사운드");
             }
@@ -196,6 +204,39 @@ public class ItemPickupPopup : MonoBehaviour
             {
                 Destroy(previewSpawnRoot.GetChild(i).gameObject);
             }
+        }
+    }
+
+    private void RaisePickupEventByItemType(ItemDefinition item)
+    {
+        if (itemUseBroadcaster == null || item == null) return;
+
+        switch (item.itemType)
+        {
+            case ItemType.Ultrasound:
+                itemUseBroadcaster.RaiseItemUsed("wave_earned");
+                break;
+            case ItemType.Magnet:
+                itemUseBroadcaster.RaiseItemUsed("magnet_earned");
+                break;
+            case ItemType.Brush:
+                itemUseBroadcaster.RaiseItemUsed("brush_earned");
+                break;
+            case ItemType.Key:
+                itemUseBroadcaster.RaiseItemUsed("key_earned");
+                break;
+            case ItemType.Hammer:
+                itemUseBroadcaster.RaiseItemUsed("hammer_earned");
+                break;
+            case ItemType.Scissor:
+                itemUseBroadcaster.RaiseItemUsed("scissor_earned");
+                break;
+            case ItemType.Sponge:
+                itemUseBroadcaster.RaiseItemUsed("sponge_earned");
+                break;
+            case ItemType.Pull:
+                itemUseBroadcaster.RaiseItemUsed("pull_earned");
+                break;
         }
     }
 }

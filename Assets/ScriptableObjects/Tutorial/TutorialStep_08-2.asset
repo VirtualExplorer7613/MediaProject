@@ -15,7 +15,7 @@ MonoBehaviour:
   messageKorean: "\uC624\uB978\uCABD\uC5D0 \uC788\uB294 \uAC00\uBC29 \uBC84\uD2BC\uC744
     \uB20C\uB7EC\uC11C\\n\uC5F4\uC1E0\uB97C \uD655\uC778\uD574 \uBCFC\uAE4C\uC694?"
   messageEnglish: 
-  conditionPrefab: {fileID: 2450821440983550022, guid: 2c4b85bbc47ff0940a226f95cf08b7b7, type: 3}
+  conditionPrefab: {fileID: 8448348817773122069, guid: f8fba1d01be872a4c811aa5b9aace41a, type: 3}
   highlightTargetId: inventory_button
   targetsToShow: []
   targetsToHide: []

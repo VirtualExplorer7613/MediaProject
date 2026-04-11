@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageKorean: "\uAC00\uC11C \uB9D0\uC744 \uAC78\uC5B4 \uBCFC\uAE4C\uC694?"
   messageEnglish: 
-  conditionPrefab: {fileID: 355915398756100229, guid: 736f8f7e717a27c479c99ad29e895df6, type: 3}
+  conditionPrefab: {fileID: -7529927152016545428, guid: 4b8fae0afbc830746b320cc0aa22c6bb, type: 3}
   highlightTargetId: 
   targetsToShow: []
   targetsToHide: []

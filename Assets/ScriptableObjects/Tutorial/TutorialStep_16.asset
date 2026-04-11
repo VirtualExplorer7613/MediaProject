@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac8c441721fd9749983415fffd47577, type: 3}
   m_Name: TutorialStep_16
   m_EditorClassIdentifier: 
-  messageKorean: "\"\uCE90\uB9AD\uD130 \uC704\uC5D0 \uB72C \uB9D0\uD48D\uC120 \uC544\uC774\uCF58\uC744
-    \uB20C\uB7EC\uBCF4\uC138\uC694!\""
+  messageKorean: "\"\uC624\uB978 \uCABD \uC544\uB798 \uB9D0\uD48D\uC120 \uC544\uC774\uCF58\uC744
+    \uB20C\uB7EC\\n\uBC94\uACE0\uB798\uC5D0\uAC8C \uB9D0\uC744 \uAC78\uC5B4\uBCF4\uC138\uC694!\u201D"
   messageEnglish: 
   conditionPrefab: {fileID: 355915398756100229, guid: 736f8f7e717a27c479c99ad29e895df6, type: 3}
   highlightTargetId: npc_talk_button
