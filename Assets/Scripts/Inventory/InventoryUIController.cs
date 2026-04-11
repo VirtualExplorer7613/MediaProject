@@ -16,6 +16,9 @@ public class InventoryUIController : MonoBehaviour
     [Header("Target")]
     [SerializeField] private InteractionController interactionController;
 
+    [Header("SFX")]
+    [SerializeField] private string clickSfx = "SFX/Click";
+
     private InventoryItemButton selectedButton;
 
     private readonly Dictionary<ItemDefinition, InventoryItemButton> buttonMap = new();
@@ -58,6 +61,7 @@ public class InventoryUIController : MonoBehaviour
     private void ToggleInventory()
     {
         if (inventoryPanel == null) return;
+        Managers.Sound.Play(clickSfx);
         inventoryPanel.SetActive(!inventoryPanel.activeSelf);
         itemUseBroadcaster?.RaiseItemUsed("inventory_open");
     }
@@ -95,7 +99,7 @@ public class InventoryUIController : MonoBehaviour
         // 선택 후 자동 접힘
         if (inventoryPanel != null)
             inventoryPanel.SetActive(false);
-
+        Managers.Sound.Play(clickSfx);
         Debug.Log($"{def.name} equipped!! this is button");
 
         if (def.itemType == ItemType.Key)

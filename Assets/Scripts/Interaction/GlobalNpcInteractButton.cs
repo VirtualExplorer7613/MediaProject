@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class GlobalNpcInteractButton : MonoBehaviour
 {
+    [SerializeField] private string clickSfx = "SFX/Click";
     //버튼 누르면 플레이어 기준 가장 가까운 NPC에게 상호작용 전달
     public void OnClickInteract()
     {
+        Managers.Sound.Play(clickSfx);
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return;
 
