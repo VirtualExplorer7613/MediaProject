@@ -476,11 +476,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 85
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 85
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 7213267173144554268, guid: ec35a5a9f2b5dab47a27d4c18941112f, type: 3}
       propertyPath: m_LocalScale.x
@@ -610,11 +610,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   textList:
-  - "52\uD5E4\uB974\uCE20(Hz) \uACE0\uB798.\\n\uC9C0\uAD6C\uC0C1\uC5D0\uC11C \uAC00\uC7A5
-    \uC678\uB85C\uC6B4 \uC0DD\uBA85\uCCB4\uB77C\uACE0\uB3C4 \uBD88\uB9AC\uB294 \uC874\uC7AC.\\n\\n\uC77C\uBC18\uC801\uC778
+  - "<font=\"Sunflower-Bold SDF\"><size=70><line-height=120%>52\uD5E4\uB974\uCE20(Hz)
+    \uACE0\uB798.\\n\uC9C0\uAD6C\uC0C1\uC5D0\uC11C \uAC00\uC7A5 \uC678\uB85C\uC6B4
+    \uC0DD\uBA85\uCCB4\uB77C\uACE0\uB3C4 \uBD88\uB9AC\uB294 \uC874\uC7AC.\\n\\n\uC77C\uBC18\uC801\uC778
     \uACE0\uB798\uB4E4\uACFC\uB294 \uC8FC\uD30C\uC218\uAC00 \uB2EC\uB77C,\\n\uADF8
     \uB204\uAD6C\uC5D0\uAC8C\uB3C4 \uC18C\uB9AC\uAC00 \uB2FF\uC9C0 \uC54A\uB294\uB2E4\uACE0
-    \uD55C\uB2E4.\\n\\n\uADF8\uB7F0\uB370..."
+    \uD55C\uB2E4.\\n\\n\uADF8\uB7F0\uB370...</line-height></size></font>"
   - "(\uCE58\uC9C0\uC9C1... \uCE58\uC9C1...)\\n...\uB3C4\uC640\uC918."
   - "\uD639\uC2DC \uB0B4 \uBAA9\uC18C\uB9AC\uAC00 \uB4E4\uB9AC\uB2C8?"
   - "<color=#2361BD>...\uB204\uAD6C\uC9C0?\\n\uC8FC\uBCC0\uC5D4 \uC544\uBB34\uB3C4
@@ -1178,8 +1179,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5ee70bfd81fbd76499b641d0425e3149, type: 2}
-  m_sharedMaterial: {fileID: -5951021667382797521, guid: 5ee70bfd81fbd76499b641d0425e3149, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d1ca75b9e146e144381d062071a24370, type: 2}
+  m_sharedMaterial: {fileID: -4653043700391946035, guid: d1ca75b9e146e144381d062071a24370, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1203,8 +1204,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 90
+  m_fontSizeBase: 90
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
