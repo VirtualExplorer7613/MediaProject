@@ -42,6 +42,12 @@ public class FocusMask : MaskableGraphic
         SetVerticesDirty();
     }
 
+    public void SetHoleShape(HoleShape shape)
+    {
+        holeShape = shape;
+        SetVerticesDirty();
+    }
+
     public void SetTarget(RectTransform newTarget, Vector2 newPadding)
     {
         target = newTarget;
@@ -150,46 +156,98 @@ public class FocusMask : MaskableGraphic
 
     private void DrawRectangleHole(VertexHelper vh, Rect rect)
     {
-        float left = Mathf.Clamp(holeRectCanvasSpace.xMin, rect.xMin, rect.xMax);
-        float right = Mathf.Clamp(holeRectCanvasSpace.xMax, rect.xMin, rect.xMax);
-        float bottom = Mathf.Clamp(holeRectCanvasSpace.yMin, rect.yMin, rect.yMax);
-        float top = Mathf.Clamp(holeRectCanvasSpace.yMax, rect.yMin, rect.yMax);
+        float innerLeft = Mathf.Clamp(holeRectCanvasSpace.xMin, rect.xMin, rect.xMax);
+        float innerRight = Mathf.Clamp(holeRectCanvasSpace.xMax, rect.xMin, rect.xMax);
+        float innerBottom = Mathf.Clamp(holeRectCanvasSpace.yMin, rect.yMin, rect.yMax);
+        float innerTop = Mathf.Clamp(holeRectCanvasSpace.yMax, rect.yMin, rect.yMax);
 
-        // 위
-        if (top < rect.yMax)
-        {
-            AddQuad(vh,
-                new Vector2(rect.xMin, top),
-                new Vector2(rect.xMax, rect.yMax),
-                color);
-        }
+        float edge = Mathf.Max(softEdgeWidth, 0.01f);
 
-        // 아래
-        if (bottom > rect.yMin)
-        {
-            AddQuad(vh,
-                new Vector2(rect.xMin, rect.yMin),
-                new Vector2(rect.xMax, bottom),
-                color);
-        }
+        float outerLeft = Mathf.Clamp(innerLeft - edge, rect.xMin, rect.xMax);
+        float outerRight = Mathf.Clamp(innerRight + edge, rect.xMin, rect.xMax);
+        float outerBottom = Mathf.Clamp(innerBottom - edge, rect.yMin, rect.yMax);
+        float outerTop = Mathf.Clamp(innerTop + edge, rect.yMin, rect.yMax);
 
-        // 왼쪽
-        if (left > rect.xMin)
-        {
-            AddQuad(vh,
-                new Vector2(rect.xMin, bottom),
-                new Vector2(left, top),
-                color);
-        }
+        Color32 baseColor = color;
+        Color32 transparent = new Color32(baseColor.r, baseColor.g, baseColor.b, 0);
 
-        // 오른쪽
-        if (right < rect.xMax)
-        {
-            AddQuad(vh,
-                new Vector2(right, bottom),
-                new Vector2(rect.xMax, top),
-                color);
-        }
+        // 1) soft edge 바깥 완전 dim 영역
+        if (outerTop < rect.yMax)
+            AddQuad(vh, new Vector2(rect.xMin, outerTop), new Vector2(rect.xMax, rect.yMax), baseColor);
+
+        if (outerBottom > rect.yMin)
+            AddQuad(vh, new Vector2(rect.xMin, rect.yMin), new Vector2(rect.xMax, outerBottom), baseColor);
+
+        if (outerLeft > rect.xMin)
+            AddQuad(vh, new Vector2(rect.xMin, outerBottom), new Vector2(outerLeft, outerTop), baseColor);
+
+        if (outerRight < rect.xMax)
+            AddQuad(vh, new Vector2(outerRight, outerBottom), new Vector2(rect.xMax, outerTop), baseColor);
+
+        // 2) 위 soft strip
+        AddGradientQuad(
+            vh,
+            new Vector2(innerLeft, innerTop),
+            new Vector2(innerRight, outerTop),
+            transparent, transparent, baseColor, baseColor
+        );
+
+        // 3) 아래 soft strip
+        AddGradientQuad(
+            vh,
+            new Vector2(innerLeft, outerBottom),
+            new Vector2(innerRight, innerBottom),
+            baseColor, baseColor, transparent, transparent
+        );
+
+        // 4) 왼쪽 soft strip
+        AddGradientQuad(
+            vh,
+            new Vector2(outerLeft, innerBottom),
+            new Vector2(innerLeft, innerTop),
+            baseColor, transparent, transparent, baseColor
+        );
+
+        // 5) 오른쪽 soft strip
+        AddGradientQuad(
+            vh,
+            new Vector2(innerRight, innerBottom),
+            new Vector2(outerRight, innerTop),
+            transparent, baseColor, baseColor, transparent
+        );
+
+        // 6) 코너 soft 영역 4개
+        // 좌상
+        AddGradientQuad(
+            vh,
+            new Vector2(outerLeft, innerTop),
+            new Vector2(innerLeft, outerTop),
+            baseColor, transparent, baseColor, baseColor
+        );
+
+        // 우상
+        AddGradientQuad(
+            vh,
+            new Vector2(innerRight, innerTop),
+            new Vector2(outerRight, outerTop),
+            transparent, baseColor, baseColor, baseColor
+        );
+
+        // 좌하
+        AddGradientQuad(
+            vh,
+            new Vector2(outerLeft, outerBottom),
+            new Vector2(innerLeft, innerBottom),
+            baseColor, baseColor, transparent, baseColor
+        );
+
+        // 우하
+        AddGradientQuad(
+            vh,
+            new Vector2(innerRight, outerBottom),
+            new Vector2(outerRight, innerBottom),
+            baseColor, baseColor, baseColor, transparent
+        );
     }
 
     private void DrawCircleHole(VertexHelper vh, Rect rect)
@@ -275,6 +333,26 @@ public class FocusMask : MaskableGraphic
         vh.AddVert(new Vector3(min.x, max.y), col, new Vector2(0f, 1f));
         vh.AddVert(new Vector3(max.x, max.y), col, new Vector2(1f, 1f));
         vh.AddVert(new Vector3(max.x, min.y), col, new Vector2(1f, 0f));
+
+        vh.AddTriangle(startIndex + 0, startIndex + 1, startIndex + 2);
+        vh.AddTriangle(startIndex + 2, startIndex + 3, startIndex + 0);
+    }
+
+    private void AddGradientQuad(
+    VertexHelper vh,
+    Vector2 min,
+    Vector2 max,
+    Color32 bottomLeft,
+    Color32 bottomRight,
+    Color32 topRight,
+    Color32 topLeft)
+    {
+        int startIndex = vh.currentVertCount;
+
+        vh.AddVert(new Vector3(min.x, min.y), bottomLeft, new Vector2(0f, 0f));
+        vh.AddVert(new Vector3(min.x, max.y), topLeft, new Vector2(0f, 1f));
+        vh.AddVert(new Vector3(max.x, max.y), topRight, new Vector2(1f, 1f));
+        vh.AddVert(new Vector3(max.x, min.y), bottomRight, new Vector2(1f, 0f));
 
         vh.AddTriangle(startIndex + 0, startIndex + 1, startIndex + 2);
         vh.AddTriangle(startIndex + 2, startIndex + 3, startIndex + 0);

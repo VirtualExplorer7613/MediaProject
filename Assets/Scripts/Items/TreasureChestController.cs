@@ -118,6 +118,19 @@ public class TreasureChestController : MonoBehaviour
         if (state != ChestState.Opened) return false;
         if (Vector3.Distance(transform.position, player.position) > collectDistance) return false;
 
+
+        if (rewardItem == null)
+        {
+            Debug.LogWarning("[Chest] rewardItem is missing.");
+            return false;
+        }
+
+        if (ItemPickupPopup.Instance == null)
+        {
+            Debug.LogError("[Chest] ItemPickupPopup.Instance is null");
+            return false;
+        }
+
         state = ChestState.Looted;
 
         if (rewardPrefab != null)
@@ -125,7 +138,11 @@ public class TreasureChestController : MonoBehaviour
             SpawnRewardVFXOnce();
         }
 
-        if (invUI != null && rewardItem != null)
+        if (ItemPickupPopup.Instance != null)
+        {
+            ItemPickupPopup.Instance.Show(rewardItem);
+        }
+        else if (invUI != null && rewardItem != null)
         {
             bool added = invUI.AddItem(rewardItem);
             Debug.Log($"[Chest] AddItem result = {added}");

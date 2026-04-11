@@ -22,6 +22,9 @@ public class TutorialHighlighter : MonoBehaviour
         public bool hideAtStart = false;
 
         public GameObject targetObject; // 예: 조이스틱 UI 루트, 아이템 버튼 루트
+
+        [Header("Mask Shape")]
+        public FocusMask.HoleShape holeShape = FocusMask.HoleShape.Circle;
     }
 
     [Header("Registered Targets")]
@@ -128,7 +131,10 @@ public class TutorialHighlighter : MonoBehaviour
         }
 
         if (focusMask != null)
+        {
+            focusMask.SetHoleShape(target.holeShape);
             focusMask.SetTarget(holeTarget, padding);
+        }
 
         /*if (frameAnchor != null && focusFrame != null)
         {

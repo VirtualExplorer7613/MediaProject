@@ -15,7 +15,7 @@ MonoBehaviour:
   messageKorean: "\uC0C1\uC790\uAC00 \uC5F4\uB838\uC5B4\uC694!\\n'\uC790\uC11D' \uC544\uC774\uD15C
     \uD68D\uB4DD!"
   messageEnglish: 
-  conditionPrefab: {fileID: 355915398756100229, guid: 736f8f7e717a27c479c99ad29e895df6, type: 3}
+  conditionPrefab: {fileID: 8448348817773122069, guid: ba93d73b02546ed4194a0f2bd2495277, type: 3}
   highlightTargetId: 
   targetsToShow: []
   targetsToHide: []

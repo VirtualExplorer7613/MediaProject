@@ -59,6 +59,7 @@ public class InventoryUIController : MonoBehaviour
     {
         if (inventoryPanel == null) return;
         inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+        itemUseBroadcaster?.RaiseItemUsed("inventory_open");
     }
 
     private void BuildButtons()
