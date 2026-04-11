@@ -28,8 +28,13 @@ public class DialogueManager : MonoBehaviour
     private float inputBlockUntil = 0f;
     [SerializeField] private float dialogueStartInputBlockTime = 0.2f;
 
+    [Header("Cameras")]
     public Camera mainCamera;
+    [SerializeField] private Camera dialogueCamera;
     //public Vector3 spawnOffset = new Vector3(1.6f, 0.25f, 3f); // 캐릭터 위치 오프셋 (조절 가능)
+
+    [Header("Dialogue Stage")]
+    [SerializeField] private GameObject dialogueStageRoot;
     [SerializeField] private Transform leftCharacterAnchor;
     [SerializeField] private Transform rightCharacterAnchor;
 
@@ -83,6 +88,18 @@ public class DialogueManager : MonoBehaviour
         whaleController = FindObjectOfType<WhaleController>();
         crosshairUI = FindAnyObjectByType<CrosshairUI>();
         interactionController = FindAnyObjectByType<InteractionController>();
+
+        if (dialogueStageRoot != null)
+            dialogueStageRoot.SetActive(false);
+
+        if (dialogueCamera != null)
+            dialogueCamera.gameObject.SetActive(false);
+
+        if (characterNameText != null)
+            characterNameText.gameObject.SetActive(false);
+
+        if (characterNameBox != null)
+            characterNameBox.gameObject.SetActive(false);
     }
 
 
@@ -134,6 +151,7 @@ public class DialogueManager : MonoBehaviour
             // JSON 파일을 DialogueData 객체로 변환
             dialogueData = JsonUtility.FromJson<DialogueData>(jsonFile.text);
             currentIndex = 0;
+            EnterDialogueStage();
             ShowCharacter(characterName);
             IsDialoguePlaying = true;
             StartCoroutine(PlayDialogueSequence());
@@ -175,7 +193,9 @@ public class DialogueManager : MonoBehaviour
                 HideCharacter();
                 IsDialoguePlaying = false;
 
-                // 고래 다시 보이기
+                ExitDialogueStage();
+
+                /*// 고래 다시 보이기
                 if (whaleController != null)
                 {
                     whaleController.SetVisible(true);
@@ -183,7 +203,7 @@ public class DialogueManager : MonoBehaviour
                         crosshairUI.IsVisible = true;
                     SetGameplayUIVisible(true);
                 }
-                interactionController?.OnDialogueClosed();
+                interactionController?.OnDialogueClosed();*/
                 yield break; // 대사 종료
             }
 
@@ -211,19 +231,26 @@ public class DialogueManager : MonoBehaviour
         PlayerPrefs.DeleteKey($"{dialogueData.character}_dialogue_index");
         dialogueBox.SetActive(false);
         HideCharacter();
+        /*
+                if (whaleController != null)
+                { 
+                    whaleController.SetVisible(true);
+                    if (crosshairUI != null)
+                        crosshairUI.IsVisible = true;
+                    SetGameplayUIVisible(true);
+                }
 
-        if (whaleController != null)
-        { 
-            whaleController.SetVisible(true);
-            if (crosshairUI != null)
-                crosshairUI.IsVisible = true;
-            SetGameplayUIVisible(true);
-        }
+                interactionController?.OnDialogueClosed();
 
-        interactionController?.OnDialogueClosed();
+                IsDialoguePlaying = false;
+                CurrentTalkingNPC.OnDialogueAfterQuestFinished();*/
 
+        ExitDialogueStage();
         IsDialoguePlaying = false;
-        CurrentTalkingNPC.OnDialogueAfterQuestFinished();
+
+        if (CurrentTalkingNPC != null)
+            CurrentTalkingNPC.OnDialogueAfterQuestFinished();
+
         CurrentTalkingNPC = null;
 
     }
@@ -498,6 +525,8 @@ public class DialogueManager : MonoBehaviour
             if (dialogueData.dialogue_sequence[currentIndex].type == "interaction")
                 currentIndex++; // interaction 건너뛰고 다음으로
 
+            EnterDialogueStage();
+
             //고래 숨기기
             if (whaleController != null)
             {
@@ -574,6 +603,44 @@ public class DialogueManager : MonoBehaviour
 
         if (mobileUI != null)
             mobileUI.SetActive(visible);
+    }
+
+    private void EnterDialogueStage()
+    {
+        if (whaleController != null)
+            whaleController.SetVisible(false);
+
+        SetGameplayUIVisible(false);
+        interactionController?.OnDialogueOpened();
+
+        if (dialogueStageRoot != null)
+            dialogueStageRoot.SetActive(true);
+
+        if (mainCamera != null)
+            mainCamera.gameObject.SetActive(false);
+
+        if (dialogueCamera != null)
+            dialogueCamera.gameObject.SetActive(true);
+    }
+
+    private void ExitDialogueStage()
+    {
+        HideCharacter();
+
+        if (dialogueCamera != null)
+            dialogueCamera.gameObject.SetActive(false);
+
+        if (mainCamera != null)
+            mainCamera.gameObject.SetActive(true);
+
+        if (dialogueStageRoot != null)
+            dialogueStageRoot.SetActive(false);
+
+        if (whaleController != null)
+            whaleController.SetVisible(true);
+
+        SetGameplayUIVisible(true);
+        interactionController?.OnDialogueClosed();
     }
 
 }

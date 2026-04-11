@@ -17,6 +17,7 @@ MonoBehaviour:
   messageEnglish: 
   conditionPrefab: {fileID: 8448348817773122069, guid: cc78b241c8bb1cc4092c4a55c54d1dac, type: 3}
   highlightTargetId: inventory_magnet_slot
-  targetsToShow: []
+  targetsToShow:
+  - inventory_button
   targetsToHide: []
   advanceDelay: 0.2
