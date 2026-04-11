@@ -124,3 +124,7 @@ MonoBehaviour:
   moveSpeed: 20
   scaleSpeed: 5
   maxDistance: 50
+  itemUseBroadcaster: {fileID: 0}
+  trashBreakVfxPrefab: {fileID: 2485276936549234680, guid: a500764f1a0d3654db7718249e73c3d3, type: 3}
+  vfxOffset: {x: 0, y: 0, z: 0}
+  vfxDestroyDelay: 2

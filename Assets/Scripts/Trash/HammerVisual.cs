@@ -77,6 +77,7 @@ public class HammerVisual : MonoBehaviour
             extraRot = Quaternion.Euler(roll, 0f, 0f);
             yield return null;
         }
+        
 
         extraRot = Quaternion.identity;
         swingCo = null;

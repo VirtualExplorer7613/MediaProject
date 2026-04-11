@@ -14,6 +14,12 @@ public class DraggedItem : MonoBehaviour
     [SerializeField] float minDistToWhale = 1f;
     [SerializeField] float magnetCollectDistance = 3f;
 
+
+    [SerializeField] private GameObject collectVfxPrefab;
+    [SerializeField] private Vector3 vfxOffset = Vector3.zero;
+    [SerializeField] private float vfxDestroyDelay = 1.5f;
+
+
     public bool interactable = true;
 
     public float MagnetCollectDistance => magnetCollectDistance;
@@ -173,8 +179,20 @@ public class DraggedItem : MonoBehaviour
         isDragged = false;
         target = null;
 
+        SpawnCollectVfx();
+
         Managers.Sound.Play("Bubble_Surface_Large_01");
         TrashManager.Instance?.DecreaseTrash();
         Destroy(gameObject);
+    }
+
+    private void SpawnCollectVfx()
+    {
+        TrashVfxUtility.SpawnOneShot(
+            collectVfxPrefab,
+            transform.position,
+            vfxOffset,
+            vfxDestroyDelay
+        );
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class SoundManager
@@ -29,6 +30,8 @@ public class SoundManager
                     _audioSources[i].volume = _bgmVolume;
                 else if ((Define.Sound)i == Define.Sound.Effect)
                     _audioSources[i].volume = _effectVolume;
+                else if ((Define.Sound)i == Define.Sound.LoopEffect)
+                    _audioSources[i].volume = _effectVolume;
             }
 
             //BGM은 루프로 재생
@@ -58,6 +61,19 @@ public class SoundManager
 
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
+            audioSource.Play();
+        }
+        else if (type == Define.Sound.LoopEffect)
+        {
+            AudioSource audioSource = _audioSources[(int)Define.Sound.LoopEffect];
+
+            if (audioSource.clip == audioClip && audioSource.isPlaying)
+                return;
+
+            audioSource.Stop();
+            audioSource.pitch = pitch;
+            audioSource.clip = audioClip;
+            audioSource.loop = true;
             audioSource.Play();
         }
         else
@@ -126,5 +142,14 @@ public class SoundManager
             _effectVolume = volume;
             _audioSources[(int)Define.Sound.Effect].volume = _effectVolume;
         }
+    }
+
+    public void StopLoopEffect()
+    {
+        AudioSource audioSource = _audioSources[(int)Define.Sound.LoopEffect];
+        if (audioSource == null) return;
+
+        audioSource.Stop();
+        audioSource.clip = null;
     }
 }

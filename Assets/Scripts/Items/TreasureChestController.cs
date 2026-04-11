@@ -15,8 +15,8 @@ public class TreasureChestController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private string openTriggerName = "Open";
     [Header("Distances")]
-    [SerializeField] private float useKeyDistance = 6f;
-    [SerializeField] private float collectDistance = 6f;
+    [SerializeField] private float useKeyDistance = 8f;
+    [SerializeField] private float collectDistance = 8f;
 
     [Header("Reward (¿É¼Ç)")]
     [SerializeField] private ItemDefinition rewardItem;
@@ -94,8 +94,10 @@ public class TreasureChestController : MonoBehaviour
 
         animator.ResetTrigger(openTriggerName);
         animator.SetTrigger(openTriggerName);
-        
-        yield return new WaitForSeconds(0.3f);
+
+        Managers.Sound.Play("SFX/Opening chest");
+
+        yield return new WaitForSeconds(1.5f);
 
         state = ChestState.Opened;
 

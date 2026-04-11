@@ -46,6 +46,7 @@ public class HammerStrategy : IInteractionStrategy
         }
         lastHitTime = Time.time;
 
+        Managers.Sound.Play("SFX/Hammer");
         // 1) »÷µŒ∏ß ø¨√‚
         ctx.hammerVisual?.PlaySwing();
 
