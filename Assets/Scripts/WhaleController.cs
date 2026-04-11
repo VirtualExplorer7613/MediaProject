@@ -113,11 +113,15 @@ public class WhaleController : MonoBehaviour
     [SerializeField] private float maxForwardSpeedMultiplier = 1f;
     [SerializeField] private float maxBackwardSpeedMultiplier = 0.75f;
 
+    [Header("Camera")]
+    [SerializeField] private Transform cameraPivot;
+    [SerializeField] private Camera playerCamera;
 
+    [Header("Slope")]
     [SerializeField] private float hoverHeight = 3f;          // 바닥과 유지할 목표 거리
-    [SerializeField] private float hoverAdjustSpeed = 8f;       // 높이 보정 속도
+    [SerializeField] private float hoverAdjustSpeed = 4f;       // 높이 보정 속도
     [SerializeField] private float hoverProbeDistance = 5f;     // 바닥 탐색 거리
-    [SerializeField] private float maxHoverCorrection = 0.2f;   // 한 프레임 최대 보정량
+    [SerializeField] private float maxHoverCorrection = 0.1f;   // 한 프레임 최대 보정량
     [SerializeField] private float slopeLimit = 45f;            // 오를 수 있는 최대 경사각
 
 
@@ -189,14 +193,17 @@ public class WhaleController : MonoBehaviour
         // pitch 제한 적용
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
-        targetRotation = Quaternion.Euler(pitch, yaw, 0f);
-        rb.rotation = targetRotation;
-        transform.rotation = targetRotation;
-
         dialogueManager = FindObjectOfType<DialogueManager>();
 
         if (verticalBlockMask.value == 0)
             verticalBlockMask = groundMask;
+
+        targetRotation = Quaternion.Euler(0f, yaw, 0f);
+        rb.rotation = targetRotation;
+        transform.rotation = targetRotation;
+
+        if (cameraPivot != null)
+            cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
 
     void Update()
@@ -270,7 +277,10 @@ public class WhaleController : MonoBehaviour
 
         // 고래 회전 적용
         //transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
-        targetRotation = Quaternion.Euler(pitch, yaw, 0f);
+        targetRotation = Quaternion.Euler(0, yaw, 0f);
+
+        if (cameraPivot != null)
+            cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
 
     #region Mobile Movement(legacy)
@@ -472,7 +482,7 @@ public class WhaleController : MonoBehaviour
 
                     lookFingerId = -1;
 
-                    transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+                    //transform.rotation = Quaternion.Euler(0, yaw, 0f);
                     Debug.Log($"[LOOK END AFTER] yaw={yaw}, pitch={pitch}, rot={transform.eulerAngles}");
                 }
 
@@ -544,8 +554,13 @@ public class WhaleController : MonoBehaviour
         pitch += delta.y * lookSensitivityY * ySign;
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
+        targetRotation = Quaternion.Euler(0f, yaw, 0f);
+
+        if (cameraPivot != null)
+            cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+
         //transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
-        targetRotation = Quaternion.Euler(pitch, yaw, 0f);
+        //targetRotation = Quaternion.Euler(pitch, yaw, 0f);
         //Debug.Log($"[LOOK MOVE] delta={delta}, yaw={yaw}, pitch={pitch}, rot={transform.eulerAngles}");
     }
 
@@ -628,12 +643,6 @@ public class WhaleController : MonoBehaviour
 
         Vector3 currentPos = rb.position;
 
-        Vector3 flatForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
-        Vector3 flatRight = Vector3.ProjectOnPlane(transform.right, Vector3.up).normalized;
-
-        if (flatForward.sqrMagnitude < 0.0001f) flatForward = Vector3.forward;
-        if (flatRight.sqrMagnitude < 0.0001f) flatRight = Vector3.right;
-
         #region Movememt(legacy)
         /*
         bool useMobileInput = Application.isMobilePlatform || forceMobileInput;
@@ -671,22 +680,32 @@ public class WhaleController : MonoBehaviour
         */
         #endregion
 
-        // 모바일/PC 공통: 좌우 + 전후 이동 모두 허용
-        Vector3 horizontalMove = (flatForward * moveInput.z + flatRight * moveInput.x) * moveSpeed;
-        Vector3 horizontalDelta = horizontalMove * Time.fixedDeltaTime;
+        #region (수평이동, 전진/후진 + 터치 화면 회전)
+        /*
+                Vector3 flatForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+                Vector3 flatRight = Vector3.ProjectOnPlane(transform.right, Vector3.up).normalized;
 
-        Vector3 posAfterHorizontal = ResolveCapsuleMove(currentPos, horizontalDelta);
-        posAfterHorizontal = ResolveOverlaps(posAfterHorizontal);
+                if (flatForward.sqrMagnitude < 0.0001f) flatForward = Vector3.forward;
+                if (flatRight.sqrMagnitude < 0.0001f) flatRight = Vector3.right;
 
-        // 모바일에서는 moveInput.y = 0, PC에서는 Q/E 사용 가능
-        float verticalAmount = moveInput.y * verticalSpeed * Time.fixedDeltaTime;
-        Vector3 verticalDelta = Vector3.up * verticalAmount;
+                // 모바일/PC 공통: 좌우 + 전후 이동 모두 허용
+                Vector3 horizontalMove = (flatForward * moveInput.z + flatRight * moveInput.x) * moveSpeed;
+                Vector3 horizontalDelta = horizontalMove * Time.fixedDeltaTime;
 
-        Vector3 finalPos = ResolveVerticalMove(posAfterHorizontal, verticalDelta);
-        finalPos = ResolveOverlaps(finalPos);
+                Vector3 posAfterHorizontal = ResolveCapsuleMove(currentPos, horizontalDelta);
+                posAfterHorizontal = ResolveOverlaps(posAfterHorizontal);
 
-        rb.MoveRotation(targetRotation);
-        rb.MovePosition(finalPos);
+                // 모바일에서는 moveInput.y = 0, PC에서는 Q/E 사용 가능
+                float verticalAmount = moveInput.y * verticalSpeed * Time.fixedDeltaTime;
+                Vector3 verticalDelta = Vector3.up * verticalAmount;
+
+                Vector3 finalPos = ResolveVerticalMove(posAfterHorizontal, verticalDelta);
+                finalPos = ResolveOverlaps(finalPos);
+
+                rb.MoveRotation(targetRotation);
+                rb.MovePosition(finalPos);*/
+
+        #endregion
 
         /*Vector3 move =
             (transform.forward * moveInput.z + transform.right * moveInput.x) * moveSpeed +
@@ -725,6 +744,32 @@ public class WhaleController : MonoBehaviour
         #endregion
 
         //rb.MovePosition(rb.position + move * Time.fixedDeltaTime);
+
+        #region 경사 반영
+
+        // 1. 경사 반영 이동 방향
+        Vector3 moveDir = GetSlopeProjectedMove();
+        Vector3 horizontalDelta = moveDir * moveSpeed * Time.fixedDeltaTime;
+
+        // 2. 수평 이동
+        Vector3 posAfterHorizontal = ResolveCapsuleMove(currentPos, horizontalDelta);
+        posAfterHorizontal = ResolveOverlaps(posAfterHorizontal);
+
+        // 3. 플레이어 수동 상하 이동(PC의 Q/E 같은 것)
+        float verticalAmount = moveInput.y * verticalSpeed * Time.fixedDeltaTime;
+        Vector3 verticalDelta = Vector3.up * verticalAmount;
+
+        Vector3 posAfterVertical = ResolveVerticalMove(posAfterHorizontal, verticalDelta);
+        posAfterVertical = ResolveOverlaps(posAfterVertical);
+
+        // 4. 바닥과 일정 거리 유지
+        Vector3 finalPos = ApplyHoverHeight(posAfterVertical);
+        finalPos = ResolveOverlaps(finalPos);
+
+        rb.MoveRotation(targetRotation);
+        rb.MovePosition(finalPos);
+
+        #endregion
     }
 
     private void MoveWithSweep(Vector3 delta)
@@ -851,6 +896,14 @@ public class WhaleController : MonoBehaviour
         Vector3 e = transform.eulerAngles;
         yaw = e.y;
         pitch = (e.x > 180f) ? e.x - 360f : e.x;   // -180°~180° 범위로 정규화
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+
+        targetRotation = Quaternion.Euler(0f, yaw, 0f);
+        transform.rotation = targetRotation;
+        rb.rotation = targetRotation;
+
+        if (cameraPivot != null)
+            cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
     #endregion
 
@@ -909,4 +962,70 @@ public class WhaleController : MonoBehaviour
         }
         return path;
     }
+    #region 경사면 관련 코드
+
+    private bool TryGetGround(Vector3 basePosition, out RaycastHit groundHit)
+    {
+        Vector3 origin = basePosition + Vector3.up * 0.1f;
+
+        return Physics.SphereCast(
+            origin,
+            groundProbeRadius,
+            Vector3.down,
+            out groundHit,
+            hoverProbeDistance,
+            groundMask,
+            QueryTriggerInteraction.Ignore
+        );
+    }
+
+    private Vector3 GetSlopeProjectedMove()
+    {
+        // pitch가 들어간 transform.forward/right 대신
+        // yaw만 사용하는 수평 기준 방향 생성
+        Quaternion yawRotation = Quaternion.Euler(0f, yaw, 0f);
+
+        Vector3 forward = yawRotation * Vector3.forward;
+        Vector3 right = yawRotation * Vector3.right;
+
+        Vector3 inputDir = forward * moveInput.z + right * moveInput.x;
+
+        if (inputDir.sqrMagnitude > 1f)
+            inputDir.Normalize();
+
+        if (TryGetGround(rb.position, out RaycastHit groundHit))
+        {
+            float slopeAngle = Vector3.Angle(groundHit.normal, Vector3.up);
+
+            if (slopeAngle <= slopeLimit)
+            {
+                Vector3 projected = Vector3.ProjectOnPlane(inputDir, groundHit.normal);
+                if (projected.sqrMagnitude > 0.0001f)
+                    return projected.normalized;
+            }
+        }
+
+        return inputDir;
+    }
+
+    private Vector3 ApplyHoverHeight(Vector3 position)
+    {
+        if (!TryGetGround(position, out RaycastHit groundHit))
+            return position;
+
+        float currentGroundDistance = groundHit.distance;
+        float error = hoverHeight - currentGroundDistance;
+
+        if (Mathf.Abs(error) < 0.02f)
+            return position;
+
+        // error > 0  : 바닥이 너무 가까움 -> 위로 올림
+        // error < 0  : 바닥이 너무 멂   -> 아래로 내림
+
+        float correction = error * hoverAdjustSpeed * Time.fixedDeltaTime;
+        correction = Mathf.Clamp(correction, -maxHoverCorrection, maxHoverCorrection);
+
+        return position + Vector3.up * correction;
+    }
+    #endregion
 }
