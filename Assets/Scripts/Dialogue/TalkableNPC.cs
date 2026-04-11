@@ -16,16 +16,24 @@ public class TalkableNPC : MonoBehaviour
     private bool hasStartedDialogue = false;   // 첫 대사 했는지
     public bool questCleared = false; // 퀘스트 했는지
 
-    public GameObject questionMarkIcon; // 물음표UI
-    //public GameObject exclamationMarkIcon; // 느낌표 UI
     private bool dialogueAfterQuestDone = false; // 퀘스트 후 대사까지 완료됐는지
-    public GameObject heartIcon;
-    public GameObject questionHintUI;
-    private bool questClearEffectPlayed = false;
+
+    [Header("Quest Icons")]
+    [SerializeField] private GameObject questionMarkIcon;     // 퀘스트 받기 전
+    [SerializeField] private GameObject exclamationMarkIcon;  // 퀘스트 완료 후 보고 가능
+    [SerializeField] private GameObject heartIcon;            // 최종 대화 종료 후
+
+    //private bool questClearEffectPlayed = false;
 
     public Transform dialogueAnchor; // 대화할때 플레어이어의 위치
 
     private bool uiInteractPressed = false;
+
+    [Header("First Detect Icon")]
+    [SerializeField] private bool showQuestionMarkOnlyAfterFirstApproach = false;
+    [SerializeField] private float hideConditionDistance = 10f;
+    private bool hasShownFirstApproachIcon = false;
+
 
     private void Start()
     {
@@ -38,7 +46,17 @@ public class TalkableNPC : MonoBehaviour
             target.SetQuestEnabled(false);
         }
 
-        UpdateQuestIcon();
+        /*// Orca 같은 특수 NPC는 시작 시 아이콘 숨김
+        if (showQuestionMarkOnlyAfterFirstApproach)
+        {
+            questionMarkIcon?.SetActive(false);
+        }
+        else
+        {
+            UpdateQuestIcon();
+        }*/
+
+        RefreshIcons();
     }
 
     private void Update()
@@ -47,6 +65,7 @@ public class TalkableNPC : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, player.position);
 
+        HandleFirstApproachQuestionIcon(distance);
 
         /*if (distance <= interactionDistance)
         {
@@ -57,7 +76,9 @@ public class TalkableNPC : MonoBehaviour
             }
         }*/
 
-        if(!questCleared && hasStartedDialogue)
+        #region questionHintUI 관련 로직 제거
+        /*
+        if (!questCleared && hasStartedDialogue)
         {
             ShowquestionHintUI(false);
         }
@@ -71,6 +92,9 @@ public class TalkableNPC : MonoBehaviour
         {
             ShowquestionHintUI(false);
         }
+        */
+        #endregion
+
 
         // 퀘스트 상태 선제 감지
         if (!questCleared)
@@ -101,17 +125,22 @@ public class TalkableNPC : MonoBehaviour
             // 상호작용 가능하게 만들기
             EnableQuestItems();
             dialogueManager.StartDialogue(characterName, this);
+            RefreshIcons();
+            return;
         }
         else if (questCleared && !dialogueManager.IsDialoguePlaying && !dialogueAfterQuestDone)
         {
             dialogueManager.ContinueDialogue(characterName, this); // 이어서 출력
+            RefreshIcons();
+            return;
         }
         else
         {
             Debug.Log("상호작용 불가능 상태");
         }
         //상태 변경마다 ICON Update
-        UpdateQuestIcon();
+        //UpdateQuestIcon();
+        RefreshIcons();
     }
 
     public void CheckQuestCondition()
@@ -126,12 +155,14 @@ public class TalkableNPC : MonoBehaviour
         questCleared = true;
         Debug.Log($"[퀘스트 완료됨]: {characterName}");
 
-        if (!questClearEffectPlayed)
-        {
-            questClearEffectPlayed = true;
-            ShowHeartIcon();
-        }
-        UpdateQuestIcon();
+        /* if (!questClearEffectPlayed)
+         {
+             questClearEffectPlayed = true;
+             ShowHeartIcon();
+         }
+         UpdateQuestIcon();*/
+
+        RefreshIcons();
     }
 
     private void StartDialogue()
@@ -149,23 +180,26 @@ public class TalkableNPC : MonoBehaviour
 
     public void UpdateQuestIcon()
     {
-        if (!hasStartedDialogue)
-        {
-            questionMarkIcon?.SetActive(true);
-            //exclamationMarkIcon?.SetActive(false);
-        }
-        else
-        {
-            questionMarkIcon?.SetActive(false);
-            //exclamationMarkIcon?.SetActive(false);
-        }
+        /* if (!hasStartedDialogue)
+         {
+             questionMarkIcon?.SetActive(true);
+             //exclamationMarkIcon?.SetActive(false);
+         }
+         else
+         {
+             questionMarkIcon?.SetActive(false);
+             //exclamationMarkIcon?.SetActive(false);
+         }*/
+
+        RefreshIcons();
     }
 
     public void OnDialogueAfterQuestFinished()
     {
         dialogueAfterQuestDone = true;
-        ShowquestionHintUI(false);
-        UpdateQuestIcon();
+        /*ShowquestionHintUI(false);
+        UpdateQuestIcon();*/
+        RefreshIcons();
     }
     
     void ShowHeartIcon()
@@ -176,13 +210,13 @@ public class TalkableNPC : MonoBehaviour
         }
     }
 
-    void ShowquestionHintUI(bool show)
+    /*void ShowquestionHintUI(bool show)
     {
         if(questionHintUI != null)
         {
             questionHintUI.SetActive(show);
         }
-    }
+    }*/
 
     private void EnableQuestItems()
     {
@@ -201,6 +235,53 @@ public class TalkableNPC : MonoBehaviour
     public void OnInteractButtonPressed()
     {
         uiInteractPressed = true;
+    }
+
+    private void HandleFirstApproachQuestionIcon(float distance)
+    {
+        if (!showQuestionMarkOnlyAfterFirstApproach) return;
+        if (hasShownFirstApproachIcon) return;
+        if (hasStartedDialogue) return;
+
+        if (distance <= hideConditionDistance)
+        {
+            hasShownFirstApproachIcon = true;
+            RefreshIcons();
+        }
+    }
+
+    private void RefreshIcons()
+    {
+        bool showQuestion = false;
+        bool showExclamation = false;
+        bool showHeart = false;
+
+        // 1) 상호작용 종료 후
+        if (dialogueAfterQuestDone)
+        {
+            showHeart = true;
+        }
+        // 2) 퀘스트 완료, 아직 보고 전
+        else if (questCleared)
+        {
+            showExclamation = true;
+        }
+        // 3) 퀘스트 받기 전
+        else if (!hasStartedDialogue)
+        {
+            // Orca 특수 처리 포함
+            if (!showQuestionMarkOnlyAfterFirstApproach || hasShownFirstApproachIcon)
+                showQuestion = true;
+        }
+        // 4) 퀘스트 진행 중
+        else
+        {
+            // 아무 아이콘도 안 띄움
+        }
+
+        if (questionMarkIcon != null) questionMarkIcon.SetActive(showQuestion);
+        if (exclamationMarkIcon != null) exclamationMarkIcon.SetActive(showExclamation);
+        if (heartIcon != null) heartIcon.SetActive(showHeart);
     }
 
 }
