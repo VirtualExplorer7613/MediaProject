@@ -152,6 +152,9 @@ public class TalkableNPC : MonoBehaviour
                 return;
         }
 
+        if (questCleared)
+            return;
+
         questCleared = true;
         Debug.Log($"[퀘스트 완료됨]: {characterName}");
 
@@ -200,6 +203,7 @@ public class TalkableNPC : MonoBehaviour
         /*ShowquestionHintUI(false);
         UpdateQuestIcon();*/
         RefreshIcons();
+        DialogueManager.Instance?.TryTriggerEndingAfterFinalDialogue();
     }
     
     void ShowHeartIcon()
