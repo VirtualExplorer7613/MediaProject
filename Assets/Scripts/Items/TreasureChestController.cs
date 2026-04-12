@@ -24,7 +24,8 @@ public class TreasureChestController : MonoBehaviour
     [Header("Reward VFX")]
     [SerializeField] private GameObject rewardPrefab;
     [SerializeField] private Transform rewardSpawnPoint;
-    [SerializeField] private float rewardVfxLifeTime = 1.5f;
+    [SerializeField] private float rewardVfxLifeTime = 1.3f;
+    [SerializeField] private Vector3 rewardPrefabScale = Vector3.one;
 
     [Header("Collect Options")]
     [SerializeField] private bool autoCollectOnOpen = true;
@@ -186,7 +187,10 @@ public class TreasureChestController : MonoBehaviour
 
         var pos = rewardSpawnPoint ? rewardSpawnPoint.position : (transform.position + Vector3.up * 0.5f);
         var baseRot = rewardSpawnPoint ? rewardSpawnPoint.rotation : transform.rotation;
-        Instantiate(rewardPrefab, pos, baseRot);
+
+        GameObject spawnedReward =  Instantiate(rewardPrefab, pos, baseRot);
+        spawnedReward.transform.localScale = rewardPrefabScale;
+
         rewardSpawned = true;
     }
 
