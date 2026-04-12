@@ -124,6 +124,9 @@ public class WhaleController : MonoBehaviour
     [SerializeField] private float maxHoverCorrection = 0.1f;   // 한 프레임 최대 보정량
     [SerializeField] private float slopeLimit = 45f;            // 오를 수 있는 최대 경사각
 
+    [Header("OptionController")]
+    [SerializeField] private OptionUIController optionUIController;
+
 
     #region Mobile Vertical Buttons(Legacy)
     /*
@@ -201,6 +204,9 @@ public class WhaleController : MonoBehaviour
         targetRotation = Quaternion.Euler(0f, yaw, 0f);
         rb.rotation = targetRotation;
         transform.rotation = targetRotation;
+
+        if (optionUIController == null)
+            optionUIController = FindAnyObjectByType<OptionUIController>();
 
         if (cameraPivot != null)
             cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
@@ -437,6 +443,11 @@ public class WhaleController : MonoBehaviour
 
     private void HandleMobileLook()
     {
+        if (optionUIController != null && optionUIController.IsOptionOpen)
+        {
+            ClearLookState();
+            return;
+        }
         int touchCount = GetMobileTouchCount();
 
         // 모바일이거나, 에디터 테스트 중인데 실제 터치가 들어오면 터치 회전 사용
