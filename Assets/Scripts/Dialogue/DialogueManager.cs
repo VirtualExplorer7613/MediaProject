@@ -105,6 +105,12 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(string characterName, TalkableNPC npc)
     {
+        TutorialRunner tutorialRunner = FindFirstObjectByType<TutorialRunner>();
+        if (tutorialRunner != null)
+        {
+            tutorialRunner.ForceClearVisuals();
+        }
+
         inputBlockUntil = Time.unscaledTime + dialogueStartInputBlockTime;
 
         if (CurrentTalkingNPC != null && !CurrentTalkingNPC.questCleared)

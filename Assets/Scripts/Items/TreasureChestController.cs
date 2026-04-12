@@ -30,6 +30,12 @@ public class TreasureChestController : MonoBehaviour
     [SerializeField] private bool autoCollectOnOpen = true;
     [SerializeField] private bool spawnRewardOnOpen = true;
 
+    [Header("Tutorial Gate")]
+    [SerializeField] private TutorialRunner tutorialRunner;
+    [SerializeField] private bool restrictByTutorialStep = false;
+    [SerializeField] private int allowedTutorialStepIndex = 0;
+    [SerializeField] private bool allowAfterStep = false;
+
     private bool rewardSpawned = false;
 
     private ChestState state = ChestState.Closed;
@@ -44,6 +50,11 @@ public class TreasureChestController : MonoBehaviour
 
         ic = FindFirstObjectByType<InteractionController>();
         invUI = FindFirstObjectByType<InventoryUIController>();
+
+        if (tutorialRunner == null)
+        {
+            tutorialRunner = FindFirstObjectByType<TutorialRunner>();
+        }
 
         if (ic == null)
         {
@@ -81,6 +92,12 @@ public class TreasureChestController : MonoBehaviour
         if (player == null) return false;
         if (state != ChestState.Closed) return false;
         if (Vector3.Distance(transform.position, player.position) > useKeyDistance) return false;
+
+        if (!CanOpenChestNow())
+        {
+            Debug.Log($"[Chest] 아직 열 수 없는 튜토리얼 단계입니다. current={tutorialRunner?.CurrentStepIndex}, required={allowedTutorialStepIndex}");
+            return false;
+        }
 
         StartCoroutine(OpenRoutine());
         // 상자 열림 트리거
@@ -176,5 +193,22 @@ public class TreasureChestController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private bool CanOpenChestNow()
+    {
+        if (!restrictByTutorialStep)
+            return true;
+
+        if (tutorialRunner == null)
+        {
+            Debug.LogWarning($"[Chest] TutorialRunner is null: {name}");
+            return false;
+        }
+
+        if (allowAfterStep)
+            return tutorialRunner.IsStepOrLater(allowedTutorialStepIndex);
+
+        return tutorialRunner.IsCurrentStep(allowedTutorialStepIndex);
     }
 }

@@ -20,6 +20,19 @@ public class TutorialRunner : MonoBehaviour
     private TutorialCondition currentCondition;
     private TutorialContext context;
 
+    public int CurrentStepIndex => index;
+
+    public bool IsCurrentStep(int stepIndex)
+    {
+        return index == stepIndex;
+    }
+
+    public bool IsStepOrLater(int stepIndex)
+    {
+        return index >= stepIndex;
+    }
+
+
     private void Awake()
     {
         context = new TutorialContext
@@ -126,5 +139,14 @@ public class TutorialRunner : MonoBehaviour
         {
             ui.SetMessage(steps[index].GetMessage(currentLanguage));
         }
+    }
+
+    public void ForceClearVisuals()
+    {
+        if (ui != null)
+            ui.SetVisible(false);
+
+        if (highlighter != null)
+            highlighter.Clear();
     }
 }

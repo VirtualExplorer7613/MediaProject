@@ -50,5 +50,5 @@ MonoBehaviour:
   keys: 200000000d00000013010000
   ignoreWhenPointerOverUI: 0
   minimumWaitSeconds: 1.75
-  autoAdvanceSeconds: 10
+  autoAdvanceSeconds: 4
   showReadyLog: 0

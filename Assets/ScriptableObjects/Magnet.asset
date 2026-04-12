@@ -18,9 +18,9 @@ MonoBehaviour:
   description: "\uBB34\uAC70\uC6B4 \uC7A1\uB3D9\uC0AC\uB2C8\uB3C4 \uCC99\uCC99!\n\uD769\uC5B4\uC9C4
     \uAC83\uB4E4\uC744 \uD55C\uB370 \uBAA8\uC544\uC8FC\uB294 \uC790\uC11D"
   previewPrefab: {fileID: 919132149155446097, guid: 7018832200453eb47a97484504377b71, type: 3}
-  previewLocalPosition: {x: 0, y: -0.5, z: 0}
+  previewLocalPosition: {x: 0, y: -1.5, z: 0}
   previewLocalEuler: {x: 0, y: 0, z: 0}
-  previewLocalScale: {x: 2, y: 2, z: 2}
+  previewLocalScale: {x: 3, y: 3, z: 3}
   previewRotateSpeed: 50
   cooldownSeconds: 0
   magnetRadius: 8
