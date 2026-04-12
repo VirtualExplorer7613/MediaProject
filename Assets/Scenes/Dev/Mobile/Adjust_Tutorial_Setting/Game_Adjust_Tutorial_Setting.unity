@@ -121132,7 +121132,7 @@ MonoBehaviour:
   offset: {x: 0, y: 1, z: 2}
   minDistToWhale: 2
   magnetCollectDistance: 3
-  collectVfxPrefab: {fileID: 0}
+  collectVfxPrefab: {fileID: 2485276936549234680, guid: a500764f1a0d3654db7718249e73c3d3, type: 3}
   vfxOffset: {x: 0, y: 0, z: 0}
   vfxDestroyDelay: 2
   interactable: 1
@@ -277814,7 +277814,7 @@ MonoBehaviour:
   offset: {x: 0, y: 1, z: 2}
   minDistToWhale: 2
   magnetCollectDistance: 3
-  collectVfxPrefab: {fileID: 0}
+  collectVfxPrefab: {fileID: 2485276936549234680, guid: a500764f1a0d3654db7718249e73c3d3, type: 3}
   vfxOffset: {x: 0, y: 0, z: 0}
   vfxDestroyDelay: 2
   interactable: 1
@@ -300886,7 +300886,7 @@ MonoBehaviour:
   offset: {x: 0, y: 1, z: 2}
   minDistToWhale: 2
   magnetCollectDistance: 3
-  collectVfxPrefab: {fileID: 0}
+  collectVfxPrefab: {fileID: 2485276936549234680, guid: a500764f1a0d3654db7718249e73c3d3, type: 3}
   vfxOffset: {x: 0, y: 0, z: 0}
   vfxDestroyDelay: 2
   interactable: 1
@@ -406700,7 +406700,7 @@ MonoBehaviour:
   offset: {x: 0, y: 1, z: 2}
   minDistToWhale: 2
   magnetCollectDistance: 3
-  collectVfxPrefab: {fileID: 0}
+  collectVfxPrefab: {fileID: 2485276936549234680, guid: a500764f1a0d3654db7718249e73c3d3, type: 3}
   vfxOffset: {x: 0, y: 0, z: 0}
   vfxDestroyDelay: 2
   interactable: 1
