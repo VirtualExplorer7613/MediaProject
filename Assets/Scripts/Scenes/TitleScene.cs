@@ -33,6 +33,15 @@ public class TitleScene : BaseScene
         Managers.Scene.LoadSceneAsync(Define.Scene.Prologue, false);
     }
 
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
     IEnumerator FadeInAfterLoad()
     {
         yield return null;
