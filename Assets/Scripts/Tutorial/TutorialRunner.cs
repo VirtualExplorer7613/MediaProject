@@ -140,4 +140,13 @@ public class TutorialRunner : MonoBehaviour
             ui.SetMessage(steps[index].GetMessage(currentLanguage));
         }
     }
+
+    public void ForceClearVisuals()
+    {
+        if (ui != null)
+            ui.SetVisible(false);
+
+        if (highlighter != null)
+            highlighter.Clear();
+    }
 }
