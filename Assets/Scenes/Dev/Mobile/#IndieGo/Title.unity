@@ -479,7 +479,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1091928860}
         m_TargetAssemblyTypeName: TitleScene, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1052,12 +1052,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1139117396026832227, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1139117396026832227, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_MatchWidthOrHeight
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2363606642339104948, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3214830285169749865, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3214830285169749865, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1591941054}
+    - target: {fileID: 3214830285169749865, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnExitButtonClicked
       objectReference: {fileID: 0}
     - target: {fileID: 3480375575302367035, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1065,6 +1081,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3934356289865240936, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324993319423101269, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5462382609294755527, guid: dbc20c8ddc703eb4089cd34fd03ce282, type: 3}
