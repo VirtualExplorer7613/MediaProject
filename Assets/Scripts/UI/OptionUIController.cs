@@ -12,6 +12,7 @@ public class OptionUIController : MonoBehaviour
     [SerializeField] private CrosshairUI crosshairUI;
 
     private bool isOptionOpen = false;
+    public bool IsOptionOpen => isOptionOpen;
 
     private void Start()
     {
