@@ -17,10 +17,10 @@ MonoBehaviour:
   displayName: "\uB9DD\uCE58"
   description: "\uB2E8\uB2E8\uD55C \uC7A5\uC560\uBB3C\uB3C4 \uCA0D\uADF8\uB791!\n\uBB34\uC5C7\uC774\uB4E0
     \uC2DC\uC6D0\uD558\uAC8C \uBD80\uC234\uBC84\uB9AC\uB294 \uB9DD\uCE58"
-  previewPrefab: {fileID: 0}
+  previewPrefab: {fileID: 919132149155446097, guid: 9249357f2f5bc9445b3674d2605a516c, type: 3}
   previewLocalPosition: {x: 0, y: 0, z: 0}
   previewLocalEuler: {x: 0, y: 0, z: 0}
-  previewLocalScale: {x: 1, y: 1, z: 1}
+  previewLocalScale: {x: 5, y: 5, z: 5}
   previewRotateSpeed: 50
   cooldownSeconds: 0
   magnetRadius: 8
