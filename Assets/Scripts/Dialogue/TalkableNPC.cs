@@ -239,6 +239,28 @@ public class TalkableNPC : MonoBehaviour
     public void OnInteractButtonPressed()
     {
         uiInteractPressed = true;
+
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+                player = playerObj.transform;
+        }
+
+        if (player == null)
+        {
+            Debug.LogWarning($"[TalkableNPC] Player를 찾지 못했습니다. npc={characterName}");
+            return;
+        }
+
+        float distance = Vector3.Distance(transform.position, player.position);
+        if (distance > interactionDistance)
+        {
+            Debug.Log($"[TalkableNPC] 거리 밖입니다. npc={characterName}, dist={distance}, allowed={interactionDistance}");
+            return;
+        }
+
+        TryTalk();
     }
 
     private void HandleFirstApproachQuestionIcon(float distance)
