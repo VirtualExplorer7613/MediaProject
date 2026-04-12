@@ -162092,7 +162092,7 @@ PrefabInstance:
       objectReference: {fileID: 12310794}
     - target: {fileID: 6511051417306322305, guid: 7d1b780f0da26554396c76a72e0d7559, type: 3}
       propertyPath: lockUntilTutorialStep
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6511051417306322305, guid: 7d1b780f0da26554396c76a72e0d7559, type: 3}
       propertyPath: requiredTutorialStepIndex
