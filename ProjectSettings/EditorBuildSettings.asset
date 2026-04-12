@@ -6,17 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/1stTest/Title.unity
-    guid: 3a9807f53540b964a8f80aed83721c0d
+    path: Assets/Scenes/Dev/Mobile/#IndieGo/Title.unity
+    guid: 36a4dd1af8f2cdd4cac0ead2c8923156
   - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/1stTest/Prologue.unity
-    guid: 8c240b3987dfd0a4eab1159fd50a0323
+    path: Assets/Scenes/Dev/Mobile/#IndieGo/Prologue.unity
+    guid: 2cb52e502fc4b454a9c4fd9fb714f040
   - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/Update_Player_Movement/Game_Update_Player_Controller(Multi_Touch).unity
-    guid: 3e3126d70c6c2f3489e30a005f942b92
+    path: Assets/Scenes/Dev/Mobile/#IndieGo/Game.unity
+    guid: 1bea28ccc7f923848bc8d29ab10f72c1
   - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/1stTest/Ending.unity
-    guid: a23a73d80b8092845b394fd35fb2d3d7
+    path: Assets/Scenes/Dev/Mobile/#IndieGo/Ending.unity
+    guid: a8880b3d3855db14c985ac3716b59a30
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
