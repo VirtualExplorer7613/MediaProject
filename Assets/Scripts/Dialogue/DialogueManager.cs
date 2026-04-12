@@ -79,6 +79,15 @@ public class DialogueManager : MonoBehaviour
         { "prawn", new CharacterInfo { displayName = "새우", nameColor = new Color(1f, 0.8f, 0.6f) } },
     };
 
+    private readonly HashSet<string> endingRequiredNpcNames = new HashSet<string>
+    {
+        "lobster",
+        "prawn",
+        "orca",
+        "sardine"
+    };
+
+    private bool endingTriggered = false;
 
     private void Awake()
     {
@@ -255,7 +264,10 @@ public class DialogueManager : MonoBehaviour
         IsDialoguePlaying = false;
 
         if (CurrentTalkingNPC != null)
+        {
             CurrentTalkingNPC.OnDialogueAfterQuestFinished();
+            TryTriggerEndingAfterFinalDialogue();
+        }
 
         CurrentTalkingNPC = null;
 
@@ -649,4 +661,44 @@ public class DialogueManager : MonoBehaviour
         interactionController?.OnDialogueClosed();
     }
 
+    public bool AreRequiredEndingQuestsCleared()
+    {
+        TalkableNPC[] npcs = FindObjectsOfType<TalkableNPC>();
+
+        foreach (string requiredName in endingRequiredNpcNames)
+        {
+            bool found = false;
+
+            foreach (var npc in npcs)
+            {
+                if (npc.characterName == requiredName)
+                {
+                    found = true;
+
+                    if (!npc.questCleared)
+                        return false;
+                }
+            }
+
+            // 씬에 해당 NPC가 아예 없으면 일단 false 처리
+            if (!found)
+                return false;
+        }
+
+        return true;
+    }
+
+    public void TryTriggerEndingAfterFinalDialogue()
+    {
+        if (endingTriggered)
+            return;
+
+        if (!AreRequiredEndingQuestsCleared())
+            return;
+
+        endingTriggered = true;
+
+        Debug.Log("[Ending Check] Final required dialogue finished. Loading Ending scene.");
+        Managers.Scene.LoadSceneAsync(Define.Scene.Ending, false);
+    }
 }

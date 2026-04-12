@@ -34,6 +34,7 @@ public class SceneManagerEX
         FadeController fade = GameObject.FindObjectOfType<FadeController>();
         if (fade != null) yield return fade.FadeOut(3.0f);
 
+        Managers.Clear();
         SceneManager.LoadScene(GetSceneName(type));
     }
 
