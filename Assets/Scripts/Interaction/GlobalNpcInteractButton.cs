@@ -44,12 +44,18 @@ public class GlobalNpcInteractButton : MonoBehaviour
         {
             if (npc == null) continue;
 
-            float d = Vector3.Distance(npc.transform.position, p);
+            /*loat d = Vector3.Distance(npc.transform.position, p);*/
+            float d3 = Vector3.Distance(npc.transform.position, p);
+            float dy = Mathf.Abs(npc.transform.position.y - p.y);
+
+            Vector2 npcXZ = new Vector2(npc.transform.position.x, npc.transform.position.z);
+            Vector2 playerXZ = new Vector2(p.x, p.z);
+            float d2 = Vector2.Distance(npcXZ, playerXZ);
 
             // NPC의 interactionDistance 기준 안에 들어온 것만 후보
-            if (d <= npc.interactionDistance && d < bestDist)
+            if (d3 <= npc.interactionDistance && d3 < bestDist)
             {
-                bestDist = d;
+                bestDist = d3;
                 best = npc;
             }
         }
