@@ -85,8 +85,11 @@ public class InteractionController : MonoBehaviour
         bool canAccept = fsm.CanAcceptInput;
         bool isHolding = interactionHoldButton != null && interactionHoldButton.IsPressed;
 
-        // Hold 처리
-        if (canAccept && isHolding && currentStrategy != null)
+        if (canAccept && currentStrategy is SpongeStrategy)
+        {
+            currentStrategy.OnHold(ctx, dt);
+        }
+        else if (canAccept && isHolding && currentStrategy != null)
         {
             /*if (!wasHolding || !lastCanAcceptInput)
             {
@@ -144,6 +147,9 @@ public class InteractionController : MonoBehaviour
     public void HandleRelease()
     {
         if (currentStrategy == null) return;
+
+        if (currentStrategy is SpongeStrategy)
+            return;
 
         // 쿨타임 중에 눌렀다가 다시 떼는 경우는 무효처리
         if (!pressAccepted)

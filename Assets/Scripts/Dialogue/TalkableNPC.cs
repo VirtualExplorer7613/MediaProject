@@ -12,6 +12,12 @@ public class TalkableNPC : MonoBehaviour
     // 새로 개정된 퀘스트 완료에 필요한 목표물
     [SerializeField] private List<QuestTarget> requiredTargets = new();
 
+    public List<QuestTarget> GetRequiredTargets()
+    {
+        // 원본 리스트를 실수로 수정하는 걸 방지
+        return new List<QuestTarget>(requiredTargets);
+    }
+
     //public List<GameObject> requiredObjects; // 목표 오브젝트들
     private bool hasStartedDialogue = false;   // 첫 대사 했는지
     public bool questCleared = false; // 퀘스트 했는지

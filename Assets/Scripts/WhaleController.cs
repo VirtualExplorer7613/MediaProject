@@ -176,6 +176,9 @@ public class WhaleController : MonoBehaviour
     /*private Vector2 mobileInput;
     private Vector2 mobileInputVelocity;*/
 
+    private bool movementLocked = false;
+    private bool lookLocked = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -214,8 +217,9 @@ public class WhaleController : MonoBehaviour
 
     void Update()
     {
+        bool dialogueLocked = dialogueManager != null && dialogueManager.IsDialoguePlaying;
 
-        if (isFrozen || dialogueManager != null && dialogueManager.IsDialoguePlaying)
+        if (isFrozen || dialogueLocked)
         {
             // 대화 중이면 아무 조작도 못하게 막음
             moveInput = Vector3.zero;
@@ -240,13 +244,25 @@ public class WhaleController : MonoBehaviour
         if (useMobileInput)
         {
             // HandleMobileRotationAndMove();
-            HandleMobileMove();
-            HandleMobileLook();
+            if (!movementLocked) 
+                HandleMobileMove();
+            else 
+                moveInput = Vector3.zero;
+
+            if (!lookLocked) 
+                HandleMobileLook();
+            else 
+                ClearLookState();
         }
         else
         {
-            HandleRotationPC();
-            HandleMovePC();
+            if (!lookLocked) 
+                HandleRotationPC();
+
+            if (!movementLocked) 
+                HandleMovePC();
+            else 
+                moveInput = Vector3.zero;
         }
     }
 
@@ -654,6 +670,11 @@ public class WhaleController : MonoBehaviour
 
         Vector3 currentPos = rb.position;
 
+        if (movementLocked)
+        {
+            moveInput = Vector3.zero;
+        }
+
         #region Movememt(legacy)
         /*
         bool useMobileInput = Application.isMobilePlatform || forceMobileInput;
@@ -892,6 +913,41 @@ public class WhaleController : MonoBehaviour
         if (whaleVisualRoot != null)
             whaleVisualRoot.SetActive(visible);
     }
+
+    public void SetMovementLocked(bool locked)
+    {
+        movementLocked = locked;
+
+        if (locked)
+            moveInput = Vector3.zero;
+    }
+
+    public void SetLookLocked(bool locked)
+    {
+        lookLocked = locked;
+
+        if (locked)
+            ClearLookState();
+    }
+
+    public void SetControlLocked(bool movement, bool look)
+    {
+        SetMovementLocked(movement);
+        SetLookLocked(look);
+    }
+
+    public void SetFrozen(bool frozen)
+    {
+        isFrozen = frozen;
+
+        if (frozen)
+        {
+            moveInput = Vector3.zero;
+            ClearLookState();
+        }
+    }
+
+
 
     #region NPC 대화 앵커 코드
     public void MoveToAnchor(Vector3 pos, Quaternion rot)

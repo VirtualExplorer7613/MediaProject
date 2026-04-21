@@ -38,6 +38,35 @@ public class InteractionSystem : MonoBehaviour
             // 완료 시 InteractionSystem.Instance.NotifyInteractionComplete()가 호출됨
             Debug.Log("▶ 플레이어 상호작용을 기다리는 중...");
         }
+        //스펀지 청소 모드 진입
+        else if (action.Contains("스펀지") || action.Contains("기름때") || action.Contains("말미잘"))
+        {
+            Debug.Log("▶ 스펀지 청소 모드 시작");
+            SpongeCleaningModeController cleaningMode = SpongeCleaningModeController.Instance;
+            if (cleaningMode == null)
+                cleaningMode = FindFirstObjectByType<SpongeCleaningModeController>();
+
+            if (cleaningMode != null)
+            {
+                TalkableNPC npc = DialogueManager.Instance != null ? DialogueManager.Instance.CurrentTalkingNPC : null;
+
+                if (npc != null && npc.characterName == "clownfish")
+                {
+                    Debug.Log("▶ ClownFish Require Target를 사용하는 중...");
+                    cleaningMode.StartCleaningModeWithTargets(npc.GetRequiredTargets());
+                }
+                else
+                    cleaningMode.StartCleaningMode();
+            }
+            else
+            {
+                Debug.LogWarning("[InteractionSystem] SpongeCleaningModeController를 찾을 수 없습니다.");
+            }
+
+            // 여기서는 대화 흐름이 잠시 끊기고,
+            // 청소 완료 후 NotifyInteractionComplete()가 호출되어야 다음 대사로 넘어감
+            Debug.Log("▶ 플레이어의 스펀지 청소 완료를 기다리는 중...");
+        }
         else
         {
             Debug.LogWarning($"알 수 없는 action: {action}");

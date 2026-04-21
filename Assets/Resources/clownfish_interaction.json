@@ -1,95 +1,95 @@
 {
-    "character": "clownfish_family",
-    "icon_on_detected": true,
-    "expressions": {
-        "default": "Eyes_Blink",
-        "start_dialogue": "Eyes_Squint",
-        "post_interaction": "Eyes_Shrink"
+  "character": "clownfish",
+  "icon_on_detected": true,
+  "expressions": {
+    "default": "Eyes_Blink",
+    "start_dialogue": "Eyes_Squint",
+    "post_interaction": "Eyes_Shrink"
+  },
+  "dialogue_sequence": [
+    {
+      "type": "player_detects",
+      "dialogue": null,
+      "action": "remove_question_icon"
     },
-    "dialogue_sequence": [
-        {
-            "type": "player_detects",
-            "dialogue": null,
-            "action": "remove_question_icon"
-        },
-        {
-            "type": "clownfish",
-            "expression": "Eyes_Squint",
-            "dialogue": "고래님! 고래님!! 큰일 났어요!\n우리 집이… 우리 집이 이상해졌어요!",
-            "voice": ""
-        },
-        {
-            "type": "clownfish",
-            "expression": "Eyes_Squint",
-            "dialogue": "말미잘 위에 끈적끈적한 게 잔뜩 묻어버렸어요!\n이러면… 우리 가족이 말미잘에서 지낼 수가 없는데…",
-            "voice": ""
-        },
-        {
-            "type": "whale",
-            "dialogue": "말미잘 표면에 기름 같은 게 묻어 있네.\n이 상태로는 아이들이 위험하겠어."
-        },
-        {
-            "type": "clownfish",
-            "expression": "Eyes_Sad",
-            "dialogue": "맞아요! 원래는 말미잘 안이 제일 안전한데…\n미끄럽고 끈적해서 애들이 계속 미끄러져요!",
-            "voice": ""
-        },
-        {
-            "type": "clownfish",
-            "expression": "Eyes_Sad",
-            "dialogue": "아이들은 밖에 있으면 위험한데…",
-            "voice": ""
-        },
-        {
-            "type": "whale",
-            "dialogue": "'기름때가 말미잘 이곳 저곳에 묻어있는 것 같아.\n이대로는 아이들이 위험해. 얼른 닦아내야 할 것 같은데…'"
-        },
-        {
-            "type": "whale",
-            "dialogue": "'그래, 아까 얻은 스펀지를 이용해서 조심스럽게 닦아보자.'"
-        },
-        {
-            "type": "interaction",
-            "dialogue": null,
-            "action": "스펀지 아이템 사용해 말미잘 표면의 기름때 제거"
-        },
-        {
-            "type": "clownfish",
-            "expression": "Eyes_Shrink",
-            "dialogue": "어…? 말미잘이 깨끗해졌어요!",
-            "voice": ""
-        },
-        {
-            "type": "clownfish",
-            "expression": "Eyes_Happy",
-            "dialogue": "와! 이제 다시 말미잘 안에서 살 수 있겠어요!\n얘들아, 이제 괜찮아!",
-            "voice": ""
-        },
-        {
-            "type": "clownfish",
-            "expression": "Eyes_Happy",
-            "dialogue": "휴… 정말 다행이에요.\n우리집이 다시 예전처럼 깨끗해졌어요.",
-            "voice": ""
-        },
-        {
-            "type": "clownfish",
-            "expression": "Eyes_Sad",
-            "dialogue": "우리 가족들에게 이 말미잘은 그냥 집이 아니에요.\n예전에 쉴 곳이 없어 헤맬 때, 어디선가 들려온 <color=#42A5F5>따뜻한 목소리</color>가 알려준 곳이거든요.",
-            "voice": ""
-        },
-        {
-            "type": "whale",
-            "dialogue": "'따뜻한 목소리…? 혹시 나를 이곳으로 부른 그 목소리의 주인공일까?'"
-        },
-        {
-            "type": "clownfish",
-            "expression": "Eyes_Sad",
-            "dialogue": "그 목소리가 찾아준 소중한 집인데…\n여기서 살 수 없게 된다면, 우린 정말 어디로 가야 할지 모르겠어요.",
-            "voice": ""
-        },
-        {
-            "type": "whale",
-            "dialogue": "'집이라고 믿었던 곳조차 쓰레기로 위협받는다면…\n이 바다는, 이제 더 이상 안전한 집이 아닐지도 몰라.'"
-        }
-    ]
+    {
+      "type": "clownfish",
+      "expression": "Eyes_Squint",
+      "dialogue": "고래님! 고래님!! 큰일 났어요!\n우리 집이… 우리 집이 이상해졌어요!",
+      "voice": ""
+    },
+    {
+      "type": "clownfish",
+      "expression": "Eyes_Squint",
+      "dialogue": "말미잘 위에 끈적끈적한 게 잔뜩 묻어버렸어요!\n이러면… 우리 가족이 말미잘에서 지낼 수가 없는데…",
+      "voice": ""
+    },
+    {
+      "type": "whale",
+      "dialogue": "말미잘 표면에 기름 같은 게 묻어 있네.\n이 상태로는 아이들이 위험하겠어."
+    },
+    {
+      "type": "clownfish",
+      "expression": "Eyes_Sad",
+      "dialogue": "맞아요! 원래는 말미잘 안이 제일 안전한데…\n미끄럽고 끈적해서 애들이 계속 미끄러져요!",
+      "voice": ""
+    },
+    {
+      "type": "clownfish",
+      "expression": "Eyes_Sad",
+      "dialogue": "아이들은 밖에 있으면 위험한데…",
+      "voice": ""
+    },
+    {
+      "type": "whale",
+      "dialogue": "'기름때가 말미잘 이곳 저곳에 묻어있는 것 같아.\n이대로는 아이들이 위험해. 얼른 닦아내야 할 것 같은데…'"
+    },
+    {
+      "type": "whale",
+      "dialogue": "'그래, 아까 얻은 스펀지를 이용해서 조심스럽게 닦아보자.'"
+    },
+    {
+      "type": "interaction",
+      "dialogue": null,
+      "action": "스펀지 아이템 사용해 말미잘 표면의 기름때 제거"
+    },
+    {
+      "type": "clownfish",
+      "expression": "Eyes_Shrink",
+      "dialogue": "어…? 말미잘이 깨끗해졌어요!",
+      "voice": ""
+    },
+    {
+      "type": "clownfish",
+      "expression": "Eyes_Happy",
+      "dialogue": "와! 이제 다시 말미잘 안에서 살 수 있겠어요!\n얘들아, 이제 괜찮아!",
+      "voice": ""
+    },
+    {
+      "type": "clownfish",
+      "expression": "Eyes_Happy",
+      "dialogue": "휴… 정말 다행이에요.\n우리집이 다시 예전처럼 깨끗해졌어요.",
+      "voice": ""
+    },
+    {
+      "type": "clownfish",
+      "expression": "Eyes_Sad",
+      "dialogue": "우리 가족들에게 이 말미잘은 그냥 집이 아니에요.\n예전에 쉴 곳이 없어 헤맬 때, 어디선가 들려온 <color=#42A5F5>따뜻한 목소리</color>가 알려준 곳이거든요.",
+      "voice": ""
+    },
+    {
+      "type": "whale",
+      "dialogue": "'따뜻한 목소리…? 혹시 나를 이곳으로 부른 그 목소리의 주인공일까?'"
+    },
+    {
+      "type": "clownfish",
+      "expression": "Eyes_Sad",
+      "dialogue": "그 목소리가 찾아준 소중한 집인데…\n여기서 살 수 없게 된다면, 우린 정말 어디로 가야 할지 모르겠어요.",
+      "voice": ""
+    },
+    {
+      "type": "whale",
+      "dialogue": "'집이라고 믿었던 곳조차 쓰레기로 위협받는다면…\n이 바다는, 이제 더 이상 안전한 집이 아닐지도 몰라.'"
+    }
+  ]
 }
