@@ -22,7 +22,7 @@ public class SpongeStrategy : IInteractionStrategy
 
     public void OnSelected(InteractionContext ctx)
     {
-        ctx?.SetSpongeVisual(false);
+        ctx?.SetSpongeVisual(true);
         hasLastWorldPos = false;
         currentStain = null;
     }
@@ -36,7 +36,10 @@ public class SpongeStrategy : IInteractionStrategy
 
     public void OnPress(InteractionContext ctx)
     {
-        if (ctx == null || ctx.cam == null || ctx.spongeVisual == null)
+
+        // 스펀지는 선택 즉시 활성화 모드이므로 별도 처리 안 함
+
+        /*if (ctx == null || ctx.cam == null || ctx.spongeVisual == null)
             return;
 
         ctx.SetSpongeVisual(true);
@@ -52,7 +55,7 @@ public class SpongeStrategy : IInteractionStrategy
         {
             hasLastWorldPos = false;
             currentStain = null;
-        }
+        }*/
     }
 
     public void OnHold(InteractionContext ctx, float deltaTime)
@@ -61,7 +64,11 @@ public class SpongeStrategy : IInteractionStrategy
             return;
 
         if (!TryGetPointerWorldPoint(ctx, out Vector3 worldPos, out OilStain stain))
+        {
+            currentStain = null;
+            hasLastWorldPos = false;
             return;
+        }
 
         MoveSpongeVisual(ctx.spongeVisual, worldPos);
 
@@ -97,9 +104,11 @@ public class SpongeStrategy : IInteractionStrategy
 
     public void OnRelease(InteractionContext ctx)
     {
-        ctx?.SetSpongeVisual(false);
+        // 선택 유지형 아이템이므로 release에서 끄지 않음
+
+        /*ctx?.SetSpongeVisual(false);
         hasLastWorldPos = false;
-        currentStain = null;
+        currentStain = null;*/
     }
 
     public float GetProgress01() => -1f;
