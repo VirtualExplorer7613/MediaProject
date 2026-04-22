@@ -307845,6 +307845,10 @@ PrefabInstance:
       propertyPath: m_ClearFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4820086854464846163, guid: 9773bfcdef482424a9d7799b63fe66c7, type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5802498085938592498, guid: 9773bfcdef482424a9d7799b63fe66c7, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9961947
