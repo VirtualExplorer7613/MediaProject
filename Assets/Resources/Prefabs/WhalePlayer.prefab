@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mobileControlMode: 1
-  whaleVisualRoot: {fileID: 0}
+  whaleVisualRoot: {fileID: 93555682367465810}
   crosshair: {fileID: 0}
   minPitch: -60
   maxPitch: 30
@@ -93,16 +93,26 @@ MonoBehaviour:
   forceMobileInput: 0
   turnSpeed: 120
   mobileDeadZone: 0.18
+  maxMoveMagnitude: 1
+  lookSensitivityX: 0.15
+  lookSensitivityY: 0.12
+  invertY: 0
   inputSmoothTime: 0.08
   backwardTurnMultiplier: 0.75
   maxForwardSpeedMultiplier: 1
   maxBackwardSpeedMultiplier: 0.75
-  upButton: {fileID: 0}
-  downButton: {fileID: 0}
+  cameraPivot: {fileID: 5802498085938592498}
+  playerCamera: {fileID: 4820086854464846163}
+  hoverHeight: 3
+  hoverAdjustSpeed: 4
+  hoverProbeDistance: 5
+  maxHoverCorrection: 0.1
+  slopeLimit: 45
+  optionUIController: {fileID: 0}
   ultrasoundPrefab: {fileID: 2267755636713246667, guid: 69426289c5360c441ac30564e5366257, type: 3}
   shootPoint: {fileID: 7146740311611469216}
   dragDetectionRadius: 10
-  capsule: {fileID: 0}
+  capsule: {fileID: 4620342580206830065}
   skinWidth: 0.02
   groundMask:
     serializedVersion: 2
@@ -299,7 +309,7 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!81 &6981913539600841336
@@ -524,8 +534,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7969657f27d1603488c2586b1e1a6b7a, type: 3}
+--- !u!1 &93555682367465810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9032054871072722361, guid: 7969657f27d1603488c2586b1e1a6b7a, type: 3}
+  m_PrefabInstance: {fileID: 8940822187000669419}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &93555682367465811 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9032054871072722360, guid: 7969657f27d1603488c2586b1e1a6b7a, type: 3}
+  m_PrefabInstance: {fileID: 8940822187000669419}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &4620342580206830065 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: -4896838379392719590, guid: 7969657f27d1603488c2586b1e1a6b7a, type: 3}
   m_PrefabInstance: {fileID: 8940822187000669419}
   m_PrefabAsset: {fileID: 0}
