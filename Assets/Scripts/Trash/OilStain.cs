@@ -3,8 +3,13 @@ using UnityEngine;
 public class OilStain : MonoBehaviour
 {
     [Header("Cleaning")]
-    [SerializeField] private float requiredScrubDistance = 2.5f;
-    [SerializeField] private float requiredScrubTime = 2.0f;
+    [SerializeField] private float requiredScrubDistance = 1.25f;
+    [SerializeField] private float requiredScrubTime = 1.0f;
+
+    [Header("Collect Effect")]
+    [SerializeField] private GameObject collectVfxPrefab;
+    [SerializeField] private Vector3 vfxOffset = Vector3.zero;
+    [SerializeField] private float vfxDestroyDelay = 1.5f;
 
     private float scrubDistanceAccum = 0f;
     private float scrubTimeAccum = 0f;
@@ -35,11 +40,22 @@ public class OilStain : MonoBehaviour
         isCleaned = true;
         Debug.Log("[OilStain] Cleaned!");
 
-        // 필요하면 이펙트/사운드
-        // Managers.Sound.Play("Clean_Sponge");
+        SpawnCollectVfx();
+
+        Managers.Sound.Play("Bubble_Surface_Large_01");
 
         gameObject.SetActive(false);
         // 또는 Destroy(gameObject);
+    }
+
+    private void SpawnCollectVfx()
+    {
+        TrashVfxUtility.SpawnOneShot(
+            collectVfxPrefab,
+            transform.position,
+            vfxOffset,
+            vfxDestroyDelay
+        );
     }
 
     public void ResetProgress()

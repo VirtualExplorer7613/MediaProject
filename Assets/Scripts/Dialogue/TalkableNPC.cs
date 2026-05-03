@@ -31,6 +31,12 @@ public class TalkableNPC : MonoBehaviour
 
     //private bool questClearEffectPlayed = false;
 
+    [Header("Dialogue Reward")]
+    [SerializeField] private ItemDefinition rewardItemAfterFinalDialogue;
+    [SerializeField] private bool giveRewardAfterFinalDialogue = false;
+
+    private bool rewardGiven = false;
+
     public Transform dialogueAnchor; // 대화할때 플레어이어의 위치
 
     private bool uiInteractPressed = false;
@@ -209,9 +215,31 @@ public class TalkableNPC : MonoBehaviour
         /*ShowquestionHintUI(false);
         UpdateQuestIcon();*/
         RefreshIcons();
+
+        TryGiveFinalDialogueReward();
+
         DialogueManager.Instance?.TryTriggerEndingAfterFinalDialogue();
     }
-    
+
+    private void TryGiveFinalDialogueReward()
+    {
+        if (!giveRewardAfterFinalDialogue) return;
+        if (rewardGiven) return;
+        if (rewardItemAfterFinalDialogue == null) return;
+
+        rewardGiven = true;
+
+        if (ItemPickupPopup.Instance != null)
+        {
+            ItemPickupPopup.Instance.Show(rewardItemAfterFinalDialogue);
+            Debug.Log($"[NPC Reward] {characterName} 보상 지급: {rewardItemAfterFinalDialogue.name}");
+        }
+        else
+        {
+            Debug.LogWarning($"[NPC Reward] ItemPickupPopup.Instance를 찾을 수 없습니다. npc={characterName}");
+        }
+    }
+
     void ShowHeartIcon()
     {
         if (heartIcon != null)

@@ -84,7 +84,8 @@ public class DialogueManager : MonoBehaviour
         "lobster",
         "prawn",
         "orca",
-        "sardine"
+        "sardine",
+        "tuna"
     };
 
     private bool endingTriggered = false;
