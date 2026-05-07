@@ -24,6 +24,8 @@ public class InteractionContext
     public LayerMask spongeSurfaceMask;
     public LayerMask oilStainMask;
 
+    [Header("Pull")]
+    public GameObject pullVisual;
 
     [Header("Chest")]
     public TreasureChestController currentChest;
@@ -49,6 +51,12 @@ public class InteractionContext
     {
         if (spongeVisual != null)
             spongeVisual.SetActive(on);
+    }
+
+    public void SetPullVisual(bool on)
+    {
+        if (pullVisual != null)
+            pullVisual.SetActive(on);
     }
 }
 
