@@ -17,9 +17,9 @@ public class PullTrashStrategy : IInteractionStrategy
     [Header("Visual Tuning")]
     /*private const float VisualForwardOffset = 1.2f;
     private const float VisualTargetOffset = 0.15f;*/
-    private const float PullVisualBackOffset = 0.0f;
-    private const float PullVisualSideOffset = 0.0f;
-    private const float PullVisualUpOffset = 1.0f;
+    private const float PullVisualFrontOffset = 4f; // 뽑히는 방향 앞쪽
+    private const float PullVisualSideOffset = 0.0f;  // 뽑히는 방향 기준 오른쪽/왼쪽
+    private const float PullVisualUpOffset = 0.0f;    // 뽑히는 방향 기준 위쪽
 
     public PullTrashStrategy(ItemDefinition def) => this.def = def;
 
@@ -49,6 +49,11 @@ public class PullTrashStrategy : IInteractionStrategy
         {
             currentTarget.BeginPull();
             ctx.SetPullVisual(true);
+
+            var blend = ctx.pullVisual.GetComponentInChildren<PullVisualBlendShape>();
+            if (blend != null)
+                blend.PlayAppear();
+
             UpdatePullVisual(ctx);
         }
         else
@@ -81,6 +86,10 @@ public class PullTrashStrategy : IInteractionStrategy
 
             currentTarget.BeginPull();
             ctx.SetPullVisual(true);
+
+            var blend = ctx.pullVisual.GetComponentInChildren<PullVisualBlendShape>();
+            if (blend != null)
+                blend.PlayAppear();
         }
 
         UpdatePullVisual(ctx);
@@ -369,24 +378,51 @@ public class PullTrashStrategy : IInteractionStrategy
 
         Vector3 pullDir = currentTarget.PullDirection.normalized;
 
+        if (pullDir.sqrMagnitude < 0.0001f)
+            pullDir = currentTarget.transform.forward;
+
+        // pullDir을 기준으로 한 로컬 좌표계 만들기
+        Vector3 upRef = Vector3.up;
+
+
         // "쓰레기 아이템 앞" = 빠지는 방향 쪽 앞.
         // 쓰레기가 뽑혀 나올 방향에 핀셋을 둔다.
-        Vector3 basePos =
-            currentTarget.transform.position +
-            pullDir * PullVisualBackOffset;
+        /*        Vector3 basePos =
+                    currentTarget.transform.position +
+                    pullDir * PullVisualBackOffset;*/
 
-        // 필요하면 카메라 기준 좌우/상하 오프셋도 줄 수 있음
-        if (ctx.cam != null)
+        /*        // 필요하면 카메라 기준 좌우/상하 오프셋도 줄 수 있음
+                if (ctx.cam != null)
+                {
+                    basePos += ctx.cam.transform.right * PullVisualSideOffset;
+                    basePos += ctx.cam.transform.up * PullVisualUpOffset;
+                }*/
+
+        // pullDir이 거의 월드 위/아래 방향이면 Cross가 불안정해지므로 보정
+        if (Mathf.Abs(Vector3.Dot(pullDir, upRef)) > 0.95f)
         {
-            basePos += ctx.cam.transform.right * PullVisualSideOffset;
-            basePos += ctx.cam.transform.up * PullVisualUpOffset;
+            if (ctx.cam != null)
+                upRef = ctx.cam.transform.up;
+            else
+                upRef = currentTarget.transform.up;
         }
 
-        ctx.pullVisual.transform.position = basePos;
+        Vector3 sideDir = Vector3.Cross(upRef, pullDir).normalized;
+        Vector3 upDir = Vector3.Cross(pullDir, sideDir).normalized;
+
+        Vector3 basePos = currentTarget.transform.position;
+
+        Vector3 offset =
+       pullDir * PullVisualFrontOffset +
+       sideDir * PullVisualSideOffset +
+       upDir * PullVisualUpOffset;
+
+
+        ctx.pullVisual.transform.position = basePos + offset;
 
         // 핀셋의 앞방향이 쓰레기를 향하도록 배치
         // 모델 축이 반대로 되어 있으면 아래 LookRotation 방향을 -pullDir로 바꾸면 됨.
-        ctx.pullVisual.transform.rotation = Quaternion.LookRotation(pullDir, Vector3.up);
+        ctx.pullVisual.transform.rotation = Quaternion.LookRotation(pullDir, upDir);
     }
 
 

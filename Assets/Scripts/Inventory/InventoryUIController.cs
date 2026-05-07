@@ -46,12 +46,12 @@ public class InventoryUIController : MonoBehaviour
         if (defToSelect != null && buttonMap.TryGetValue(defToSelect, out var btn))
         {
             // 버튼 레퍼런스를 넘겨서 선택 표시가 켜지게 함
-            SelectItem(defToSelect, btn);
+            SelectItem(defToSelect, btn, false);
         }
         else if (items.Count > 0 && buttonMap.TryGetValue(items[0], out var firstBtn))
         {
             // 마지막 안전장치
-            SelectItem(items[0], firstBtn);
+            SelectItem(items[0], firstBtn, false);
         }
 
         if (inventoryPanel != null)
@@ -85,7 +85,7 @@ public class InventoryUIController : MonoBehaviour
         }
     }
 
-    public void SelectItem(ItemDefinition def, InventoryItemButton clicked)
+    public void SelectItem(ItemDefinition def, InventoryItemButton clicked, bool playSfx = true)
     {
         // UI 선택 표시
         if (selectedButton != null) selectedButton.SetSelected(false);
@@ -99,7 +99,10 @@ public class InventoryUIController : MonoBehaviour
         // 선택 후 자동 접힘
         if (inventoryPanel != null)
             inventoryPanel.SetActive(false);
-        Managers.Sound.Play(clickSfx);
+
+        if (playSfx)
+            Managers.Sound.Play(clickSfx);
+
         Debug.Log($"{def.name} equipped!! this is button");
 
         if (def.itemType == ItemType.Key)
