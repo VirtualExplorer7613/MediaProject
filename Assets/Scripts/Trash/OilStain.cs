@@ -3,8 +3,11 @@ using UnityEngine;
 public class OilStain : MonoBehaviour
 {
     [Header("Cleaning")]
-    [SerializeField] private float requiredScrubDistance = 1.25f;
-    [SerializeField] private float requiredScrubTime = 1.0f;
+    [SerializeField] private float requiredScrubDistance = 2.5f;
+    [SerializeField] private float requiredScrubTime = 2.0f;
+
+    [Header("Tuning")]
+    [SerializeField] private float cleanSpeedMultiplier = 2.0f;
 
     [Header("Collect Effect")]
     [SerializeField] private GameObject collectVfxPrefab;
@@ -22,7 +25,8 @@ public class OilStain : MonoBehaviour
     {
         if (isCleaned) return;
 
-        scrubDistanceAccum += movedDistance;
+        //scrubDistanceAccum += movedDistance;
+        scrubDistanceAccum += movedDistance * cleanSpeedMultiplier;
         scrubTimeAccum += deltaTime;
 
 
