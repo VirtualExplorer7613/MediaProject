@@ -42,5 +42,5 @@ public class ItemDefinition : ScriptableObject
     public int brushMaxCleanCount = 10;
 
     [Header("Pull")]
-    public float pullMaxDistance = 8f;
+    public float pullMaxDistance = 15f;
 }

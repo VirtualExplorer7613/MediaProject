@@ -19,40 +19,93 @@ public class PullableTrash : MonoBehaviour
     }
 
     [Header("Pull Settings")]
-    [Tooltip("쓰레기를 뽑기 위해 필요한 누적 거리")]
-    [SerializeField] private float requiredPullAmount = 300f;
-    [SerializeField] private bool useDirectionalCheck = true;
+
+    /*[Tooltip("쓰레기를 뽑기 위해 필요한 누적 거리")]
+    [SerializeField] private float requiredPullAmount = 300f;*/
+
+    /* 
+     [SerializeField] private float movementPerDragUnit = 0.002f;
+     [SerializeField] private float maxVisualPullDistance = 0.5f;
+     [SerializeField, Range(0f, 1f)] private float requiredDirectionDot = 0.5f;
+    */
+
+    [Tooltip("쓰레기를 완전히 뽑는 데 필요한 Hold 시간")]
+    [SerializeField] private float requiredPullTime = 2.0f;
+
+    //[SerializeField] private bool useDirectionalCheck = true;
     [SerializeField] private PullAxisType pullAxis = PullAxisType.LocalUp;
-    //[SerializeField] private Vector2 validScreenDirection = Vector2.up;
-    [SerializeField, Range(0f, 1f)] private float requiredDirectionDot = 0.5f;
-    [SerializeField] private float movementPerDragUnit = 0.002f;
     [SerializeField] private float maxVisualPullDistance = 0.5f;
+
+    //[SerializeField] private Vector2 validScreenDirection = Vector2.up;
+
+
+    [Header("Restore")]
+    [Tooltip("손을 뗀 뒤 복원이 시작되기까지 대기 시간")]
+    [SerializeField] private float restoreDelay = 0.35f;
+
+    [Tooltip("원래 위치로 돌아가는 속도")]
+    [SerializeField] private float restoreSpeed = 1.5f;
 
     [Header("Distance")]
     [SerializeField] private float maxPlayerDistance = 4f;
+
+    [Header("Resistance")]
+    [Tooltip("초반 저항감. 낮을수록 처음에 천천히 뽑힘")]
+    [SerializeField, Range(0.05f, 1f)] private float startResistanceMultiplier = 0.45f;
+
+    [Tooltip("후반 저항감. 1에 가까울수록 정상 속도")]
+    [SerializeField, Range(0.05f, 2f)] private float endResistanceMultiplier = 1.0f;
+
+
 
     /*[Header("Feedback")]
     [SerializeField] private GameObject highlightObject;*/
     // [SerializeField] private Animator animator;
 
-    private float currentPullAmount = 0f;
+    /*private float currentPullAmount = 0f;*/
+    private float currentPullTime = 0f;
     private bool isPulledOut = false;
+    private bool isBeingPulled = false;
+
+    private float restoreTimer = 0f;
 
     private Vector3 initialPosition;
     private bool hasCachedInitialPosition = false;
 
     public bool IsPulledOut => isPulledOut;
 
-    public float Progress01 => Mathf.Clamp01(currentPullAmount / requiredPullAmount);
+    public float Progress01 => Mathf.Clamp01(currentPullTime / requiredPullTime);
+
+    public Vector3 InitialPosition => initialPosition;
+
+    public Vector3 PullDirection => GetPullDirection();
 
     private void Awake()
     {
         CacheInitialPosition();
     }
 
+    private void Update()
+    {
+        if (isPulledOut) return;
+        if (isBeingPulled) return;
+        if (currentPullTime <= 0f) return;
+
+        restoreTimer += Time.deltaTime;
+
+        if (restoreTimer < restoreDelay)
+            return;
+
+        currentPullTime -= restoreSpeed * Time.deltaTime;
+        currentPullTime = Mathf.Max(0f, currentPullTime);
+
+        UpdateVisualPosition();
+    }
+
     private void CacheInitialPosition()
     {
         if (hasCachedInitialPosition) return;
+
         initialPosition = transform.position;
         hasCachedInitialPosition = true;
     }
@@ -69,61 +122,50 @@ public class PullableTrash : MonoBehaviour
     public void BeginPull()
     {
         // 당기기 시작할 때 사용할 기능 작성
+        if (isPulledOut) return;
+
+        isBeingPulled = true;
+        restoreTimer = 0f;
+    }
+
+    public void EndPull()
+    {
+        isBeingPulled = false;
+        restoreTimer = 0f;
     }
 
     // 드래그가 중간에 취소되었을 때 호출하는 함수
-    public void CancelPull(bool resetProgress = true)
+    public void CancelPull(bool resetProgress = false)
     {
+        isBeingPulled = false;
+        restoreTimer = 0f;
 
         if (resetProgress)
         {
-            currentPullAmount = 0f;
+            currentPullTime = 0f;
             transform.position = initialPosition;
-        }  
+        }
     }
 
-    public bool ApplyDrag(Vector2 screenDelta, Camera cam)
+    public bool ApplyHoldPull(float deltaTime)
     {
         if (isPulledOut) return false;
-        if (cam == null) return false;
-        if (screenDelta.sqrMagnitude <= 0.001f) return false;
 
-        Vector3 worldDrag = cam.transform.right * screenDelta.x +
-                            cam.transform.up * screenDelta.y;
+        float progress = Progress01;
 
-        Vector3 dragDir = worldDrag.normalized;
-        Vector3 targetAxis = GetPullDirection();
+        // 초반에는 저항감 때문에 느리고, 후반으로 갈수록 조금 더 잘 뽑히는 느낌
+        float resistanceMultiplier = Mathf.Lerp(
+            startResistanceMultiplier,
+            endResistanceMultiplier,
+            progress
+        );
 
-        float addAmount = 0f;
-
-        if (useDirectionalCheck)
-        {
-            Vector2 dir = screenDelta.normalized;
-            // 현재 드래그하는 방향과 목표로 하는 방향의 차이를 계산 
-            float dot = Vector3.Dot(dragDir, targetAxis);
-
-            if (dot >= requiredDirectionDot)
-            {
-                // 목표 방향과 유사할수록 빨리 뽑힌다 
-                addAmount = screenDelta.magnitude * dot;
-            }
-        }
-        else
-        {
-            addAmount = screenDelta.magnitude;
-        }
-
-        if (addAmount <= 0f)
-            return false;
-
-        currentPullAmount += addAmount;
+        currentPullTime += deltaTime * resistanceMultiplier;
+        currentPullTime = Mathf.Min(currentPullTime, requiredPullTime);
 
         UpdateVisualPosition();
 
-        // 필요하면 살짝 흔들리게 하거나 위치 보정 가능
-        // transform.position += OOO
-
-        if (currentPullAmount >= requiredPullAmount)
+        if (currentPullTime >= requiredPullTime)
         {
             CompletePull();
             return true;
@@ -132,10 +174,63 @@ public class PullableTrash : MonoBehaviour
         return false;
     }
 
+    /* public bool ApplyDrag(Vector2 screenDelta, Camera cam)
+     {
+         if (isPulledOut) return false;
+         if (cam == null) return false;
+         if (screenDelta.sqrMagnitude <= 0.001f) return false;
+
+         Vector3 worldDrag = cam.transform.right * screenDelta.x +
+                             cam.transform.up * screenDelta.y;
+
+         Vector3 dragDir = worldDrag.normalized;
+         Vector3 targetAxis = GetPullDirection();
+
+         float addAmount = 0f;
+
+         if (useDirectionalCheck)
+         {
+             Vector2 dir = screenDelta.normalized;
+             // 현재 드래그하는 방향과 목표로 하는 방향의 차이를 계산 
+             float dot = Vector3.Dot(dragDir, targetAxis);
+
+             if (dot >= requiredDirectionDot)
+             {
+                 // 목표 방향과 유사할수록 빨리 뽑힌다 
+                 addAmount = screenDelta.magnitude * dot;
+             }
+         }
+         else
+         {
+             addAmount = screenDelta.magnitude;
+         }
+
+         if (addAmount <= 0f)
+             return false;
+
+         currentPullAmount += addAmount;
+
+         UpdateVisualPosition();
+
+         // 필요하면 살짝 흔들리게 하거나 위치 보정 가능
+         // transform.position += OOO
+
+         if (currentPullAmount >= requiredPullAmount)
+         {
+             CompletePull();
+             return true;
+         }
+
+         return false;
+     }*/
+
     private void UpdateVisualPosition()
     {
         Vector3 axis = GetPullDirection();
-        float visualDistance = Mathf.Min(currentPullAmount * movementPerDragUnit, maxVisualPullDistance);
+        /*float visualDistance = Mathf.Min(currentPullAmount * movementPerDragUnit, maxVisualPullDistance);
+        transform.position = initialPosition + axis * visualDistance;*/
+        float visualDistance = Progress01 * maxVisualPullDistance;
+
         transform.position = initialPosition + axis * visualDistance;
     }
 
@@ -166,6 +261,7 @@ public class PullableTrash : MonoBehaviour
         if (isPulledOut) return;
 
         isPulledOut = true;
+        isBeingPulled = false;
 
         Debug.Log($"[PullableTrash] Pulled out: {name}");
 
