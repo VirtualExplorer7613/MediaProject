@@ -17,9 +17,9 @@ public class PullTrashStrategy : IInteractionStrategy
     [Header("Visual Tuning")]
     /*private const float VisualForwardOffset = 1.2f;
     private const float VisualTargetOffset = 0.15f;*/
-    private const float PullVisualBackOffset = 0.28f;
+    private const float PullVisualBackOffset = 0.0f;
     private const float PullVisualSideOffset = 0.0f;
-    private const float PullVisualUpOffset = 0.1f;
+    private const float PullVisualUpOffset = 1.0f;
 
     public PullTrashStrategy(ItemDefinition def) => this.def = def;
 

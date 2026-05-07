@@ -12,6 +12,9 @@ public class SpongeStrategy : IInteractionStrategy
     private const float VisualYOffset = 0.05f;   // 표면과 살짝 띄우기
     private const float MinMoveThreshold = 0.005f; // 너무 미세한 떨림 무시
 
+    private const string SpongeLoopSfx = "SFX/Sponge";
+    private bool isSpongeSfxPlaying = false;
+
     public SpongeStrategy(ItemDefinition def)
     {
         this.def = def;
@@ -65,6 +68,7 @@ public class SpongeStrategy : IInteractionStrategy
 
         if (!TryGetPointerWorldPoint(ctx, out Vector3 worldPos, out OilStain stain))
         {
+            StopSpongeSfx();
             currentStain = null;
             hasLastWorldPos = false;
             return;
@@ -83,6 +87,8 @@ public class SpongeStrategy : IInteractionStrategy
             QuestTarget qt = stain.GetComponent<QuestTarget>();
             if (qt != null && !qt.CanBeProcessedBy(QuestItemType.Sponge))
             {
+                StopSpongeSfx();
+
                 lastWorldPos = worldPos;
                 hasLastWorldPos = true;
                 currentStain = stain;
@@ -90,11 +96,16 @@ public class SpongeStrategy : IInteractionStrategy
             }
 
             stain.AddScrub(movedDistance, deltaTime);
+            PlaySpongeSfx();
 
             if (stain.IsCleaned && qt != null)
             {
                 qt.CompleteQuestTarget();
             }
+        }
+        else
+        {
+            StopSpongeSfx();
         }
 
         lastWorldPos = worldPos;
@@ -157,5 +168,21 @@ public class SpongeStrategy : IInteractionStrategy
     private void MoveSpongeVisual(GameObject spongeVisual, Vector3 worldPos)
     {
         spongeVisual.transform.position = worldPos + Vector3.up * VisualYOffset;
+    }
+
+    private void PlaySpongeSfx()
+    {
+        if (isSpongeSfxPlaying) return;
+
+        Managers.Sound.Play(SpongeLoopSfx, Define.Sound.LoopEffect);
+        isSpongeSfxPlaying = true;
+    }
+
+    private void StopSpongeSfx()
+    {
+        if (!isSpongeSfxPlaying) return;
+
+        Managers.Sound.StopLoopEffect();
+        isSpongeSfxPlaying = false;
     }
 }
