@@ -16,72 +16,31 @@
             "type": "lobster",
             "expression": "Eyes_Annoyed",
             "dialogue": "이봐, 고래!! 나 좀 도와줘!",
-            "voice": "Dubbing_Lobster/audio_0_Lobster_01"
+            "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Annoyed",
-            "dialogue": "도무지 몸이 안 움직여!!",
-            "voice": "Dubbing_Lobster/audio_1_Lobster_02"
+            "dialogue": "이놈의 밧줄이 내 몸을 꽉 묶어서 꼼짝도 못 하겠어!",
+            "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Annoyed",
-            "dialogue": "이 밧줄이 내 몸통을 꽉 묶고 있는 바람에 꼼짝도 못 하겠어!",
-            "voice": "Dubbing_Lobster/audio_2_Lobster_03"
-        },
-        {
-            "type": "lobster",
-            "expression": "Eyes_Annoyed",
-            "dialogue": "튼튼한 내 집게발로도 도저히 해결이 안 돼!",
-            "voice": "Dubbing_Lobster/audio_3_Lobster_04"
-        },
-        {
-            "type": "lobster",
-            "expression": "Eyes_Squint",
-            "dialogue": "젠장! 아무리 힘을 줘도 더 조여들기만 하잖아...!",
-            "voice": "Dubbing_Lobster/audio_4_Lobster_05"
+            "dialogue": "내 집게발로 꼬집어 봐도 끄떡없어!\n뭔가 <color=#FFFF00>더 날카로운 걸로 뚝! 잘라줘야</color> 할 것 같아!",
+            "voice": ""
         },
         {
             "type": "whale",
-            "expression": "Eyes_Shrink",
-            "dialogue": "진정해 가재야. 도대체 무슨 일이야?",
-            "voice": "Dubbing_Lobster/audio_5_Whale_01"
+            "expression": "Eyes_LookIn",
+            "dialogue": "(밧줄이 몸에 잔뜩 감겨 있네.\n저대로 힘을 쓰면 더 조여들어서 위험해지겠어.)",
+            "voice": ""
         },
         {
             "type": "whale",
-            "expression": "Sweat_R",
-            "dialogue": "아… 몸에 밧줄이 잔뜩 감겨 있네. 이대로 있다가는 크게 다치겠어.",
-            "voice": "Dubbing_Lobster/audio_6_Whale_02"
-        },
-        {
-            "type": "lobster",
-            "expression": "Eyes_Annoyed",
-            "dialogue": "그러니까 도와달라는 거잖아!!",
-            "voice": "Dubbing_Lobster/audio_7_Lobster_06"
-        },
-        {
-            "type": "lobster",
-            "expression": "Eyes_Annoyed",
-            "dialogue": "갑자기 어디서 이런 밧줄이 떠내려와서는…\n내가 가만히 있다가 꼼짝없이 그대로 묶여버렸다고!",
-            "voice": "Dubbing_Lobster/audio_8_Lobster_07"
-        },
-        {
-            "type": "whale",
-            "expression": "Sweat_R",
-            "dialogue": "(밧줄이 단단하게 묶여 있어서 그냥 풀기는 힘들겠는 걸.)",
-            "voice": "Dubbing_Lobster/audio_9_Whale_03"
-        },
-        {
-            "type": "whale",
-            "expression": "Eyes_Shrink",
-            "dialogue": "(그래, 가위라면… 이 밧줄을 안전하게 자를 수도 있을 것 같아.)",
-            "voice": "Dubbing_Lobster/audio_10_Whale_04"
-        },
-        {
-            "type": "whale",
-            "dialogue": "(아까 얻은 가위 아이템을 이용해서 밧줄을 안전하게 잘라보자.)",
-            "voice": "Dubbing_Lobster/audio_11_Whale_05"
+            "expression": "Eyes_Blink",
+            "dialogue": "(이 질긴 밧줄... 그 도구라면 단번에 끊어낼 수 있어!)",
+            "voice": ""
         },
         {
             "type": "interaction",
@@ -92,88 +51,90 @@
             "type": "lobster",
             "expression": "Eyes_Squint",
             "dialogue": "으악!",
-            "voice": "Dubbing_Lobster/audio_12_Lobster_08"
+            "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Shrink",
             "dialogue": "어라? 드디어 풀렸구나! 풀렸어!",
-            "voice": "Dubbing_Lobster/audio_13_Lobster_09"
+            "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Sweat_L",
             "dialogue": "온 몸이 꽁꽁 묶이는 바람에 답답해서 죽는 줄 알았네.",
-            "voice": "Dubbing_Lobster/audio_14_Lobster_10"
+            "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Happy",
-            "dialogue": "고래! 너, 진짜 고맙다. 너가 아니었으면 정말 큰일날 뻔 했어.",
-            "voice": "Dubbing_Lobster/audio_15_Lobster_11"
+            "dialogue": "고래! 너, 진짜 고맙다. 네가 아니었으면 정말 큰일 날 뻔했어.",
+            "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Blink",
             "dialogue": "근데 넌 여기까지 어떻게 알고 찾아온 거냐?",
-            "voice": "Dubbing_Lobster/audio_16_Lobster_12"
+            "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Blink",
             "dialogue": "내 예민한 수염에 아까부터 계속 <color=#42A5F5>미세한 진동</color> 같은 게 느껴지긴 했는데…",
-            "voice": "Dubbing_Lobster/audio_17_Lobster_13"
+            "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Rabid",
-            "dialogue": "누가 계속 노래라도 부르는 것처럼 울려서 더 신경 쓰였단 말이지.\n설마 고래 너가 낸 소리냐?",
-            "voice": "Dubbing_Lobster/audio_18_Lobster_14"
+            "dialogue": "누가 계속 노래라도 부르는 것처럼 울려서 더 신경 쓰였단 말이지.\n설마 고래 네가 낸 소리냐?",
+            "voice": ""
         },
         {
             "type": "whale",
-            "dialogue": "(<color=#42A5F5>미세한 진동</color>…? 거북이 할아버지께서 말씀하셨던\n그 <color=#42A5F5>잔잔한 물살</color>과 같은 걸 말하는 걸까?)",
-            "voice": "Dubbing_Lobster/audio_19_Whale_06"
+            "expression": "Eyes_LookIn",
+            "dialogue": "(<color=#42A5F5>미세한 진동</color>…? 전에 다른 친구들도 말했던\n그 <color=#42A5F5>잔잔한 노랫소리</color>를 말하는 걸까?)",
+            "voice": ""
         },
         {
             "type": "whale",
-            "dialogue": "(누군가 계속 나를 이쪽으로 부르고 있는 게 분명해!)",
-            "voice": "Dubbing_Lobster/audio_20_Whale_07"
+            "expression": "Eyes_Blink",
+            "dialogue": "(나를 이쪽으로 이끌어 주는 그 목소리가 점점 뚜렷해지고 있어!)",
+            "voice": ""
         },
         {
             "type": "whale",
-            "dialogue": "난 아무 소리도 안 냈어. 그나저나 밧줄은 원래 바다에 있으면 안 되는 물건인데\n가재 너 정말 위험할 뻔 했어.",
-            "voice": "Dubbing_Lobster/audio_21_Whale_08"
+            "dialogue": "난 아무 소리도 안 냈어. 그나저나 밧줄은 원래 바다에 있으면 안 되는 물건인데\n가재 너 정말 위험할 뻔했어.",
+            "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Rabid",
             "dialogue": "흠.. 바다에 있으면 안 되는 물건이라면, 사람들이 버린 쓰레기!\n또 그거란 말이지? 이젠 정말 지긋지긋하군.",
-            "voice": "Dubbing_Lobster/audio_22_Lobster_15"
+            "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Annoyed",
-            "dialogue": "이렇게 질기고 단단한 게 돌아다니면…\n아무리 나처럼 강한 녀석들이라도 피할 틈이 없다고~",
-            "voice": "Dubbing_Lobster/audio_23_Lobster_16"
+            "dialogue": "이렇게 질기고 단단한 게 돌아다니면…\n나처럼 강한 녀석들도 피할 틈이 없다고~",
+            "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Annoyed",
-            "dialogue": "내 가족들도 나처럼 이런 일을 당할까봐 걱정이 이만저만이 아니야.\n도대체 이런 게 바다에 왜 있는 거야?!",
-            "voice": "Dubbing_Lobster/audio_24_Lobster_17"
+            "dialogue": "내 가족들도 나처럼 이런 일을 당할까 봐 걱정이 이만저만이 아니야.\n도대체 이런 게 바다에 왜 있는 거야?!",
+            "voice": ""
         },
         {
             "type": "whale",
             "expression": "Sweat_R",
-            "dialogue": "(가재까지 꼼짝없이 당해버리는 걸 보니...\n바다가 점점 위험한 곳으로 바뀌고 있는 느낌이 드는 걸.)",
-            "voice": "Dubbing_Lobster/audio_25_Whale_08"
+            "dialogue": "(단단한 껍질을 가진 가재까지 꼼짝없이 당해버리다니...\n바다가 점점 위험한 곳으로 바뀌고 있어.)",
+            "voice": ""
         },
         {
             "type": "whale",
-            "expression": "Sweat_R",
-            "dialogue": "(바다를 지금 이대로 방치했다간 정말 큰일날 것 같아…)",
-            "voice": "Dubbing_Lobster/audio_26_Whale_09"
+            "expression": "Eyes_Sad",
+            "dialogue": "(바다를 지금 이대로 두면 정말 큰일 날 것 같아…)",
+            "voice": ""
         }
     ]
 }

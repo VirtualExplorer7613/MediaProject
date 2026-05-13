@@ -16,31 +16,31 @@
             "type": "sardine",
             "expression": "Eyes_Trauma",
             "dialogue": "엄마, 아빠 어디 있는 거야?\n여긴 너무 깜깜해…",
-            "voice": "Dubbing_Sardine/audio_0_Sardine_01"
+            "voice": ""
         },
         {
             "type": "sardine",
             "expression": "Eyes_Trauma",
             "dialogue": "나 혼자 남겨지긴 싫어…\n누가 좀 도와주세요…",
-            "voice": "Dubbing_Sardine/audio_1_Sardine_02"
-        },
-        {
-            "type": "whale",
-            "expression": "Eyes_Shrink",
-            "dialogue": "(이건, 정어리 목소리인데?)",
-            "voice": "Dubbing_Sardine/audio_2_Whale_01"
+            "voice": ""
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(설마… 저 박스 안에 갇혀버린 건가?)",
-            "voice": "Dubbing_Sardine/audio_3_Whale_02"
+            "dialogue": "(이건, 정어리의 목소리인데?)",
+            "voice": ""
         },
         {
             "type": "whale",
-            "expression": "Sweat_R",
-            "dialogue": "(이거 큰 일인 걸? 파도 스킬을 이용해서 얼른 구해줘야겠어!)",
-            "voice": "Dubbing_Sardine/audio_4_Whale_03"
+            "expression": "Eyes_LookIn",
+            "dialogue": "(설마… 바다에 떠다니는 저 종이박스 안에 갇혀버린 건가?)",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Blink",
+            "dialogue": "(종이라서 가벼워 보여...\n아까처럼 <color=#00BFFF>강한 물살</color>을 일으키면 저 멀리 밀어낼 수 있겠어!)",
+            "voice": ""
         },
         {
             "type": "interaction",
@@ -51,88 +51,84 @@
             "type": "sardine",
             "expression": "Eyes_Shrink",
             "dialogue": "어… 어라? 앞이 보인다!",
-            "voice": "Dubbing_Sardine/audio_5_Sardine_03"
+            "voice": ""
         },
         {
             "type": "sardine",
             "expression": "Eyes_Happy",
             "dialogue": "고래님이 절 구해주신 거군요! 정말 감사해요!",
-            "voice": "Dubbing_Sardine/audio_6_Sardine_04"
+            "voice": ""
         },
         {
             "type": "sardine",
             "expression": "Eyes_Sad",
-            "dialogue": "갑자기 큰 박스 같은 게 날아와서…\n순식간에 저를 덮쳐버렸어요.",
-            "voice": "Dubbing_Sardine/audio_7_Sardine_05"
-        },
-        {
-            "type": "sardine",
-            "expression": "Eyes_Sad",
-            "dialogue": "분명 가족들을 따라 헤엄치고 있었는데…\n아무 소리도 안 들리고, 앞은 캄캄하고… 그렇게 저 혼자 남겨졌어요.",
-            "voice": "Dubbing_Sardine/audio_8_Sardine_06"
+            "dialogue": "가족들이랑 헤엄치고 있었는데...\n이 박스가 갑자기 저를 덮쳐버렸어요.",
+            "voice": ""
         },
         {
             "type": "sardine",
             "expression": "Eyes_Blink",
-            "dialogue": "그래도 그 캄캄한 박스 안에서 신기하게 <color=#FF8DA1>따스한 기운</color> 같은 게 느껴졌어요.",
-            "voice": "Dubbing_Sardine/audio_9_Sardine_07"
+            "dialogue": "아무 소리도 안 들리고 앞은 캄캄해서 너무 무서웠는데…\n그 안에서 신기하게 <color=#FF8DA1>따스한 기운</color> 같은 게 느껴졌어요.",
+            "voice": ""
         },
         {
             "type": "sardine",
             "expression": "Eyes_Happy",
-            "dialogue": "마치 누군가 저를 안아주는 것 같아서 조금은 덜 무서웠어요.\n그 <color=#FF8DA1>따스한 기운</color> 덕분에 무섭지만 참을 수 있었어요!",
-            "voice": "Dubbing_Sardine/audio_10_Sardine_08"
+            "dialogue": "마치 누군가 저를 꼭 안아주는 것 같았어요.\n그 <color=#FF8DA1>따스한 기운</color> 덕분에 덜 무서웠어요!",
+            "voice": ""
         },
         {
             "type": "whale",
-            "dialogue": "(캄캄한 박스 안에서도 곁에 있어 줬구나…\n정어리가 무서워할 때 그 <color=#FF8DA1>따스한 기운</color>으로 달래준 건가 봐.)",
-            "voice": "Dubbing_Sardine/audio_11_Whale_04"
+            "expression": "Eyes_LookIn",
+            "dialogue": "(나를 불렀던 그 목소리가 정어리를 달래주었나 봐.\n보이지 않는 곳에서 계속 바다 친구들을 돕고 있었구나.)",
+            "voice": ""
         },
         {
             "type": "whale",
-            "expression": "Eyes_Sleep",
-            "dialogue": "(나를 부른 그 존재는 보이지 않는 곳에서 계속 바다 친구들을 돕고 있었어.)",
-            "voice": "Dubbing_Sardine/audio_12_Whale_05"
-        },
-        {
-            "type": "whale",
+            "expression": "Eyes_Blink",
             "dialogue": "(점점 그 목소리의 주인공과 가까워지는 느낌이야.)",
-            "voice": "Dubbing_Sardine/audio_13_Whale_06"
-        },
-        {
-            "type": "whale",
-            "dialogue": "정어리 네 눈앞을 막고 있던 건 종이박스야.\n바다에 떠다니다가 네가 가던 길을 가로막게 된 것 같아.",
-            "voice": "Dubbing_Sardine/audio_14_Whale_07"
-        },
-        {
-            "type": "sardine",
-            "expression": "Eyes_Sad",
-            "dialogue": "그랬군요…\n이대로 가족들을 영영 못 만나게 되는 줄 알고 너무 무서웠어요…",
-            "voice": "Dubbing_Sardine/audio_15_Sardine_09"
+            "voice": ""
         },
         {
             "type": "sardine",
             "expression": "Eyes_Shrink",
-            "dialogue": "어! 저기 보여요!\n저기 제 가족들이 있어요!",
-            "voice": "Dubbing_Sardine/audio_16_Sardine_10"
+            "dialogue": "어! 저기 보여요! 저기 제 가족들이 있어요!",
+            "voice": ""
         },
         {
             "type": "sardine",
             "expression": "Eyes_Happy",
-            "dialogue": "저는 이만 가족들에게 돌아가 봐야겠어요.\n고래님, 도와주셔서 정말 감사했어요.",
-            "voice": "Dubbing_Sardine/audio_17_Sardine_11"
+            "dialogue": "참! 박스 안에 같이 떠다니던 <color=#FFFF00>푹신푹신한 물건</color>이 있었거든요.",
+            "voice": ""
+        },
+        {
+            "type": "sardine",
+            "expression": "Eyes_Happy",
+            "dialogue": "절 구해주신 답례로 드릴게요.\n가져가시면 어딘가 꼭 쓸 일이 있을 거예요!",
+            "voice": ""
+        },
+        {
+            "type": "interaction",
+            "dialogue": null,
+            "action": "스폰지 획득 시스템 메시지 출력"
+        },
+        {
+            "type": "sardine",
+            "expression": "Eyes_Happy",
+            "dialogue": "그럼 저는 이만 가족들에게 돌아가 봐야겠어요.\n고래님, 정말 감사했어요!",
+            "voice": ""
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "(길을 막은 건 겨우 종이박스 하나 뿐인데…\n고작 이 박스 하나 때문에 정어리는 가족과 영영 헤어질 뻔 했어.)",
-            "voice": "Dubbing_Sardine/audio_18_Whale_08"
+            "dialogue": "(길을 막은 건 겨우 종이박스 하나뿐인데…\n이 작은 쓰레기 하나 때문에 정어리는 가족과 영영 헤어질 뻔했어.)",
+            "voice": ""
         },
         {
             "type": "whale",
-            "expression": "Eyes_Sad",
-            "dialogue": "(바다에 왜 계속 이런 쓰레기들이 늘어가고 있는 걸까…)",
-            "voice": "Dubbing_Sardine/audio_19_Whale_09"
+            "expression": "Eyes_LookIn",
+            "dialogue": "(정어리가 준 이 스폰지를 유용하게 써야겠어.\n더 늦기 전에 도움이 필요한 다른 친구들을 찾으러 가보자.)",
+            "voice": ""
         }
     ]
 }

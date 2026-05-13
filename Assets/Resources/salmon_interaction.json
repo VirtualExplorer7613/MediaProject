@@ -21,32 +21,38 @@
         {
             "type": "salmon",
             "expression": "Sweat_L",
-            "dialogue": "다름이 아니라 제 아내가 곧 알을 낳아야 하는데\n마땅한 장소를 찾지 못하고 있습니다.",
+            "dialogue": "아내가 곧 알을 낳아야 하는데...\n보시다시피 주변이 온통 쓰레기예요.",
             "voice": ""
         },
         {
             "type": "salmon",
             "expression": "Sweat_L",
-            "dialogue": "알은 깨끗하고 조용한 곳에서 안전하게 부화해야 합니다.\n그런데 보시다시피 이 주변이 전부 쓰레기 투성이예요.",
+            "dialogue": "알은 깨끗하고 조용한 곳에서 안전하게 태어나야 하거든요.\n이대로는 너무 위험해요.",
             "voice": ""
         },
         {
             "type": "whale",
-            "dialogue": "그러게. 주변에 고철 쓰레기가 많이 흩어져 있구나.\n이 상태로는 알을 낳기 어렵겠는 걸?"
+            "expression": "Eyes_LookIn",
+            "dialogue": "그러게. 주변에 쓰레기가 너무 많이 흩어져 있구나.\n이 상태로는 알을 낳기 어렵겠는걸?",
+            "voice": ""
         },
         {
             "type": "salmon",
             "expression": "Eyes_Sad",
-            "dialogue": "네, 아내가 많이 불안해하고 있습니다.\n혹시라도 알이 위험해질까 봐 계속해서 자리를 옮기고만 있어요.",
+            "dialogue": "이 <color=#FFD700>무거운 고철 쓰레기들</color>이 너무 무거워서 저희 힘으론 안 돼요...\n아내가 계속 불안해하고 있어요.",
+            "voice": ""
+        },
+        {
+            "type": "salmon",
+            "expression": "Sweat_L",
+            "dialogue": "혹시 이 고철들을 한 번에 치워주실 방법이 없을까요?",
             "voice": ""
         },
         {
             "type": "whale",
-            "dialogue": "'이 주변엔 다른 곳보다 특히 고철 쓰레기가 많은 것 같아.'"
-        },
-        {
-            "type": "whale",
-            "dialogue": "'아까 사용했던 자석을 사용하면 빠르게 치울 수 있을 것 같은데…\n자석으로 고철 쓰레기들을 정리해보자.'"
+            "expression": "Eyes_Blink",
+            "dialogue": "(고철 쓰레기라... 범고래를 도와줬을 때처럼 그 도구를 쓰면 되겠어!)",
+            "voice": ""
         },
         {
             "type": "interaction",
@@ -56,24 +62,43 @@
         {
             "type": "salmon",
             "expression": "Eyes_Happy",
-            "dialogue": "고래님 덕분에 주변이 많이 정리됐습니다.\n바닥도 한결 깨끗해졌네요. 정말 감사합니다! 고래님.",
+            "dialogue": "고래님 덕분에 주변이 많이 정리됐습니다.\n바닥도 한결 깨끗해졌네요. 정말 감사합니다!",
             "voice": ""
         },
         {
             "type": "salmon",
             "expression": "Eyes_Blink",
-            "dialogue": "사실 길을 잃고 막막했을 때, 어디선가 <color=#42A5F5>다정한 노랫소리</color>가 저희를 이쪽으로 이끌어 주었습니다.",
+            "dialogue": "도와주신 은혜에 보답하고 싶은데...\n참, 저희가 장소를 찾다가 구석에서 이상한 물건을 하나 주웠거든요.",
             "voice": ""
         },
         {
             "type": "salmon",
             "expression": "Eyes_Blink",
-            "dialogue": "마치 이곳에서 조금만 기다리면, 당신이 와서 도와줄 거라고 미리 알려주는 것 같았지요.",
+            "dialogue": "<color=#FFFF00>마치 게의 집게발처럼 생겼는데, 무엇이든 싹둑 잘라낼 수 있어 보였어요.</color>\n저희에겐 너무 위험해서 치워뒀는데, 고래님이라면 잘 쓰실 것 같아요.",
             "voice": ""
         },
         {
-            "type": "whale",
-            "dialogue": "'<color=#42A5F5>다정한 노랫소리</color>…\n지금까지 친구들을 보살펴준 그 존재가 날 믿고 기다리고 있었던 거야!\n이제 정말 거의 다 왔어.'"
+            "type": "salmon",
+            "expression": "Eyes_Happy",
+            "dialogue": "감사의 선물로 드릴 테니 꼭 받아주세요!",
+            "voice": ""
+        },
+        {
+            "type": "interaction",
+            "dialogue": null,
+            "action": "가위 아이템 획득 시스템 메시지 출력"
+        },
+        {
+            "type": "salmon",
+            "expression": "Eyes_Blink",
+            "dialogue": "사실 길을 잃고 막막했을 때,\n어디선가 <color=#42A5F5>다정한 노랫소리</color>가 저희를 이쪽으로 이끌어 주었습니다.",
+            "voice": ""
+        },
+        {
+            "type": "salmon",
+            "expression": "Eyes_Blink",
+            "dialogue": "마치 이곳에서 조금만 기다리면, 당신이 와서 도와줄 거라고 알려주는 것 같았어요.",
+            "voice": ""
         },
         {
             "type": "salmon",
@@ -83,7 +108,21 @@
         },
         {
             "type": "whale",
-            "dialogue": "'알을 낳는 데 필요한 건 거창한 게 아니었어. 깨끗하고 안전한 자리 하나.\n그 당연한 걸 쓰레기가 가로막고 있었던 거야.'"
+            "expression": "Eyes_LookIn",
+            "dialogue": "(<color=#42A5F5>다정한 노랫소리</color>…\n지금까지 친구들을 보살펴준 그 존재가, 어쩌면 줄곧 나를 부르고 있었던 걸지도 몰라.)",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Sad",
+            "dialogue": "(알을 낳는 데 필요한 건 거창한 게 아니었어. 깨끗하고 안전한 자리 하나.\n그 당연한 권리를 쓰레기가 가로막고 있었던 거야.)",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_LookIn",
+            "dialogue": "(연어 부부가 준 이 선물을 유용하게 써야겠어.\n계속해서 도움이 필요한 곳으로 헤엄쳐 가보자.)",
+            "voice": ""
         }
     ]
 }

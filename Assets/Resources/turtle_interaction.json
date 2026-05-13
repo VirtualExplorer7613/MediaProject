@@ -15,71 +15,79 @@
         {
             "type": "turtle",
             "expression": "Eyes_Squint",
-            "dialogue": "으으으… 코에 뭔가가 박혔어. 너무 아파서 숨 쉬기가 힘들구만…",
-            "voice": "Troll_death_short_03"
+            "dialogue": "으으으… 코에 이상한 게 콱 박혀버렸어.\n숨 쉴 때마다 찌르는 것처럼 아프구만…",
+            "voice": ""
         },
         {
             "type": "turtle",
             "expression": "Eyes_Squint",
-            "dialogue": "거기 자네, 혹시 내 코에 박힌 이걸 좀 빼줄 수 있겠나…?",
-            "voice": "Troll_death_short_03"
+            "dialogue": "거기 젊은 친구, 혹시 내 코에 박힌 것 좀 살살 빼줄 수 있겠나?\n뭉툭한 내 발로는 도통 잡히질 않아서 말이야.",
+            "voice": ""
         },
         {
             "type": "whale",
-            "expression": "Eyes_Squint",
-            "dialogue": "(할아버지 콧구멍 안 쪽에 빨대가 깊숙이 박힌 것 같아.)",
-            "voice": "Troll_death_short_03"
+            "expression": "Eyes_LookIn",
+            "dialogue": "(할아버지 콧구멍 깊숙한 곳에 플라스틱 빨대가 단단히 박혀있잖아?\n잘못 건드리면 더 깊이 들어갈 텐데…)",
+            "voice": ""
         },
         {
             "type": "whale",
-            "expression": "Eyes_Squint",
-            "dialogue": "(이대로 뒀다간 정말 위험해지실지도 몰라.\n드래그 스킬을 이용해서 빨대를 조심스럽게 빼내보자!)",
-            "voice": "Troll_death_short_03"
+            "expression": "Eyes_Blink",
+            "dialogue": "(이번에도 그 도구로 살살 빼내야겠어!)",
+            "voice": ""
         },
         {
             "type": "interaction",
             "dialogue": null,
-            "action": "코에 박힌 빨대를 드래그로 천천히 빼내기"
+            "action": "핀셋 아이템 사용해 코에 박힌 플라스틱 빨대 제거"
         },
         {
             "type": "whale",
-            "dialogue": "할아버지 어쩌다 코에 빨대가 박히신 거예요! 정말 위험하실 뻔 했어요."
+            "expression": "Eyes_Blink",
+            "dialogue": "이제 좀 괜찮으세요? 깊게 박혀 있어서 조심조심 뺐어요.\n정말 큰일 나실 뻔했어요.",
+            "voice": ""
         },
         {
             "type": "turtle",
             "expression": "Sweat_L",
-            "dialogue": "먹이를 먹으려고 고개를 숙여 다가갔다가 그만 코에 이상한 게 박혀버렸지 뭔가…",
-            "voice": "Troll_other_cough_01"
+            "dialogue": "휴우... 살 것 같네. 해초인 줄 알고 가까이 갔다가\n콧속으로 그만 쏙 들어가 버렸지 뭔가, 허허...",
+            "voice": ""
         },
         {
             "type": "turtle",
             "expression": "Sweat_L",
-            "dialogue": "도와줘서 고맙구려. 하마터면 코가 막혀서 자네 말대로 진짜 큰일날 뻔 했어. 허허…",
-            "voice": "Troll_talk_laugh_01"
+            "dialogue": "도와줘서 정말 고맙네. 하마터면 숨통이 막혀서 용궁에 갈 뻔했어. 허허…",
+            "voice": ""
         },
         {
             "type": "whale",
-            "dialogue": "정말 다행이에요. 참, 할아버지!\n혹시 제가 오기 전에 이 근처에서 <color=#42A5F5>어떤 목소리</color>나 울림 같은 걸 듣지 못하셨나요?"
+            "expression": "Eyes_Blink",
+            "dialogue": "정말 다행이에요. 참, 할아버지!\n혹시 제가 오기 전에 이 근처에서 <color=#42A5F5>누군가의 노랫소리</color> 같은 걸 듣지 못하셨나요?",
+            "voice": ""
         },
         {
             "type": "turtle",
             "expression": "Eyes_Blink",
-            "dialogue": "목소리라… 너무 아파서 정신이 없긴 했다만,\n신기하게도 <color=#42A5F5>잔잔한 물살</color>이 계속 내 등을 토닥여주는 느낌은 들었지.",
+            "dialogue": "노랫소리라… 너무 아파서 정신이 없긴 했다만,\n신기하게도 <color=#42A5F5>잔잔하고 따뜻한 물살</color>이 계속 내 등을 토닥여주는 느낌은 들었지.",
             "voice": ""
         },
         {
             "type": "turtle",
             "expression": "Eyes_Happy",
-            "dialogue": "꼭 누군가 곁에서 조금만 참으라고 위로해 주는 것 같았어. 허허….",
+            "dialogue": "마치 곁에서 조금만 참으라고, 곧 도와줄 이가 올 거라고 다독여주는 것 같았어. 허허….",
             "voice": ""
         },
         {
             "type": "whale",
-            "dialogue": "(역시 내 착각이 아니었어.\n나를 부른 그 목소리가 보이지 않는 곳에서 계속 친구들을 보살피고 있었던 거야.)"
+            "expression": "Eyes_LookIn",
+            "dialogue": "(나를 이쪽으로 이끌어 준 그 목소리잖아.\n내내 우리 친구들을 보살펴주고 있었구나... 왠지 이제 정말 다 온 것 같아.)",
+            "voice": ""
         },
         {
             "type": "whale",
-            "dialogue": "(그나저나 고작 빨대 하나가 생명을 이렇게까지 위협하다니…\n바다에선 역시 아무것도 사소하지 않구나.)"
+            "expression": "Eyes_Sad",
+            "dialogue": "(그나저나 고작 빨대 하나가 생명을 이렇게까지 위협하다니…\n바다에선 역시 아무것도 사소하지 않구나.)",
+            "voice": ""
         }
     ]
 }
