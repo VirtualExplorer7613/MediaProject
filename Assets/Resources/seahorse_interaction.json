@@ -1,41 +1,69 @@
 {
-  "character": "seahorse",
-  "icon_on_detected": true,
-  "expressions": {
-    "default": "Eyes_Blink",
-    "post_interaction_start": "Sweat_L",
-    "post_interaction_end": "Eyes_Happy"
-  },
-  "dialogue_sequence": [
-    {
-      "type": "player_detects",
-      "dialogue": null,
-      "action": "remove_question_icon"
+    "character": "seahorse",
+    "icon_on_detected": true,
+    "expressions": {
+        "default": "Eyes_Blink",
+        "post_interaction_start": "Sweat_L",
+        "post_interaction_end": "Eyes_Happy"
     },
-    {
-      "type": "whale",
-      "dialogue": "꼬리에… 저건 뭐지? 뭔가 기다란 쓰레기같은 게 감겨 있는 것 같은데.\n내가 도와줘야겠다."
-    },
-    {
-      "type": "interaction",
-      "dialogue": null,
-      "action": "꼬리에 감겨있는 빨대를 드래그로 천천히 빼내기"
-    },
-    {
-      "type": "seahorse",
-      "expression": "Sweat_L",
-      "dialogue": "당신이 제 꼬리에 걸린 빨대를 없애준 건가요?\n정말 고마워요… 이 기다란 게 자꾸 제 꼬리에 걸려서 움직이는 게 불편했거든요.",
-      "voice": "Princess_talk_question_01"
-    },
-    {
-      "type": "seahorse",
-      "expression": "Eyes_Happy",
-      "dialogue": "덕분에 한결 몸이 가벼워졌어요.",
-      "voice": "Princess_talk_wonder_06"
-    },
-    {
-      "type": "whale",
-      "dialogue": "'바닷속을 자유롭게 돌아다니는 것조차 방해받는 세상이 됐구나….'"
-    }
-  ]
+    "dialogue_sequence": [
+        {
+            "type": "player_detects",
+            "dialogue": null,
+            "action": "remove_question_icon"
+        },
+        {
+            "type": "seahorse",
+            "expression": "Sweat_L",
+            "dialogue": "아야야… 꼬리가 너무 아파요!\n이 이상한 막대기가 꼬리에 꽉 끼어서 도무지 빠지질 않아요… 제발 누가 좀 도와주세요!",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_LookIn",
+            "dialogue": "(저건 플라스틱 빨대잖아? 꼬리에 아주 꽉 끼어버렸네.\n해마의 꼬리는 연약해서 무턱대고 당겼다간 다칠지도 몰라.)",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Blink",
+            "dialogue": "(돌고래 때처럼 조심스럽게 콕 집어내야겠어.\n그 도구라면 가능할 거야!)",
+            "voice": ""
+        },
+        {
+            "type": "interaction",
+            "dialogue": null,
+            "action": "핀셋 아이템 사용해 꼬리에 낀 플라스틱 빨대 제거"
+        },
+        {
+            "type": "seahorse",
+            "expression": "Eyes_Happy",
+            "dialogue": "휴… 이제야 살 것 같아요. 고래님이 구해주셨군요!\n정말 고마워요. 꼬리가 너무 꽉 끼는 바람에 꼼짝도 못 하고 무서웠거든요.",
+            "voice": ""
+        },
+        {
+            "type": "seahorse",
+            "expression": "Eyes_Blink",
+            "dialogue": "사실 아까 혼자 덜덜 떨고 있을 때...\n어디선가 <color=#42A5F5>자장가 같은 노랫소리</color>가 들려왔어요.",
+            "voice": ""
+        },
+        {
+            "type": "seahorse",
+            "expression": "Eyes_Happy",
+            "dialogue": "조금만 기다리면 절 도와줄 분이 올 거라고 다독여주는 것 같았죠.\n그 분이 바로 고래님이었네요!",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_LookIn",
+            "dialogue": "(<color=#42A5F5>잔잔한 노랫소리</color>… 줄곧 나를 이끌어 준 그 목소리야.\n이제 정말 가까운 곳에 있는 게 틀림없어.)",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Sad",
+            "dialogue": "(사람들이 무심코 버린 가벼운 빨대 하나가…\n해마처럼 작은 친구들에겐 헤엄조차 치기 힘든 커다란 짐이 되어버리는구나.)",
+            "voice": ""
+        }
+    ]
 }

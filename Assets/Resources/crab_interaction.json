@@ -1,58 +1,80 @@
 {
-  "character": "crab",
-  "icon_on_detected": true,
-  "expressions": {
-    "default": "Eyes_Blink",
-    "post_interaction": "Sweat_L"
-  },
-  "dialogue_sequence": [
-    {
-      "type": "player_detects",
-      "dialogue": null,
-      "action": "remove_question_icon"
+    "character": "crab",
+    "icon_on_detected": true,
+    "expressions": {
+        "default": "Eyes_Blink",
+        "post_interaction": "Sweat_L"
     },
-    {
-      "type": "crab",
-      "expression": "Eyes_Blink",
-      "dialogue": "저기요~~! 거기 누구 없어요~~?!\n앞이 하나도 안 보여! 누가 나 좀 도와줘요!!",
-      "voice": "Witch_death_fall_dry_03"
-    },
-    {
-      "type": "crab",
-      "expression": "Eyes_Blink",
-      "dialogue": "도대체 이게 뭐야! 여긴 너무 깜깜하다고!",
-      "voice": "Witch_talk_angry_04"
-    },
-    {
-      "type": "interaction",
-      "dialogue": null,
-      "action": "플라스틱 용기 쓰레기를 초음파로 제거"
-    },
-    {
-      "type": "whale",
-      "dialogue": "괜찮아요? 이 플라스틱 통은 뭐예요?"
-    },
-    {
-        "type": "crab",
-        "expression": "Sweat_L",
-        "dialogue": "하… 드디어 살았다…!\n정말 고마워!! 혼자서 이 속에서 얼마나 무서웠는지 몰라.",
-        "voice": "Witch_win_06"
-    },
-    {
-      "type": "crab",
-      "expression": "Sweat_L",
-      "dialogue": "분명 길을 가던 중이었는데…\n갑자기 위에서 뭔가 '퍽!' 하고 떨어지더니 순식간에 앞이 깜깜해졌어!",
-      "voice": "Witch_win_06"
-    },
-    {
-      "type": "crab",
-      "expression": "Sweat_L",
-      "dialogue": "뭔가 했는데 역시나 쓰레기였네!",
-      "voice": "Witch_talk_angry_04"
-    },
-    {
-        "type": "whale",
-        "dialogue": "'떨어진 건 가벼운 쓰레기였겠지만, 누군가에겐 무거운 공포로 다가왔을 수도 있겠다…'"
-    }
-  ]
+    "dialogue_sequence": [
+        {
+            "type": "player_detects",
+            "dialogue": null,
+            "action": "remove_question_icon"
+        },
+        {
+            "type": "crab",
+            "expression": "Eyes_Blink",
+            "dialogue": "저기요~~! 거기 누구 없어요~~?!\n앞이 하나도 안 보여! 제발 누가 나 좀 밖으로 꺼내줘요!!",
+            "voice": ""
+        },
+        {
+            "type": "crab",
+            "expression": "Eyes_Blink",
+            "dialogue": "집게발을 아무리 휘둘러봐도 미끄러운 벽에 부딪히기만 하고…\n여긴 너무 깜깜하고 답답해!",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_LookIn",
+            "dialogue": "(플라스틱 용기가 꽃게를 완전히 덮어버렸어.\n안에서는 밀어내기 힘들겠어. 밖에서 <color=#FFFF00>강한 파동</color>으로 단번에 날려버리자!)",
+            "voice": ""
+        },
+        {
+            "type": "interaction",
+            "dialogue": null,
+            "action": "플라스틱 용기 쓰레기를 초음파로 제거"
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Blink",
+            "dialogue": "휴, 이제 앞이 좀 보여? 다친 곳은 없고?\n어쩌다 이런 플라스틱 용기를 뒤집어쓰고 있었던 거야.",
+            "voice": ""
+        },
+        {
+            "type": "crab",
+            "expression": "Sweat_L",
+            "dialogue": "하… 드디어 살았다…!\n정말 고마워!! 이 좁고 깜깜한 속에서 혼자 얼마나 무서웠는지 몰라.",
+            "voice": ""
+        },
+        {
+            "type": "crab",
+            "expression": "Sweat_L",
+            "dialogue": "분명 평소처럼 길을 걷고 있었는데…\n갑자기 위에서 뭔가 '퍽!' 하고 떨어지더니 순식간에 갇혀버렸어!",
+            "voice": ""
+        },
+        {
+            "type": "crab",
+            "expression": "Sweat_L",
+            "dialogue": "대체 뭔가 했더니, 사람들이 버린 쓰레기였구나...!\n네가 아니었으면 평생 갇혀 있었을 거야.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Sad",
+            "dialogue": "(바다 위에선 무심코 툭 던져진 가벼운 쓰레기였겠지만…\n작은 꽃게에겐 눈앞이 캄캄해지는 무거운 공포였겠구나.)",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Sad",
+            "dialogue": "(이런 작은 무관심들이 쌓이고 쌓여서, 언젠가는 이 넓은 바다조차\n숨 쉴 수 없게 만들어 버릴지도 몰라.)",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_LookIn",
+            "dialogue": "(이제 도움이 필요한 친구들은 모두 무사히 도와준 것 같아.\n나를 부르던 그 목소리를 향해 힘차게 헤엄쳐 보자!)",
+            "voice": ""
+        }
+    ]
 }
