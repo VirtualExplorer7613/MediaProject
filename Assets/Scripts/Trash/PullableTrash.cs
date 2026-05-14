@@ -47,7 +47,7 @@ public class PullableTrash : MonoBehaviour
     [SerializeField] private float restoreSpeed = 1.5f;
 
     [Header("Distance")]
-    [SerializeField] private float maxPlayerDistance = 4f;
+    [SerializeField] private float maxPlayerDistance = 10f;
 
     [Header("Resistance")]
     [Tooltip("초반 저항감. 낮을수록 처음에 천천히 뽑힘")]

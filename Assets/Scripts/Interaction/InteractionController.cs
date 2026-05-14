@@ -137,6 +137,8 @@ public class InteractionController : MonoBehaviour
 
     public void HandlePress()
     {
+        Debug.Log($"[InteractionController] HandlePress called at frame={Time.frameCount}, time={Time.time}");
+
         if (!fsm.CanAcceptInput) return;
         if (currentStrategy == null) return;
 
