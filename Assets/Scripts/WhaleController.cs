@@ -919,7 +919,14 @@ public class WhaleController : MonoBehaviour
         movementLocked = locked;
 
         if (locked)
+        {
             moveInput = Vector3.zero;
+
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector3.zero;
+            }
+        }
     }
 
     public void SetLookLocked(bool locked)
@@ -955,25 +962,156 @@ public class WhaleController : MonoBehaviour
         Snap(pos, rot);
     }
 
+    /* void Snap(Vector3 targetPos, Quaternion targetRot)
+     {  
+         transform.position = targetPos;
+         transform.rotation = targetRot;
+
+         Vector3 e = transform.eulerAngles;
+         yaw = e.y;
+         pitch = (e.x > 180f) ? e.x - 360f : e.x;   // -180°~180° 범위로 정규화
+         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+
+         targetRotation = Quaternion.Euler(0f, yaw, 0f);
+         transform.rotation = targetRotation;
+         rb.rotation = targetRotation;
+
+         if (cameraPivot != null)
+             cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+     }*/
+
     void Snap(Vector3 targetPos, Quaternion targetRot)
-    {  
+    {
+        if (snapCo != null)
+        {
+            StopCoroutine(snapCo);
+            snapCo = null;
+        }
+
+        if (rb != null)
+        {
+            rb.position = targetPos;
+            rb.rotation = targetRot;
+        }
+
         transform.position = targetPos;
         transform.rotation = targetRot;
 
-        Vector3 e = transform.eulerAngles;
+        SyncRotationState(targetRot, keepCurrentPitch: false);
+    }
+    #endregion
+
+    /// 대화가 interaction에서 끊기고 실제 플레이 화면으로 돌아올 때 사용하는 부드러운 이동.
+    /// targetPos로 이동하면서 lookTarget을 바라본다.
+    public Coroutine MoveToAnchorSmooth(Vector3 targetPos, Transform lookTarget, float duration = 0.8f, bool unlockAfterMove = false)
+    {
+        if (snapCo != null)
+            StopCoroutine(snapCo);
+
+        snapCo = StartCoroutine(MoveToAnchorSmoothRoutine(
+            targetPos,
+            lookTarget,
+            duration,
+            unlockAfterMove
+        ));
+
+        return snapCo;
+    }
+
+    private IEnumerator MoveToAnchorSmoothRoutine(Vector3 targetPos, Transform lookTarget, float duration, bool unlockAfterMove)
+    {
+        // 트랜지션 중 입력 잠금
+        SetControlLocked(true, true);
+
+        Vector3 startPos = rb != null ? rb.position : transform.position;
+        Quaternion startRot = rb != null ? rb.rotation : transform.rotation;
+
+        Quaternion targetRot = GetLookRotationFromPosition(targetPos, lookTarget);
+
+        float t = 0f;
+        duration = Mathf.Max(0.01f, duration);
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float p = Mathf.Clamp01(t / duration);
+            float eased = Mathf.SmoothStep(0f, 1f, p);
+
+            Vector3 nextPos = Vector3.Lerp(startPos, targetPos, eased);
+            Quaternion nextRot = Quaternion.Slerp(startRot, targetRot, eased);
+
+            if (rb != null)
+            {
+                rb.MovePosition(nextPos);
+                rb.MoveRotation(nextRot);
+            }
+            else
+            {
+                transform.position = nextPos;
+                transform.rotation = nextRot;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        if (rb != null)
+        {
+            rb.MovePosition(targetPos);
+            rb.MoveRotation(targetRot);
+        }
+        else
+        {
+            transform.position = targetPos;
+            transform.rotation = targetRot;
+        }
+
+        SyncRotationState(targetRot, keepCurrentPitch: false);
+
+        snapCo = null;
+
+        if (unlockAfterMove)
+            SetControlLocked(false, false);
+    }
+
+    private Quaternion GetLookRotationFromPosition(Vector3 fromPosition, Transform lookTarget)
+    {
+        Vector3 lookDir = transform.forward;
+
+        if (lookTarget != null)
+        {
+            lookDir = lookTarget.position - fromPosition;
+
+            // 고래 몸체는 수평 yaw만 돌리고, 상하 pitch는 cameraPivot에서 관리
+            lookDir.y = 0f;
+
+            if (lookDir.sqrMagnitude < 0.001f)
+                lookDir = transform.forward;
+        }
+
+        return Quaternion.LookRotation(lookDir.normalized, Vector3.up);
+    }
+
+    private void SyncRotationState(Quaternion bodyRotation, bool keepCurrentPitch)
+    {
+        Vector3 e = bodyRotation.eulerAngles;
+
         yaw = e.y;
-        pitch = (e.x > 180f) ? e.x - 360f : e.x;   // -180°~180° 범위로 정규화
+
+        if (!keepCurrentPitch)
+            pitch = 0f;
+
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
         targetRotation = Quaternion.Euler(0f, yaw, 0f);
+
         transform.rotation = targetRotation;
-        rb.rotation = targetRotation;
+
+        if (rb != null)
+            rb.rotation = targetRotation;
 
         if (cameraPivot != null)
             cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
-    #endregion
-
 
     private void DebugUIRaycastHits()
     {

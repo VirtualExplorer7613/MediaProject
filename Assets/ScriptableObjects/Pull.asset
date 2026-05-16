@@ -19,7 +19,7 @@ MonoBehaviour:
   previewPrefab: {fileID: 919132149155446097, guid: 4b158943d21560745b75e73fddeb24f2, type: 3}
   previewLocalPosition: {x: 0, y: 0, z: 0}
   previewLocalEuler: {x: 0, y: 0, z: 0}
-  previewLocalScale: {x: 1, y: 1, z: 1}
+  previewLocalScale: {x: 3, y: 3, z: 3}
   previewRotateSpeed: 50
   cooldownSeconds: 0
   magnetRadius: 8
@@ -27,4 +27,4 @@ MonoBehaviour:
   brushHoldSeconds: 1.5
   brushCleanRadius: 5
   brushMaxCleanCount: 10
-  pullMaxDistance: 10
+  pullMaxDistance: 30

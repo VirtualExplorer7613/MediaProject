@@ -37,6 +37,10 @@ public class TreasureChestController : MonoBehaviour
     [SerializeField] private int allowedTutorialStepIndex = 0;
     [SerializeField] private bool allowAfterStep = false;
 
+    [Header("Quest Sequence")]
+    [SerializeField] private QuestSequenceTarget sequenceTarget;
+    [SerializeField] private bool blockWhenNotCurrentSequence = true;
+
     private bool rewardSpawned = false;
 
     private ChestState state = ChestState.Closed;
@@ -65,6 +69,9 @@ public class TreasureChestController : MonoBehaviour
         {
             Debug.LogError("[Chest] InventoryUIController not found in scene!");
         }
+
+        if (sequenceTarget == null)
+            sequenceTarget = GetComponent<QuestSequenceTarget>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -90,6 +97,12 @@ public class TreasureChestController : MonoBehaviour
 
     public bool TryUseKey(Transform player)
     {
+        if (blockWhenNotCurrentSequence && sequenceTarget != null && !sequenceTarget.CanInteractHere())
+        {
+            Debug.Log("[Chest] 아직 열 수 있는 순서가 아닙니다.");
+            return false;
+        }
+
         if (player == null) return false;
         if (state != ChestState.Closed) return false;
         if (Vector3.Distance(transform.position, player.position) > useKeyDistance) return false;
@@ -161,6 +174,9 @@ public class TreasureChestController : MonoBehaviour
         if (ItemPickupPopup.Instance != null)
         {
             ItemPickupPopup.Instance.Show(rewardItem);
+
+            if (sequenceTarget != null)
+                sequenceTarget.NotifyCompleted();
         }
         else if (invUI != null && rewardItem != null)
         {
@@ -170,6 +186,8 @@ public class TreasureChestController : MonoBehaviour
                 itemUseBroadcaster?.RaiseItemUsed("magnet_earned");
 
             // 아이템 획득 트리거
+            if (sequenceTarget != null)
+                sequenceTarget.NotifyCompleted();
         }
         else
         {

@@ -220,6 +220,7 @@ public class DialogueManager : MonoBehaviour
                     SetGameplayUIVisible(true);
                 }
                 interactionController?.OnDialogueClosed();*/
+                yield return StartCoroutine(PrepareInteractionAfterExitDialogue());
                 yield break; // 대사 종료
             }
 
@@ -701,5 +702,35 @@ public class DialogueManager : MonoBehaviour
 
         Debug.Log("[Ending Check] Final required dialogue finished. Loading Ending scene.");
         Managers.Scene.LoadSceneAsync(Define.Scene.Ending, false);
+    }
+
+    [SerializeField] private float interactionTransitionDuration = 0.8f;
+
+    private IEnumerator PrepareInteractionAfterExitDialogue()
+    {
+        TalkableNPC npc = CurrentTalkingNPC;
+
+        // ExitDialogueStage()에서 UI가 다시 켜졌으므로 바로 다시 숨김
+        SetGameplayUIVisible(false);
+
+        if (whaleController != null)
+        {
+            whaleController.SetControlLocked(true, true);
+
+            if (npc != null && npc.dialogueAnchor != null)
+            {
+                yield return whaleController.MoveToAnchorSmooth(
+                    npc.dialogueAnchor.position,
+                    npc.transform,
+                    interactionTransitionDuration,
+                    unlockAfterMove: false
+                );
+            }
+
+            whaleController.SetControlLocked(false, false);
+        }
+
+        // 이동이 끝나면 조이스틱/아이템 UI 복구
+        SetGameplayUIVisible(true);
     }
 }

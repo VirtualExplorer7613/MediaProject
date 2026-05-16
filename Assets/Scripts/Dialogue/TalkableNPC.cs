@@ -46,6 +46,9 @@ public class TalkableNPC : MonoBehaviour
     [SerializeField] private float hideConditionDistance = 10f;
     private bool hasShownFirstApproachIcon = false;
 
+    [Header("Quest Sequence")]
+    [SerializeField] private QuestSequenceTarget sequenceTarget;
+    [SerializeField] private bool hideIconWhenNotCurrentSequence = true;
 
     private void Start()
     {
@@ -57,6 +60,9 @@ public class TalkableNPC : MonoBehaviour
             target.BindOwner(this);
             target.SetQuestEnabled(false);
         }
+
+        if (sequenceTarget == null)
+            sequenceTarget = GetComponent<QuestSequenceTarget>();
 
         /*// Orca 같은 특수 NPC는 시작 시 아이콘 숨김
         if (showQuestionMarkOnlyAfterFirstApproach)
@@ -126,6 +132,12 @@ public class TalkableNPC : MonoBehaviour
 
     private void TryTalk()
     {
+        if (sequenceTarget != null && !sequenceTarget.CanInteractHere())
+        {
+            Debug.Log($"[TalkableNPC] 아직 상호작용 순서가 아닙니다. npc={characterName}");
+            return;
+        }
+
         DialogueManager dialogueManager = DialogueManager.Instance;
         if (dialogueManager == null) return;
 
@@ -214,6 +226,10 @@ public class TalkableNPC : MonoBehaviour
         dialogueAfterQuestDone = true;
         /*ShowquestionHintUI(false);
         UpdateQuestIcon();*/
+
+        if (sequenceTarget != null)
+            sequenceTarget.NotifyCompleted();
+
         RefreshIcons();
 
         TryGiveFinalDialogueReward();
@@ -312,9 +328,36 @@ public class TalkableNPC : MonoBehaviour
 
     private void RefreshIcons()
     {
+        bool isCurrentSequenceTarget = true;
+
+        /* if (hideIconWhenNotCurrentSequence && sequenceTarget != null)
+             isCurrentSequenceTarget = sequenceTarget.IsCurrentTarget();*/
+
+        bool shouldHideBySequence = 
+            (hideIconWhenNotCurrentSequence && 
+            sequenceTarget != null && 
+            QuestSequenceManager.Instance != null && 
+            QuestSequenceManager.Instance.IsOrderEnforced);
+
+        if (shouldHideBySequence)
+            isCurrentSequenceTarget = sequenceTarget.IsCurrentTarget();
+
         bool showQuestion = false;
         bool showExclamation = false;
         bool showHeart = false;
+
+        if (!isCurrentSequenceTarget && !dialogueAfterQuestDone)
+        {
+            if (questionMarkIcon != null) 
+                questionMarkIcon.SetActive(false);
+
+            if (exclamationMarkIcon != null) 
+                exclamationMarkIcon.SetActive(false);
+
+            if (heartIcon != null) heartIcon.SetActive(false);
+
+            return;
+        }
 
         // 1) 상호작용 종료 후
         if (dialogueAfterQuestDone)
@@ -344,4 +387,8 @@ public class TalkableNPC : MonoBehaviour
         if (heartIcon != null) heartIcon.SetActive(showHeart);
     }
 
+    public void RefreshSequenceIcon()
+    {
+        RefreshIcons();
+    }
 }
