@@ -15,14 +15,14 @@
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "저 까만 비닐봉지...\n안에서 누가 발버둥 치고 있어!",
-            "voice": ""
+            "dialogue": "(저 까만 비닐봉지는 뭐지?\n안에서 누가 발버둥 치고 있는 것 같은데...)",
+            "voice": "Dubbing_Jellyfish/Jellyfish_Audio_01"
         },
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "(다행히 비닐이라 아주 가벼워 보이는데...\n다시 한 번 <color=#00BFFF>강한 물살</color>을 훅 일으키면 다치지 않게 날려버릴 수 있을 거야!)",
-            "voice": ""
+            "dialogue": "(다행히 비닐이라 아주 가벼워 보여.\n다시 한 번 <color=#00BFFF>강한 물살</color>을 일으켜서 다치지 않게 날려버리자!)",
+            "voice": "Dubbing_Jellyfish/Jellyfish_Audio_02"
         },
         {
             "type": "interaction",
@@ -33,54 +33,54 @@
             "type": "jellyfish",
             "expression": "Eyes_Shrink",
             "dialogue": "앗...! 깜짝 놀랐어요.\n고래님이 절 구해주신 거군요.",
-            "voice": ""
+            "voice": "Dubbing_Jellyfish/Jellyfish_Audio_03"
         },
         {
             "type": "jellyfish",
             "expression": "Eyes_Shrink",
             "dialogue": "눈앞에 까맣고 팔랑거리는 게 떠다니길래\n신기해서 가까이 다가갔다가 그만... 찰싹 달라붙어 버렸지 뭐예요.",
-            "voice": ""
+            "voice": "Dubbing_Jellyfish/Jellyfish_Audio_04"
         },
         {
             "type": "jellyfish",
             "expression": "Eyes_Sad",
             "dialogue": "촉수에 엉켜서 앞도 안 보이고...\n위로도, 아래로도 도무지 움직일 수가 없었어요.",
-            "voice": ""
+            "voice": "Dubbing_Jellyfish/Jellyfish_Audio_05"
         },
         {
             "type": "whale",
             "dialogue": "그랬구나. 그건 바다에 버려진 비닐 쓰레기야.\n자칫하면 정말 위험할 뻔했어.",
-            "voice": ""
+            "voice": "Dubbing_Jellyfish/Jellyfish_Audio_06"
         },
         {
             "type": "jellyfish",
-            "expression": "Eyes_Sad",
+            "expression": "Eyes_Shrink",
             "dialogue": "쓰레기였군요... 물결을 따라 부드럽게 움직이길래,\n저는 저랑 비슷하게 생긴 바다 친구인 줄만 알았어요.",
-            "voice": ""
+            "voice": "Dubbing_Jellyfish/Jellyfish_Audio_07"
         },
         {
             "type": "jellyfish",
             "expression": "Eyes_Sad",
-            "dialogue": "요즘 이런 게 너무 많이 떠다녀요...\n다른 해파리 친구들도 헷갈려서 다칠까 봐 너무 무서워요.",
-            "voice": ""
+            "dialogue": "요즘엔 이런 게 너무 많이 떠다녀요...\n다른 해파리 친구들도 저처럼 헷갈려서 다칠까 봐 너무 무서워요.",
+            "voice": "Dubbing_Jellyfish/Jellyfish_Audio_08"
         },
         {
             "type": "jellyfish",
             "expression": "Eyes_Blink",
             "dialogue": "앞으로는 아무리 호기심이 생겨도 함부로 다가가지 말아야겠어요.\n구해주셔서 정말 고맙습니다.",
-            "voice": ""
+            "voice": "Dubbing_Jellyfish/Jellyfish_Audio_09"
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
             "dialogue": "(바다에 쓰레기가 너무 많아져서...\n이제는 친구랑 쓰레기조차 헷갈리게 됐구나.)",
-            "voice": ""
+            "voice": "Dubbing_Jellyfish/Jellyfish_Audio_10"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
             "dialogue": "(비닐봉지처럼 가벼운 쓰레기들은 물결을 타고 금방 퍼져버려.\n더 많은 친구들이 다치기 전에 서둘러야겠어.)",
-            "voice": ""
+            "voice": "Dubbing_Jellyfish/Jellyfish_Audio_11"
         }
     ]
 }

@@ -15,32 +15,32 @@
         {
             "type": "clownfish",
             "expression": "Eyes_Squint",
-            "dialogue": "고래님! 고래님!! 큰일 났어요!\n우리 집이… 우리 집이 이상해졌어요!",
-            "voice": ""
+            "dialogue": "고래님!! 큰일 났어요!\n우리 집이 이상해졌어요!",
+            "voice": "Dubbing_Clownfish/Clownfish_Audio_01"
         },
         {
             "type": "clownfish",
             "expression": "Eyes_Squint",
-            "dialogue": "말미잘에 시커멓고 끈적한 게 잔뜩 묻었어요!\n이러다 우리 가족, 우리 가족 다 큰일 나요!!",
-            "voice": ""
+            "dialogue": "말미잘에 시커멓고 끈적한 게 잔뜩 묻었어요!\n우리 가족 좀 도와주세요!",
+            "voice": "Dubbing_Clownfish/Clownfish_Audio_02"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "자세히 보니 말미잘 표면에 기름때 같은 게 묻어 있네.\n이 상태로는 아이들이 위험하겠어.",
-            "voice": ""
+            "dialogue": "자세히 보니 말미잘에 기름때 같은 게 묻어 있네.\n이 상태로는 아이들이 위험하겠어!",
+            "voice": "Dubbing_Clownfish/Clownfish_Audio_03"
         },
         {
             "type": "clownfish",
             "expression": "Eyes_Sad",
-            "dialogue": "근데 말미잘은 진짜 진짜 연약해요!\n<color=#FFFF00>딱딱한 거로 닦으면 안 돼요</color>, 절대로요...!",
-            "voice": ""
+            "dialogue": "참고로 <color=#2458C9>말미잘은 진짜, 진짜 연약해요!</color>\n그러니까 <color=#2458C9>절대 딱딱한 걸로 닦으시면 안 돼요!</color>",
+            "voice": "Dubbing_Clownfish/Clownfish_Audio_04"
         },
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "(말미잘이 다치지 않게 조심히 닦아내야겠어.\n아까 받은 푹신푹신한 물건이라면 딱 좋겠는걸!)",
-            "voice": ""
+            "dialogue": "(흰동가리 말대로 말미잘이 다치지 않게 조심조심 닦아내야겠어.\n아까 받은 <color=#AFBB33>푹신푹신한 물건</color>이라면 딱 좋겠는걸!)",
+            "voice": "Dubbing_Clownfish/Clownfish_Audio_05"
         },
         {
             "type": "interaction",
@@ -50,50 +50,50 @@
         {
             "type": "clownfish",
             "expression": "Eyes_Shrink",
-            "dialogue": "어…? 말미잘이 다시 깨끗해졌어요!",
-            "voice": ""
+            "dialogue": "우와! 말미잘이 다시 깨끗해졌네요!",
+            "voice": "Dubbing_Clownfish/Clownfish_Audio_06"
         },
         {
             "type": "clownfish",
             "expression": "Eyes_Happy",
-            "dialogue": "와! 이제 다시 말미잘 안에서 살 수 있겠어요!\n얘들아, 이제 안전해!",
-            "voice": ""
+            "dialogue": "이제 다시 말미잘 안에서 살 수 있겠어요!\n얘들아~ 이제 안전해!",
+            "voice": "Dubbing_Clownfish/Clownfish_Audio_07"
         },
         {
             "type": "clownfish",
             "expression": "Eyes_Happy",
-            "dialogue": "휴… 정말 다행이에요. 도와주셔서 감사합니다.\n우리 가족들에게 이 말미잘은 그냥 평범한 집이 아니거든요.",
-            "voice": ""
+            "dialogue": "휴… 정말 다행이에요. 도와주셔서 감사해요.\n우리 가족들에게 이 말미잘은 그냥 평범한 집이 아니거든요.",
+            "voice": "Dubbing_Clownfish/Clownfish_Audio_08"
         },
         {
             "type": "clownfish",
-            "expression": "Eyes_Sad",
-            "dialogue": "예전에 쉴 곳이 없어 바다를 헤맬 때,\n어디선가 들려온 <color=#42A5F5>따뜻한 목소리</color>가 안내해 준 소중한 보금자리예요.",
-            "voice": ""
+            "expression": "Eyes_Happy",
+            "dialogue": "예전에 쉴 곳이 없어 바다를 헤맬 때,\n어디선가 들려온 <color=#42A5F5>따뜻한 목소리</color>가 알려준 소중한 보금자리예요.",
+            "voice": "Dubbing_Clownfish/Clownfish_Audio_09"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(<color=#42A5F5>따뜻한 목소리</color>…? 정어리 때도 그렇고,\n바다 친구들을 돕고 있는 그 주인공이 확실해.)",
-            "voice": ""
+            "dialogue": "(<color=#42A5F5>따뜻한 목소리</color>…? 정어리 때도 그렇고,\n바다 친구들을 돕고 있는 그 주인공이 확실한 것 같아.)",
+            "voice": "Dubbing_Clownfish/Clownfish_Audio_10"
         },
         {
             "type": "clownfish",
-            "expression": "Eyes_Sad",
+            "expression": "Eyes_Happy",
             "dialogue": "하마터면 또다시 집을 잃고 떠돌 뻔했어요...\n정말 눈앞이 캄캄했는데 구해주셔서 다시 한 번 감사드려요.",
-            "voice": ""
+            "voice": "Dubbing_Clownfish/Clownfish_Audio_11"
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
             "dialogue": "(가장 안전해야 할 집조차 쓰레기로 위협받고 있다니…\n이 바다는 더 이상 예전처럼 평화로운 곳이 아닐지도 몰라.)",
-            "voice": ""
+            "voice": "Dubbing_Clownfish/Clownfish_Audio_12"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
             "dialogue": "(나를 부르던 그 목소리의 흔적을 따라서,\n도움이 필요한 다른 친구들도 서둘러 찾아봐야겠어.)",
-            "voice": ""
+            "voice": "Dubbing_Clownfish/Clownfish_Audio_13"
         }
     ]
 }

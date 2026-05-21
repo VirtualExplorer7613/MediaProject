@@ -15,32 +15,32 @@
         {
             "type": "orca",
             "expression": "Sweat_L",
-            "dialogue": "아야야... 입이 너무 아파...!",
-            "voice": ""
+            "dialogue": "아이고… 입이 너무 아파...!",
+            "voice": "Dubbing_Orca/Orca_Audio_01"
         },
         {
             "type": "orca",
             "expression": "Eyes_Rabid",
             "dialogue": "배가 고파서 눈에 보이는 대로 입에 넣었더니\n<color=#2458C9>딱딱한 고철 덩어리들</color>이 잔뜩 들러붙어 버렸어...!",
-            "voice": ""
+            "voice": "Dubbing_Orca/Orca_Audio_02"
         },
         {
             "type": "orca",
             "expression": "Sweat_L",
-            "dialogue": "예전에 <color=#2458C9>고철을 쫘악 끌어당기는 신기한 물건</color>을 본 적이 있는데...\n그거라면 내 입에 붙은 것도 한 번에 떼어낼 수 있을 텐데...",
-            "voice": ""
+            "dialogue": "예전에 <color=#2458C9>고철을 쫘악 끌어당기는 신기한 물건</color>을 본 적이 있어.\n그거라면 내 입에 붙은 것도 한 번에 떼어낼 수 있을 텐데...",
+            "voice": "Dubbing_Orca/Orca_Audio_03"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(범고래잖아? 근데 왜 저렇게 괴로워하지?)",
-            "voice": ""
+            "dialogue": "(저건, 범고래 같은데... 근데 왜 이렇게 불편해 보이지?)",
+            "voice": "Dubbing_Orca/Orca_Audio_04"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(자세히 보니 입 주변에 고철 쓰레기가 잔뜩 붙어 있어!\n저대로 두면 위험하겠어. 내가 도와줘야지!)",
-            "voice": ""
+            "dialogue": "(자세히 보니 입 주변에 고철 쓰레기가 잔뜩 붙어 있어!\n저대로 두면 위험해. 내가 도와줘야겠어!)",
+            "voice": "Dubbing_Orca/Orca_Audio_05"
         },
         {
             "type": "interaction",
@@ -51,60 +51,60 @@
             "type": "orca",
             "expression": "Eyes_Blink",
             "dialogue": "휴... 살았다! 입이 한결 가벼워졌어. 고마워!",
-            "voice": ""
+            "voice": "Dubbing_Orca/Orca_Audio_06"
         },
         {
             "type": "whale",
             "dialogue": "네 입에 붙어 있던 그거, 먹을 수 있는 게 아니야.\n전부 바다에 버려진 쓰레기야.",
-            "voice": ""
+            "voice": "Dubbing_Orca/Orca_Audio_07"
         },
         {
             "type": "orca",
             "expression": "Sweat_L",
             "dialogue": "뭐?! 어쩐지 아무리 씹어도 안 부서지더라니...\n네가 안 도와줬으면 정말 큰일 날 뻔했다.",
-            "voice": ""
+            "voice": "Dubbing_Orca/Orca_Audio_08"
         },
         {
             "type": "orca",
             "expression": "Eyes_Blink",
-            "dialogue": "구해준 은혜는 갚아야지!\n여기서 <color=#2458C9>왼쪽 길</color>로 가면 <color=#2458C9>쓰레기가 잔뜩 쌓인 곳</color>이 있거든.",
-            "voice": ""
+            "dialogue": "구해준 은혜는 갚아야지!\n여기서 <color=#2458C9>왼쪽 길</color>로 가면 <color=#2458C9>쓰레기가 잔뜩 쌓인 곳</color>이 있거든?",
+            "voice": "Dubbing_Orca/Orca_Audio_09"
         },
         {
             "type": "orca",
             "expression": "Eyes_Blink",
-            "dialogue": "그 근처에 오래된 <color=#6B2500>보물상자</color>가 하나 떠내려와 있었어.\n너처럼 도구 잘 쓰는 친구한테 딱일 <color=#CDA31A>특별한 물건</color>이 들어있을 거야!",
-            "voice": ""
+            "dialogue": "그 근처에 오래된 <color=#6B2500>보물상자</color>가 하나 떠내려와 있었어.\n너처럼 도구 잘 쓰는 친구한테 도움될만한 <color=#CDA31A>특별한 물건</color>이 들어있을 거야!",
+            "voice": "Dubbing_Orca/Orca_Audio_10"
         },
         {
             "type": "orca",
             "expression": "Eyes_Blink",
-            "dialogue": "얼른 가서 찾아봐! 나도 앞으론 좀 더 조심해서 먹을게.\n진짜 고마웠어!",
-            "voice": ""
+            "dialogue": "얼른 가서 찾아봐! 나도 앞으론 좀 더 조심할게.\n진짜 고마웠어!",
+            "voice": "Dubbing_Orca/Orca_Audio_11"
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
             "dialogue": "(아무리 조심한다고 해도, 바다에 쓰레기가 남아 있는 한\n이런 일은 또 일어날 거야.)",
-            "voice": ""
+            "voice": "Dubbing_Orca/Orca_Audio_12"
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
             "dialogue": "(바다에 쓰레기가 더 늘어나면 안 돼.)",
-            "voice": ""
+            "voice": "Dubbing_Orca/Orca_Audio_13"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
             "dialogue": "(나를 부르던 그 목소리를 찾아가려면,\n쓰레기를 치울 도구가 더 필요할지도 몰라.)",
-            "voice": ""
+            "voice": "Dubbing_Orca/Orca_Audio_14"
         },
         {
             "type": "whale",
             "expression": "Eyes_Blink",
             "dialogue": "(범고래가 말한 <color=#2458C9>왼쪽 길 쓰레기 더미</color>부터 가보자.\n그 보물상자 안에 분명 도움 될 게 있을 거야!)",
-            "voice": ""
+            "voice": "Dubbing_Orca/Orca_Audio_15"
         }
     ]
 }
