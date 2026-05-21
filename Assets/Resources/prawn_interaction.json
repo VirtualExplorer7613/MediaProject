@@ -16,43 +16,43 @@
             "type": "prawn",
             "expression": "Eyes_Shrink",
             "dialogue": "똑똑똑… 거기 고래님!",
-            "voice": ""
+            "voice": "Dubbing_Prawn/Prawn_Audio_01"
         },
         {
             "type": "prawn",
             "expression": "Eyes_Shrink",
             "dialogue": "고래님!! 여기예요, 여기!!",
-            "voice": ""
+            "voice": "Dubbing_Prawn/Prawn_Audio_02"
         },
         {
             "type": "whale",
             "expression": "Sweat_R",
             "dialogue": "새우야, 거기서 뭘 하고 있는 거야?",
-            "voice": ""
+            "voice": "Dubbing_Prawn/Prawn_Audio_03"
         },
         {
             "type": "prawn",
             "expression": "Eyes_Squint",
             "dialogue": "갑자기 이 무거운 유리컵이 쿵! 떨어져서...\n밀어도 밀어도 꼼짝을 안 해요...!",
-            "voice": ""
+            "voice": "Dubbing_Prawn/Prawn_Audio_04"
         },
         {
             "type": "prawn",
             "expression": "Teardrop_L",
             "dialogue": "저… 혹시 이걸 좀 없애주실 수 있을까요…?\n제 힘으론 도저히 빠져나올 수가 없어요.",
-            "voice": ""
+            "voice": "Dubbing_Prawn/Prawn_Audio_05"
         },
         {
             "type": "prawn",
-            "expression": "Eyes_Sad",
-            "dialogue": "만져보니 얇은 유리 같아서...\n<color=#FFFF00>무겁고 단단한 걸로 쾅! 하고 내리치면</color> 쉽게 부술 수 있을 것 같아요!",
-            "voice": ""
+            "expression": "Eyes_Rabid",
+            "dialogue": "만져보니 얇은 유리 같아서...\n<color=#2458C9>무겁고 단단한 걸로 쾅! 하고 내리치면</color> 쉽게 부술 수 있을 것 같아요!",
+            "voice": "Dubbing_Prawn/Prawn_Audio_06"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(다행히 유리가 두껍지는 않은 모양이네.\n보물상자에서 찾은 그 도구라면 깰 수 있을 거야!)",
-            "voice": ""
+            "dialogue": "(다행히 유리가 두껍지는 않은 모양이네.\n아까 보물상자에서 찾은 그 도구라면 깰 수 있을 거야!)",
+            "voice": "Dubbing_Prawn/Prawn_Audio_07"
         },
         {
             "type": "interaction",
@@ -63,42 +63,42 @@
             "type": "prawn",
             "expression": "Eyes_Happy",
             "dialogue": "와…!! 드디어… 나오게 됐네요!\n정말이지 너무너무 답답했어요.",
-            "voice": ""
+            "voice": "Dubbing_Prawn/Prawn_Audio_08"
         },
         {
             "type": "whale",
             "dialogue": "네가 갇혀 있던 유리컵은 사람이 버린 쓰레기야.\n원래 바다에 있던 게 아닌데 여기까지 흘러들어 온 거지.",
-            "voice": ""
+            "voice": "Dubbing_Prawn/Prawn_Audio_09"
         },
         {
             "type": "prawn",
             "expression": "Eyes_Sad",
             "dialogue": "그렇군요. 저처럼 작고 약한 애들은...\n이런 게 떨어지면 진짜 도망갈 수가 없어요...",
-            "voice": ""
+            "voice": "Dubbing_Prawn/Prawn_Audio_10"
         },
         {
             "type": "prawn",
             "expression": "Eyes_Sad",
             "dialogue": "고래님이 아니었다면 전 아마 꼼짝없이 이 유리컵 속에서\n계속 갇혀 있었을 거예요.",
-            "voice": ""
+            "voice": "Dubbing_Prawn/Prawn_Audio_11"
         },
         {
             "type": "prawn",
             "expression": "Eyes_Happy",
             "dialogue": "구해주셔서 정말 감사해요!",
-            "voice": ""
+            "voice": "Dubbing_Prawn/Prawn_Audio_12"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
             "dialogue": "(이렇게 무겁고 단단한 쓰레기들은…\n새우처럼 작고 힘이 약한 친구들을 순식간에 가둬버려.)",
-            "voice": ""
+            "voice": "Dubbing_Prawn/Prawn_Audio_13"
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
             "dialogue": "(다음엔 누가 발견조차 못 한 채로 갇혀 있을지도 몰라…\n이런 게 더는 바다에 떨어지지 않게 해야 해.)",
-            "voice": ""
+            "voice": "Dubbing_Prawn/Prawn_Audio_14"
         }
     ]
 }

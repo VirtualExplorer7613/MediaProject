@@ -15,20 +15,20 @@
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "저건... <color=#2458C9>플라스틱 통</color>이잖아?\n문어가 쓰레기인 줄도 모르고 그 안에 숨어 있어...",
-            "voice": ""
+            "dialogue": "저건... <color=#2458C9>플라스틱 통</color>이잖아?\n문어가 쓰레기인 줄도 모르고 그 안에 숨어있나 봐...",
+            "voice": "Dubbing_Octopus/Octopus_Audio_01"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
             "dialogue": "저대로 두면 플라스틱 통에 갇혀서 위험해질 수도 있어.\n다행히 빈 통이라 아주 가벼워 보이는데...",
-            "voice": ""
+            "voice": "Dubbing_Octopus/Octopus_Audio_02"
         },
         {
             "type": "whale",
             "expression": "Eyes_Blink",
             "dialogue": "내 <color=#00BFFF>파도 스킬</color>을 이용해서 <color=#00BFFF>강한 물살</color>을 일으키면,\n문어가 다치지 않게 통만 날려버릴 수 있을 거야!",
-            "voice": ""
+            "voice": "Dubbing_Octopus/Octopus_Audio_03"
         },
         {
             "type": "interaction",
@@ -38,43 +38,43 @@
         {
             "type": "octopus",
             "expression": "Eyes_Shrink",
-            "dialogue": "으악! 뭐야 너!!\n남의 집을 왜 함부로 날려버려?!",
-            "voice": ""
+            "dialogue": "뭐야, 너!!\n남의 집을 왜 함부로 날려버려?!",
+            "voice": "Dubbing_Octopus/Octopus_Audio_04"
         },
         {
             "type": "whale",
             "dialogue": "방금 네가 들어가 있던 통 말이야.\n좋은 집처럼 보였겠지만, 사실 바다에 버려진 <color=#2458C9>쓰레기</color>야.",
-            "voice": ""
+            "voice": "Dubbing_Octopus/Octopus_Audio_05"
         },
         {
             "type": "octopus",
             "expression": "Eyes_Annoyed",
             "dialogue": "뭐? 쓰레기?! 지금 내가 그 더럽고 찝찝한 걸 피신처로 쓰고 있었단 말이야?!",
-            "voice": ""
+            "voice": "Dubbing_Octopus/Octopus_Audio_06"
         },
         {
             "type": "octopus",
             "expression": "Eyes_Annoyed",
             "dialogue": "어쩐지... 뭔가 미끌거리고 냄새도 이상하다 했어.\n근데 그게 쓰레기였다니, 정말 최악이야!",
-            "voice": ""
+            "voice": "Dubbing_Octopus/Octopus_Audio_07"
         },
         {
             "type": "octopus",
             "expression": "Eyes_Blink",
             "dialogue": "...그래도 알려줘서 고마워.\n네가 아니었으면 이 더러운 곳에서 계속 숨어있을 뻔했어.",
-            "voice": ""
+            "voice": "Dubbing_Octopus/Octopus_Audio_08"
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
             "dialogue": "(유일한 피신처라고 생각했던 곳이 사실 바다를 병들게 하는 쓰레기였다니...\n이보다 씁쓸한 기분이 또 있을까?)",
-            "voice": ""
+            "voice": "Dubbing_Octopus/Octopus_Audio_09"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
             "dialogue": "(이런 쓰레기들 때문에 위험에 처한 다른 친구들은 없는지,\n계속 헤엄치며 주변을 잘 살펴봐야겠어.)",
-            "voice": ""
+            "voice": "Dubbing_Octopus/Octopus_Audio_10"
         }
     ]
 }
