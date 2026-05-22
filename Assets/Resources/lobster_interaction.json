@@ -27,19 +27,19 @@
         {
             "type": "lobster",
             "expression": "Eyes_Annoyed",
-            "dialogue": "내 집게발로 꼬집어 봐도 끄떡없어!\n뭔가 <color=#FFFF00>더 날카로운 걸로 뚝! 잘라줘야</color> 할 것 같아!",
+            "dialogue": "내 집게발로 꼬집어 봐도 끄떡없어!\n어떻게든 이 줄을 끊어내야 할 텐데...",
             "voice": ""
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(밧줄이 몸에 잔뜩 감겨 있네.\n저대로 힘을 쓰면 더 조여들어서 위험해지겠어.)",
+            "dialogue": "(밧줄이 몸에 잔뜩 감겨 있네.\n저대로 두면 더 조여들겠어.)",
             "voice": ""
         },
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "(이 질긴 밧줄... 그 도구라면 단번에 끊어낼 수 있어!)",
+            "dialogue": "(이 질긴 밧줄... 그 도구라면 끊어낼 수 있을 거야!)",
             "voice": ""
         },
         {
@@ -49,26 +49,20 @@
         },
         {
             "type": "lobster",
-            "expression": "Eyes_Squint",
-            "dialogue": "으악!",
-            "voice": ""
-        },
-        {
-            "type": "lobster",
             "expression": "Eyes_Shrink",
-            "dialogue": "어라? 드디어 풀렸구나! 풀렸어!",
+            "dialogue": "오! 드디어 풀렸구나! 풀렸어!",
             "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Sweat_L",
-            "dialogue": "온 몸이 꽁꽁 묶이는 바람에 답답해서 죽는 줄 알았네.",
+            "dialogue": "꽁꽁 묶여서 정말 답답해 미칠 뻔했네.",
             "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Happy",
-            "dialogue": "고래! 너, 진짜 고맙다. 네가 아니었으면 정말 큰일 날 뻔했어.",
+            "dialogue": "고래! 너, 진짜 고맙다. 네가 아니었으면 큰일 날 뻔했어.",
             "voice": ""
         },
         {
@@ -80,19 +74,19 @@
         {
             "type": "lobster",
             "expression": "Eyes_Blink",
-            "dialogue": "내 예민한 수염에 아까부터 계속 <color=#42A5F5>미세한 진동</color> 같은 게 느껴지긴 했는데…",
+            "dialogue": "내 예민한 수염에 아까부터 계속 <color=#224E9F>미세한 진동</color> 같은 게 느껴지긴 했는데…",
             "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Rabid",
-            "dialogue": "누가 계속 노래라도 부르는 것처럼 울려서 더 신경 쓰였단 말이지.\n설마 고래 네가 낸 소리냐?",
+            "dialogue": "누가 계속 노래라도 부르는 것처럼 울려서 더 신경 쓰였단 말이지.\n혹시 고래 네가 낸 소리냐?",
             "voice": ""
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(<color=#42A5F5>미세한 진동</color>…? 전에 다른 친구들도 말했던\n그 <color=#42A5F5>잔잔한 노랫소리</color>를 말하는 걸까?)",
+            "dialogue": "(<color=#224E9F>미세한 진동</color>…? 전에 다른 친구들도 말했던\n그 <color=#1C770A>노랫소리</color>를 말하는 걸까?)",
             "voice": ""
         },
         {
@@ -103,37 +97,37 @@
         },
         {
             "type": "whale",
-            "dialogue": "난 아무 소리도 안 냈어. 그나저나 밧줄은 원래 바다에 있으면 안 되는 물건인데\n가재 너 정말 위험할 뻔했어.",
+            "dialogue": "난 아무 소리도 안 냈어.\n그나저나 그 밧줄은 사람이 버린 쓰레기야. 위험할 뻔했어.",
             "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Rabid",
-            "dialogue": "흠.. 바다에 있으면 안 되는 물건이라면, 사람들이 버린 쓰레기!\n또 그거란 말이지? 이젠 정말 지긋지긋하군.",
+            "dialogue": "흠... 또 사람들이 버린 쓰레기란 말이지?\n이젠 정말 지긋지긋해!",
             "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Annoyed",
-            "dialogue": "이렇게 질기고 단단한 게 돌아다니면…\n나처럼 강한 녀석들도 피할 틈이 없다고~",
+            "dialogue": "내 껍질이 아무리 단단하면 뭐 해.\n이런 줄에 묶여버리면 꼼짝도 못 하는데 말이야!",
             "voice": ""
         },
         {
             "type": "lobster",
             "expression": "Eyes_Annoyed",
-            "dialogue": "내 가족들도 나처럼 이런 일을 당할까 봐 걱정이 이만저만이 아니야.\n도대체 이런 게 바다에 왜 있는 거야?!",
+            "dialogue": "이런 게 사방에 깔려 있으면 우리 가족들도 다 위험해진다고!\n도대체 이런 걸 바다에 왜 버리는 거야?!",
             "voice": ""
         },
         {
             "type": "whale",
             "expression": "Sweat_R",
-            "dialogue": "(단단한 껍질을 가진 가재까지 꼼짝없이 당해버리다니...\n바다가 점점 위험한 곳으로 바뀌고 있어.)",
+            "dialogue": "(평생 단단한 껍질에 자신을 숨기고 살아온 가재까지...\n사람이 버린 줄 하나에 꼼짝없이 묶여버리다니.)",
             "voice": ""
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "(바다를 지금 이대로 두면 정말 큰일 날 것 같아…)",
+            "dialogue": "(이제 바다를 지켜줄 수 있는 건 어디에도 없는 걸까...)",
             "voice": ""
         }
     ]

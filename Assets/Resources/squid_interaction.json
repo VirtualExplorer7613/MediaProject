@@ -15,19 +15,31 @@
         {
             "type": "squid",
             "expression": "Eyes_Dead",
-            "dialogue": "야! 거기 고래! 이 그물 좀 어떻게 해봐!\n...크흠, 딱히 도와달라는 건 아니지만 말이야.",
+            "dialogue": "야! 거기 고래! 이 그물 좀 어떻게 해봐!",
             "voice": ""
         },
         {
             "type": "squid",
             "expression": "Eyes_Dead",
-            "dialogue": "이건 억지로 당기거나 물어뜯어봤자 소용없어!\n<color=#FFFF00>날카로운 걸로 단번에 잘라내야</color> 풀린다고!",
+            "dialogue": "...크흠, 딱히 도와달라는 건 아니지만 말이야.",
+            "voice": ""
+        },
+        {
+            "type": "squid",
+            "expression": "Eyes_Dead",
+            "dialogue": "나처럼 똑똑하고 빠른 오징어가\n이런 거에 걸리다니, 자존심 상하잖아!",
+            "voice": ""
+        },
+        {
+            "type": "squid",
+            "expression": "Eyes_Dead",
+            "dialogue": "이건 억지로 당기거나 물어뜯어봤자 소용없어.\n어떻게든 이 줄을 끊어내야 풀린다고!",
             "voice": ""
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(그물이 다리에 너무 단단하게 묶여 있어.\n참치 때처럼 잘라내면 풀릴 거야!)",
+            "dialogue": "(참치 때 썼던 그 도구라면 이 그물도 단번에 끊을 수 있을 거야!)",
             "voice": ""
         },
         {
@@ -38,31 +50,49 @@
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "그물이 꽤 두꺼워 보이던데… 많이 무거웠겠다.\n어디 다친 데는 없어?",
+            "dialogue": "그물이 꽤 두꺼웠던데... 많이 답답했겠다.\n어디 다친 데는 없어?",
             "voice": ""
         },
         {
             "type": "squid",
             "expression": "Eyes_Squint",
-            "dialogue": "흥, 이깟 그물 따위... <color=#888888>익숙해.</color>\n한두 번 당해본 게 아니거든?",
+            "dialogue": "흥, 이깟 그물 따위...",
             "voice": ""
         },
         {
             "type": "squid",
-            "expression": "Eyes_Squint",
-            "dialogue": "나 혼자서도 빠져나올 수 있었는데…\n네가 굳이 도와준다고 해서 도움받은 것뿐이야.",
-            "voice": ""
-        },
-        {
-            "type": "squid",
-            "expression": "Eyes_Squint",
-            "dialogue": "아무튼…! 고맙다.",
+            "expression": "Eyes_Dead",
+            "dialogue": "......익숙해.\n한두 번 당해본 게 아니거든.",
             "voice": ""
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "(정말 저런 쓰레기들에 갇히는 게 익숙해질 수 있는 걸까…\n바다 친구들은 도대체 언제까지 이런 고통을 견디기만 해야 하는 걸까?)",
+            "dialogue": "익숙해...? 그게 무슨 말이야?",
+            "voice": ""
+        },
+        {
+            "type": "squid",
+            "expression": "Eyes_Squint",
+            "dialogue": "사람들이 쓰다 버린 그물이 바다에 얼마나 많은데.\n저런 거에 한 번도 안 걸려본 친구가 있을까?",
+            "voice": ""
+        },
+        {
+            "type": "squid",
+            "expression": "Eyes_Squint",
+            "dialogue": "...아무튼, 도와줘서 고맙다.\n혼자서도 빠져나올 순 있었지만 말이야.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Sad",
+            "dialogue": "(이깟 그물 따위라고 말하지만...\n그 무뚝뚝한 말 뒤에 얼마나 많은 상처가 쌓여 있을까.)",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Sad",
+            "dialogue": "(사람들이 잊고 버린 그물 하나가 계속 누군가를 가두고...\n그게 익숙해질 만큼 흔한 일이 됐다니.)",
             "voice": ""
         }
     ]
