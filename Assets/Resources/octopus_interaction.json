@@ -27,7 +27,7 @@
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "내 <color=#00BFFF>파도 스킬</color>을 이용해서 <color=#00BFFF>강한 물살</color>을 일으키면,\n문어가 다치지 않게 통만 날려버릴 수 있을 거야!",
+            "dialogue": "내 <color=#0097CE>파도 스킬</color>을 이용해서 <color=#0097CE>강한 물살</color>을 일으키면,\n문어가 다치지 않게 통만 날려버릴 수 있을 거야!",
             "voice": "Dubbing_Octopus/Octopus_Audio_03"
         },
         {
@@ -43,7 +43,7 @@
         },
         {
             "type": "whale",
-            "dialogue": "방금 네가 들어가 있던 통 말이야.\n좋은 집처럼 보였겠지만, 사실 바다에 버려진 <color=#2458C9>쓰레기</color>야.",
+            "dialogue": "방금 네가 들어가 있던 통 말이야.\n좋은 집처럼 보였겠지만, 사실 바다에 버려진 쓰레기야.",
             "voice": "Dubbing_Octopus/Octopus_Audio_05"
         },
         {

@@ -15,7 +15,7 @@
         {
             "type": "tuna",
             "expression": "Eyes_Squint",
-            "dialogue": "아야야… 아야! 아!! 아파 죽겠네!\n참치 죽는다~~ 참치 살려~~!",
+            "dialogue": "아야야... 아야! 아!! 아파 죽겠네!\n참치 죽는다~~ 참치 살려~~!",
             "voice": ""
         },
         {
@@ -27,31 +27,37 @@
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "무슨 일이야? 몸에… 그건 또 뭐야? 옷걸이처럼 보이는데...\n왜 위험하게 그러고 있어?",
+            "dialogue": "무슨 일이야? 몸에 끼어 있는 그건 옷걸이잖아...\n왜 위험하게 그러고 있어?",
             "voice": ""
         },
         {
             "type": "tuna",
             "expression": "Eyes_Squint",
-            "dialogue": "먹이만 보고 달려가다가 그만 이거에 콱! 끼어버렸어!\n움직일수록 더 파고들어... 아파 죽겠다고!!",
+            "dialogue": "앞만 보고 빠르게 달려가다가 그만 이거에 콱! 끼어버렸어!\n움직일수록 더 파고들어... 아파 죽겠다고!!",
             "voice": ""
         },
         {
             "type": "tuna",
             "expression": "Eyes_Squint",
-            "dialogue": "아니, 이게 왜 여기 떠다니는 건데?!\n나처럼 빠른 참치가 이런 거에 걸리다니!",
+            "dialogue": "아니, 이게 왜 여기 떠다니는 거야?!\n나처럼 빠른 참치가 못 피할 정도잖아!",
+            "voice": ""
+        },
+        {
+            "type": "tuna",
+            "expression": "Sweat_L",
+            "dialogue": "게다가 우리 참치는 멈추면 숨이 막혀서...\n계속 헤엄쳐야 하는데 이거 때문에 꼼짝을 못 하겠어!",
             "voice": ""
         },
         {
             "type": "tuna",
             "expression": "Eyes_Squint",
-            "dialogue": "꿈쩍도 안 해! 이대로 두면 평생 이러고 살아야 할지도 몰라!\n얼른 <color=#FFFF00>싹둑 잘라줘!</color> 제발!!",
+            "dialogue": "이대로 두면 진짜 큰일 난다고!\n얼른 <color=#E00A3F>싹둑 잘라줘!</color> 제발!!",
             "voice": ""
         },
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "(플라스틱 옷걸이가 참치 몸에 너무 단단하게 걸려버렸어.\n아까 연어 부부가 준 <color=#FFFF00>그 물건</color>이라면 저걸 쉽게 끊어낼 수 있을 거야!)",
+            "dialogue": "(아까 연어 부부가 준 <color=#E00A3F>그 물건</color>이라면 단번에 끊어낼 수 있겠어!)",
             "voice": ""
         },
         {
@@ -62,54 +68,54 @@
         {
             "type": "tuna",
             "expression": "Eyes_Excited",
-            "dialogue": "으아… 빠졌다!! 살았다, 살았어…!\n하… 방금까지 진짜 숨 막혀 죽는 줄 알았네.",
+            "dialogue": "으아... 빠졌다!! 살았다, 살았어...!\n하... 진짜 숨 막혀 죽는 줄 알았네.",
             "voice": ""
         },
         {
             "type": "tuna",
             "expression": "Eyes_Excited",
-            "dialogue": "고래 친구, 너 아니었으면 나 큰일 날 뻔했어.\n넌 정말 도구를 잘 다루는구나! 진짜 고마워!",
+            "dialogue": "고래 친구, 너 아니었으면 나 큰일 날 뻔했어.\n진짜 고마워!",
             "voice": ""
         },
         {
             "type": "whale",
-            "dialogue": "저건 사람이 버린 플라스틱 옷걸이야.\n바다에 있으면 안 되는 쓰레기인데 왜인지 여기까지 흘러들어와버렸어.",
+            "dialogue": "저건 사람이 버린 플라스틱 옷걸이야.\n바다에 있으면 안 되는 쓰레기인데 왜인지 여기까지 흘러들어왔어.",
             "voice": ""
         },
         {
             "type": "tuna",
             "expression": "Sweat_L",
-            "dialogue": "옷걸이…? 아니 그런 게 왜 바다에 떠다녀…?\n앞만 보고 달리다 이걸 못 봤네.",
+            "dialogue": "옷걸이...? 아니 그런 게 왜 바다에 떠다녀...\n앞만 보고 달리느라 이걸 못 봤네.",
             "voice": ""
         },
         {
             "type": "tuna",
             "expression": "Eyes_Excited",
-            "dialogue": "참, 내가 아까 이리저리 발버둥 치다가 봤는데\n<color=#00FFFF>저기 바로 옆 바위 뒤</color>에 수상한 <color=#00FFFF>상자</color>가 하나 있더라고?",
+            "dialogue": "참! 내가 발버둥 치다가 봤는데,\n<color=#2458C9>저기 바위 뒤</color>에 수상한 <color=#6B2500>상자</color>가 하나 있더라고?",
             "voice": ""
         },
         {
             "type": "tuna",
             "expression": "Eyes_Excited",
-            "dialogue": "안에 아주 정교한 물건이 들어있는 것 같던데\n너처럼 도구를 잘 쓰는 친구라면 아주 유용하게 쓸 수 있을 거야! 한번 가봐!",
+            "dialogue": "안에 뭔가 정교한 물건이 들어있는 것 같던데,\n너처럼 도구 잘 쓰는 친구라면 분명 유용할 거야! 한번 가봐!",
             "voice": ""
         },
         {
             "type": "tuna",
             "expression": "Sweat_L",
-            "dialogue": "요즘 들어 부쩍 쓰레기들이 바다에 많이 떠다니는 것 같던데.\n다음부턴 좀 더 조심해야겠어. 도와줘서 고맙다!",
+            "dialogue": "요즘 부쩍 바다에 쓰레기들이 많아진 것 같아.\n나도 다음부턴 좀 더 조심해야겠어. 도와줘서 고맙다!",
             "voice": ""
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "(과연 참치가 조심해야 하는 일이 맞는 걸까?\n바다에 쓰레기가 계속해서 늘어나는 한, 누군가는 또 참치처럼 다치고 말 거야.)",
+            "dialogue": "(참치가 조심한다고 해결될 일이 아닌데...\n바다에서 가장 빠른 친구마저 못 피한다면, 누가 안전할 수 있을까?)",
             "voice": ""
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(쓰레기가 바다에 흘러 들어오지 않게 사람들이 먼저 도울 순 없는 걸까?\n우선 참치가 말한 <color=#00FFFF>바위 뒤의 보물상자</color>부터 확인해 봐야겠어.)",
+            "dialogue": "(쓰레기가 바다에 흘러 들어오지 않게 사람들이 먼저 도와줘야 하는데...\n우선 참치가 말한 <color=#6B2500>바위 뒤의 보물상자</color>부터 확인해 봐야겠어.)",
             "voice": ""
         }
     ]

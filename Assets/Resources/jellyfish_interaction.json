@@ -21,7 +21,7 @@
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "(다행히 비닐이라 아주 가벼워 보여.\n다시 한 번 <color=#00BFFF>강한 물살</color>을 일으켜서 다치지 않게 날려버리자!)",
+            "dialogue": "(다행히 비닐이라 아주 가벼워 보여.\n다시 한 번 <color=#0097CE>강한 물살</color>을 일으켜서 다치지 않게 날려버리자!)",
             "voice": "Dubbing_Jellyfish/Jellyfish_Audio_02"
         },
         {

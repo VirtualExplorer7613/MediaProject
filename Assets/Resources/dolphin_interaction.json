@@ -15,7 +15,7 @@
         {
             "type": "dolphin",
             "expression": "Eyes_Trauma",
-            "dialogue": "아야야… 누가 나 좀 도와줘요! 너무 아파!\n입이 따끔거려서 아무것도 할 수가 없어!",
+            "dialogue": "아야야... 누가 나 좀 도와줘요! 너무 아파!\n입이 따끔거려서 아무것도 할 수가 없어!",
             "voice": ""
         },
         {
@@ -27,7 +27,7 @@
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(잘못 건드렸다간 상처가 더 커지겠어.\n방금 보물상자에서 찾은 <color=#FFFF00>바늘 끝을 콕 집어낼 수 있는 도구</color>를 써야겠어!)",
+            "dialogue": "(잘못 건드렸다간 상처가 더 커지겠어.\n방금 보물상자에서 찾은 <color=#F36325>바늘 끝을 콕 집어낼 수 있는 도구</color>를 써야겠어!)",
             "voice": ""
         },
         {
@@ -38,31 +38,43 @@
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "…어쩌다 이렇게 날카로운 바늘이 입에 박히게 된 거니?",
+            "dialogue": "...어쩌다 이렇게 날카로운 바늘이 입에 박히게 된 거니?",
             "voice": ""
         },
         {
             "type": "dolphin",
             "expression": "Eyes_Cry",
-            "dialogue": "오랜만에 물 위로 올라갔다가... 사람들을 봤어요.\n그 사람들이 뭔가 반짝이는 걸 저한테 던졌어요...!",
+            "dialogue": "오랜만에 숨 쉬러 물 위로 올라갔다가... 사람들을 만났어요.\n저는 사람들이 좋아서 늘 가까이 가서 인사하곤 했거든요.",
             "voice": ""
         },
         {
             "type": "dolphin",
             "expression": "Eyes_Cry",
-            "dialogue": "처음엔 장난감인 줄 알고 다가갔거든요.\n근데 갑자기 날카로운 게 제 입에 '탁' 하고 걸리더니 그대로 나를 끌고 갔어요….",
+            "dialogue": "그런데 이번엔 사람들이 반짝이는 걸 저한테 던졌어요.\n장난감인 줄 알고 신나서 다가갔는데...",
+            "voice": ""
+        },
+        {
+            "type": "dolphin",
+            "expression": "Eyes_Trauma",
+            "dialogue": "갑자기 날카로운 게 제 입에 '탁!' 하고 걸리더니,\n사람들이 줄을 당겨서 저를 끌고 가려고 했어요...!",
             "voice": ""
         },
         {
             "type": "dolphin",
             "expression": "Eyes_Sad",
-            "dialogue": "너무 아픈데도 무서워서 있는 힘껏 도망쳐서 여기까지 헤엄쳐왔어요.\n고래님이 아니었으면… 나는 정말 큰일 날 뻔했어요. 너무너무 고마워요….",
+            "dialogue": "너무 아프고 무서워서 있는 힘껏 도망쳐서 여기까지 왔어요...\n이제는 사람들 가까이 가는 게... 너무 무서워요.",
+            "voice": ""
+        },
+        {
+            "type": "dolphin",
+            "expression": "Eyes_Sad",
+            "dialogue": "고래님이 아니었으면 저는 정말 큰일 났을 거예요.\n정말, 정말 고마워요...",
             "voice": ""
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "(사람들은 모를 거야. 무심코 던진 바늘 하나가...\n이 작은 친구에게 얼마나 큰 상처가 되는지.)",
+            "dialogue": "(사람들은 모를 거야. 그 바늘 하나가...\n사람을 좋아하던 이 작은 친구의 마음까지 다치게 했다는 걸.)",
             "voice": ""
         }
     ]
