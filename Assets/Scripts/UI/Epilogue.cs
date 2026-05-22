@@ -78,9 +78,18 @@ public class Epliogue : BaseScene
         #endregion
 
         if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
-       && !isTyping && !isTransitioning)
+       && !isTyping && !isTransitioning && !isMoving)
         {
-            StartCoroutine(AdvanceStepWithFade());
+            if (currentIndex >= steps.Count - 1)
+            {
+                isMoving = true;
+                EndEpilogue();
+                //StartCoroutine(GoToTitleWithFade());
+            }
+            else
+            {
+                StartCoroutine(AdvanceStepWithFade());
+            }
         }
 
 
@@ -89,6 +98,8 @@ public class Epliogue : BaseScene
 
     IEnumerator AdvanceStepWithFade()
     {
+        if (isMoving) yield break;
+
         isTransitioning = true;                 // 입력 막기
 
         FadeController fade = FindObjectOfType<FadeController>();
@@ -156,11 +167,6 @@ public class Epliogue : BaseScene
         {
             DisplayCurrentStep();
         }
-        else if (!isMoving)
-        {
-            StartCoroutine(GoToTitleWithFade());
-            isMoving = true;
-        }
     }
 
     private IEnumerator TypeText(string text)
@@ -214,16 +220,22 @@ public class Epliogue : BaseScene
         EndEpilogue();
     }
 
-    private IEnumerator GoToTitleWithFade()
+    /*private IEnumerator GoToTitleWithFade()
     {
         isTransitioning = true;
+
+        if (autoAdvanceCo != null)
+        {
+            StopCoroutine(autoAdvanceCo);
+            autoAdvanceCo = null;
+        }
 
         FadeController fade = FindObjectOfType<FadeController>();
         if (fade != null)
             yield return fade.FadeOut(2.0f); // 마지막 페이드 아웃
 
         EndEpilogue();
-    }
+    }*/
 
     /* private IEnumerator LoadNextSceneAfterFade()
      {
@@ -268,8 +280,22 @@ public class Epliogue : BaseScene
         /* 2. 읽을 시간을 줌 */
         yield return new WaitForSeconds(autoAdvanceDelay);
 
+        if (stepIndex != currentIndex) yield break;
+        if (isTransitioning || isTyping || isMoving) yield break;
+
         /* 3. 아직 같은 스텝이고, 페이드/타이핑 중이 아니면 자동 진행 */
-        if (stepIndex == currentIndex && !isTransitioning && !isTyping)
+        /*if (stepIndex == currentIndex && !isTransitioning && !isTyping)
+        {
+            StartCoroutine(AdvanceStepWithFade());
+        }*/
+
+        // 마지막 컷이면 일반 컷 전환이 아니라 타이틀 이동
+        if (currentIndex >= steps.Count - 1)
+        {
+            isMoving = true;
+            EndEpilogue();
+        }
+        else
         {
             StartCoroutine(AdvanceStepWithFade());
         }
