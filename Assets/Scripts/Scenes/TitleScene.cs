@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class TitleScene : BaseScene
 {
+    private bool isPlayClicked = false;
+
     protected override void Init()
     {
         base.Init();
@@ -12,6 +14,7 @@ public class TitleScene : BaseScene
 
         StartCoroutine(FadeInAfterLoad());
 
+        isPlayClicked = false;
     }
 
     void Update()
@@ -29,6 +32,11 @@ public class TitleScene : BaseScene
 
     public void StartGame()
     {
+        if (isPlayClicked)
+        {
+            return;
+        }
+        isPlayClicked = true;
         //Managers.Scene.LoadScene(Define.Scene.Game);
         Managers.Scene.LoadSceneAsync(Define.Scene.Prologue, false);
     }
