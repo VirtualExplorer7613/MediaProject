@@ -637,10 +637,16 @@ public class DialogueManager : MonoBehaviour
             dialogueStageRoot.SetActive(true);
 
         if (mainCamera != null)
+        {
+            SetCameraAudioListener(mainCamera, false);
             mainCamera.gameObject.SetActive(false);
+        }
 
         if (dialogueCamera != null)
+        {
             dialogueCamera.gameObject.SetActive(true);
+            SetCameraAudioListener(dialogueCamera, true);
+        }
     }
 
     private void ExitDialogueStage()
@@ -648,10 +654,16 @@ public class DialogueManager : MonoBehaviour
         HideCharacter();
 
         if (dialogueCamera != null)
+        {
+            SetCameraAudioListener(dialogueCamera, false);
             dialogueCamera.gameObject.SetActive(false);
+        }
 
         if (mainCamera != null)
+        {
             mainCamera.gameObject.SetActive(true);
+            SetCameraAudioListener(mainCamera, true);
+        }
 
         if (dialogueStageRoot != null)
             dialogueStageRoot.SetActive(false);
@@ -732,5 +744,14 @@ public class DialogueManager : MonoBehaviour
 
         // 이동이 끝나면 조이스틱/아이템 UI 복구
         SetGameplayUIVisible(true);
+    }
+
+    private void SetCameraAudioListener(Camera cam, bool enabled)
+    {
+        if (cam == null) return;
+
+        AudioListener listener = cam.GetComponent<AudioListener>();
+        if (listener != null)
+            listener.enabled = enabled;
     }
 }
