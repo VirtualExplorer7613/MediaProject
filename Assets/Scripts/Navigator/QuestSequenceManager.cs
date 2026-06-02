@@ -193,7 +193,7 @@ public class QuestSequenceManager : MonoBehaviour
             return;
         }
 
-        pathNavigator.SetTarget(current.NavigationPoint);
+        pathNavigator.SetTarget(current);
         Debug.Log($"[QuestSequence] 다음 목표: {current.ObjectiveId}");
 
         RefreshAllNpcSequenceIcons();

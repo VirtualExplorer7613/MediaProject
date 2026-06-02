@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.Splines;
 
 public class QuestPathNavigator : MonoBehaviour
 {
@@ -7,250 +7,456 @@ public class QuestPathNavigator : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private GameObject pathVfxPrefab;
 
-    [Header("Path")]
-    [SerializeField] private float recalculateInterval = 1.0f;
-    [SerializeField] private float playerMoveRefreshDistance = 3f;
+    [Header("Spline VFX")]
+    [SerializeField] private int sparkleCount = 8;
+    [SerializeField] private float flowSpeed = 0.2f;
+    [SerializeField] private float yOffset = 0.1f;
+
+    [Header("Arrival")]
     [SerializeField] private float arrivalDistance = 6f;
 
-    [Header("VFX Placement")]
-    [SerializeField] private float vfxDistanceFromPlayer = 6f;
-    [SerializeField] private float vfxGroundRayHeight = 8f;
-    [SerializeField] private float vfxGroundRayDistance = 30f;
-    [SerializeField] private LayerMask groundMask;
-    [SerializeField] private float vfxYOffset = 0.05f;
-    [SerializeField] private float rotateSmoothSpeed = 10f;
-    [SerializeField] private float moveSmoothSpeed = 12f;
+    #region Variables for NavMeshMethod
+    /*
+        [Header("Path")]
+        [SerializeField] private float recalculateInterval = 1.0f;
+        [SerializeField] private float playerMoveRefreshDistance = 3f;
+        [SerializeField] private float arrivalDistance = 6f;
 
-    [Header("Discrete VFX Update")]
-    [SerializeField] private bool useDiscreteVfxUpdate = true;
-    // 플레이어가 VFX에 이 거리 이하로 가까워지면 다음 지점으로 갱신
-    [SerializeField] private float advanceRefreshDistance = 2.0f;
-    // 플레이어가 VFX에서 이 거리 이상 멀어지면 경로 이탈/후퇴로 보고 갱신
-    [SerializeField] private float retreatRefreshDistance = 10.0f;
-    // VFX를 새로 배치할 때 부드럽게 이동하지 않고 즉시 이동할지 여부
-    [SerializeField] private bool snapVfxOnRefresh = true;
+
+
+        [Header("VFX Placement")]
+        [SerializeField] private float vfxDistanceFromPlayer = 6f;
+        [SerializeField] private float vfxGroundRayHeight = 8f;
+        [SerializeField] private float vfxGroundRayDistance = 30f;
+        [SerializeField] private LayerMask groundMask;
+        [SerializeField] private float vfxYOffset = 0.05f;
+        [SerializeField] private float rotateSmoothSpeed = 10f;
+        [SerializeField] private float moveSmoothSpeed = 12f;
+
+        [Header("Discrete VFX Update")]
+        [SerializeField] private bool useDiscreteVfxUpdate = true;
+        // 플레이어가 VFX에 이 거리 이하로 가까워지면 다음 지점으로 갱신
+        [SerializeField] private float advanceRefreshDistance = 2.0f;
+        // 플레이어가 VFX에서 이 거리 이상 멀어지면 경로 이탈/후퇴로 보고 갱신
+        [SerializeField] private float retreatRefreshDistance = 10.0f;
+        // VFX를 새로 배치할 때 부드럽게 이동하지 않고 즉시 이동할지 여부
+        [SerializeField] private bool snapVfxOnRefresh = true;
+    */
+    #endregion
+
+    [Header("Ground")]
+    [SerializeField] private bool projectToGround = true;
+    [SerializeField] private float groundRayHeight = 8f;
+    [SerializeField] private float groundRayDistance = 30f;
+    [SerializeField] private LayerMask groundMask;
 
     [Header("View Direction")]
     [SerializeField] private Transform viewReference;
     [SerializeField] private bool hideVfxWhenLookingAway = true;
     [SerializeField] private float minViewDotToShowVfx = -0.1f;
 
-    private Vector3 currentVfxPosition;
-    private bool hasPlacedVfx = false;
+    /* private Vector3 currentVfxPosition;
+     private bool hasPlacedVfx = false;*/
 
+    private QuestSequenceTarget currentTarget;
     private Transform target;
-    private GameObject vfxInstance;
-    private NavMeshPath path;
+    private SplineContainer currentSpline;
 
-    private float nextRecalculateTime;
+    private GameObject[] pathVfxInstances;
+    private GameObject destinationVfxInstance;
+
+    private float flowTime;
+
+
+    /*private GameObject vfxInstance;
+    private NavMeshPath path;*/
+
+    /*private float nextRecalculateTime;
     private Vector3 lastPlayerPosition;
-    private bool hasValidPath;
+    private bool hasValidPath;*/
 
     private void Awake()
     {
-        path = new NavMeshPath();
-
-        if (pathVfxPrefab != null)
-        {
-            vfxInstance = Instantiate(pathVfxPrefab);
-            vfxInstance.SetActive(false);
-        }
-    }
-
-    private void Start()
-    {
-        if (player != null)
-            lastPlayerPosition = player.position;
+        CreatePathVfxInstances();
+        HideAllVfx();
     }
 
     private void Update()
     {
-        if (player == null || target == null)
+        if (player == null || currentTarget == null || target == null)
         {
-            HideVfx();
-            hasPlacedVfx = false;
+            HideAllVfx();
             return;
         }
 
-        float distToTarget = Vector3.Distance(player.position, target.position);
-        if (distToTarget <= arrivalDistance)
-        {
-            HideVfx();
-            hasPlacedVfx = false;
-            return;
-        }
+        UpdateDestinationVfx();
 
-        bool needRecalculate =
-            Time.time >= nextRecalculateTime ||
-            Vector3.Distance(player.position, lastPlayerPosition) >= playerMoveRefreshDistance;
-
-        if (needRecalculate)
-        {
-            RecalculatePath();
-        }
-
-        if (useDiscreteVfxUpdate)
-            UpdateVfxDiscrete();
-        else
-            UpdateVfxAlongPath();
+        UpdatePathVfx();
     }
 
-    public void SetTarget(Transform newTarget)
+    public void SetTarget(QuestSequenceTarget newTarget)
     {
-        target = newTarget;
-        hasPlacedVfx = false;
-        ForceRecalculate();
+        currentTarget = newTarget;
+        if (currentTarget == null)
+        {
+            ClearTarget();
+            return;
+        }
+
+        target = currentTarget.NavigationPoint;
+        currentSpline = currentTarget.RouteSpline;
+        flowTime = 0f;
+
+        SetupDestinationVfx();
+
+        if (currentSpline == null)
+        {
+            HidePathVfx();
+            Debug.LogWarning("[QuestPathNavigator] Spline이 지정되지 않았습니다.");
+        }
     }
 
     public void ClearTarget()
     {
+        currentTarget = null;
         target = null;
-        hasValidPath = false;
-        hasPlacedVfx = false;
-        HideVfx();
+        currentSpline = null;
+
+        HideAllVfx();
+
+        if (destinationVfxInstance != null)
+        {
+            Destroy(destinationVfxInstance);
+            destinationVfxInstance = null;
+        }
     }
 
-    private void ForceRecalculate()
+    /*private void ForceRecalculate()
     {
         nextRecalculateTime = 0f;
         lastPlayerPosition = player != null ? player.position : Vector3.zero;
         RecalculatePath();
-    }
+    }*/
 
-    private void RecalculatePath()
+    /*    private void RecalculatePath()
+        {
+            if (player == null || target == null)
+                return;
+
+            nextRecalculateTime = Time.time + recalculateInterval;
+            lastPlayerPosition = player.position;
+
+            NavMeshHit startHit;
+            NavMeshHit targetHit;
+
+            bool startFound = NavMesh.SamplePosition(player.position, out startHit, 5f, NavMesh.AllAreas);
+            bool targetFound = NavMesh.SamplePosition(target.position, out targetHit, 8f, NavMesh.AllAreas);
+
+            if (!startFound || !targetFound)
+            {
+                hasValidPath = false;
+                HideVfx();
+                return;
+            }
+
+            hasValidPath = NavMesh.CalculatePath(
+                startHit.position,
+                targetHit.position,
+                NavMesh.AllAreas,
+                path
+            );
+
+            if (!hasValidPath || path.corners == null || path.corners.Length < 2)
+            {
+                HideVfx();
+                return;
+            }
+        }
+
+        private void UpdateVfxAlongPath()
+        {
+            if (!hasValidPath || vfxInstance == null || path.corners.Length < 2)
+            {
+                HideVfx();
+                return;
+            }
+
+            Vector3 guidePos = GetGuidePositionOnPath();
+            Vector3 groundPos = ProjectToGround(guidePos);
+
+            Vector3 nextDir = GetDirectionFromPlayerToGuide(groundPos);
+
+            if (!vfxInstance.activeSelf)
+            {
+                vfxInstance.transform.position = groundPos;
+                vfxInstance.SetActive(true);
+            }
+            else
+            {
+                vfxInstance.transform.position = Vector3.Lerp(
+                    vfxInstance.transform.position,
+                    groundPos,
+                    Time.deltaTime * moveSmoothSpeed
+                );
+            }
+
+            if (nextDir.sqrMagnitude > 0.0001f)
+            {
+                Quaternion targetRot = Quaternion.LookRotation(nextDir, Vector3.up);
+                vfxInstance.transform.rotation = Quaternion.Slerp(
+                    vfxInstance.transform.rotation,
+                    targetRot,
+                    Time.deltaTime * rotateSmoothSpeed
+                );
+            }
+        }
+
+        private Vector3 GetGuidePositionOnPath()
+        {
+            Vector3 current = player.position;
+            float remaining = vfxDistanceFromPlayer;
+
+            for (int i = 1; i < path.corners.Length; i++)
+            {
+                Vector3 from = current;
+                Vector3 to = path.corners[i];
+
+                Vector3 segment = to - from;
+                segment.y = 0f;
+
+                float segmentLength = segment.magnitude;
+
+                if (segmentLength <= 0.001f)
+                {
+                    current = to;
+                    continue;
+                }
+
+                if (remaining <= segmentLength)
+                {
+                    return from + segment.normalized * remaining;
+                }
+
+                remaining -= segmentLength;
+                current = to;
+            }
+
+            return path.corners[path.corners.Length - 1];
+        }*/
+
+    private void CreatePathVfxInstances()
     {
-        if (player == null || target == null)
+        if (pathVfxPrefab == null)
             return;
 
-        nextRecalculateTime = Time.time + recalculateInterval;
-        lastPlayerPosition = player.position;
+        pathVfxInstances = new GameObject[sparkleCount];
 
-        NavMeshHit startHit;
-        NavMeshHit targetHit;
-
-        bool startFound = NavMesh.SamplePosition(player.position, out startHit, 5f, NavMesh.AllAreas);
-        bool targetFound = NavMesh.SamplePosition(target.position, out targetHit, 8f, NavMesh.AllAreas);
-
-        if (!startFound || !targetFound)
+        for (int i = 0; i < sparkleCount; i++)
         {
-            hasValidPath = false;
-            HideVfx();
+            pathVfxInstances[i] = Instantiate(pathVfxPrefab, transform);
+            pathVfxInstances[i].SetActive(false);
+        }
+    }
+
+    private void UpdatePathVfx()
+    {
+        if (currentSpline == null)
+        {
+            HidePathVfx();
             return;
         }
 
-        hasValidPath = NavMesh.CalculatePath(
-            startHit.position,
-            targetHit.position,
-            NavMesh.AllAreas,
-            path
+        float distToTarget = Vector3.Distance(player.position, target.position);
+
+        if (distToTarget <= arrivalDistance)
+        {
+            HidePathVfx();
+            return;
+        }
+
+        if (!IsPathDirectionVisible())
+        {
+            HidePathVfx();
+            return;
+        }
+
+        ShowPathVfx();
+        UpdateSplineVfx();
+    }
+
+    private void UpdateSplineVfx()
+    {
+        if (pathVfxInstances == null || currentSpline == null)
+            return;
+
+        flowTime += Time.deltaTime * flowSpeed;
+
+        for (int i = 0; i < pathVfxInstances.Length; i++)
+        {
+            if (pathVfxInstances [i] == null)
+                continue;
+
+            float offset = i / (float)pathVfxInstances.Length;
+            float t = (flowTime + offset) % 1f;
+
+            Vector3 pos = currentSpline.EvaluatePosition(0, t);
+
+            if (projectToGround)
+                pos = ProjectToGround(pos);
+            else
+                pos += Vector3.up * yOffset;
+
+            pathVfxInstances[i].transform.position = pos;
+
+            Vector3 forwardPos = currentSpline.EvaluatePosition(0, (t + 0.02f) % 1f);
+            Vector3 dir = forwardPos - pos;
+            dir.y = 0f;
+
+            if (dir.sqrMagnitude > 0.0001f)
+                pathVfxInstances[i].transform.rotation = Quaternion.LookRotation(dir.normalized, Vector3.up);
+        }
+    }
+
+    private void SetupDestinationVfx()
+    {
+        if (destinationVfxInstance != null)
+        {
+            Destroy(destinationVfxInstance);
+            destinationVfxInstance = null;
+        }
+
+        if (currentTarget == null)
+            return;
+
+        if (!currentTarget.ShowDestinationVfx)
+            return;
+
+        if (currentTarget.DestinationVfxPrefab == null)
+            return;
+
+        Transform vfxPoint = currentTarget.DestinationVfxPoint;
+        if (vfxPoint == null)
+            return;
+
+        destinationVfxInstance = Instantiate(
+            currentTarget.DestinationVfxPrefab,
+            vfxPoint.position,
+            vfxPoint.rotation,
+            vfxPoint
         );
 
-        if (!hasValidPath || path.corners == null || path.corners.Length < 2)
+        destinationVfxInstance.SetActive(true);
+    }
+
+    private void UpdateDestinationVfx()
+    {
+        if (destinationVfxInstance == null || currentTarget == null)
+            return;
+
+        if (!currentTarget.ShowDestinationVfx)
         {
-            HideVfx();
+            destinationVfxInstance.SetActive(false);
             return;
         }
-    }
 
-    private void UpdateVfxAlongPath()
-    {
-        if (!hasValidPath || vfxInstance == null || path.corners.Length < 2)
+        if (!currentTarget.HideDestinationVfxWhenPlayerNear)
         {
-            HideVfx();
+            destinationVfxInstance.SetActive(true);
             return;
         }
 
-        Vector3 guidePos = GetGuidePositionOnPath();
-        Vector3 groundPos = ProjectToGround(guidePos);
+        Transform vfxPoint = currentTarget.DestinationVfxPoint;
+        if (vfxPoint == null)
+            return;
 
-        Vector3 nextDir = GetDirectionFromPlayerToGuide(groundPos);
+        float distance = Vector3.Distance(player.position, vfxPoint.position);
 
-        if (!vfxInstance.activeSelf)
-        {
-            vfxInstance.transform.position = groundPos;
-            vfxInstance.SetActive(true);
-        }
-        else
-        {
-            vfxInstance.transform.position = Vector3.Lerp(
-                vfxInstance.transform.position,
-                groundPos,
-                Time.deltaTime * moveSmoothSpeed
-            );
-        }
-
-        if (nextDir.sqrMagnitude > 0.0001f)
-        {
-            Quaternion targetRot = Quaternion.LookRotation(nextDir, Vector3.up);
-            vfxInstance.transform.rotation = Quaternion.Slerp(
-                vfxInstance.transform.rotation,
-                targetRot,
-                Time.deltaTime * rotateSmoothSpeed
-            );
-        }
+        bool shouldShow = distance > currentTarget.DestinationVfxHideDistance;
+        destinationVfxInstance.SetActive(shouldShow);
     }
-
-    private Vector3 GetGuidePositionOnPath()
-    {
-        Vector3 current = player.position;
-        float remaining = vfxDistanceFromPlayer;
-
-        for (int i = 1; i < path.corners.Length; i++)
-        {
-            Vector3 from = current;
-            Vector3 to = path.corners[i];
-
-            Vector3 segment = to - from;
-            segment.y = 0f;
-
-            float segmentLength = segment.magnitude;
-
-            if (segmentLength <= 0.001f)
-            {
-                current = to;
-                continue;
-            }
-
-            if (remaining <= segmentLength)
-            {
-                return from + segment.normalized * remaining;
-            }
-
-            remaining -= segmentLength;
-            current = to;
-        }
-
-        return path.corners[path.corners.Length - 1];
-    }
-
 
     private Vector3 ProjectToGround(Vector3 position)
     {
-        Vector3 origin = position + Vector3.up * vfxGroundRayHeight;
+        Vector3 origin = position + Vector3.up * groundRayHeight;
 
-        if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, vfxGroundRayDistance, groundMask, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, groundRayDistance, groundMask, QueryTriggerInteraction.Ignore))
         {
-            return hit.point + Vector3.up * vfxYOffset;
+            return hit.point + Vector3.up * yOffset;
         }
 
-        return position + Vector3.up * vfxYOffset;
+        return position + Vector3.up * yOffset;
     }
 
-    private Vector3 GetDirectionFromPlayerToGuide(Vector3 guidePos)
+    private bool IsPathDirectionVisible()
+    {
+        if (!hideVfxWhenLookingAway)
+            return true;
+
+        Transform reference = viewReference != null ? viewReference : player;
+        if (reference == null || target == null)
+            return true;
+
+        Vector3 pathDir = target.position - player.position;
+        Vector3 viewDir = reference.forward;
+
+        pathDir.y = 0f;
+        viewDir.y = 0f;
+
+        if (pathDir.sqrMagnitude <= 0.0001f || viewDir.sqrMagnitude <= 0.0001f)
+            return true;
+
+        pathDir.Normalize();
+        viewDir.Normalize();
+
+        float dot = Vector3.Dot(viewDir, pathDir);
+        return dot >= minViewDotToShowVfx;
+    }
+
+    /*private Vector3 GetDirectionFromPlayerToGuide(Vector3 guidePos)
     {
         Vector3 dir = guidePos - player.position;
         dir.y = 0f;
         return dir.normalized;
+    }*/
+
+    private void ShowPathVfx()
+    {
+        if (pathVfxInstances == null)
+            return;
+
+        foreach (var vfx in pathVfxInstances)
+        {
+            if (vfx != null && !vfx.activeSelf)
+                vfx.SetActive(true);
+        }
     }
 
-    private void HideVfx()
+    private void HidePathVfx()
     {
-        if (vfxInstance != null && vfxInstance.activeSelf)
-            vfxInstance.SetActive(false);
+        if (pathVfxInstances == null)
+            return;
+
+        foreach (var vfx in pathVfxInstances)
+        {
+            if (vfx != null && vfx.activeSelf)
+                vfx.SetActive(false);
+        }
+    }
+
+    private void HideDestinationVfx()
+    {
+        if (destinationVfxInstance != null)
+            destinationVfxInstance.SetActive(false);
+    }
+
+    private void HideAllVfx()
+    {
+        HidePathVfx();
+        HideDestinationVfx();
     }
 
     #region 이산적인 경로 VFX
-    private void UpdateVfxDiscrete()
+    /*private void UpdateVfxDiscrete()
     {
         if (!hasValidPath || vfxInstance == null || path.corners.Length < 2)
         {
@@ -355,7 +561,7 @@ public class QuestPathNavigator : MonoBehaviour
         }
 
         return target != null ? target.position - player.position : Vector3.zero;
-    }
+    }*/
 
     #endregion
 
