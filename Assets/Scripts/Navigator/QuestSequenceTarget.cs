@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Splines;
 
 public class QuestSequenceTarget : MonoBehaviour
 {
@@ -8,15 +9,31 @@ public class QuestSequenceTarget : MonoBehaviour
     [Header("Navigation Point")]
     [SerializeField] private Transform navigationPoint;
 
+    [Header("Spline Route")]
+    [SerializeField] private SplineContainer routeSpline;
+
     [Header("Debug")]
     [SerializeField] private bool completed = false;
 
     [Header("Navigator")]
     [SerializeField] private bool showNavigator = true;
 
+    [Header("Destination VFX")]
+    [SerializeField] private GameObject destinationVfxPrefab;
+    [SerializeField] private Transform destinationVfxPoint;
+    [SerializeField] private bool showDestinationVfx = true;
+    [SerializeField] private bool hideDestinationVfxWhenPlayerNear = true;
+    [SerializeField] private float destinationVfxHideDistance = 6f;
+
     public string ObjectiveId => objectiveId;
     public bool Completed => completed;
     public bool ShowNavigator => showNavigator;
+    public SplineContainer RouteSpline => routeSpline;
+
+    public GameObject DestinationVfxPrefab => destinationVfxPrefab;
+    public bool ShowDestinationVfx => showDestinationVfx;
+    public bool HideDestinationVfxWhenPlayerNear => hideDestinationVfxWhenPlayerNear;
+    public float DestinationVfxHideDistance => destinationVfxHideDistance;
 
     public Transform NavigationPoint
     {
@@ -26,6 +43,17 @@ public class QuestSequenceTarget : MonoBehaviour
                 return navigationPoint;
 
             return transform;
+        }
+    }
+
+    public Transform DestinationVfxPoint
+    {
+        get
+        {
+            if (destinationVfxPoint != null)
+                return destinationVfxPoint;
+
+            return NavigationPoint;
         }
     }
 
