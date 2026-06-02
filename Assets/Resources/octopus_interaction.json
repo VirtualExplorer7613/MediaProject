@@ -49,7 +49,7 @@
         {
             "type": "octopus",
             "expression": "Eyes_Annoyed",
-            "dialogue": "뭐? 쓰레기?! 지금 내가 그 더럽고 찝찝한 걸 피신처로 쓰고 있었단 말이야?!",
+            "dialogue": "뭐? 쓰레기?! 그 더럽고 찝찝한 걸,\n내가 여태 집인 줄 알고 숨어 있었단 말이야?!",
             "voice": "Dubbing_Octopus/Octopus_Audio_06"
         },
         {
@@ -67,13 +67,13 @@
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "(유일한 피신처라고 생각했던 곳이 사실 바다를 병들게 하는 쓰레기였다니...\n이보다 씁쓸한 기분이 또 있을까?)",
+            "dialogue": "(하나뿐인 숨을 곳이라 믿었던 게, 사실은 바다를 아프게 하는 쓰레기였다니...\n마음이 참 씁쓸해.)",
             "voice": "Dubbing_Octopus/Octopus_Audio_09"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(이런 쓰레기들 때문에 위험에 처한 다른 친구들은 없는지,\n계속 헤엄치며 주변을 잘 살펴봐야겠어.)",
+            "dialogue": "(이제 도움이 필요한 친구들은 모두 도와준 것 같아.\n이제 나를 부르던 <color=#2458C9>그 목소리</color>를 만나러 갈 차례인데....)",
             "voice": "Dubbing_Octopus/Octopus_Audio_10"
         }
     ]

@@ -134,13 +134,13 @@
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "알을 낳는 데 필요한 건 거창한 게 아니었어.\n깨끗하고 안전한 자리 하나.)",
+            "dialogue": "(알을 낳는 데 필요한 건 거창한 게 아니었어.\n깨끗하고 안전한 자리 하나.)",
             "voice": ""
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "그 당연한 걸 쓰레기가 가로막고 있었던 거야.)",
+            "dialogue": "(그 당연한 걸 쓰레기가 가로막고 있었던 거야.)",
             "voice": ""
         },
         {
