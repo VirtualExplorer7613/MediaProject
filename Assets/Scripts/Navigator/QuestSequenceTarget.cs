@@ -25,6 +25,13 @@ public class QuestSequenceTarget : MonoBehaviour
     [SerializeField] private bool hideDestinationVfxWhenPlayerNear = true;
     [SerializeField] private float destinationVfxHideDistance = 6f;
 
+    [Header("Destination VFX Customization")]
+    [SerializeField] private bool useWorldRotationForDestinationVfx = true;
+    [SerializeField] private Vector3 destinationVfxWorldEuler = Vector3.zero;
+    [SerializeField] private Vector3 destinationVfxScale = Vector3.one;
+
+    [SerializeField] private bool followDestinationVfxPoint = false;
+
     public string ObjectiveId => objectiveId;
     public bool Completed => completed;
     public bool ShowNavigator => showNavigator;
@@ -34,6 +41,11 @@ public class QuestSequenceTarget : MonoBehaviour
     public bool ShowDestinationVfx => showDestinationVfx;
     public bool HideDestinationVfxWhenPlayerNear => hideDestinationVfxWhenPlayerNear;
     public float DestinationVfxHideDistance => destinationVfxHideDistance;
+
+    public bool UseWorldRotationForDestinationVfx => useWorldRotationForDestinationVfx;
+    public Vector3 DestinationVfxWorldEuler => destinationVfxWorldEuler;
+    public Vector3 DestinationVfxScale => destinationVfxScale;
+    public bool FollowDestinationVfxPoint => followDestinationVfxPoint;
 
     public Transform NavigationPoint
     {

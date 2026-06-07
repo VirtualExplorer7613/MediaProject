@@ -341,16 +341,20 @@ public class QuestPathNavigator : MonoBehaviour
         destinationVfxInstance = Instantiate(
             currentTarget.DestinationVfxPrefab,
             vfxPoint.position,
-            vfxPoint.rotation,
-            vfxPoint
+             GetDestinationVfxRotation(vfxPoint)
         );
 
+        destinationVfxInstance.transform.localScale = currentTarget.DestinationVfxScale;
         destinationVfxInstance.SetActive(true);
     }
 
     private void UpdateDestinationVfx()
     {
         if (destinationVfxInstance == null || currentTarget == null)
+            return;
+
+        Transform vfxPoint = currentTarget.DestinationVfxPoint;
+        if (vfxPoint == null)
             return;
 
         if (!currentTarget.ShowDestinationVfx)
@@ -361,18 +365,24 @@ public class QuestPathNavigator : MonoBehaviour
 
         if (!currentTarget.HideDestinationVfxWhenPlayerNear)
         {
-            destinationVfxInstance.SetActive(true);
+            if (!destinationVfxInstance.activeSelf)
+                destinationVfxInstance.SetActive(true);
             return;
         }
 
-        Transform vfxPoint = currentTarget.DestinationVfxPoint;
-        if (vfxPoint == null)
-            return;
+        if (currentTarget.FollowDestinationVfxPoint)
+        {
+            destinationVfxInstance.transform.position = vfxPoint.position;
+            destinationVfxInstance.transform.rotation = GetDestinationVfxRotation(vfxPoint);
+        }
 
         float distance = Vector3.Distance(player.position, vfxPoint.position);
 
         bool shouldShow = distance > currentTarget.DestinationVfxHideDistance;
-        destinationVfxInstance.SetActive(shouldShow);
+        //destinationVfxInstance.SetActive(shouldShow);
+
+        if (destinationVfxInstance.activeSelf != shouldShow)
+            destinationVfxInstance.SetActive(shouldShow);
     }
 
     private Vector3 ProjectToGround(Vector3 position)
@@ -570,5 +580,16 @@ public class QuestPathNavigator : MonoBehaviour
         a.y = 0f;
         b.y = 0f;
         return Vector3.Distance(a, b);
+    }
+
+    // 회전값 계산 함수
+    private Quaternion GetDestinationVfxRotation(Transform vfxPoint)
+    {
+        if (currentTarget != null && currentTarget.UseWorldRotationForDestinationVfx)
+        {
+            return Quaternion.Euler(currentTarget.DestinationVfxWorldEuler);
+        }
+
+        return vfxPoint.rotation;
     }
 }
