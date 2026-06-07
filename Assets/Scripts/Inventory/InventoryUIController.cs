@@ -10,6 +10,9 @@ public class InventoryUIController : MonoBehaviour
     [SerializeField] private Transform contentRoot;     // HorizontalLayoutGroup이 붙은 Content
     [SerializeField] private InventoryItemButton itemButtonPrefab;
 
+    [Header("Popup")]
+    [SerializeField] private ItemInventoryEquipPopup itemEquipPopup;
+
     [Header("Items")]
     [SerializeField] private List<ItemDefinition> items = new();
 
@@ -82,6 +85,27 @@ public class InventoryUIController : MonoBehaviour
             btn.Bind(def, this);
 
             buttonMap[def] = btn;
+        }
+    }
+
+    // 아이템 설명 팝업창
+    public void OpenItemPopup(ItemDefinition def, InventoryItemButton clicked)
+    {
+        if (def == null)
+            return;
+
+        Managers.Sound.Play(clickSfx);
+
+        if (itemEquipPopup != null)
+        {
+            itemEquipPopup.Show(def, clicked, this);
+        }
+        else
+        {
+            Debug.LogWarning("[InventoryUIController] itemEquipPopup is not assigned");
+
+            // 팝업이 없을 때만 기존 방식으로 fallback
+            SelectItem(def, clicked);
         }
     }
 

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 7
   icon: {fileID: 21300000, guid: 409fa2e36ff01cf41878dc316c1ff45e, type: 3}
-  displayName: 
-  description: 
+  displayName: "\uD540\uC14B"
+  description: "\uD540\uC14B\uC758 \uC124\uBA85"
   previewPrefab: {fileID: 919132149155446097, guid: 4b158943d21560745b75e73fddeb24f2, type: 3}
   previewLocalPosition: {x: 0, y: 0, z: 0}
   previewLocalEuler: {x: 0, y: 0, z: 0}
