@@ -21,7 +21,8 @@ public class InventoryItemButton : MonoBehaviour
         if (button != null)
         {
             button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(() => owner.SelectItem(def, this));
+            //button.onClick.AddListener(() => owner.SelectItem(def, this));
+            button.onClick.AddListener(() => owner.OpenItemPopup(def, this));
         }
 
         SetSelected(false);
