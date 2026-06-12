@@ -4007,7 +4007,7 @@ PrefabInstance:
       objectReference: {fileID: 4823518202205099639, guid: cdc919a43bba95b4a8b6916b6aa5321d, type: 3}
     - target: {fileID: 8400987883644254668, guid: 1bc780814284bf949a1ca9a6cb1f3a6a, type: 3}
       propertyPath: bindings.Array.data[0].localOffset.y
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8400987883644254668, guid: 1bc780814284bf949a1ca9a6cb1f3a6a, type: 3}
       propertyPath: bindings.Array.data[1].localOffset.y
