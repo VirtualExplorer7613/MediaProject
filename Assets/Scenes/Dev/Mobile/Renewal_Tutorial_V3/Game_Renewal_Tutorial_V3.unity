@@ -3907,16 +3907,24 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 38ee59be507848a44a96813e2b0c05b9, type: 2}
     - target: {fileID: 6639664917284775556, guid: 1bc780814284bf949a1ca9a6cb1f3a6a, type: 3}
       propertyPath: worldTargets.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6639664917284775556, guid: 1bc780814284bf949a1ca9a6cb1f3a6a, type: 3}
       propertyPath: worldTargets.Array.data[0].id
       value: plastic_bag
       objectReference: {fileID: 0}
     - target: {fileID: 6639664917284775556, guid: 1bc780814284bf949a1ca9a6cb1f3a6a, type: 3}
+      propertyPath: worldTargets.Array.data[1].id
+      value: orca
+      objectReference: {fileID: 0}
+    - target: {fileID: 6639664917284775556, guid: 1bc780814284bf949a1ca9a6cb1f3a6a, type: 3}
       propertyPath: worldTargets.Array.data[0].target
       value: 
       objectReference: {fileID: 250682268}
+    - target: {fileID: 6639664917284775556, guid: 1bc780814284bf949a1ca9a6cb1f3a6a, type: 3}
+      propertyPath: worldTargets.Array.data[1].target
+      value: 
+      objectReference: {fileID: 1478486171}
     - target: {fileID: 7256077713102673407, guid: 1bc780814284bf949a1ca9a6cb1f3a6a, type: 3}
       propertyPath: m_Name
       value: TutorialSystem
@@ -339386,7 +339394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7359853956166121953, guid: 1d8822ccb77637540a7bc44465ce7e17, type: 3}
       propertyPath: allowedTutorialStepIndex
-      value: 14
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

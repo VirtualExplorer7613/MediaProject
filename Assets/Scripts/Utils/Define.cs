@@ -9,6 +9,8 @@ public class Define
         Title,
         Prologue,
         Game,
+        EndingDark,
+        KelpCaves,
         Ending,
     };
 

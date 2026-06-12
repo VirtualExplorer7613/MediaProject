@@ -16,8 +16,11 @@ MonoBehaviour:
     \uC7A5\uCC29\uD574 \uBCFC\uAE4C\uC694?"
   messageEnglish: 
   conditionPrefab: {fileID: 8448348817773122069, guid: cc78b241c8bb1cc4092c4a55c54d1dac, type: 3}
-  highlightTargetId: inventory_magnet_slot
+  highlightTargetId: inventory_button
   targetsToShow:
   - inventory_button
   targetsToHide: []
+  worldVfxToShow: []
+  worldVfxToHide: []
+  worldVfxToHideOnExit: []
   advanceDelay: 0.2

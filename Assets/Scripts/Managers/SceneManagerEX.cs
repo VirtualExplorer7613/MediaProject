@@ -50,4 +50,33 @@ public class SceneManagerEX
     {
         CurrentScene.Clear();
     }
+
+    public void LoadSceneAsyncWithFadeColor(Define.Scene type, Color fadeColor, float fadeOutDuration = 1f, float fadeInDuration = 1f)
+    {
+        Managers.Instance.StartCoroutine(SimpleFadeSceneChangeWithColor(
+            type,
+            fadeColor,
+            fadeOutDuration,
+            fadeInDuration
+        ));
+    }
+
+    IEnumerator SimpleFadeSceneChangeWithColor(Define.Scene type, Color fadeColor, float fadeOutDuration, float fadeInDuration)
+    {
+        FadeController fade = GameObject.FindObjectOfType<FadeController>();
+
+        if (fade != null)
+            yield return fade.FadeOut(fadeOutDuration, fadeColor);
+
+        Managers.Clear();
+
+        SceneManager.LoadScene(GetSceneName(type));
+
+        yield return null;
+
+        FadeController newFade = GameObject.FindObjectOfType<FadeController>();
+
+        if (newFade != null)
+            yield return newFade.FadeIn(fadeInDuration, fadeColor);
+    }
 }
