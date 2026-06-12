@@ -1,0 +1,118 @@
+{
+    "character": "beluga",
+    "icon_on_detected": true,
+    "expressions": {
+        "default": "Eyes_Sad",
+        "start_dialogue": "Eyes_Sad",
+        "post_interaction": "Eyes_Blink"
+    },
+    "dialogue_sequence": [
+        {
+            "type": "player_detects",
+            "dialogue": null,
+            "action": "remove_question_icon"
+        },
+        {
+            "type": "beluga",
+            "expression": "Eyes_Sad",
+            "dialogue": "아… 드디어 환해졌다.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Shrink",
+            "dialogue": "어? 이 목소리… <color=#2458C9>계속 나를 부르던 그 목소리</color>잖아!",
+            "voice": ""
+        },
+        {
+            "type": "beluga",
+            "expression": "Eyes_Blink",
+            "dialogue": "맞아. 내가 줄곧 너를 부르고 있었어.",
+            "voice": ""
+        },
+        {
+            "type": "beluga",
+            "expression": "Eyes_LookIn",
+            "dialogue": "와줘서 고마워. 네가 꼭 와줄 거라고 믿고 있었거든.",
+            "voice": ""
+        },
+        {
+            "type": "beluga",
+            "expression": "Eyes_Blink",
+            "dialogue": "나는 <color=#7DC0FF>'52헤르츠'라는 주파수로 이야기하는 고래</color>야.",
+            "voice": ""
+        },
+        {
+            "type": "beluga",
+            "expression": "Eyes_Sad",
+            "dialogue": "이 소리는… 다른 친구들한테는 하나도 들리지 않아.",
+            "voice": ""
+        },
+        {
+            "type": "beluga",
+            "expression": "Teardrop_L",
+            "dialogue": "아무리 크게 소리쳐도 아무도 듣지 못하는 바람에…\n난 늘 혼자였어.",
+            "voice": ""
+        },
+        {
+            "type": "beluga",
+            "expression": "Eyes_Sad",
+            "dialogue": "그래도 멀리서나마 친구들 곁을 맴돌며 소리쳤어.\n들리진 않아도, 나의 간절한 마음만은 닿길 바라면서.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Shrink",
+            "dialogue": "아! 친구들이 가끔 느꼈다던 그 <color=#FF8DA1>따스한 기운</color>이…\n사실 네 부름이었구나.",
+            "voice": ""
+        },
+        {
+            "type": "beluga",
+            "expression": "Eyes_Sad",
+            "dialogue": "맞아. 그런데 내 진짜 목소리를 들어준 건, 네가 처음이야.\n자세한 이유는 모르겠지만 <color=#2458C9>너는 내 목소리를 들을 수 있는 유일한 고래</color>인 것 같아.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Blink",
+            "dialogue": "그랬구나. 그래서… 나만 네 목소리가 들렸던 거였어.",
+            "voice": ""
+        },
+        {
+            "type": "beluga",
+            "expression": "Eyes_Sad",
+            "dialogue": "너를 만나러 직접 찾아가고 싶었지만…\n저 까만 오염들이 나를 이 곳에 가둬버리는 바람에, 한 발짝도 움직일 수 없었어.",
+            "voice": ""
+        },
+        {
+            "type": "beluga",
+            "expression": "Eyes_Sad",
+            "dialogue": "그런데 그러는 와중에도 자꾸 친구들 생각이 났어.\n나보다 더 아파하는 친구들이.",
+            "voice": ""
+        },
+        {
+            "type": "beluga",
+            "expression": "Teardrop_L",
+            "dialogue": "그래서 부탁한 거야. 나를 찾기 전에 친구들부터 도와달라고.",
+            "voice": ""
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Sad",
+            "dialogue": "아… 그래서 나를 친구들한테 먼저 데려간 거였구나.",
+            "voice": ""
+        },
+        {
+            "type": "beluga",
+            "expression": "Eyes_Blink",
+            "dialogue": "응. 있잖아, 네가 도와준 친구들이 왜 그렇게 됐는지 너한테 보여주고 싶어.",
+            "voice": ""
+        },
+        {
+            "type": "interaction",
+            "dialogue": null,
+            "action": "일러스트+설명 씬 로드.",
+            "next_scene": "<일러스트_설명_씬_이름_입력>"
+        }
+    ]
+}

@@ -16,31 +16,37 @@
             "type": "squid",
             "expression": "Eyes_Dead",
             "dialogue": "야! 거기 고래! 이 그물 좀 어떻게 해봐!",
-            "voice": ""
+            "voice": "Dubbing_Squid/Squid_Audio_01"
         },
         {
             "type": "squid",
             "expression": "Eyes_Dead",
-            "dialogue": "...크흠, 딱히 도와달라는 건 아니지만 말이야.",
-            "voice": ""
+            "dialogue": "......딱히 도와달라는 건 아니지만...",
+            "voice": "Dubbing_Squid/Squid_Audio_02"
         },
         {
             "type": "squid",
             "expression": "Eyes_Dead",
-            "dialogue": "나처럼 똑똑하고 빠른 오징어가\n이런 거에 걸리다니, 자존심 상하잖아!",
-            "voice": ""
-        },
-        {
-            "type": "squid",
-            "expression": "Eyes_Dead",
-            "dialogue": "이건 억지로 당기거나 물어뜯어봤자 소용없어.\n어떻게든 이 줄을 끊어내야 풀린다고!",
-            "voice": ""
+            "dialogue": "나처럼 똑똑하고 재빠른 오징어가 이런 거에 걸리다니,\n자존심 상하잖아!",
+            "voice": "Dubbing_Squid/Squid_Audio_03"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(참치 때 썼던 그 도구라면 이 그물도 단번에 끊을 수 있을 거야!)",
-            "voice": ""
+            "dialogue": "그물에 단단히 묶여버린 것 같아...\n어떻게 풀어줘야 하지?",
+            "voice": "Dubbing_Squid/Squid_Audio_04"
+        },
+        {
+            "type": "squid",
+            "expression": "Eyes_Dead",
+            "dialogue": "이건 억지로 당기거나 물어뜯어봤자 소용없어!\n어떻게든 이 줄을 끊어내야 풀린다고.",
+            "voice": "Dubbing_Squid/Squid_Audio_05"
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_LookIn",
+            "dialogue": "(끊어내야 한다면...\n참치 때 썼던 그 도구로 이 그물도 단번에 끊을 수 있을 거야!)",
+            "voice": "Dubbing_Squid/Squid_Audio_06"
         },
         {
             "type": "interaction",
@@ -51,49 +57,61 @@
             "type": "whale",
             "expression": "Eyes_Blink",
             "dialogue": "그물이 꽤 두꺼웠던데... 많이 답답했겠다.\n어디 다친 데는 없어?",
-            "voice": ""
+            "voice": "Dubbing_Squid/Squid_Audio_07"
         },
         {
             "type": "squid",
             "expression": "Eyes_Squint",
             "dialogue": "흥, 이깟 그물 따위...",
-            "voice": ""
+            "voice": "Dubbing_Squid/Squid_Audio_08"
         },
         {
             "type": "squid",
             "expression": "Eyes_Dead",
             "dialogue": "......익숙해.\n한두 번 당해본 게 아니거든.",
-            "voice": ""
+            "voice": "Dubbing_Squid/Squid_Audio_09"
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "익숙해...? 그게 무슨 말이야?",
-            "voice": ""
+            "dialogue": "익숙하다니, 그게 무슨 말이야?",
+            "voice": "Dubbing_Squid/Squid_Audio_10"
         },
         {
             "type": "squid",
             "expression": "Eyes_Squint",
             "dialogue": "사람들이 쓰다 버린 그물이 바다에 얼마나 많은데.\n저런 거에 한 번도 안 걸려본 친구가 있을까?",
-            "voice": ""
+            "voice": "Dubbing_Squid/Squid_Audio_11"
+        },
+        {
+            "type": "squid",
+            "expression": "Eyes_Squint",
+            "dialogue": "너, 꽤 순진하구나.",
+            "voice": "Dubbing_Squid/Squid_Audio_12"
         },
         {
             "type": "squid",
             "expression": "Eyes_Squint",
             "dialogue": "...아무튼, 도와줘서 고맙다.\n혼자서도 빠져나올 순 있었지만 말이야.",
-            "voice": ""
+            "voice": "Dubbing_Squid/Squid_Audio_13"
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "(이깟 그물 따위라고 말하지만...\n그 무뚝뚝한 말 뒤에 얼마나 많은 상처가 쌓여 있을까.)",
-            "voice": ""
+            "dialogue": "(이깟 그물 따위라고 말하지만...\n그 무뚝뚝한 말 뒤에 얼마나 많은 상처가 쌓여 있을까?)",
+            "voice": "Dubbing_Squid/Squid_Audio_14"
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "(사람들이 잊고 버린 그물 하나가 계속 누군가를 가두고...\n그게 익숙해질 만큼 흔한 일이 됐다니.)",
-            "voice": ""
+            "dialogue": "(사람들이 무심코 버린 그물이 계속 누군가를 가두고...\n그게 익숙해질 만큼 흔한 일이 됐다니...)",
+            "voice": "Dubbing_Squid/Squid_Audio_15"
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Sad",
+            "dialogue": "(바다에서 더이상 이런 아픔에 익숙해지는 친구들이 없어야만 해.)",
+            "voice": "Dubbing_Squid/Squid_Audio_16"
         }
     ]
 }

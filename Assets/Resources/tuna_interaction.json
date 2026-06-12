@@ -15,50 +15,50 @@
         {
             "type": "tuna",
             "expression": "Eyes_Squint",
-            "dialogue": "아야야... 아야! 아!! 아파 죽겠네!\n참치 죽는다~~ 참치 살려~~!",
-            "voice": ""
+            "dialogue": "아야야!! 아파 죽겠네! 참치 죽는다~~ 참치 살려~!",
+            "voice": "Dubbing_Tuna/Tuna_Audio_01"
         },
         {
             "type": "tuna",
             "expression": "Eyes_Squint",
             "dialogue": "어어, 거기 고래 친구!! 마침 잘 만났어!\n나 좀 도와주지 않을래?!",
-            "voice": ""
+            "voice": "Dubbing_Tuna/Tuna_Audio_02"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "무슨 일이야? 몸에 끼어 있는 그건 옷걸이잖아...\n왜 위험하게 그러고 있어?",
-            "voice": ""
+            "dialogue": "무슨 일이야? 몸에 끼어 있는 그건 옷걸이 같은데...\n왜 위험하게 그러고 있어?",
+            "voice": "Dubbing_Tuna/Tuna_Audio_03"
         },
         {
             "type": "tuna",
             "expression": "Eyes_Squint",
-            "dialogue": "앞만 보고 빠르게 달려가다가 그만 이거에 콱! 끼어버렸어!\n움직일수록 더 파고들어... 아파 죽겠다고!!",
-            "voice": ""
+            "dialogue": "앞만 보고 빠르게 달려가다가 그만, 이거에 콱! 끼어버렸어!\n움직일수록 더 파고들어서 아파 죽겠어!",
+            "voice": "Dubbing_Tuna/Tuna_Audio_04"
         },
         {
             "type": "tuna",
             "expression": "Eyes_Squint",
             "dialogue": "아니, 이게 왜 여기 떠다니는 거야?!\n나처럼 빠른 참치가 못 피할 정도잖아!",
-            "voice": ""
+            "voice": "Dubbing_Tuna/Tuna_Audio_05"
         },
         {
             "type": "tuna",
             "expression": "Sweat_L",
-            "dialogue": "게다가 우리 참치는 멈추면 숨이 막혀서...\n계속 헤엄쳐야 하는데 이거 때문에 꼼짝을 못 하겠어!",
-            "voice": ""
+            "dialogue": "게다가 우리 참치들은 멈추면 숨이 막혀서...\n계속 헤엄쳐야 하는데 이거 때문에 꼼짝을 못 하겠어!",
+            "voice": "Dubbing_Tuna/Tuna_Audio_06"
         },
         {
             "type": "tuna",
             "expression": "Eyes_Squint",
-            "dialogue": "이대로 두면 진짜 큰일 난다고!\n얼른 <color=#E00A3F>싹둑 잘라줘!</color> 제발!!",
-            "voice": ""
+            "dialogue": "이대로 두면 진짜 큰일 난다고!\n얼른 <color=#E00A3F>싹둑 잘라줘~!</color> 제발!!",
+            "voice": "Dubbing_Tuna/Tuna_Audio_07"
         },
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "(아까 연어 부부가 준 <color=#E00A3F>그 물건</color>이라면 단번에 끊어낼 수 있겠어!)",
-            "voice": ""
+            "dialogue": "(싹둑 자른다면... 아까 연어 부부가 준 <color=#E00A3F>그 물건</color>으로\n바로 해결할 수 있을 것 같아!)",
+            "voice": "Dubbing_Tuna/Tuna_Audio_08"
         },
         {
             "type": "interaction",
@@ -68,55 +68,67 @@
         {
             "type": "tuna",
             "expression": "Eyes_Excited",
-            "dialogue": "으아... 빠졌다!! 살았다, 살았어...!\n하... 진짜 숨 막혀 죽는 줄 알았네.",
-            "voice": ""
+            "dialogue": "오... 빠졌다!! 살았다, 살았어!\n이햐~! 진짜 숨 막혀 죽는 줄 알았네.",
+            "voice": "Dubbing_Tuna/Tuna_Audio_09"
         },
         {
             "type": "tuna",
             "expression": "Eyes_Excited",
-            "dialogue": "고래 친구, 너 아니었으면 나 큰일 날 뻔했어.\n진짜 고마워!",
-            "voice": ""
+            "dialogue": "고래 친구, 너 아니었으면 나 진짜 큰일 날 뻔했어.\n진짜 고마워!",
+            "voice": "Dubbing_Tuna/Tuna_Audio_10"
         },
         {
             "type": "whale",
-            "dialogue": "저건 사람이 버린 플라스틱 옷걸이야.\n바다에 있으면 안 되는 쓰레기인데 왜인지 여기까지 흘러들어왔어.",
-            "voice": ""
+            "dialogue": "저건 사람이 버린 플라스틱 옷걸이야.\n바다에 있으면 안 되는 물건인데... 왜인지 여기까지 흘러들어왔어.",
+            "voice": "Dubbing_Tuna/Tuna_Audio_11"
         },
         {
             "type": "tuna",
             "expression": "Sweat_L",
-            "dialogue": "옷걸이...? 아니 그런 게 왜 바다에 떠다녀...\n앞만 보고 달리느라 이걸 못 봤네.",
-            "voice": ""
+            "dialogue": "옷걸이...? 아니 그런 게 왜 바다에 떠다녀...?\n앞만 보고 달리느라 이걸 못 봤네.",
+            "voice": "Dubbing_Tuna/Tuna_Audio_12"
         },
         {
             "type": "tuna",
             "expression": "Eyes_Excited",
-            "dialogue": "참! 내가 발버둥 치다가 봤는데,\n<color=#2458C9>저기 바위 뒤</color>에 수상한 <color=#6B2500>상자</color>가 하나 있더라고?",
-            "voice": ""
+            "dialogue": "그건 그렇고, 내가 아까 발버둥 치다가 봤는데\n<color=#2458C9>저기 바위 뒤</color>에 수상한 <color=#6B2500>상자</color>가 하나 있더라고?",
+            "voice": "Dubbing_Tuna/Tuna_Audio_13"
         },
         {
             "type": "tuna",
             "expression": "Eyes_Excited",
-            "dialogue": "안에 뭔가 정교한 물건이 들어있는 것 같던데,\n너처럼 도구 잘 쓰는 친구라면 분명 유용할 거야! 한번 가봐!",
-            "voice": ""
+            "dialogue": "안에 뭔가 유용한 물건이 들어있는 것 같던데\n너처럼 도구 잘 쓰는 친구라면 분명 도움될 거야! 한번 가봐!",
+            "voice": "Dubbing_Tuna/Tuna_Audio_14"
+        },
+        {
+            "type": "tuna",
+            "expression": "Eyes_Excited",
+            "dialogue": "날 도와준 보답이야. 너한테만 알려주는 거다?",
+            "voice": "Dubbing_Tuna/Tuna_Audio_15"
         },
         {
             "type": "tuna",
             "expression": "Sweat_L",
-            "dialogue": "요즘 부쩍 바다에 쓰레기들이 많아진 것 같아.\n나도 다음부턴 좀 더 조심해야겠어. 도와줘서 고맙다!",
-            "voice": ""
+            "dialogue": "그나저나 요즘 부쩍 바다에 쓰레기들이 많아진 것 같아.\n나도 다음부턴 좀 더 조심해야겠어.",
+            "voice": "Dubbing_Tuna/Tuna_Audio_16"
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "(참치가 조심한다고 해결될 일이 아닌데...\n바다에서 가장 빠른 친구마저 못 피한다면, 누가 안전할 수 있을까?)",
-            "voice": ""
+            "dialogue": "(참치가 조심한다고 해결될 일이 아닌데...\n바다에서 가장 빠른 친구마저 못 피한다면, 이제 누가 안전할 수 있을까...)",
+            "voice": "Dubbing_Tuna/Tuna_Audio_17"
+        },
+        {
+            "type": "whale",
+            "expression": "Eyes_Sad",
+            "dialogue": "(쓰레기가 바다에 흘러 들어오지 않게 사람들이 먼저 도와줘야 할 텐데...)",
+            "voice": "Dubbing_Tuna/Tuna_Audio_18"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(쓰레기가 바다에 흘러 들어오지 않게 사람들이 먼저 도와줘야 하는데...\n우선 참치가 말한 <color=#6B2500>바위 뒤의 보물상자</color>부터 확인해 봐야겠어.)",
-            "voice": ""
+            "dialogue": "(우선 참치가 말한 <color=#6B2500>바위 뒤의 보물상자</color>부터 확인해 보러 가자.)",
+            "voice": "Dubbing_Tuna/Tuna_Audio_19"
         }
     ]
 }

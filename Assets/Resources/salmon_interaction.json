@@ -15,44 +15,44 @@
         {
             "type": "salmon",
             "expression": "Sweat_L",
-            "dialogue": "고래님, 혹시 바쁘시지 않다면…\n잠깐 도움을 요청해도 괜찮을까요?",
-            "voice": ""
+            "dialogue": "저, 고래님. 혹시 바쁘시지 않다면…\n잠깐 도움을 요청해도 괜찮을까요?",
+            "voice": "Dubbing_Salmon/Salmon_Audio_01"
         },
         {
             "type": "salmon",
             "expression": "Sweat_L",
             "dialogue": "아내가 곧 알을 낳아야 하는데...\n보시다시피 주변이 온통 쓰레기예요.",
-            "voice": ""
+            "voice": "Dubbing_Salmon/Salmon_Audio_02"
         },
         {
             "type": "salmon",
             "expression": "Sweat_L",
-            "dialogue": "알은 깨끗하고 조용한 곳에서 안전하게 부화해야 하거든요.\n이대로는 우리 아이들이 너무 위험합니다.",
-            "voice": ""
+            "dialogue": "알은 깨끗하고 조용한 곳에서 안전하게 부화해야 하거든요.\n이대로는 우리 아이들이 너무 위험해요.",
+            "voice": "Dubbing_Salmon/Salmon_Audio_03"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
             "dialogue": "그러게. 주변에 쓰레기가 너무 많이 흩어져 있구나.\n이 상태로는 알을 낳기 어렵겠는걸?",
-            "voice": ""
+            "voice": "Dubbing_Salmon/Salmon_Audio_04"
         },
         {
             "type": "salmon",
             "expression": "Eyes_Sad",
             "dialogue": "특히 이 <color=#2458C9>무거운 고철 쓰레기들</color>이 문제예요...\n저희 부부의 힘으론 도무지 움직일 수가 없거든요.",
-            "voice": ""
+            "voice": "Dubbing_Salmon/Salmon_Audio_05"
         },
         {
             "type": "salmon",
             "expression": "Sweat_L",
             "dialogue": "혹시 이걸 한 번에 치워주실 방법이 없을까요?",
-            "voice": ""
+            "voice": "Dubbing_Salmon/Salmon_Audio_06"
         },
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "(고철 쓰레기라... 범고래를 도와줬을 때처럼 그 도구를 쓰면 되겠어!)",
-            "voice": ""
+            "dialogue": "(고철 쓰레기라면... 그래! 범고래를 도와줬을 때처럼 그 도구를 쓰면 되겠다!)",
+            "voice": "Dubbing_Salmon/Salmon_Audio_07"
         },
         {
             "type": "interaction",
@@ -62,92 +62,92 @@
         {
             "type": "salmon",
             "expression": "Eyes_Happy",
-            "dialogue": "고래님 덕분에 주변이 한결 깨끗해졌습니다.\n정말 감사합니다!",
-            "voice": ""
+            "dialogue": "고래님 덕분에 주변이 한결 깨끗해졌습니다.\n정말 감사합니다.",
+            "voice": "Dubbing_Salmon/Salmon_Audio_08"
         },
         {
             "type": "salmon",
             "expression": "Eyes_Blink",
-            "dialogue": "이 은혜를 어떻게 갚아야 할지...\n참, 저희가 자리를 찾다가 구석에서 신기한 물건을 하나 발견했습니다.",
-            "voice": ""
+            "dialogue": "참, 그러고 보니 저희가 자리를 찾다가 구석에서 신기한 물건을 하나 발견했는데...",
+            "voice": "Dubbing_Salmon/Salmon_Audio_09"
         },
         {
             "type": "salmon",
             "expression": "Eyes_Blink",
-            "dialogue": "<color=#E00A3F>마치 게의 집게발처럼 생겼는데, 무엇이든 싹둑 잘라낼 수 있어 보였어요.</color>\n저희에겐 너무 위험해서 치워뒀는데, 고래님이라면 잘 쓰실 것 같습니다.",
-            "voice": ""
+            "dialogue": "마치 게의 집게발처럼 생긴 것이 무엇이든 <color=#E00A3F>싹둑 잘라낼 수 있어 보였어요</color>.\n저희에겐 너무 위험해서 치워뒀는데 고래님이라면 잘 쓰실 것 같습니다.",
+            "voice": "Dubbing_Salmon/Salmon_Audio_10"
         },
         {
             "type": "salmon",
             "expression": "Eyes_Happy",
             "dialogue": "감사의 선물로 드릴 테니 꼭 받아주세요!",
-            "voice": ""
+            "voice": "Dubbing_Salmon/Salmon_Audio_11"
         },
         {
             "type": "salmon",
             "expression": "Eyes_Blink",
             "dialogue": "사실 저희는 그동안 알을 낳을 곳을 찾지 못해 한참을 헤맸습니다.",
-            "voice": ""
+            "voice": "Dubbing_Salmon/Salmon_Audio_12"
         },
         {
             "type": "salmon",
             "expression": "Eyes_Blink",
             "dialogue": "그러던 어느 날, 아내가 갑자기 멈춰서더니 이렇게 말하더군요.",
-            "voice": ""
+            "voice": "Dubbing_Salmon/Salmon_Audio_13"
         },
         {
             "type": "salmon",
             "expression": "Eyes_Blink",
-            "dialogue": "<color=#2458C9>'여보, 누가 우리를 부르고 있어. 이쪽으로 가보자'</color>라고요.\n저는 처음엔 아무 소리도 못 들었지만, 아내를 믿고 따라왔습니다.",
-            "voice": ""
+            "dialogue": "<color=#2458C9>'누군가 우리를 부르고 있어. 이쪽으로 가보자!'</color>라고요.\n저는 처음엔 아무 소리도 못 들었지만 아내를 믿고 따라오게 됐습니다.",
+            "voice": "Dubbing_Salmon/Salmon_Audio_14"
         },
         {
             "type": "salmon",
             "expression": "Eyes_Happy",
             "dialogue": "그런데 정말 신기하게도, 이곳에 도착하니 고래님이 오셔서 저희를 도와주셨네요.",
-            "voice": ""
+            "voice": "Dubbing_Salmon/Salmon_Audio_15"
         },
         {
             "type": "salmon",
             "expression": "Eyes_Happy",
             "dialogue": "분명 누군가가 저희 부부를 이쪽으로 이끌어준 거예요.",
-            "voice": ""
+            "voice": "Dubbing_Salmon/Salmon_Audio_16"
         },
         {
             "type": "salmon",
             "expression": "Eyes_Happy",
             "dialogue": "덕분에 이제 아내도 안심하고 알을 낳을 수 있겠어요.",
-            "voice": ""
+            "voice": "Dubbing_Salmon/Salmon_Audio_17"
         },
         {
             "type": "salmon",
             "expression": "Eyes_Happy",
-            "dialogue": "저는 이곳에서 아내와 곧 태어날 우리 아이들을 끝까지 지키겠습니다.",
-            "voice": ""
+            "dialogue": "저는 이제 이곳에서 아내와 곧 태어날 우리 아이들을 끝까지 지키겠습니다.\n정말 고마워요.",
+            "voice": "Dubbing_Salmon/Salmon_Audio_18"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(<color=#2458C9>연어를 부른 그 목소리</color>라...\n지금까지 친구들을 보살펴준 그 존재가, 어쩌면 줄곧 나를 부르고 있었던 걸지도 몰라.)",
-            "voice": ""
+            "dialogue": "(<color=#2458C9>연어를 부른 그 목소리</color>라면...\n지금까지 친구들을 보살펴준 그 존재가, 어쩌면 줄곧 나를 부르고 있었던 걸지도 몰라.)",
+            "voice": "Dubbing_Salmon/Salmon_Audio_19"
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "(알을 낳는 데 필요한 건 거창한 게 아니었어.\n깨끗하고 안전한 자리 하나.)",
-            "voice": ""
+            "dialogue": "(알을 낳는 데 필요한 건 거창한 게 아니었어.)",
+            "voice": "Dubbing_Salmon/Salmon_Audio_20"
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "(그 당연한 걸 쓰레기가 가로막고 있었던 거야.)",
-            "voice": ""
+            "dialogue": "(깨끗하고 안전한 자리 하나.\n그 당연한 걸 쓰레기가 가로막고 있었던 거야.)",
+            "voice": "Dubbing_Salmon/Salmon_Audio_21"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
             "dialogue": "(연어 부부가 준 이 선물을 유용하게 써야겠어.\n계속해서 도움이 필요한 곳으로 헤엄쳐 가보자.)",
-            "voice": ""
+            "voice": "Dubbing_Salmon/Salmon_Audio_22"
         }
     ]
 }
