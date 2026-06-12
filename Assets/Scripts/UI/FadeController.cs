@@ -31,6 +31,33 @@ public class FadeController : MonoBehaviour
         fadeImage.color = c;
     }
 
+    public IEnumerator FadeOut(float duration, Color fadeColor)
+    {
+        if (fadeImage == null)
+            yield break;
+
+        if (fadeCanvas != null)
+            fadeCanvas.sortingOrder = 999;
+
+        float time = 0f;
+
+        Color c = fadeColor;
+        c.a = 0f;
+        fadeImage.color = c;
+
+        while (time < duration)
+        {
+            c.a = Mathf.Lerp(0f, 1f, time / duration);
+            fadeImage.color = c;
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        c.a = 1f;
+        fadeImage.color = c;
+    }
+
     public IEnumerator FadeIn(float duration)
     {
         float time = 0f;
@@ -47,5 +74,48 @@ public class FadeController : MonoBehaviour
 
         if (fadeCanvas != null)
             fadeCanvas.sortingOrder = 0;
+    }
+
+    public IEnumerator FadeIn(float duration, Color fadeColor)
+    {
+        if (fadeImage == null)
+            yield break;
+
+        if (fadeCanvas != null)
+            fadeCanvas.sortingOrder = 999;
+
+        float time = 0f;
+
+        Color c = fadeColor;
+        c.a = 1f;
+        fadeImage.color = c;
+
+        while (time < duration)
+        {
+            c.a = Mathf.Lerp(1f, 0f, time / duration);
+            fadeImage.color = c;
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        c.a = 0f;
+        fadeImage.color = c;
+
+        if (fadeCanvas != null)
+            fadeCanvas.sortingOrder = 0;
+    }
+
+    public void SetFadeInstant(Color fadeColor, float alpha)
+    {
+        if (fadeImage == null)
+            return;
+
+        Color c = fadeColor;
+        c.a = alpha;
+        fadeImage.color = c;
+
+        if (fadeCanvas != null)
+            fadeCanvas.sortingOrder = alpha > 0f ? 999 : 0;
     }
 }
