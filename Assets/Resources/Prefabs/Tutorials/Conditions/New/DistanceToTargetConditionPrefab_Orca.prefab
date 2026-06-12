@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f6d903630ebfa498942f0f1ed73cd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  targetId: orca
   requiredDistance: 8
+  horizontalOnly: 1

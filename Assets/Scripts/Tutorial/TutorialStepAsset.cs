@@ -20,6 +20,11 @@ public class TutorialStepAsset : ScriptableObject
     public string[] targetsToShow;
     public string[] targetsToHide;
 
+    [Header("World VFX")]
+    public string[] worldVfxToShow;
+    public string[] worldVfxToHide;
+    public string[] worldVfxToHideOnExit;
+
     [Header("Flow")]
     public float advanceDelay = 0.2f;
 

@@ -1,8 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialRunner : MonoBehaviour
 {
+    [Serializable]
+    public class TargetBinding
+    {
+        public string id;
+        public Transform target;
+    }
+
     [Header("Steps")]
     [SerializeField] private TutorialStepAsset[] steps;
 
@@ -14,7 +23,11 @@ public class TutorialRunner : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private ItemUseBroadcaster itemUseBroadcaster;
     [SerializeField] private TutorialHighlighter highlighter;
-    [SerializeField] private Transform orcaTarget;
+    [SerializeField] private TutorialWorldVfxController worldVfxController;
+    //[SerializeField] private Transform orcaTarget;
+
+    [Header("World Targets")]
+    [SerializeField] private TargetBinding[] worldTargets;
 
     private int index = -1;
     private TutorialCondition currentCondition;
@@ -35,12 +48,27 @@ public class TutorialRunner : MonoBehaviour
 
     private void Awake()
     {
+        Dictionary<string, Transform> targetMap = new(StringComparer.OrdinalIgnoreCase);
+
+        if (worldTargets != null)
+        {
+            foreach (var binding in worldTargets)
+            {
+                if (binding == null || string.IsNullOrWhiteSpace(binding.id) || binding.target == null)
+                    continue;
+
+                targetMap[binding.id] = binding.target;
+            }
+        }
+
         context = new TutorialContext
         {
             player = player,
             itemUseBroadcaster = itemUseBroadcaster,
-            orcaTarget = orcaTarget
+            worldVfxController = worldVfxController
         };
+
+        context.SetTargets(targetMap);
     }
 
     private void Start()
@@ -63,6 +91,7 @@ public class TutorialRunner : MonoBehaviour
         {
             ui.SetVisible(false);
             if (highlighter != null) highlighter.Clear();
+            if (worldVfxController != null) worldVfxController.HideAll();
             return;
         }
 
@@ -72,27 +101,42 @@ public class TutorialRunner : MonoBehaviour
         ui.SetMessage(step.GetMessage(currentLanguage));
         ui.SetVisible(true);
 
-        if (highlighter != null)
-        {
-            if (step.targetsToHide != null)
-            {
-                foreach (var id in step.targetsToHide)
+        #region 기존의 Highlight
+        /*        if (highlighter != null)
                 {
-                    highlighter.ShowTarget(id, false);
+                    if (step.targetsToHide != null)
+                    {
+                        foreach (var id in step.targetsToHide)
+                        {
+                            highlighter.ShowTarget(id, false);
+                        }
+                    }
+
+                    if (step.targetsToShow != null)
+                    {
+                        foreach (var id in step.targetsToShow)
+                            highlighter.ShowTarget(id, true);
+                    }
+
+                    if (!string.IsNullOrEmpty(step.highlightTargetId))
+                        highlighter.Highlight(step.highlightTargetId);
+                    else
+                        highlighter.Clear();
                 }
-            }
 
-            if (step.targetsToShow != null)
-            {
-                foreach (var id in step.targetsToShow)
-                    highlighter.ShowTarget(id, true);
-            }
+                if (step.conditionPrefab == null)
+                {
+                    StartCoroutine(AdvanceAfter(step.advanceDelay));
+                    return;
+                }
 
-            if (!string.IsNullOrEmpty(step.highlightTargetId))
-                highlighter.Highlight(step.highlightTargetId);
-            else
-                highlighter.Clear();
-        }
+                currentCondition = Instantiate(step.conditionPrefab, transform);
+                currentCondition.Completed += OnConditionCompleted;
+                currentCondition.Activate(context);*/
+        #endregion
+
+        ApplyWorldVfx(step);
+        ApplyHighlight(step);
 
         if (step.conditionPrefab == null)
         {
@@ -103,6 +147,47 @@ public class TutorialRunner : MonoBehaviour
         currentCondition = Instantiate(step.conditionPrefab, transform);
         currentCondition.Completed += OnConditionCompleted;
         currentCondition.Activate(context);
+    }
+
+    private void ApplyWorldVfx(TutorialStepAsset step)
+    {
+        if (worldVfxController == null || step == null)
+            return;
+
+        if (step.worldVfxToHide != null)
+        {
+            foreach (var id in step.worldVfxToHide)
+                worldVfxController.Hide(id);
+        }
+
+        if (step.worldVfxToShow != null)
+        {
+            foreach (var id in step.worldVfxToShow)
+                worldVfxController.Show(id);
+        }
+    }
+
+    private void ApplyHighlight(TutorialStepAsset step)
+    {
+        if (highlighter == null || step == null)
+            return;
+
+        if (step.targetsToHide != null)
+        {
+            foreach (var id in step.targetsToHide)
+                highlighter.ShowTarget(id, false);
+        }
+
+        if (step.targetsToShow != null)
+        {
+            foreach (var id in step.targetsToShow)
+                highlighter.ShowTarget(id, true);
+        }
+
+        if (!string.IsNullOrEmpty(step.highlightTargetId))
+            highlighter.Highlight(step.highlightTargetId);
+        else
+            highlighter.Clear();
     }
 
     private void OnConditionCompleted()
@@ -120,6 +205,17 @@ public class TutorialRunner : MonoBehaviour
 
     private void CleanupCurrent()
     {
+        if (index >= 0 && steps != null && index < steps.Length)
+        {
+            var step = steps[index];
+
+            if (worldVfxController != null && step.worldVfxToHideOnExit != null)
+            {
+                foreach (var id in step.worldVfxToHideOnExit)
+                    worldVfxController.Hide(id);
+            }
+        }
+
         if (currentCondition != null)
         {
             currentCondition.Completed -= OnConditionCompleted;
@@ -148,5 +244,8 @@ public class TutorialRunner : MonoBehaviour
 
         if (highlighter != null)
             highlighter.Clear();
+
+        if (worldVfxController != null)
+            worldVfxController.HideAll();
     }
 }
