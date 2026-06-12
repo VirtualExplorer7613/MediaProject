@@ -15,26 +15,26 @@
         {
             "type": "turtle",
             "expression": "Eyes_Squint",
-            "dialogue": "으으으... 코에 이상한 게 콱 박혀버렸어.\n숨 쉴 때마다 찌르는 것처럼 아프구만...",
-            "voice": ""
+            "dialogue": "으으으... 코에 이상한 게 콱! 박혀버렸어.\n숨 쉴 때마다 찌르는 것처럼 아프구만...",
+            "voice": "Dubbing_Tutle/Tutle_Audio_01"
         },
         {
             "type": "turtle",
             "expression": "Eyes_Squint",
             "dialogue": "거기 젊은 친구, 혹시 내 코에 박힌 것 좀 살살 빼줄 수 있겠나?\n뭉툭한 내 발로는 도통 잡히질 않아서 말이야.",
-            "voice": ""
+            "voice": "Dubbing_Tutle/Tutle_Audio_02"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(할아버지 콧구멍 깊숙한 곳에 플라스틱 빨대가 단단히 박혀있잖아?\n잘못 건드리면 더 깊이 들어갈 텐데...)",
-            "voice": ""
+            "dialogue": "(할아버지 콧구멍 깊숙한 곳에 플라스틱 빨대가 단단히 박혀있어.\n잘못 건드리면 더 깊이 들어갈 텐데...)",
+            "voice": "Dubbing_Tutle/Tutle_Audio_03"
         },
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "(이번에도 그 도구로 살살 빼내야겠어!)",
-            "voice": ""
+            "dialogue": "(이번에도 그 도구로 살살 빼내는 게 좋겠어!)",
+            "voice": "Dubbing_Tutle/Tutle_Audio_04"
         },
         {
             "type": "interaction",
@@ -44,68 +44,62 @@
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "이제 좀 괜찮으세요? 깊게 박혀 있어서 조심조심 뺐어요.\n정말 큰일 나실 뻔했어요.",
-            "voice": ""
+            "dialogue": "이제 좀 괜찮으세요? 빨대가 깊게 박혀 있어서 조심조심 뺐어요.\n정말 큰일 나실 뻔했어요.",
+            "voice": "Dubbing_Tutle/Tutle_Audio_05"
         },
         {
             "type": "turtle",
             "expression": "Sweat_L",
             "dialogue": "휴우... 살 것 같네. 해초인 줄 알고 가까이 갔다가\n콧속으로 그만 쏙 들어가 버렸지 뭔가, 허허…",
-            "voice": ""
+            "voice": "Dubbing_Tutle/Tutle_Audio_06"
         },
         {
             "type": "turtle",
             "expression": "Sweat_L",
-            "dialogue": "도와줘서 정말 고맙네. 하마터면 숨통이 막혀서 용궁에 갈 뻔했어. 허허…",
-            "voice": ""
+            "dialogue": "도와줘서 정말 고맙네. 하마터면 숨통이 막혀서 용궁에 갈 뻔했어~ 허허…",
+            "voice": "Dubbing_Tutle/Tutle_Audio_07"
         },
         {
             "type": "turtle",
             "expression": "Sweat_L",
             "dialogue": "내가 이 바다에서 백 년 넘게 살아왔다만...\n요즘처럼 이상한 것들이 떠다니는 건 정말 처음이야.",
-            "voice": ""
+            "voice": "Dubbing_Tutle/Tutle_Audio_08"
         },
         {
             "type": "turtle",
             "expression": "Sweat_L",
-            "dialogue": "예전엔 해초가 무성하던 자리에 빨대니 비닐이니 둥둥 떠다니고...\n늙은이 눈에도 영 익숙해지질 않는구만.",
-            "voice": ""
+            "dialogue": "해초가 무성하던 자리에 빨대니 비닐이니 둥둥 떠다니는 것이...\n늙은이 눈에는 영 익숙해지질 않는구만.",
+            "voice": "Dubbing_Tutle/Tutle_Audio_09"
         },
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "참, 할아버지!\n혹시 제가 오기 전에 이 근처에서 <color=#2458C9>누군가의 목소리</color> 같은 걸 듣지 못하셨나요?",
-            "voice": ""
+            "dialogue": "정말 다행이에요.\n근데 할아버지, 혹시 이 근처에서 <color=#2458C9>누군가의 외침</color> 같은 걸 들은 적 있으세요?",
+            "voice": "Dubbing_Tutle/Tutle_Audio_10"
         },
         {
             "type": "turtle",
             "expression": "Eyes_Blink",
-            "dialogue": "목소리라... 글쎄, 너무 아파서 정신이 없긴 했다만...\n신기하게도 내 등껍질에 <color=#9528DD>잔잔한 물살</color>이 살며시 와 닿더군.",
-            "voice": ""
+            "dialogue": "외침이라... 글쎄, 너무 아파서 정신이 없긴 했다만...\n신기하게도 내 등껍질에 <color=#9528DD>잔잔한 물살</color>이 살며시 와 닿더군.",
+            "voice": "Dubbing_Tutle/Tutle_Audio_11"
         },
         {
             "type": "turtle",
             "expression": "Eyes_Happy",
-            "dialogue": "마치 오랜 친구가 곁에서 가만히 토닥여주는 것 같았지. 허허...",
-            "voice": ""
+            "dialogue": "그 물살이 마치 오랜 친구가 곁에서 가만히 토닥여주는 것 같았어. 허허...",
+            "voice": "Dubbing_Tutle/Tutle_Audio_12"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(나를 이쪽으로 이끌어 준 그 목소리 같아.\n내내 우리 친구들을 보살펴주고 있었구나... 왠지 이제 정말 다 온 것 같아.)",
-            "voice": ""
+            "dialogue": "(나를 이쪽으로 이끌어 준 그 목소리 같아.\n계속해서 친구들을 보살펴주고 있었나 봐... 왠지 이제 정말 다 온 것 같아.)",
+            "voice": "Dubbing_Tutle/Tutle_Audio_13"
         },
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "(그나저나 할아버지께서 오랜 세월 지켜본 이 바다가 이렇게 변해버렸다니...)",
-            "voice": ""
-        },
-        {
-            "type": "whale",
-            "expression": "Eyes_Sad",
-            "dialogue": "(고작 빨대 하나가 이만큼 위협이 되다니, 이제 바다에선 정말 아무것도 사소하지 않구나.)",
-            "voice": ""
+            "dialogue": "(그나저나 고작 빨대 하나가 이만큼 위협이 되다니,\n이제 바다에선 정말 아무것도 사소하지 않구나.)",
+            "voice": "Dubbing_Tutle/Tutle_Audio_14"
         }
     ]
 }

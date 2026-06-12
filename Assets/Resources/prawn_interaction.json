@@ -45,7 +45,7 @@
         {
             "type": "prawn",
             "expression": "Eyes_Rabid",
-            "dialogue": "만져보니 얇은 유리 같아서...\n<color=#545C5E>무겁고 단단한 걸로 쾅! 하고 내리치면</color> 쉽게 부술 수 있을 것 같아요!",
+            "dialogue": "만져보니 얇은 유리 같아서...\n<color=#CA3733>무겁고 단단한 걸로 쾅! 하고 내리치면</color> 쉽게 부술 수 있을 것 같아요!",
             "voice": "Dubbing_Prawn/Prawn_Audio_06"
         },
         {
