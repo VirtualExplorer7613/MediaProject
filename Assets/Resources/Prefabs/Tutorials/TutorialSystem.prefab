@@ -573,6 +573,7 @@ Transform:
   - {fileID: 790993058585969422}
   - {fileID: 3935876771006877312}
   - {fileID: 8491600502754174213}
+  - {fileID: 9152735856709353440}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7377385681222651055
@@ -691,6 +692,51 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &8130779395454922561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9152735856709353440}
+  - component: {fileID: 8400987883644254668}
+  m_Layer: 0
+  m_Name: TutorialWorldVfxController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9152735856709353440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130779395454922561}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8512831350017601696}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8400987883644254668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130779395454922561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a859a444dd8ad458c4bec2c75c3b81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bindings: []
 --- !u!1 &8681276431499024118
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,4 +804,5 @@ MonoBehaviour:
   player: {fileID: 0}
   itemUseBroadcaster: {fileID: 711771962193461379}
   highlighter: {fileID: 2828159291617779937}
-  orcaTarget: {fileID: 0}
+  worldVfxController: {fileID: 8400987883644254668}
+  worldTargets: []

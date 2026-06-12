@@ -10,6 +10,9 @@ public class InventoryUIController : MonoBehaviour
     [SerializeField] private Transform contentRoot;     // HorizontalLayoutGroup¿Ã ∫Ÿ¿∫ Content
     [SerializeField] private InventoryItemButton itemButtonPrefab;
 
+    [Header("Tutorial")]
+    [SerializeField] private TutorialHighlighter tutorialHighlighter;
+
     [Header("Popup")]
     [SerializeField] private ItemInventoryEquipPopup itemEquipPopup;
 
@@ -85,6 +88,8 @@ public class InventoryUIController : MonoBehaviour
             btn.Bind(def, this);
 
             buttonMap[def] = btn;
+
+            RegisterTutorialSlot(def, btn);
         }
     }
 
@@ -99,6 +104,7 @@ public class InventoryUIController : MonoBehaviour
         if (itemEquipPopup != null)
         {
             itemEquipPopup.Show(def, clicked, this);
+            itemUseBroadcaster?.RaiseItemUsed("key_clicked");
         }
         else
         {
@@ -154,6 +160,8 @@ public class InventoryUIController : MonoBehaviour
             btn.Bind(def, this);
             buttonMap[def] = btn;
 
+            RegisterTutorialSlot(def, btn);
+
             if (autoSelect)
             {
                 SelectItem(def, btn);
@@ -161,6 +169,55 @@ public class InventoryUIController : MonoBehaviour
         }
 
         return true;
+    }
+
+    private void RegisterTutorialSlot(ItemDefinition def, InventoryItemButton btn)
+    {
+        if (tutorialHighlighter == null || def == null || btn == null)
+            return;
+
+        string id = GetTutorialSlotHighlightId(def);
+
+        if (string.IsNullOrEmpty(id))
+            return;
+
+        tutorialHighlighter.RegisterTarget(
+            id,
+            btn.RootObject,
+            btn.RectTransform,
+            null,
+            FocusMask.HoleShape.Circle
+        );
+    }
+
+    private string GetTutorialSlotHighlightId(ItemDefinition def)
+    {
+        switch (def.itemType)
+        {
+            case ItemType.Key:
+                return "inventory_key_slot";
+
+            case ItemType.Magnet:
+                return "inventory_magnet_slot";
+
+            default:
+                return "";
+        }
+    }
+
+    public void NotifyItemPopupOpened(ItemDefinition def)
+    {
+        if (itemUseBroadcaster == null || def == null)
+            return;
+
+        if (def.itemType == ItemType.Key)
+        {
+            itemUseBroadcaster.RaiseItemUsed("key_popup_opened");
+        }
+        else if (def.itemType == ItemType.Magnet)
+        {
+            itemUseBroadcaster.RaiseItemUsed("magnet_popup_opened");
+        }
     }
 
     // Update is called once per frame

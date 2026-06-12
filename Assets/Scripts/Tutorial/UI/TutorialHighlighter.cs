@@ -165,4 +165,29 @@ public class TutorialHighlighter : MonoBehaviour
         target.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size.x);
         target.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, size.y);
     }
+
+    public void RegisterTarget(
+    string id,
+    GameObject realTargetObject,
+    RectTransform focusTarget,
+    RectTransform frameTarget = null,
+    FocusMask.HoleShape holeShape = FocusMask.HoleShape.Circle)
+    {
+        if (string.IsNullOrWhiteSpace(id) || focusTarget == null)
+        {
+            Debug.LogWarning($"[TutorialHighlighter] Invalid dynamic target: {id}");
+            return;
+        }
+
+        HighlightTarget target = new HighlightTarget
+        {
+            id = id,
+            realTargetObject = realTargetObject,
+            focusTarget = focusTarget,
+            frameTarget = frameTarget,
+            holeShape = holeShape
+        };
+
+        map[id] = target;
+    }
 }

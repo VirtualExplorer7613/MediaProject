@@ -76,6 +76,7 @@ public class ItemInventoryEquipPopup : MonoBehaviour
         if (root != null)
             root.SetActive(true);
 
+        owner.NotifyItemPopupOpened(item);
         //Managers.Sound.Play(popupOpenSfx);
     }
 

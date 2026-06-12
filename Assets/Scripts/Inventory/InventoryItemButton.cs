@@ -10,6 +10,10 @@ public class InventoryItemButton : MonoBehaviour
     private ItemDefinition def;
     private InventoryUIController owner;
 
+    public ItemDefinition Item => def;
+    public RectTransform RectTransform => transform as RectTransform;
+    public GameObject RootObject => gameObject;
+
     public void Bind(ItemDefinition def, InventoryUIController owner)
     {
         this.def = def;
