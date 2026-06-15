@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -12,6 +13,9 @@ public class Epliogue : BaseScene
     public TextMeshProUGUI epliogueText;  // 텍스트를 표시할 UI 컴포넌트
     public GameObject space;
 
+    [Header("Additional Text Layouts")]
+    [SerializeField] private TextMeshProUGUI dialogueText;  // 짧은 대화용 TMP
+    [SerializeField] private TextMeshProUGUI monologueText; // 긴 독백용 TMP
 
     public List<VisualTextStep> steps;
 /*    public List<Sprite> imageList; //  이미지 리스트
@@ -22,11 +26,23 @@ public class Epliogue : BaseScene
     FadeController fade;
     bool isTransitioning;
 
+    [Header("Proceed")]
+    [Tooltip("타이핑이 끝난 뒤, 입력을 허용하기 전 최소 대기 시간")]
+    [SerializeField] private float defaultMinReadTime = 0.5f;
+
+    private float canProceedAt = float.PositiveInfinity;
+
     [Header("Auto-Advance")]
-    [Tooltip("타이핑 완료 후 자동으로 다음 컷으로 넘어갈 때까지 기다리는 시간(초)")]
+    [Tooltip("켜면 기존처럼 자동으로 다음 컷으로 넘어감. 수동 진행만 원하면 OFF")]
+    [SerializeField] private bool useAutoAdvance = false;
+
+    [Tooltip("입력 가능 상태가 된 뒤 자동 진행까지 기다리는 시간")]
     [SerializeField] float autoAdvanceDelay = 3f;
+
     Coroutine autoAdvanceCo;
-    
+    Coroutine typingCo;
+    Coroutine readyIndicatorCo;
+
 
     [Header("Next Scene")]
     [SerializeField]
@@ -35,9 +51,11 @@ public class Epliogue : BaseScene
     private int currentIndex = 0; // 현재 표시 중인 이미지/텍스트 인덱스
     private bool isTyping = false; // 현재 텍스트 타이핑 중인지 확인
     private bool isMoving = false;  // 씬 이동을 진행하는지 확인
+    
     private const float baseWidth = 1920; // 기준 가로 크기
     private const float baseHeight = 880; // 기준 세로 크기
 
+    private TextMeshProUGUI activeText;
 
     private void Start()
     {
@@ -50,16 +68,14 @@ public class Epliogue : BaseScene
 
             steps.Add(new VisualTextStep
             {
-                image = null, // 혹시 기본 이미지가 있다면 넣어도 OK
+                layout = EpilogueStepLayout.Monologue,
+                image = null,
                 text =
                     "오랜만에 돌아온 내 고향 바다…\n" +
                     "그런데 왜인지, 느낌이 다른 걸?\n\n" +
-
                     "바다는 예전 모습 그대로인데,\n" +
                     "기억 속 그 느낌이 아니야.\n" +
-
                     "예전엔 이쯤에서 반가운 소리들이 들렸는데…\n\n" +
-
                     "내가 없는 동안 무슨 일이 있었던 걸까?\n" +
                     "직접, 확인해봐야겠다."
             });
@@ -77,23 +93,81 @@ public class Epliogue : BaseScene
         }*/
         #endregion
 
-        if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
-       && !isTyping && !isTransitioning && !isMoving)
+        /* if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+        && !isTyping && !isTransitioning && !isMoving)
+         {
+             if (currentIndex >= steps.Count - 1)
+             {
+                 isMoving = true;
+                 EndEpilogue();
+                 //StartCoroutine(GoToTitleWithFade());
+             }
+             else
+             {
+                 StartCoroutine(AdvanceStepWithFade());
+             }
+         }*/
+
+        if (!HasProceedInput())
+            return;
+
+        if (!CanProceedNow())
+            return;
+
+        ProceedToNextOrEnd();
+
+    }
+
+    private bool HasProceedInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            return true;
+
+        if (Input.touchCount > 0)
         {
-            if (currentIndex >= steps.Count - 1)
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
             {
-                isMoving = true;
-                EndEpilogue();
-                //StartCoroutine(GoToTitleWithFade());
-            }
-            else
-            {
-                StartCoroutine(AdvanceStepWithFade());
+                if (IsPointerOverUI(touch.fingerId))
+                    return false;
+
+                return true;
             }
         }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (IsPointerOverUI())
+                return false;
 
+            return true;
+        }
 
+        return false;
+    }
+
+    private bool CanProceedNow()
+    {
+        return !isTyping
+            && !isTransitioning
+            && !isMoving
+            && Time.time >= canProceedAt;
+    }
+
+    private void ProceedToNextOrEnd()
+    {
+        space?.SetActive(false);
+
+        if (currentIndex >= steps.Count - 1)
+        {
+            isMoving = true;
+            EndEpilogue();
+        }
+        else
+        {
+            StartCoroutine(AdvanceStepWithFade());
+        }
     }
 
     IEnumerator AdvanceStepWithFade()
@@ -114,8 +188,8 @@ public class Epliogue : BaseScene
         isTransitioning = false;                // 입력 허용
     }
 
-
-    private void DisplayCurrentStep()
+    #region 기존 버전 Display
+    /*private void DisplayCurrentStep()
     {
         space?.SetActive(false);
 
@@ -123,6 +197,7 @@ public class Epliogue : BaseScene
             return;
 
          VisualTextStep step = steps[currentIndex];
+
 
         // 이미지 출력
         if (step.image != null)
@@ -159,6 +234,102 @@ public class Epliogue : BaseScene
         }
         autoAdvanceCo = StartCoroutine(AutoAdvanceRoutine(currentIndex));
     }
+*/
+    #endregion
+
+    private void DisplayCurrentStep()
+    {
+        space?.SetActive(false);
+
+        StopRunningStepCoroutines();
+
+        if (currentIndex >= steps.Count)
+            return;
+
+        VisualTextStep step = steps[currentIndex];
+
+        ApplyStepLayout(step);
+
+        canProceedAt = float.PositiveInfinity;
+
+        if (!string.IsNullOrEmpty(step.text) && activeText != null)
+        {
+            typingCo = StartCoroutine(TypeText(activeText, step.text, currentIndex));
+        }
+        else
+        {
+            if (activeText != null)
+                activeText.text = "";
+
+            isTyping = false;
+            canProceedAt = Time.time + GetMinReadTime(step);
+        }
+
+        readyIndicatorCo = StartCoroutine(ShowReadyIndicatorRoutine(currentIndex));
+
+        if (useAutoAdvance)
+            autoAdvanceCo = StartCoroutine(AutoAdvanceRoutine(currentIndex));
+    }
+
+    private void ApplyStepLayout(VisualTextStep step)
+    {
+        HideAllTexts();
+
+        activeText = GetTextByLayout(step.layout);
+
+        if (activeText != null)
+        {
+            activeText.text = "";
+            activeText.gameObject.SetActive(true);
+        }
+
+        bool shouldShowImage =
+            step.layout == EpilogueStepLayout.Illustration &&
+            step.image != null;
+
+        if (epliogueImage != null)
+        {
+            if (shouldShowImage)
+            {
+                epliogueImage.sprite = step.image;
+                epliogueImage.gameObject.SetActive(true);
+                AdjustImageSize();
+            }
+            else
+            {
+                epliogueImage.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private TextMeshProUGUI GetTextByLayout(EpilogueStepLayout layout)
+    {
+        switch (layout)
+        {
+            case EpilogueStepLayout.Dialogue:
+                return dialogueText != null ? dialogueText : epliogueText;
+
+            case EpilogueStepLayout.Monologue:
+                return monologueText != null ? monologueText : epliogueText;
+
+            case EpilogueStepLayout.Illustration:
+            default:
+                return epliogueText;
+        }
+    }
+
+    private void HideAllTexts()
+    {
+        SetTextVisible(epliogueText, false);
+        SetTextVisible(dialogueText, false);
+        SetTextVisible(monologueText, false);
+    }
+
+    private void SetTextVisible(TextMeshProUGUI text, bool visible)
+    {
+        if (text == null) return;
+        text.gameObject.SetActive(visible);
+    }
 
     private void ShowNextStep()
     {
@@ -169,7 +340,28 @@ public class Epliogue : BaseScene
         }
     }
 
-    private IEnumerator TypeText(string text)
+    private void StopRunningStepCoroutines()
+    {
+        if (typingCo != null)
+        {
+            StopCoroutine(typingCo);
+            typingCo = null;
+        }
+
+        if (readyIndicatorCo != null)
+        {
+            StopCoroutine(readyIndicatorCo);
+            readyIndicatorCo = null;
+        }
+
+        if (autoAdvanceCo != null)
+        {
+            StopCoroutine(autoAdvanceCo);
+            autoAdvanceCo = null;
+        }
+    }
+
+    /*private IEnumerator TypeText(TextMeshProUGUI target, string text, int stepIndex)
     {
         isTyping = true;
         epliogueText.text = ""; // 기존 텍스트 지우기
@@ -198,11 +390,48 @@ public class Epliogue : BaseScene
 
         isTyping = false;
         space?.SetActive(false);
-        /*if (space != null)
+        *//*if (space != null)
         {
             Floating floating = space.GetComponent<Floating>();
             floating.setFrequency(floating.getOriginalFrequency());
-        }*/
+        }*//*
+    }*/
+
+    private IEnumerator TypeText(TextMeshProUGUI target, string text, int stepIndex)
+    {
+        isTyping = true;
+        target.text = "";
+
+        text = text.Replace("\\n", "\n");
+
+        for (int i = 0; i < text.Length; i++)
+        {
+            if (stepIndex != currentIndex)
+                yield break;
+
+            char c = text[i];
+            target.text += c;
+
+            if (c == '\n')
+            {
+                yield return new WaitForSeconds(typingSpeed * 2f);
+            }
+            else if (c == ' ')
+            {
+                yield return new WaitForSeconds(typingSpeed * 0.3f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(typingSpeed);
+            }
+        }
+
+        isTyping = false;
+
+        if (stepIndex >= 0 && stepIndex < steps.Count)
+            canProceedAt = Time.time + GetMinReadTime(steps[stepIndex]);
+        else
+            canProceedAt = Time.time + defaultMinReadTime;
     }
 
     private void EndEpilogue()
@@ -213,6 +442,19 @@ public class Epliogue : BaseScene
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Managers.Scene.LoadSceneAsync(Define.Scene.Title, false);
+    }
+
+    private IEnumerator ShowReadyIndicatorRoutine(int stepIndex)
+    {
+        yield return new WaitUntil(() =>
+            stepIndex != currentIndex ||
+            (!isTyping && Time.time >= canProceedAt)
+        );
+
+        if (stepIndex != currentIndex) yield break;
+        if (isMoving || isTransitioning) yield break;
+
+        space?.SetActive(true);
     }
 
     public void SkipEpilogue()
@@ -301,11 +543,30 @@ public class Epliogue : BaseScene
         }
     }
 
+    private float GetMinReadTime(VisualTextStep step)
+    {
+        if (step.minReadTime >= 0f)
+            return step.minReadTime;
+
+        return defaultMinReadTime;
+    }
+
     IEnumerator SimpleFadeOutChange(float time = 3f)
     {
         FadeController fade = GameObject.FindObjectOfType<FadeController>();
         if (fade != null) yield return fade.FadeOut(time);
 
+    }
+
+    private bool IsPointerOverUI(int fingerId = -1)
+    {
+        if (EventSystem.current == null)
+            return false;
+
+        if (fingerId >= 0)
+            return EventSystem.current.IsPointerOverGameObject(fingerId);
+
+        return EventSystem.current.IsPointerOverGameObject();
     }
 
     IEnumerator SimpleFadeInChange(float time = 3f)
