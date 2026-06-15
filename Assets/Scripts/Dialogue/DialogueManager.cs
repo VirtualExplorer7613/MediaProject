@@ -77,6 +77,7 @@ public class DialogueManager : MonoBehaviour
         { "jellyfish", new CharacterInfo { displayName = "해파리", nameColor = new Color(0.9f, 0.9f, 1f) } },
         { "salmon", new CharacterInfo { displayName = "연어", nameColor = new Color(1f, 0.7f, 0.7f) } },
         { "prawn", new CharacterInfo { displayName = "새우", nameColor = new Color(1f, 0.8f, 0.6f) } },
+        { "beluga", new CharacterInfo { displayName = "벨루가", nameColor = new Color(0.7f, 0.9f, 1f) } },
     };
 
     private readonly HashSet<string> endingRequiredNpcNames = new HashSet<string>
@@ -197,6 +198,12 @@ public class DialogueManager : MonoBehaviour
     
             else if (entry.type == "interaction")
             {
+                if (ShouldSkipInteractionEntry(entry))
+                {
+                    currentIndex++;
+                    continue;
+                }
+
                 /*HandleAction(entry);
                 waitingForInteraction = true;
                 yield return new WaitUntil(() => waitingForInteraction == false);
@@ -275,6 +282,28 @@ public class DialogueManager : MonoBehaviour
         CurrentTalkingNPC = null;
 
     }
+
+    private bool ShouldSkipInteractionEntry(DialogueEntry entry)
+    {
+        if (CurrentTalkingNPC != null &&
+            CurrentTalkingNPC.ShouldIgnoreInteractionEntryForDialogueOnly)
+        {
+            return true;
+        }
+
+        if (entry == null)
+            return true;
+
+        if (string.IsNullOrWhiteSpace(entry.action))
+            return true;
+
+        string action = entry.action.Trim().ToLowerInvariant();
+
+        return action == "ignore" ||
+               action == "none" ||
+               action == "skip";
+    }
+
     void Update()
     {
         if (!IsDialoguePlaying) return;

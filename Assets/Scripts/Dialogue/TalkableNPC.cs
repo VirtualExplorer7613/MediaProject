@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -49,6 +50,20 @@ public class TalkableNPC : MonoBehaviour
     [Header("Quest Sequence")]
     [SerializeField] private QuestSequenceTarget sequenceTarget;
     [SerializeField] private bool hideIconWhenNotCurrentSequence = true;
+
+    [Header("Dialogue Only NPC")]
+    [SerializeField] private bool dialogueOnlyNpc = false;
+
+    [SerializeField] private bool ignoreInteractionEntryForDialogueOnly = true;
+
+    [SerializeField] private bool loadSceneOnInteractAfterFinished = false;
+    [SerializeField] private float sceneLoadDelayAfterDialogue = 0.3f;
+    [SerializeField] private Define.Scene sceneAfterDialogue = Define.Scene.Ending;
+    private bool sceneLoadStarted = false;
+
+    public bool IsDialogueOnlyNpc => dialogueOnlyNpc;
+    public bool ShouldIgnoreInteractionEntryForDialogueOnly =>
+        dialogueOnlyNpc && ignoreInteractionEntryForDialogueOnly;
 
     private void Start()
     {
@@ -115,7 +130,7 @@ public class TalkableNPC : MonoBehaviour
 
 
         // 퀘스트 상태 선제 감지
-        if (!questCleared)
+        if (!questCleared && !dialogueOnlyNpc)
         {
             CheckQuestCondition(); // 조건을 계속 확인
         }
@@ -139,6 +154,13 @@ public class TalkableNPC : MonoBehaviour
         }
 
         DialogueManager dialogueManager = DialogueManager.Instance;
+
+        if (dialogueOnlyNpc)
+        {
+            TryTalkDialogueOnly(dialogueManager);
+            return;
+        }
+
         if (dialogueManager == null) return;
 
         CheckQuestCondition();
@@ -164,6 +186,43 @@ public class TalkableNPC : MonoBehaviour
         }
         //상태 변경마다 ICON Update
         //UpdateQuestIcon();
+        RefreshIcons();
+    }
+
+    private void TryTalkDialogueOnly(DialogueManager dialogueManager)
+    {
+        if (dialogueManager == null) return;
+
+        // 이미 대화가 완전히 끝난 상태
+        if (dialogueAfterQuestDone)
+        {
+            if (loadSceneOnInteractAfterFinished)
+            {
+                Debug.Log($"[DialogueOnlyNPC] {characterName} 대화 완료 후 씬 이동: {sceneAfterDialogue}");
+                Managers.Scene.LoadSceneAsync(sceneAfterDialogue, false);
+            }
+            else
+            {
+                Debug.Log($"[DialogueOnlyNPC] {characterName} 대화는 이미 완료되었습니다.");
+            }
+
+            return;
+        }
+
+        if (dialogueManager.IsDialoguePlaying)
+            return;
+
+        // 첫 대화 시작
+        if (!hasStartedDialogue)
+        {
+            hasStartedDialogue = true;
+            dialogueManager.StartDialogue(characterName, this);
+            RefreshIcons();
+            return;
+        }
+
+        // 혹시 중간 저장된 interaction 지점이 있는 경우를 대비
+        dialogueManager.ContinueDialogue(characterName, this);
         RefreshIcons();
     }
 
@@ -227,6 +286,9 @@ public class TalkableNPC : MonoBehaviour
         /*ShowquestionHintUI(false);
         UpdateQuestIcon();*/
 
+        if (dialogueOnlyNpc)
+            questCleared = true;
+
         if (sequenceTarget != null)
             sequenceTarget.NotifyCompleted();
 
@@ -234,7 +296,33 @@ public class TalkableNPC : MonoBehaviour
 
         TryGiveFinalDialogueReward();
 
+        // 벨루가 같은 Dialogue Only NPC는 대화 종료 직후 바로 씬 이동
+        if (dialogueOnlyNpc && loadSceneOnInteractAfterFinished)
+        {
+            RefreshIcons();
+            StartCoroutine(LoadSceneAfterDialogueDelay());
+            return;
+            /*
+            Debug.Log($"[DialogueOnlyNPC] {characterName} 대화 종료 직후 씬 이동: {sceneAfterDialogue}");
+            Managers.Scene.LoadSceneAsync(sceneAfterDialogue, false);
+            return;*/
+        }
+
         DialogueManager.Instance?.TryTriggerEndingAfterFinalDialogue();
+    }
+
+    private IEnumerator LoadSceneAfterDialogueDelay()
+    {
+        if (sceneLoadStarted)
+            yield break;
+
+        sceneLoadStarted = true;
+
+        if (sceneLoadDelayAfterDialogue > 0f)
+            yield return new WaitForSecondsRealtime(sceneLoadDelayAfterDialogue);
+
+        Debug.Log($"[DialogueOnlyNPC] {characterName} 대화 종료 후 씬 이동: {sceneAfterDialogue}");
+        Managers.Scene.LoadSceneAsync(sceneAfterDialogue, false);
     }
 
     private void TryGiveFinalDialogueReward()
@@ -354,6 +442,25 @@ public class TalkableNPC : MonoBehaviour
             if (exclamationMarkIcon != null) 
                 exclamationMarkIcon.SetActive(false);
 
+            if (heartIcon != null) heartIcon.SetActive(false);
+
+            return;
+        }
+
+        if (dialogueOnlyNpc)
+        {
+            if (dialogueAfterQuestDone)
+            {
+                showExclamation = true;
+            }
+            else if (!hasStartedDialogue)
+            {
+                if (!showQuestionMarkOnlyAfterFirstApproach || hasShownFirstApproachIcon)
+                    showQuestion = true;
+            }
+
+            if (questionMarkIcon != null) questionMarkIcon.SetActive(showQuestion);
+            if (exclamationMarkIcon != null) exclamationMarkIcon.SetActive(showExclamation);
             if (heartIcon != null) heartIcon.SetActive(false);
 
             return;
