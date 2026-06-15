@@ -29,7 +29,7 @@ public class EndingDarkSceneController : MonoBehaviour
 
     [Header("Dialogue Steps")]
     [SerializeField] private List<EndingDarkTextStep> introSteps = new();
-    [SerializeField] private EndingDarkTextStep completeStep;
+    [SerializeField] private List<EndingDarkTextStep> completeSteps = new();
 
     [Header("Voice")]
     [SerializeField] private AudioSource voiceAudioSource;
@@ -372,16 +372,15 @@ public class EndingDarkSceneController : MonoBehaviour
                 yield return null;
         }
 
-        if (completeStep == null || string.IsNullOrEmpty(completeStep.text))
+        if (completeSteps == null || completeSteps.Count == 0)
         {
-            completeStep = new EndingDarkTextStep
-            {
-                text = "벨루가\n 조금만 더 힘내! 거의 다 됐어!",
-                duration = completeDelay
-            };
+            SetupDefaultCompleteSteps();
         }
 
-        yield return ShowCenterText(completeStep);
+        foreach (var step in completeSteps)
+        {
+            yield return ShowCenterText(step);
+        }
 
         PlaySfx(clearSfx);
 
@@ -479,27 +478,43 @@ public class EndingDarkSceneController : MonoBehaviour
     private void SetupDefaultIntroSteps()
     {
         introSteps = new List<EndingDarkTextStep>
+        {
+            new EndingDarkTextStep
+            {
+                text = "벨루가\n(치직…) 여기야… 거의 다 왔어.",
+                duration = 1.8f
+            },
+            new EndingDarkTextStep
+            {
+                text = "벨루가\n (치직… 치지직…) 조금만 더.",
+                duration = 1.8f
+            },
+            new EndingDarkTextStep
+            {
+                text = "고래\n분명 이 근처인 것 같은데…\n너무 깜깜해서 아무것도 안 보여.",
+                duration = 2.4f
+            },
+            new EndingDarkTextStep
+            {
+                text = "고래\n이 곳이 온통 까만 오염으로 뒤덮여 있어서 그런가 봐.\n강한 물살을 일으켜서 오염을 걷어내 보자!",
+                duration = 3.0f
+            }
+        };
+    }
+    private void SetupDefaultCompleteSteps()
     {
-        new EndingDarkTextStep
+        completeSteps = new List<EndingDarkTextStep>
         {
-            text = "벨루가\n(치직…) 여기야… 거의 다 왔어.",
-            duration = 1.8f
-        },
-        new EndingDarkTextStep
-        {
-            text = "벨루가\n (치직… 치지직…) 조금만 더.",
-            duration = 1.8f
-        },
-        new EndingDarkTextStep
-        {
-            text = "고래\n분명 이 근처인 것 같은데…\n너무 깜깜해서 아무것도 안 보여.",
-            duration = 2.4f
-        },
-        new EndingDarkTextStep
-        {
-            text = "고래\n이 곳이 온통 까만 오염으로 뒤덮여 있어서 그런가 봐.\n강한 물살을 일으켜서 오염을 걷어내 보자!",
-            duration = 3.0f
-        }
-    };
+            new EndingDarkTextStep
+            {
+                text = "벨루가\n아… 드디어, 이 답답한 어둠 속에서 벗어나게 됐어…",
+                duration = 2.5f
+            },
+            new EndingDarkTextStep
+            {
+                text = "고래\n어? 이 목소리는… 계속 나를 부르던 그 목소리잖아!",
+                duration = 2.5f
+            }
+        };
     }
 }
