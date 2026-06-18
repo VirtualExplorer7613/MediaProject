@@ -38,7 +38,7 @@
         {
             "type": "jellyfish",
             "expression": "Eyes_Shrink",
-            "dialogue": "눈앞에 까맣고 팔랑거리는 게 떠다니길래\n신기해서 가까이 다가갔다가 그만... 찰싹 달라붙어 버렸지 뭐예요.",
+            "dialogue": "눈앞에 까맣고 팔랑거리는 게 떠다니길래\n신기해서 가까이 다가갔다가 그만... 찰싹 달라붙어 버렸어요.",
             "voice": "Dubbing_Jellyfish/Jellyfish_Audio_04"
         },
         {
@@ -55,7 +55,7 @@
         {
             "type": "jellyfish",
             "expression": "Eyes_Shrink",
-            "dialogue": "쓰레기였군요... 물결을 따라 부드럽게 움직이길래,\n저는 저랑 비슷하게 생긴 바다 친구인 줄만 알았어요.",
+            "dialogue": "쓰레기였구나... 물결을 따라 부드럽게 움직이길래,\n저는 저랑 비슷하게 생긴 바다 친구인 줄만 알았어요.",
             "voice": "Dubbing_Jellyfish/Jellyfish_Audio_07"
         },
         {
