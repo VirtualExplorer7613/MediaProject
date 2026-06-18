@@ -27,7 +27,7 @@
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "내 <color=#0097CE>파도 스킬</color>을 이용해서 <color=#0097CE>강한 물살</color>을 일으키면,\n문어가 다치지 않게 통만 날려버릴 수 있을 거야!",
+            "dialogue": "내 <color=#0097CE>파도 스킬</color>을 이용해서 <color=#2458C9>강한 물살</color>을 일으키면,\n문어가 다치지 않게 통만 날려버릴 수 있을 거야!",
             "voice": "Dubbing_Octopus/Octopus_Audio_03"
         },
         {

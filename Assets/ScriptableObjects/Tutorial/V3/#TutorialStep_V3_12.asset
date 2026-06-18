@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac8c441721fd9749983415fffd47577, type: 3}
   m_Name: '#TutorialStep_V3_12'
   m_EditorClassIdentifier: 
-  messageKorean: "\uC6B0\uC640! \uC774\uAC74 \uC5B4\uB5A4 \uC0C1\uC790\uB4E0 \uC5F4
-    \uC218 \uC788\uB294\\n'\uB9CC\uB2A5 \uC5F4\uC1E0'\uC608\uC694!"
+  messageKorean: "\uC774\uAC74 \uBB34\uC5C7\uC774\uB4E0 \uC5F4 \uC218 \uC788\uB294\\n'\uB9CC\uB2A5
+    \uC5F4\uC1E0'\uC608\uC694!"
   messageEnglish: 
   conditionPrefab: {fileID: 8448348817773122069, guid: 30ef17a36b7d4f2448ee7f8e929463ad, type: 3}
   highlightTargetId: 
   targetsToShow: []
   targetsToHide: []
+  worldVfxToShow: []
+  worldVfxToHide: []
+  worldVfxToHideOnExit: []
   advanceDelay: 0.2
