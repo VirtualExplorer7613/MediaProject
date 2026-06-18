@@ -51,7 +51,7 @@
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(다행히 유리가 두껍지는 않은 모양이네.\n아까 보물상자에서 찾은 그 도구라면 깰 수 있을 거야!)",
+            "dialogue": "(다행히 유리가 두껍지는 않은 모양이네.\n아까 보물상자에서 찾은 그 도구라면 깰 수 있을 것 같은데?)",
             "voice": "Dubbing_Prawn/Prawn_Audio_07"
         },
         {
@@ -62,7 +62,7 @@
         {
             "type": "prawn",
             "expression": "Eyes_Happy",
-            "dialogue": "와…!! 드디어… 나오게 됐네요!\n정말이지 너무너무 답답했어요.",
+            "dialogue": "우와…!! 드디어 나오게 됐네요!\n정말이지 너무 답답했어요!",
             "voice": "Dubbing_Prawn/Prawn_Audio_08"
         },
         {
@@ -73,7 +73,7 @@
         {
             "type": "prawn",
             "expression": "Eyes_Sad",
-            "dialogue": "그렇군요. 저처럼 작고 약한 애들은...\n이런 게 떨어지면 진짜 도망갈 수가 없어요...",
+            "dialogue": "그렇군요. 저처럼 작고 약한 친구들은...\n이런 게 떨어지면 도망갈 수가 없어요...",
             "voice": "Dubbing_Prawn/Prawn_Audio_10"
         },
         {
@@ -97,7 +97,7 @@
         {
             "type": "whale",
             "expression": "Eyes_Sad",
-            "dialogue": "(다음엔 누가 발견조차 못 한 채로 갇혀 있을지도 몰라…\n이런 게 더는 바다에 떨어지지 않게 해야 해.)",
+            "dialogue": "(다음엔 누가 발견조차 못 한 채로 계속 갇혀 있을지도 몰라…\n이런 게 더는 바다에 떨어지지 않게 해야 해.)",
             "voice": "Dubbing_Prawn/Prawn_Audio_14"
         }
     ]

@@ -15,7 +15,7 @@
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "저건... <color=#2458C9>플라스틱 통</color>이잖아?\n문어가 쓰레기인 줄도 모르고 그 안에 숨어있나 봐...",
+            "dialogue": "저건... <color=#2458C9>플라스틱 통</color>이잖아?\n문어가 쓰레기인 줄도 모르고 그 안에 숨어있나 본데...",
             "voice": "Dubbing_Octopus/Octopus_Audio_01"
         },
         {
@@ -73,7 +73,7 @@
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(이제 도움이 필요한 친구들은 모두 도와준 것 같아.\n이제 나를 부르던 <color=#2458C9>그 목소리</color>를 만나러 갈 차례인데....)",
+            "dialogue": "(도움이 필요한 친구들은 모두 도와준 것 같아.\n이제 나를 부르던 <color=#2458C9>그 목소리</color>를 만나러 갈 차례인데....)",
             "voice": "Dubbing_Octopus/Octopus_Audio_10"
         }
     ]

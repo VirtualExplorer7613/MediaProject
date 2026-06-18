@@ -79,7 +79,7 @@
         {
             "type": "orca",
             "expression": "Eyes_Blink",
-            "dialogue": "얼른 가서 찾아봐! 나도 앞으론 좀 더 조심할게.\n진짜 고마웠어!",
+            "dialogue": "얼른 가서 찾아봐! 그리고 나도 앞으론 좀 더 조심히 다닐게.\n도와줘서 고마워!",
             "voice": "Dubbing_Orca/Orca_Audio_11"
         },
         {
