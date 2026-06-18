@@ -67,6 +67,8 @@ public class EndingDarkSceneController : MonoBehaviour
     [SerializeField] private float textGap = 0.25f;
     [SerializeField] private float completeDelay = 1.2f;
     [SerializeField] private float sceneLoadDelay = 1.2f;
+    // [타이핑 효과를 위해 추가된 부분]
+    [SerializeField] private float typingSpeed = 0.09f;
 
     [Header("SFX")]
     [SerializeField] private string noiseSfx = "SFX/Noise";
@@ -169,9 +171,22 @@ public class EndingDarkSceneController : MonoBehaviour
             : step.text.Replace("\\n", "\n");
 
         centerDialogueText.text = parsedText;
+
+        // [타이핑 효과를 위해 추가된 부분] 시작
+        centerDialogueText.maxVisibleCharacters = 0;
         centerDialogueText.gameObject.SetActive(true);
 
         PlayVoice(step.voice);
+
+        centerDialogueText.ForceMeshUpdate();
+        int totalVisibleCharacters = centerDialogueText.textInfo.characterCount;
+
+        for (int i = 0; i <= totalVisibleCharacters; i++)
+        {
+            centerDialogueText.maxVisibleCharacters = i;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+        // [타이핑 효과를 위해 추가된 부분] 끝
 
         float duration = Mathf.Max(0.1f, step.duration);
         yield return new WaitForSeconds(duration);
@@ -234,7 +249,7 @@ public class EndingDarkSceneController : MonoBehaviour
         SetGaugeProgress(progress);
 
         //UpdateBlackBackground();
-        
+
         PlaySfx(waveClickSfx);
 
         if (progress >= 0.999f)
@@ -345,7 +360,11 @@ public class EndingDarkSceneController : MonoBehaviour
 
     private void UpdateBlackBackground(float progressValue)
     {
-        float alpha = Mathf.Lerp(1f, minBlackAlpha, Mathf.Clamp01(progressValue));
+        // [수정됨] 선형(Linear) 계산 대신 제곱(Pow) 계산을 적용하여 
+        // 초반에는 아주 천천히 밝아지고, 후반에 더 많은 차이가 나도록 곡선 처리
+        float curvedProgress = Mathf.Pow(Mathf.Clamp01(progressValue), 2.5f);
+
+        float alpha = Mathf.Lerp(1f, minBlackAlpha, curvedProgress);
         SetBlackAlpha(alpha);
     }
 
@@ -510,11 +529,11 @@ public class EndingDarkSceneController : MonoBehaviour
                 text = "벨루가\n아… 드디어, 이 답답한 어둠 속에서 벗어나게 됐어…",
                 duration = 2.5f
             },
-            new EndingDarkTextStep
-            {
-                text = "고래\n어? 이 목소리는… 계속 나를 부르던 그 목소리잖아!",
-                duration = 2.5f
-            }
+            //new EndingDarkTextStep
+            //{
+               // text = "고래\n어? 이 목소리는… 계속 나를 부르던 그 목소리잖아!",
+               // duration = 2.5f
+            //}
         };
     }
 }
