@@ -67,6 +67,8 @@ public class QuestPathNavigator : MonoBehaviour
 
     private float flowTime;
 
+    private bool destinationVfxHiddenAfterFirstDialogue = false;
+
 
     /*private GameObject vfxInstance;
     private NavMeshPath path;*/
@@ -103,6 +105,8 @@ public class QuestPathNavigator : MonoBehaviour
             return;
         }
 
+        destinationVfxHiddenAfterFirstDialogue = false;
+
         target = currentTarget.NavigationPoint;
         currentSpline = currentTarget.RouteSpline;
         flowTime = 0f;
@@ -121,6 +125,8 @@ public class QuestPathNavigator : MonoBehaviour
         currentTarget = null;
         target = null;
         currentSpline = null;
+
+        destinationVfxHiddenAfterFirstDialogue = false;
 
         HideAllVfx();
 
@@ -352,6 +358,12 @@ public class QuestPathNavigator : MonoBehaviour
     {
         if (destinationVfxInstance == null || currentTarget == null)
             return;
+
+        if (destinationVfxHiddenAfterFirstDialogue)
+        {
+            HideDestinationVfx();
+            return;
+        }
 
         Transform vfxPoint = currentTarget.DestinationVfxPoint;
         if (vfxPoint == null)
@@ -591,5 +603,11 @@ public class QuestPathNavigator : MonoBehaviour
         }
 
         return vfxPoint.rotation;
+    }
+
+    public void HideDestinationVfxAfterFirstDialogue()
+    {
+        destinationVfxHiddenAfterFirstDialogue = true;
+        HideDestinationVfx();
     }
 }
