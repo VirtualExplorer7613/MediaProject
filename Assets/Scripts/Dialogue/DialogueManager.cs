@@ -53,6 +53,11 @@ public class DialogueManager : MonoBehaviour
 
     private CrosshairUI crosshairUI;
 
+    [Header("Ending Debug")]
+    [SerializeField] private bool debugIgnoreEndingQuestCondition = false;
+    [SerializeField] private bool debugOpenPortalWithKey = true;
+    [SerializeField] private KeyCode debugOpenPortalKey = KeyCode.F10;
+
     [System.Serializable]
     public class CharacterInfo
     {
@@ -306,6 +311,26 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
+#if UNITY_EDITOR
+        if (debugOpenPortalWithKey && Input.GetKeyDown(debugOpenPortalKey))
+        {
+            Debug.Log("[Ending Debug] F10으로 엔딩 포탈 강제 생성");
+
+            endingTriggered = true;
+
+            EndingPortalController portal = EndingPortalController.Instance;
+
+            if (portal == null)
+                portal = FindFirstObjectByType<EndingPortalController>();
+
+            if (portal != null)
+                portal.OpenPortal();
+            else
+                Debug.LogError("[Ending Debug] EndingPortalController를 찾을 수 없습니다.");
+
+            return;
+        }
+#endif
         if (!IsDialoguePlaying) return;
 
         if (Time.unscaledTime < inputBlockUntil) return;
@@ -732,18 +757,49 @@ public class DialogueManager : MonoBehaviour
         return true;
     }
 
+    [SerializeField] private string finalPortalNpcName = "octopus";
     public void TryTriggerEndingAfterFinalDialogue()
     {
         if (endingTriggered)
             return;
 
-        if (!AreRequiredEndingQuestsCleared())
+#if UNITY_EDITOR
+        if (!debugIgnoreEndingQuestCondition)
+        {
+            if (!AreRequiredEndingQuestsCleared())
+                return;
+        }
+#else
+    if (!AreRequiredEndingQuestsCleared())
+        return;
+#endif
+
+        /*// 문어 최종 대화가 끝났을 때만 포탈 생성
+        if (CurrentTalkingNPC == null || CurrentTalkingNPC.characterName != finalPortalNpcName)
             return;
+
+        if (!AreRequiredEndingQuestsCleared())
+            return;*/
 
         endingTriggered = true;
 
-        Debug.Log("[Ending Check] Final required dialogue finished. Loading Ending scene.");
-        Managers.Scene.LoadSceneAsync(Define.Scene.Ending, false);
+        Debug.Log("[Ending Check] Final required dialogue finished. Opening ending portal.");
+
+        EndingPortalController portal = EndingPortalController.Instance;
+
+        if (portal == null)
+            portal = FindFirstObjectByType<EndingPortalController>();
+
+        if (portal != null)
+        {
+            portal.OpenPortal();
+        }
+        else
+        {
+            Debug.LogError("[Ending Check] EndingPortalController를 찾을 수 없습니다.");
+        }
+
+        //Managers.Scene.LoadSceneAsync(Define.Scene.Ending, false);
     }
 
     [SerializeField] private float interactionTransitionDuration = 0.8f;
