@@ -58,6 +58,16 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private bool debugOpenPortalWithKey = true;
     [SerializeField] private KeyCode debugOpenPortalKey = KeyCode.F10;
 
+    [Header("Dialogue Voice Tracking")]
+    [SerializeField] private float dialogueVoiceEndSafetyBuffer = 0.05f;
+
+    private float lastDialogueVoiceEndTime = 0f;
+
+    public float GetRemainingDialogueVoiceTime()
+    {
+        return Mathf.Max(0f, lastDialogueVoiceEndTime - Time.unscaledTime);
+    }
+
     [System.Serializable]
     public class CharacterInfo
     {
@@ -244,7 +254,7 @@ public class DialogueManager : MonoBehaviour
             
             if (!string.IsNullOrEmpty(entry.voice))
             {
-                Managers.Sound.Play(entry.voice);
+                PlayDialogueVoice(entry.voice);
             }
             
             yield return new WaitUntil(() => canProceed);
@@ -286,6 +296,36 @@ public class DialogueManager : MonoBehaviour
 
         CurrentTalkingNPC = null;
 
+    }
+
+    private void PlayDialogueVoice(string voicePath)
+    {
+        if (string.IsNullOrEmpty(voicePath))
+        {
+            lastDialogueVoiceEndTime = Time.unscaledTime;
+            return;
+        }
+
+        AudioClip clip = Resources.Load<AudioClip>(voicePath);
+
+        if (clip != null)
+        {
+            lastDialogueVoiceEndTime =
+                Time.unscaledTime + clip.length + dialogueVoiceEndSafetyBuffer;
+        }
+        else
+        {
+            lastDialogueVoiceEndTime = Time.unscaledTime;
+
+            Debug.LogWarning(
+                $"[DialogueManager] 음성 클립 길이를 확인할 수 없습니다. path={voicePath}"
+            );
+        }
+
+        // 기존 재생 방식 유지
+        // 기존 SoundManager가 이전 음성을 멈추고 새 음성을 재생하고 있었다면,
+        // 그 동작은 그대로 유지됨.
+        Managers.Sound.Play(voicePath);
     }
 
     private bool ShouldSkipInteractionEntry(DialogueEntry entry)

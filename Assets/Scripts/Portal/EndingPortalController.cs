@@ -15,6 +15,11 @@ public class EndingPortalController : MonoBehaviour
     [SerializeField] private Define.Scene sceneToLoad = Define.Scene.EndingDark;
     [SerializeField] private bool useLoadingScreen = false;
 
+    [Header("Beluga Timing")]
+    [SerializeField] private bool waitForDialogueVoiceBeforeBeluga = true;
+    [SerializeField] private float belugaStartSafetyDelay = 0.1f;
+    [SerializeField] private float maxWaitForDialogueVoice = 10f;
+
     [Header("Portal Sound")]
     [SerializeField] private AudioSource sfxAudioSource;
     [SerializeField] private AudioClip portalAppearSfx;
@@ -100,7 +105,7 @@ public class EndingPortalController : MonoBehaviour
         }
     }
 
-    private IEnumerator ShowBelugaTextRoutine()
+    /*private IEnumerator ShowBelugaTextRoutine()
     {
         if (textDelay > 0f)
             yield return new WaitForSeconds(textDelay);
@@ -117,6 +122,43 @@ public class EndingPortalController : MonoBehaviour
         if (autoHideText)
         {
             yield return new WaitForSeconds(textVisibleSeconds);
+
+            if (belugaTextRoot != null)
+                belugaTextRoot.SetActive(false);
+        }
+    }*/
+
+    private IEnumerator ShowBelugaTextRoutine()
+    {
+        if (waitForDialogueVoiceBeforeBeluga && DialogueManager.Instance != null)
+        {
+            float waitTime = DialogueManager.Instance.GetRemainingDialogueVoiceTime();
+
+            if (maxWaitForDialogueVoice > 0f)
+                waitTime = Mathf.Min(waitTime, maxWaitForDialogueVoice);
+
+            if (waitTime > 0f)
+            {
+                Debug.Log($"[EndingPortal] 기존 대사 음성 종료 대기: {waitTime:F2}초");
+                yield return new WaitForSecondsRealtime(waitTime + belugaStartSafetyDelay);
+            }
+        }
+
+        if (textDelay > 0f)
+            yield return new WaitForSecondsRealtime(textDelay);
+
+        if (belugaTextRoot != null)
+            belugaTextRoot.SetActive(true);
+
+        if (belugaText != null)
+            belugaText.text = belugaLine;
+
+        if (voiceAudioSource != null && belugaVoiceClip != null)
+            voiceAudioSource.PlayOneShot(belugaVoiceClip);
+
+        if (autoHideText)
+        {
+            yield return new WaitForSecondsRealtime(textVisibleSeconds);
 
             if (belugaTextRoot != null)
                 belugaTextRoot.SetActive(false);
