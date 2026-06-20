@@ -209,4 +209,22 @@ public class QuestSequenceManager : MonoBehaviour
                 npc.RefreshSequenceIcon();
         }
     }
+
+    public void HideCurrentDestinationVfxAfterFirstDialogue()
+    {
+        QuestSequenceTarget current = CurrentTarget;
+
+        if (current == null)
+            return;
+
+        if (!current.HideDestinationVfxAfterFirstDialogue)
+            return;
+
+        if (pathNavigator == null)
+            return;
+
+        pathNavigator.HideDestinationVfxAfterFirstDialogue();
+
+        Debug.Log($"[QuestSequence] Ã¹ ´ëÈ­ ÈÄ Destination VFX ¼û±è: {current.ObjectiveId}");
+    }
 }

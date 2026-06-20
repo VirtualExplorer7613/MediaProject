@@ -224,6 +224,7 @@ public class DialogueManager : MonoBehaviour
                 yield return new WaitUntil(() => waitingForInteraction == false);
                 currentIndex++;
                 continue;*/
+                QuestSequenceManager.Instance?.HideCurrentDestinationVfxAfterFirstDialogue();
 
                 HandleAction(entry);
                 waitingForInteraction = true;
