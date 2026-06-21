@@ -33,6 +33,7 @@ public class SpongeStrategy : IInteractionStrategy
     public void OnDeselected(InteractionContext ctx)
     {
         ctx?.SetSpongeVisual(false);
+        StopSpongeSfx();
         hasLastWorldPos = false;
         currentStain = null;
     }
