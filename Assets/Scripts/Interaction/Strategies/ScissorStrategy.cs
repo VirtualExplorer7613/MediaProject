@@ -43,7 +43,8 @@ public class ScissorStrategy : IInteractionStrategy
             return;
         }
 
-        ctx.scissorVisual?.SetTarget(currentTarget.transform);
+        //ctx.scissorVisual?.SetTarget(currentTarget.transform);
+        ctx.scissorVisual?.SetTarget(currentTarget);
         ctx.scissorVisual?.SetVisible(true);
         ctx.scissorVisual?.StartCutLoop();
     }
@@ -62,7 +63,8 @@ public class ScissorStrategy : IInteractionStrategy
                 return;
             }
 
-            ctx.scissorVisual?.SetTarget(currentTarget.transform);
+            //ctx.scissorVisual?.SetTarget(currentTarget.transform);
+            ctx.scissorVisual?.SetTarget(currentTarget);
             ctx.scissorVisual?.SetVisible(true);
             ctx.scissorVisual?.StartCutLoop();
         }
