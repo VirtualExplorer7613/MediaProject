@@ -13,6 +13,8 @@ public class PullTrashStrategy : IInteractionStrategy
 
     private const float AcquireRadius = 0.9f;
 
+    private const string PullCompleteSfx = "SFX/Tweezers 2";
+
     // Visual 위치 보정
     [Header("Visual Tuning")]
     /*private const float VisualForwardOffset = 1.2f;
@@ -341,6 +343,8 @@ public class PullTrashStrategy : IInteractionStrategy
         {
             qt.CompleteQuestTarget();
         }
+
+        Managers.Sound.Play(PullCompleteSfx);
 
         ctx.itemUseBroadcaster?.RaiseItemUsed("pull_used");
 
