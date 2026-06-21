@@ -19,4 +19,9 @@ MonoBehaviour:
   highlightTargetId: interact_button
   targetsToShow: []
   targetsToHide: []
+  worldVfxToShow:
+  - magnet_trash_marker
+  worldVfxToHide: []
+  worldVfxToHideOnExit:
+  - magnet_trash_marker
   advanceDelay: 0.2
