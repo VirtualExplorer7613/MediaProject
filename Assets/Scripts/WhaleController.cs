@@ -163,6 +163,9 @@ public class WhaleController : MonoBehaviour
     private Rigidbody rb;
     private Vector3 moveInput;
 
+    [Header("Collision")]
+    [SerializeField] private LayerMask movementCollisionMask = ~0;
+
     [Header("Vertical Collision")]
     [SerializeField] private LayerMask verticalBlockMask;     // 상하 이동 막을 레이어
 
@@ -828,7 +831,7 @@ public class WhaleController : MonoBehaviour
         Vector3 dir = delta.normalized;
         float dist = delta.magnitude;
 
-        if (Physics.CapsuleCast(p1, p2, radius, dir, out RaycastHit hit, dist + skinWidth, ~0, QueryTriggerInteraction.Ignore))
+        if (Physics.CapsuleCast(p1, p2, radius, dir, out RaycastHit hit, dist + skinWidth, movementCollisionMask, QueryTriggerInteraction.Ignore))
         {
             float safeDist = Mathf.Max(hit.distance - skinWidth, 0f);
             return startPos + dir * safeDist;
@@ -878,7 +881,7 @@ public class WhaleController : MonoBehaviour
     {
         GetCapsuleWorldPoints(position, out Vector3 p1, out Vector3 p2, out float radius);
 
-        Collider[] overlaps = Physics.OverlapCapsule(p1, p2, radius, ~0, QueryTriggerInteraction.Ignore);
+        Collider[] overlaps = Physics.OverlapCapsule(p1, p2, radius, movementCollisionMask, QueryTriggerInteraction.Ignore);
 
         Vector3 corrected = position;
 
