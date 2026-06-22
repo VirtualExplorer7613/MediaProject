@@ -6,23 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/#2ndBuild/Title.unity
-    guid: d111897ad952f2442939c473f41cfc6d
-  - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/#2ndBuild/Prologue.unity
-    guid: 597ab400a98d67b43a8975e1899d4984
-  - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/#2ndBuild/Game.unity
-    guid: 768248898ff438e4ca37e91a31d8f675
-  - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/#2ndBuild/EndingDark.unity
-    guid: 5037444448cec3e4ca1dbeb4e1cf7239
-  - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/#2ndBuild/KelpCaves.unity
-    guid: 87930a1f2eb40a947b72ff177b453426
-  - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/#2ndBuild/Ending.unity
-    guid: 676f77e6483b66d43bfb5a49ea7621f3
+    path: Assets/Scenes/Dev/Mobile/#3rdBuild/KelpCaves.unity
+    guid: 20af3c7bfa3c64b48a949bb407fb3b17
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
