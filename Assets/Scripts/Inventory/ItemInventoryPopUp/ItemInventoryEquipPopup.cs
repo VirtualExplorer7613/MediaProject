@@ -128,11 +128,41 @@ public class ItemInventoryEquipPopup : MonoBehaviour
         currentPreviewInstance.transform.localRotation = Quaternion.Euler(item.previewLocalEuler);
         currentPreviewInstance.transform.localScale = item.previewLocalScale;
 
-        var rotator = currentPreviewInstance.GetComponent<ItemPreviewRotator>();
-        if (rotator == null)
-            rotator = currentPreviewInstance.AddComponent<ItemPreviewRotator>();
+        // 프리팹 내부에 기존 ItemPreviewRotator가 있으면 중복 회전 방지
+        foreach (var existingRotator in currentPreviewInstance.GetComponentsInChildren<ItemPreviewRotator>())
+        {
+            existingRotator.enabled = false;
+            Destroy(existingRotator);
+        }
 
-        rotator.SetSpeed(item.previewRotateSpeed);
+        // 미리보기 루트에만 Rotator 추가
+        var rotator = currentPreviewInstance.AddComponent<ItemPreviewRotator>();
+
+        if (item.itemType == ItemType.Pull)
+        {
+            // Pull 아이템의 Local Z축을 World Up으로 정렬
+            AlignLocalAxisToWorld(
+                currentPreviewInstance.transform,
+                Vector3.forward,
+                Vector3.up
+            );
+
+            // 이제 Local Z축 == World Up 상태이므로 World Up 기준 회전
+            rotator.Setup(
+                item.previewRotateSpeed,
+                Vector3.up,
+                Space.World
+            );
+        }
+        else
+        {
+            // 일반 아이템은 기존처럼 Local Y축 기준 회전
+            rotator.Setup(
+                item.previewRotateSpeed,
+                Vector3.up,
+                Space.Self
+            );
+        }
     }
 
     private void ClearPreview()
@@ -150,5 +180,17 @@ public class ItemInventoryEquipPopup : MonoBehaviour
                 Destroy(previewSpawnRoot.GetChild(i).gameObject);
             }
         }
+    }
+
+    private void AlignLocalAxisToWorld(Transform target, Vector3 localAxis, Vector3 worldAxis)
+    {
+        Vector3 currentWorldAxis = target.TransformDirection(localAxis.normalized);
+
+        Quaternion correction = Quaternion.FromToRotation(
+            currentWorldAxis,
+            worldAxis.normalized
+        );
+
+        target.rotation = correction * target.rotation;
     }
 }

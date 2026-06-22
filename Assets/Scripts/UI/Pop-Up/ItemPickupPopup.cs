@@ -148,12 +148,51 @@ public class ItemPickupPopup : MonoBehaviour
         currentPreviewInstance.transform.localRotation = Quaternion.Euler(item.previewLocalEuler);
         currentPreviewInstance.transform.localScale = item.previewLocalScale;
 
+        Debug.Log($"[ItemPreview] item={item.name}, type={item.itemType}");
+
         var rotator = currentPreviewInstance.GetComponent<ItemPreviewRotator>();
         if (rotator == null)
             rotator = currentPreviewInstance.AddComponent<ItemPreviewRotator>();
 
-        rotator.SetSpeed(item.previewRotateSpeed);
+        if (item.itemType == ItemType.Pull)
+        {
+            // 1. 현재 프리팹의 Local Z축을 월드 위쪽으로 보정
+            AlignLocalAxisToWorld(
+                currentPreviewInstance.transform,
+                Vector3.forward,
+                Vector3.up
+            );
 
+            Debug.Log($"[ItemPreview] Pull aligned forward={currentPreviewInstance.transform.forward}");
+
+            // 이제 Local Z축 == World Up 이므로 World Up 기준 회전
+            rotator.Setup(
+                item.previewRotateSpeed,
+                Vector3.up,
+                Space.World
+            );
+        }
+        else
+        {
+            // 일반 아이템은 기존처럼 Local Y축 회전
+            rotator.Setup(
+                item.previewRotateSpeed,
+                Vector3.up,
+                Space.Self
+            );
+        }
+    }
+
+    private void AlignLocalAxisToWorld(Transform target, Vector3 localAxis, Vector3 worldAxis)
+    {
+        Vector3 currentWorldAxis = target.TransformDirection(localAxis.normalized);
+
+        Quaternion correction = Quaternion.FromToRotation(
+            currentWorldAxis,
+            worldAxis.normalized
+        );
+
+        target.rotation = correction * target.rotation;
     }
 
     private void ConfirmPickup()
