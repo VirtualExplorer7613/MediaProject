@@ -20,7 +20,7 @@ MonoBehaviour:
   previewPrefab: {fileID: 734996604574778860, guid: 82d7dcda5c7c9484892b20a34be62ae3, type: 3}
   previewLocalPosition: {x: 0, y: 5, z: 0}
   previewLocalEuler: {x: 0, y: 0, z: 0}
-  previewLocalScale: {x: 200, y: 200, z: 200}
+  previewLocalScale: {x: 170, y: 170, z: 170}
   previewRotateSpeed: 50
   cooldownSeconds: 0
   magnetRadius: 8
