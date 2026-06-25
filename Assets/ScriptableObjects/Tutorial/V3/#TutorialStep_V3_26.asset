@@ -20,4 +20,7 @@ MonoBehaviour:
   targetsToShow:
   - npc_talk_button
   targetsToHide: []
+  worldVfxToShow: []
+  worldVfxToHide: []
+  worldVfxToHideOnExit: []
   advanceDelay: 0.2
