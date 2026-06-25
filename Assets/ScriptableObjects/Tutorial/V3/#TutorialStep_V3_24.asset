@@ -19,4 +19,8 @@ MonoBehaviour:
   highlightTargetId: 
   targetsToShow: []
   targetsToHide: []
+  worldVfxToShow:
+  - orca_path
+  worldVfxToHide: []
+  worldVfxToHideOnExit: []
   advanceDelay: 0.2
