@@ -127,6 +127,8 @@ public class WhaleController : MonoBehaviour
     [Header("OptionController")]
     [SerializeField] private OptionUIController optionUIController;
 
+    [Header("Popup Controllers")]
+    [SerializeField] private ItemPickupPopup itemPickupPopup;
 
     #region Mobile Vertical Buttons(Legacy)
     /*
@@ -213,6 +215,9 @@ public class WhaleController : MonoBehaviour
 
         if (optionUIController == null)
             optionUIController = FindAnyObjectByType<OptionUIController>();
+
+        if (itemPickupPopup == null)
+            itemPickupPopup = FindAnyObjectByType<ItemPickupPopup>();
 
         if (cameraPivot != null)
             cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
@@ -462,11 +467,19 @@ public class WhaleController : MonoBehaviour
 
     private void HandleMobileLook()
     {
-        if (optionUIController != null && optionUIController.IsOptionOpen)
+
+        if (IsLookBlockedByUI())
         {
             ClearLookState();
             return;
         }
+
+        /*if (optionUIController != null && optionUIController.IsOptionOpen)
+        {
+            ClearLookState();
+            return;
+        }*/
+
         int touchCount = GetMobileTouchCount();
 
         // 모바일이거나, 에디터 테스트 중인데 실제 터치가 들어오면 터치 회전 사용
@@ -479,6 +492,17 @@ public class WhaleController : MonoBehaviour
         {
             HandleMouseLookForEditorTest();
         }*/
+    }
+
+    private bool IsLookBlockedByUI()
+    {
+        if (optionUIController != null && optionUIController.IsOptionOpen)
+            return true;
+
+        if (itemPickupPopup != null && itemPickupPopup.IsShowing)
+            return true;
+
+        return false;
     }
 
     private void HandleTouchLook()
