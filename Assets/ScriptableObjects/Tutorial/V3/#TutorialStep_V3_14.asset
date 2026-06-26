@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: '#TutorialStep_V3_14'
   m_EditorClassIdentifier: 
   messageKorean: "\uC624\uB978\uCABD\uC5D0 \uC788\uB294 \uAC00\uBC29 \uBC84\uD2BC\uC744
-    \uB20C\uB7EC\uC11C\\n\uC5F4\uC1E0\uB97C \uD655\uC778\uD574 \uBCFC\uAE4C\uC694?"
+    \uB20C\uB7EC\\n\uC5F4\uC1E0\uB97C \uD655\uC778\uD574 \uBCFC\uAE4C\uC694?"
   messageEnglish: 
   conditionPrefab: {fileID: 8448348817773122069, guid: f8fba1d01be872a4c811aa5b9aace41a, type: 3}
   highlightTargetId: inventory_button
   targetsToShow: []
   targetsToHide: []
+  worldVfxToShow: []
+  worldVfxToHide: []
+  worldVfxToHideOnExit: []
   advanceDelay: 0.2

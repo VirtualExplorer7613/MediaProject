@@ -79,20 +79,20 @@ public class DialogueManager : MonoBehaviour
     {
         { "whale", new CharacterInfo { displayName = "고래", nameColor = new Color(0.72f, 0.75f, 0.93f) } },
         { "seahorse", new CharacterInfo { displayName = "해마", nameColor = new Color(1f, 0.9f, 0.5f) } },
-        { "tuna", new CharacterInfo { displayName = "참치", nameColor = new Color(0.6f, 0.8f, 0.9f) } },
-        { "turtle", new CharacterInfo { displayName = "거북", nameColor = new Color(0.7f, 0.9f, 0.6f) } },
+        { "tuna", new CharacterInfo { displayName = "참치", nameColor = new Color(0.6f, 0.85f, 0.95f) } },
+        { "turtle", new CharacterInfo { displayName = "거북이", nameColor = new Color(0.7f, 0.9f, 0.6f) } },
         { "octopus", new CharacterInfo { displayName = "문어", nameColor = new Color(1f, 0.7f, 0.8f) } },
         { "crab", new CharacterInfo { displayName = "게", nameColor = new Color(1f, 0.7f, 0.7f) } },
         { "clownfish", new CharacterInfo { displayName = "흰동가리", nameColor = new Color(1f, 0.8f, 0.5f) } },
         { "orca", new CharacterInfo { displayName = "범고래", nameColor = new Color(0.8f, 0.8f, 0.85f) } },
-        { "dolphin", new CharacterInfo { displayName = "돌고래", nameColor = new Color(0.7f, 0.8f, 0.9f) } },
+        { "dolphin", new CharacterInfo { displayName = "돌고래", nameColor = new Color(0.82f, 0.8f, 0.92f) } },
         { "squid", new CharacterInfo { displayName = "오징어", nameColor = new Color(0.8f, 0.7f, 1f) } },
         { "lobster", new CharacterInfo { displayName = "가재", nameColor = new Color(1f, 0.6f, 0.6f) } },
-        { "sardine", new CharacterInfo { displayName = "정어리", nameColor = new Color(0.7f, 0.8f, 1f) } },
+        { "sardine", new CharacterInfo { displayName = "정어리", nameColor = new Color(0.65f, 0.9f, 0.9f) } },
         { "jellyfish", new CharacterInfo { displayName = "해파리", nameColor = new Color(1f, 0.8f, 0.9f) } },
-        { "salmon", new CharacterInfo { displayName = "연어", nameColor = new Color(0.50f, 0.65f, 0.35f) } },
+        { "salmon", new CharacterInfo { displayName = "연어", nameColor = new Color(0.65f, 0.8f, 0.5f) } },
         { "prawn", new CharacterInfo { displayName = "새우", nameColor = new Color(1f, 0.8f, 0.6f) } },
-        { "beluga", new CharacterInfo { displayName = "벨루가", nameColor = new Color(0.7f, 0.9f, 1f) } },
+        { "beluga", new CharacterInfo { displayName = "벨루가", nameColor = new Color(1f, 0.55f, 0.63f) } },
     };
 
     private readonly HashSet<string> endingRequiredNpcNames = new HashSet<string>

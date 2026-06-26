@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac8c441721fd9749983415fffd47577, type: 3}
   m_Name: '#TutorialStep_V3_01'
   m_EditorClassIdentifier: 
-  messageKorean: "\uB113\uACE0 \uD478\uB978 \uBC14\uB2F7\uC18D\uC5D0 \uC628 \uAC78
-    \uD658\uC601\uD574\uC694!"
+  messageKorean: "\uACE0\uB798\uB2D8! \uB113\uACE0 \uD478\uB978 \uBC14\uB2F7\uC18D\uC5D0
+    \uC628 \uAC78 \uD658\uC601\uD574\uC694!"
   messageEnglish: 
   conditionPrefab: {fileID: 355915398756100229, guid: 50aded4ec87b6d841ad3ed21b63192e4, type: 3}
   highlightTargetId: 
