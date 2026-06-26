@@ -56,7 +56,7 @@
         {
             "type": "turtle",
             "expression": "Sweat_L",
-            "dialogue": "도와줘서 정말 고맙네. 하마터면 숨통이 막혀서 용궁에 갈 뻔했어~ 허허…",
+            "dialogue": "도와줘서 정말 고맙네.\n하마터면 숨통이 막혀서 용궁에 갈 뻔했어~ 허허…",
             "voice": "Dubbing_Tutle/Tutle_Audio_07"
         },
         {
@@ -74,13 +74,13 @@
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "정말 다행이에요.\n근데 할아버지, 혹시 이 근처에서 <color=#2458C9>누군가의 외침</color> 같은 걸 들은 적 있으세요?",
+            "dialogue": "정말 다행이에요.근데 할아버지!\n혹시 이 근처에서 <color=#2458C9>누군가의 외침</color> 같은 걸 들은 적 있으세요?",
             "voice": "Dubbing_Tutle/Tutle_Audio_10"
         },
         {
             "type": "turtle",
             "expression": "Eyes_Blink",
-            "dialogue": "외침이라... 글쎄, 너무 아파서 정신이 없긴 했다만...\n신기하게도 내 등껍질에 <color=#9528DD>잔잔한 물살</color>이 살며시 와 닿더군.",
+            "dialogue": "외침이라... 글쎄, 너무 아파서 정신이 없긴 했다만...\n신기하게도 내 등껍질에 <color=#0097CE>잔잔한 물살</color>이 살며시 와 닿더군.",
             "voice": "Dubbing_Tutle/Tutle_Audio_11"
         },
         {

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac8c441721fd9749983415fffd47577, type: 3}
   m_Name: '#TutorialStep_V3_21'
   m_EditorClassIdentifier: 
-  messageKorean: "\uAC00\uBC29\uC744 \uC5F4\uACE0,\\n\uBC29\uAE08 \uC5BB\uC740 \uC790\uC11D\uC744
-    \uC7A5\uCC29\uD574 \uBCFC\uAE4C\uC694?"
+  messageKorean: "\uAC00\uBC29\uC744 \uC5F4\uC5B4\uC11C\\n\uBC29\uAE08 \uC5BB\uC740
+    \uC790\uC11D\uC744 \uC7A5\uCC29\uD574 \uBCFC\uAE4C\uC694?"
   messageEnglish: 
   conditionPrefab: {fileID: 8448348817773122069, guid: cc78b241c8bb1cc4092c4a55c54d1dac, type: 3}
   highlightTargetId: inventory_button

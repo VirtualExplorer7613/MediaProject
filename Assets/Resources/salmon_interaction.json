@@ -51,7 +51,7 @@
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "(고철 쓰레기라면... 그래! 범고래를 도와줬을 때처럼 그 도구를 쓰면 되겠다!)",
+            "dialogue": "(고철 쓰레기라면...\n그래, 범고래를 도와줬을 때처럼 그 도구를 쓰면 되겠다!)",
             "voice": "Dubbing_Salmon/Salmon_Audio_07"
         },
         {
@@ -128,7 +128,7 @@
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(<color=#2458C9>연어를 부른 그 목소리</color>라면...\n지금까지 친구들을 보살펴준 그 존재가, 어쩌면 줄곧 나를 부르고 있었던 걸지도 몰라.)",
+            "dialogue": "(<color=#2458C9>연어를 부른 그 목소리</color>라면... 지금까지 친구들을 보살펴준 그 존재가,\n어쩌면 줄곧 나를 부르고 있었던 걸지도 몰라.)",
             "voice": "Dubbing_Salmon/Salmon_Audio_19"
         },
         {

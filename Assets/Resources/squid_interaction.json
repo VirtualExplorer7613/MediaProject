@@ -45,7 +45,7 @@
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(끊어내야 한다면...\n참치 때 썼던 그 도구로 이 그물도 단번에 끊을 수 있을 거야!)",
+            "dialogue": "(끊어내야 한다면... 참치 때 썼던 그 도구로\n이 그물도 단번에 끊을 수 있을 거야!)",
             "voice": "Dubbing_Squid/Squid_Audio_06"
         },
         {

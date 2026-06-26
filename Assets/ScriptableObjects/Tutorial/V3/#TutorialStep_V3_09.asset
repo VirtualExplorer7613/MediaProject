@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac8c441721fd9749983415fffd47577, type: 3}
   m_Name: '#TutorialStep_V3_09'
   m_EditorClassIdentifier: 
-  messageKorean: "\uC624\uB978\uCABD \uC544\uB798 '\uD30C\uB3C4 \uBC84\uD2BC'\uC744
+  messageKorean: "\uC624\uB978\uCABD \uC544\uB798 '\uD30C\uB3C4 \uC2A4\uD0AC' \uBC84\uD2BC\uC744
     \uB20C\uB7EC\uBCF4\uC138\uC694!"
   messageEnglish: 
   conditionPrefab: {fileID: 8448348817773122069, guid: 7a10b5a85c7f8194ea7a8776b765b7f8, type: 3}
@@ -20,4 +20,7 @@ MonoBehaviour:
   targetsToShow:
   - wave_button
   targetsToHide: []
+  worldVfxToShow: []
+  worldVfxToHide: []
+  worldVfxToHideOnExit: []
   advanceDelay: 0.2

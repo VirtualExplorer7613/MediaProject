@@ -39,7 +39,7 @@
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "(다행히 종이라서 가벼워 보여. <color=#2458C9>강한 물살</color>을 일으키면 저 멀리 밀어낼 수 있을 거야!)",
+            "dialogue": "(다행히 종이라서 가벼워 보여.\n<color=#2458C9>강한 물살</color>을 일으키면 저 멀리 밀어낼 수 있을 거야!)",
             "voice": "Dubbing_Sardine/Sardine_Audio_05"
         },
         {
