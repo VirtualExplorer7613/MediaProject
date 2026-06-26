@@ -307,7 +307,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        AudioClip clip = Resources.Load<AudioClip>(voicePath);
+        AudioClip clip = LoadDialogueVoiceClip(voicePath);
 
         if (clip != null)
         {
@@ -327,6 +327,24 @@ public class DialogueManager : MonoBehaviour
         // 기존 SoundManager가 이전 음성을 멈추고 새 음성을 재생하고 있었다면,
         // 그 동작은 그대로 유지됨.
         Managers.Sound.Play(voicePath);
+    }
+
+    private AudioClip LoadDialogueVoiceClip(string voicePath)
+    {
+        AudioClip clip = Resources.Load<AudioClip>(voicePath);
+
+        if (clip != null)
+            return clip;
+
+        if (!voicePath.Contains("Sounds/"))
+        {
+            clip = Resources.Load<AudioClip>($"Sounds/{voicePath}");
+
+            if (clip != null)
+                return clip;
+        }
+
+        return null;
     }
 
     private bool ShouldSkipInteractionEntry(DialogueEntry entry)
@@ -815,11 +833,11 @@ public class DialogueManager : MonoBehaviour
         return;
 #endif
 
-        /*// 문어 최종 대화가 끝났을 때만 포탈 생성
+        // 문어 최종 대화가 끝났을 때만 포탈 생성
         if (CurrentTalkingNPC == null || CurrentTalkingNPC.characterName != finalPortalNpcName)
             return;
 
-        if (!AreRequiredEndingQuestsCleared())
+       /* if (!AreRequiredEndingQuestsCleared())
             return;*/
 
         endingTriggered = true;

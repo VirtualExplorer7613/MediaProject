@@ -13,6 +13,18 @@ public class InventoryUIController : MonoBehaviour
     [Header("Tutorial")]
     [SerializeField] private TutorialHighlighter tutorialHighlighter;
 
+    [Header("Tutorial Item Button Lock")]
+    [SerializeField] private bool useTutorialItemButtonLock = true;
+
+    [SerializeField] private ItemType lockedItemType = ItemType.Key;
+
+    [Tooltip("이 튜토리얼 단계 전에는 해당 아이템 버튼 클릭을 막음")]
+    [SerializeField] private int unlockItemButtonAtTutorialStepIndex = 15;
+
+    [SerializeField] private bool showLockedLog = true;
+
+    private TutorialRunner tutorialRunner;
+
     [Header("Popup")]
     [SerializeField] private ItemInventoryEquipPopup itemEquipPopup;
 
@@ -39,17 +51,26 @@ public class InventoryUIController : MonoBehaviour
             itemUseBroadcaster = FindAnyObjectByType<ItemUseBroadcaster>();
         }
 
+        tutorialRunner = FindAnyObjectByType<TutorialRunner>();
+
+        if (tutorialRunner != null)
+            tutorialRunner.StepChanged += OnTutorialStepChanged;
+
         if (inventoryToggleButton != null)
             inventoryToggleButton.onClick.AddListener(ToggleInventory);
 
         BuildButtons();
+        RefreshTutorialItemButtonLocks();
 
         ItemDefinition defToSelect = interactionController != null ? interactionController.CurrentItemDef : null;
 
-        if (defToSelect == null && items.Count > 0)
-            defToSelect = items[0];
+        if (defToSelect == null || IsItemButtonLockedByTutorial(defToSelect))
+            defToSelect = FindFirstUnlockedItem();
 
-        if (defToSelect != null && buttonMap.TryGetValue(defToSelect, out var btn))
+        /*if (defToSelect == null && items.Count > 0)
+            defToSelect = items[0];
+*/
+        /*if (defToSelect != null && buttonMap.TryGetValue(defToSelect, out var btn))
         {
             // 버튼 레퍼런스를 넘겨서 선택 표시가 켜지게 함
             SelectItem(defToSelect, btn, false);
@@ -58,6 +79,14 @@ public class InventoryUIController : MonoBehaviour
         {
             // 마지막 안전장치
             SelectItem(items[0], firstBtn, false);
+        }
+
+        if (inventoryPanel != null)
+            inventoryPanel.SetActive(false);*/
+
+        if (defToSelect != null && buttonMap.TryGetValue(defToSelect, out var btn))
+        {
+            SelectItem(defToSelect, btn, false);
         }
 
         if (inventoryPanel != null)
@@ -99,12 +128,30 @@ public class InventoryUIController : MonoBehaviour
         if (def == null)
             return;
 
+        if (IsItemButtonLockedByTutorial(def))
+        {
+            if (showLockedLog)
+            {
+                Debug.Log(
+                    $"[InventoryUI] 아직 튜토리얼 단계가 부족해서 아이템 버튼을 사용할 수 없습니다. " +
+                    $"item={def.name}, currentStep={GetCurrentTutorialStepIndex()}, requiredStep={unlockItemButtonAtTutorialStepIndex}"
+                );
+            }
+
+            RefreshTutorialItemButtonLocks();
+            return;
+        }
+
         Managers.Sound.Play(clickSfx);
 
         if (itemEquipPopup != null)
         {
             itemEquipPopup.Show(def, clicked, this);
-            itemUseBroadcaster?.RaiseItemUsed("key_clicked");
+
+            if (def.itemType == ItemType.Key)
+                itemUseBroadcaster?.RaiseItemUsed("key_clicked");
+            else if (def.itemType == ItemType.Magnet)
+                itemUseBroadcaster?.RaiseItemUsed("magnet_clicked");
         }
         else
         {
@@ -161,6 +208,7 @@ public class InventoryUIController : MonoBehaviour
             buttonMap[def] = btn;
 
             RegisterTutorialSlot(def, btn);
+            RefreshTutorialItemButtonLocks();
 
             if (autoSelect)
             {
@@ -224,5 +272,73 @@ public class InventoryUIController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTutorialStepChanged(int stepIndex)
+    {
+        RefreshTutorialItemButtonLocks();
+    }
+
+    private void OnDestroy()
+    {
+        if (tutorialRunner != null)
+            tutorialRunner.StepChanged -= OnTutorialStepChanged;
+    }
+
+    private bool IsItemButtonLockedByTutorial(ItemDefinition def)
+    {
+        if (!useTutorialItemButtonLock)
+            return false;
+
+        if (def == null)
+            return false;
+
+        if (def.itemType != lockedItemType)
+            return false;
+
+        if (tutorialRunner == null)
+            tutorialRunner = FindAnyObjectByType<TutorialRunner>();
+
+        if (tutorialRunner == null)
+            return false;
+
+        return !tutorialRunner.IsStepOrLater(unlockItemButtonAtTutorialStepIndex);
+    }
+
+    private int GetCurrentTutorialStepIndex()
+    {
+        if (tutorialRunner == null)
+            tutorialRunner = FindAnyObjectByType<TutorialRunner>();
+
+        return tutorialRunner != null ? tutorialRunner.CurrentStepIndex : -1;
+    }
+
+    private void RefreshTutorialItemButtonLocks()
+    {
+        foreach (var pair in buttonMap)
+        {
+            ItemDefinition def = pair.Key;
+            InventoryItemButton button = pair.Value;
+
+            if (button == null)
+                continue;
+
+            bool locked = IsItemButtonLockedByTutorial(def);
+            button.SetInteractable(!locked);
+        }
+    }
+
+    private ItemDefinition FindFirstUnlockedItem()
+    {
+        foreach (var def in items)
+        {
+            if (def == null)
+                continue;
+
+            if (!IsItemButtonLockedByTutorial(def))
+                return def;
+        }
+
+        return null;
     }
 }

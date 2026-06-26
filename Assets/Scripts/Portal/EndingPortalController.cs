@@ -37,7 +37,8 @@ public class EndingPortalController : MonoBehaviour
     private string belugaLine =
         "고래야. 이쪽이야...!";
 
-    [SerializeField] private float textDelay = 0.3f;
+    [Header("Beluga Timing After Portal")]
+    [SerializeField] private float textDelay = 1f;
     [SerializeField] private bool autoHideText = false;
     [SerializeField] private float textVisibleSeconds = 4f;
 
@@ -66,6 +67,31 @@ public class EndingPortalController : MonoBehaviour
             belugaTextRoot.SetActive(false);
     }
 
+    /* public void OpenPortal()
+     {
+         if (portalOpened)
+             return;
+
+         portalOpened = true;
+
+         if (portalVisualRoot != null)
+         {
+             portalVisualRoot.SetActive(true);
+             RestartPortalVfx();
+         }
+
+
+         if (portalTrigger != null)
+             portalTrigger.enabled = true;
+
+         if (sfxAudioSource != null && portalAppearSfx != null)
+             sfxAudioSource.PlayOneShot(portalAppearSfx);
+
+         StartCoroutine(ShowBelugaTextRoutine());
+
+         Debug.Log("[EndingPortal] 포탈 생성 완료");
+     }*/
+
     public void OpenPortal()
     {
         if (portalOpened)
@@ -73,12 +99,44 @@ public class EndingPortalController : MonoBehaviour
 
         portalOpened = true;
 
+        StartCoroutine(OpenPortalRoutine());
+    }
+
+    private IEnumerator OpenPortalRoutine()
+    {
+        // 1. 문어/고래 마지막 음성 종료까지 대기
+        if (waitForDialogueVoiceBeforeBeluga && DialogueManager.Instance != null)
+        {
+            float waitTime = DialogueManager.Instance.GetRemainingDialogueVoiceTime();
+
+            if (maxWaitForDialogueVoice > 0f)
+                waitTime = Mathf.Min(waitTime, maxWaitForDialogueVoice);
+
+            if (waitTime > 0f)
+            {
+                Debug.Log($"[EndingPortal] 기존 대사 음성 종료 대기: {waitTime:F2}초");
+                yield return new WaitForSecondsRealtime(waitTime + belugaStartSafetyDelay);
+            }
+        }
+
+        // 2. 포탈 등장
+        ShowPortal();
+
+        // 3. 포탈 등장 후 커스텀 딜레이
+        if (textDelay > 0f)
+            yield return new WaitForSecondsRealtime(textDelay);
+
+        // 4. 벨루가 대사 출력
+        ShowBelugaText();
+    }
+
+    private void ShowPortal()
+    {
         if (portalVisualRoot != null)
         {
             portalVisualRoot.SetActive(true);
             RestartPortalVfx();
         }
-            
 
         if (portalTrigger != null)
             portalTrigger.enabled = true;
@@ -86,9 +144,30 @@ public class EndingPortalController : MonoBehaviour
         if (sfxAudioSource != null && portalAppearSfx != null)
             sfxAudioSource.PlayOneShot(portalAppearSfx);
 
-        StartCoroutine(ShowBelugaTextRoutine());
-
         Debug.Log("[EndingPortal] 포탈 생성 완료");
+    }
+
+    private void ShowBelugaText()
+    {
+        if (belugaTextRoot != null)
+            belugaTextRoot.SetActive(true);
+
+        if (belugaText != null)
+            belugaText.text = belugaLine;
+
+        if (voiceAudioSource != null && belugaVoiceClip != null)
+            voiceAudioSource.PlayOneShot(belugaVoiceClip);
+
+        if (autoHideText)
+            StartCoroutine(HideBelugaTextAfterDelay());
+    }
+
+    private IEnumerator HideBelugaTextAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(textVisibleSeconds);
+
+        if (belugaTextRoot != null)
+            belugaTextRoot.SetActive(false);
     }
 
     private void RestartPortalVfx()

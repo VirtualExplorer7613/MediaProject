@@ -21,6 +21,18 @@ public class ItemInventoryEquipPopup : MonoBehaviour
     [SerializeField] private RenderTexture previewTexture;
     [SerializeField] private Camera previewCamera;
 
+    [Header("Tutorial Gate")]
+    [SerializeField] private bool useTutorialGate = true;
+
+    [Tooltip("이 아이템 타입일 때만 튜토리얼 잠금을 적용")]
+    [SerializeField] private ItemType gatedItemType = ItemType.Key;
+
+    [Tooltip("TutorialRunner.CurrentStepIndex 기준. #TutorialStep_V3_18이 배열에서 몇 번째인지 넣기")]
+    [SerializeField] private int unlockButtonsAtTutorialStepIndex = 17;
+
+    [Tooltip("true면 튜토리얼 18 전에는 닫기 버튼도 비활성화")]
+    [SerializeField] private bool lockCancelButtonToo = true;
+
     [Header("SFX")]
     //[SerializeField] private string popupOpenSfx = "SFX/Item Popup";
     [SerializeField] private string clickSfx = "SFX/Click";
@@ -31,13 +43,16 @@ public class ItemInventoryEquipPopup : MonoBehaviour
 
     private GameObject currentPreviewInstance;
 
+    private TutorialRunner tutorialRunner;
+    private bool subscribedToTutorialStep;
+
     private void Awake()
     {
         if (equipButton != null)
             equipButton.onClick.AddListener(EquipCurrentItem);
 
         if (cancelButton != null)
-            cancelButton.onClick.AddListener(Close);
+            cancelButton.onClick.AddListener(CloseFromButton);
 
         if (root != null)
             root.SetActive(false);
@@ -76,12 +91,98 @@ public class ItemInventoryEquipPopup : MonoBehaviour
         if (root != null)
             root.SetActive(true);
 
+        CacheTutorialRunner();
+        SubscribeTutorialStepChangedIfNeeded();
+        RefreshTutorialButtonState();
+
         owner.NotifyItemPopupOpened(item);
         //Managers.Sound.Play(popupOpenSfx);
     }
 
+    private void CacheTutorialRunner()
+    {
+        if (tutorialRunner == null)
+            tutorialRunner = FindAnyObjectByType<TutorialRunner>();
+    }
+
+    private void SubscribeTutorialStepChangedIfNeeded()
+    {
+        if (!useTutorialGate)
+            return;
+
+        if (!ShouldApplyTutorialGate())
+            return;
+
+        if (tutorialRunner == null)
+            return;
+
+        if (subscribedToTutorialStep)
+            return;
+
+        tutorialRunner.StepChanged += OnTutorialStepChanged;
+        subscribedToTutorialStep = true;
+    }
+
+    private void UnsubscribeTutorialStepChanged()
+    {
+        if (tutorialRunner != null && subscribedToTutorialStep)
+            tutorialRunner.StepChanged -= OnTutorialStepChanged;
+
+        subscribedToTutorialStep = false;
+    }
+
+    private void OnTutorialStepChanged(int stepIndex)
+    {
+        RefreshTutorialButtonState();
+
+        // 18번 이후로 잠금이 풀렸으면 더 이상 이벤트를 받을 필요 없음
+        if (!IsLockedByTutorial())
+            UnsubscribeTutorialStepChanged();
+    }
+
+    private bool ShouldApplyTutorialGate()
+    {
+        if (currentItem == null)
+            return false;
+
+        return currentItem.itemType == gatedItemType;
+    }
+
+    private bool IsLockedByTutorial()
+    {
+        if (!useTutorialGate)
+            return false;
+
+        if (!ShouldApplyTutorialGate())
+            return false;
+
+        CacheTutorialRunner();
+
+        if (tutorialRunner == null)
+            return false;
+
+        return !tutorialRunner.IsStepOrLater(unlockButtonsAtTutorialStepIndex);
+    }
+
+    private void RefreshTutorialButtonState()
+    {
+        bool locked = IsLockedByTutorial();
+
+        if (equipButton != null)
+            equipButton.interactable = !locked;
+
+        if (cancelButton != null)
+            cancelButton.interactable = !(locked && lockCancelButtonToo);
+    }
+
     private void EquipCurrentItem()
     {
+        if (IsLockedByTutorial())
+        {
+            RefreshTutorialButtonState();
+            return;
+        }
+
         if (currentItem == null || owner == null)
             return;
 
@@ -92,9 +193,23 @@ public class ItemInventoryEquipPopup : MonoBehaviour
         Close();
     }
 
+    private void CloseFromButton()
+    {
+        if (IsLockedByTutorial())
+        {
+            RefreshTutorialButtonState();
+            return;
+        }
+
+        Close();
+    }
+
+
     public void Close()
     {
         Managers.Sound.Play(clickSfx);
+
+        UnsubscribeTutorialStepChanged();
 
         ClearPreview();
 
@@ -102,8 +217,19 @@ public class ItemInventoryEquipPopup : MonoBehaviour
         currentButton = null;
         owner = null;
 
+        if (equipButton != null)
+            equipButton.interactable = true;
+
+        if (cancelButton != null)
+            cancelButton.interactable = true;
+
         if (root != null)
             root.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeTutorialStepChanged();
     }
 
     private void CreatePreview(ItemDefinition item)

@@ -35,6 +35,8 @@ public class TutorialRunner : MonoBehaviour
 
     public int CurrentStepIndex => index;
 
+    public event Action<int> StepChanged;
+
     public bool IsCurrentStep(int stepIndex)
     {
         return index == stepIndex;
@@ -87,6 +89,8 @@ public class TutorialRunner : MonoBehaviour
         CleanupCurrent();
 
         index++;
+        StepChanged?.Invoke(index);
+
         if (steps == null || index >= steps.Length)
         {
             ui.SetVisible(false);
