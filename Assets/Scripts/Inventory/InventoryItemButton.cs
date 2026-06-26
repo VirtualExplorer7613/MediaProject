@@ -32,6 +32,12 @@ public class InventoryItemButton : MonoBehaviour
         SetSelected(false);
     }
 
+    public void SetInteractable(bool interactable)
+    {
+        if (button != null)
+            button.interactable = interactable;
+    }
+
     // 선택되면 테두리 변경(추후 구현)
     public void SetSelected(bool selected)
     {

@@ -239393,6 +239393,10 @@ PrefabInstance:
       propertyPath: previewSpawnRoot
       value: 
       objectReference: {fileID: 111122347}
+    - target: {fileID: 1353160255754998533, guid: 1803b33c3ff35fd4984a077cc8a46d7e, type: 3}
+      propertyPath: unlockButtonsAtTutorialStepIndex
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 6315754242673970748, guid: 1803b33c3ff35fd4984a077cc8a46d7e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
