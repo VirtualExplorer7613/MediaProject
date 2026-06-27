@@ -68,7 +68,7 @@
         {
             "type": "salmon",
             "expression": "Eyes_Blink",
-            "dialogue": "참, 그러고 보니 저희가 자리를 찾다가 구석에서 신기한 물건을 하나 발견했는데...",
+            "dialogue": "참, 그러고 보니 저희가 자리를 찾다가...\n구석에서 신기한 물건을 하나 발견했는데...",
             "voice": "Dubbing_Salmon/Salmon_Audio_09"
         },
         {
@@ -104,7 +104,7 @@
         {
             "type": "salmon",
             "expression": "Eyes_Happy",
-            "dialogue": "그런데 정말 신기하게도, 이곳에 도착하니 고래님이 오셔서 저희를 도와주셨네요.",
+            "dialogue": "그런데 정말 신기하게도, 이곳에 도착하니\n고래님이 오셔서 저희를 도와주셨네요.",
             "voice": "Dubbing_Salmon/Salmon_Audio_15"
         },
         {

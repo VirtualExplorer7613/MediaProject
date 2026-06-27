@@ -92,7 +92,7 @@
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(나를 이쪽으로 이끌어 준 그 목소리 같아.\n계속해서 친구들을 보살펴주고 있었나 봐... 왠지 이제 정말 다 온 것 같아.)",
+            "dialogue": "(나를 이쪽으로 이끌어 준 그 목소리 같아.\n계속해서 친구들을 보살펴주고 있었나 봐. 왠지 이제 정말 다 온 것 같아.)",
             "voice": "Dubbing_Tutle/Tutle_Audio_13"
         },
         {
