@@ -6,23 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/#5thBuild/Title.unity
-    guid: 24802d838cc80784db13f7794bb0da5b
+    path: Assets/Scenes/Dev/Mobile/#6thBuild/Title.unity
+    guid: 602247e2c27573141b452ec2def1aff3
   - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/#5thBuild/Prologue.unity
-    guid: 01212ebbc5261264daf79dcc70e16598
+    path: Assets/Scenes/Dev/Mobile/#6thBuild/Prologue.unity
+    guid: 9ecd8b3da65cc204fa5f2cdebb33fe66
   - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/#5thBuild/Game.unity
-    guid: 3f1c59d20b0072b419f7bd0c7366405f
+    path: Assets/Scenes/Dev/Mobile/#6thBuild/Game.unity
+    guid: 40cf87d6a1c4ecb43813b593947f790b
   - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/#5thBuild/EndingDark.unity
-    guid: 8459c7e8f5c257a4fa3dc35e6f3961e6
+    path: Assets/Scenes/Dev/Mobile/#6thBuild/EndingDark.unity
+    guid: 00ea24b4de630b44d882eb6f1c80815d
   - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/#5thBuild/KelpCaves.unity
-    guid: 46aeebb79e196b84c8bcdae430030733
+    path: Assets/Scenes/Dev/Mobile/#6thBuild/KelpCaves.unity
+    guid: 28a67bdf70dcd114db360cc626be1cd5
   - enabled: 1
-    path: Assets/Scenes/Dev/Mobile/#5thBuild/Ending.unity
-    guid: 255cb563e5be11649864379397d49cf1
+    path: Assets/Scenes/Dev/Mobile/#6thBuild/Ending.unity
+    guid: a6563a8b8d3f28d41b83d3e498d59bad
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
