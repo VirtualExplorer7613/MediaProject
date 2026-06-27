@@ -38,7 +38,13 @@ public class KelpCavesScene : BaseScene
 
     public void GotoEnding()
     {
-        Managers.Scene.LoadSceneAsync(Define.Scene.Ending, false);
+        //Managers.Scene.LoadSceneAsync(Define.Scene.Ending, false);
+        Managers.Scene.LoadSceneAsyncWithFadeColor(
+        Define.Scene.Ending,
+        Color.black,
+        1.0f,
+        1.0f
+    );
     }
 
     private IEnumerator FadeInAfterLoad()
