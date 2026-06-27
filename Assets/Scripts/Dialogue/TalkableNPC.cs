@@ -199,7 +199,9 @@ public class TalkableNPC : MonoBehaviour
             if (loadSceneOnInteractAfterFinished)
             {
                 Debug.Log($"[DialogueOnlyNPC] {characterName} 대화 완료 후 씬 이동: {sceneAfterDialogue}");
-                Managers.Scene.LoadSceneAsync(sceneAfterDialogue, false);
+                //Managers.Scene.LoadSceneAsync(sceneAfterDialogue, false);
+
+                Managers.Scene.LoadSceneAsyncWithFadeColor( sceneAfterDialogue, Color.black, 1.0f, 1.0f);
             }
             else
             {
@@ -322,7 +324,8 @@ public class TalkableNPC : MonoBehaviour
             yield return new WaitForSecondsRealtime(sceneLoadDelayAfterDialogue);
 
         Debug.Log($"[DialogueOnlyNPC] {characterName} 대화 종료 후 씬 이동: {sceneAfterDialogue}");
-        Managers.Scene.LoadSceneAsync(sceneAfterDialogue, false);
+        // Managers.Scene.LoadSceneAsync(sceneAfterDialogue, false);
+        Managers.Scene.LoadSceneAsyncWithFadeColor(sceneAfterDialogue, Color.black, 1.0f, 1.0f);
     }
 
     private void TryGiveFinalDialogueReward()
