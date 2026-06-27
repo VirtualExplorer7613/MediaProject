@@ -191,14 +191,35 @@ public class Epliogue : BaseScene
 
         isTransitioning = true;                 // 입력 막기
 
-        FadeController fade = FindObjectOfType<FadeController>();
-        if (fade != null)                       // ① 암전 3 초
-            yield return fade.FadeOut(2.0f);
+        // [추가된 로직] 다음으로 넘어갈 스텝이 Illustration 레이아웃인지 확인
+        bool shouldFade = false;
+        int nextIndex = currentIndex + 1;
+        if (nextIndex < steps.Count)
+        {
+            if (steps[nextIndex].layout == EpilogueStepLayout.Illustration)
+            {
+                shouldFade = true; // 다음 스텝이 일러스트일 때만 페이드 효과 켜기
+            }
+        }
+
+        FadeController fade = null;
+
+        // shouldFade가 true일 때만 화면 암전
+        if (shouldFade)
+        {
+            fade = FindObjectOfType<FadeController>();
+            if (fade != null)
+                yield return fade.FadeOut(2.0f);
+        }
 
         ShowNextStep();                         // ② 이미지·텍스트 교체
 
-        if (fade != null)                       // ③ 밝아짐 3 초
-            yield return fade.FadeIn(1.5f);
+        // shouldFade가 true일 때만 화면 다시 밝아짐
+        if (shouldFade)
+        {
+            if (fade != null)
+                yield return fade.FadeIn(2.0f);
+        }
 
         isTransitioning = false;                // 입력 허용
     }
