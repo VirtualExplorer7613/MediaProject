@@ -391,7 +391,7 @@ public class EndingDarkSceneController : MonoBehaviour
                 yield return null;
         }
 
-        if (completeSteps == null || completeSteps.Count == 0)
+        /*if (completeSteps == null || completeSteps.Count == 0)
         {
             SetupDefaultCompleteSteps();
         }
@@ -399,6 +399,22 @@ public class EndingDarkSceneController : MonoBehaviour
         foreach (var step in completeSteps)
         {
             yield return ShowCenterText(step);
+        }*/
+
+        // Complete Steps가 비어 있으면 아무 대사 없이 그대로 진행
+        if (completeSteps != null)
+        {
+            foreach (var step in completeSteps)
+            {
+                // 인스펙터에서 Element만 만들고 text/voice를 비워둔 경우도 스킵
+                if (step == null)
+                    continue;
+
+                if (string.IsNullOrWhiteSpace(step.text) && step.voice == null)
+                    continue;
+
+                yield return ShowCenterText(step);
+            }
         }
 
         PlaySfx(clearSfx);
