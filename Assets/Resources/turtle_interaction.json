@@ -74,7 +74,7 @@
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "정말 다행이에요.근데 할아버지!\n혹시 이 근처에서 <color=#2458C9>누군가의 외침</color> 같은 걸 들은 적 있으세요?",
+            "dialogue": "정말 다행이에요. 근데 할아버지!\n혹시 이 근처에서 <color=#2458C9>누군가의 외침</color> 같은 걸 들은 적 있으세요?",
             "voice": "Dubbing_Tutle/Tutle_Audio_10"
         },
         {
