@@ -52,8 +52,23 @@ public class Epliogue : BaseScene
     private bool isTyping = false; // 현재 텍스트 타이핑 중인지 확인
     private bool isMoving = false;  // 씬 이동을 진행하는지 확인
     
-    private const float baseWidth = 1920; // 기준 가로 크기
-    private const float baseHeight = 880; // 기준 세로 크기
+    // private const float baseWidth = 1920; // 기준 가로 크기
+    // private const float baseHeight = 880; // 기준 세로 크기
+
+    private enum EpilogueImageFitMode
+    {
+        FixedLetterboxCrop, // 위아래 레터박스 유지 + 이미지 일부 크롭
+        FullscreenCover,   // 화면 전체 채움 + 레터박스 없음
+        Contain            // 이미지 전체 표시, 대신 비율에 따라 여백 생김
+    }
+
+    [Header("Illustration Fit")]
+    [SerializeField] private EpilogueImageFitMode imageFitMode = EpilogueImageFitMode.FixedLetterboxCrop;
+
+    [Tooltip("화면 높이 중 이미지가 차지할 비율. 1920x1080에서 880px 높이를 원하면 880/1080 = 0.815")]
+    [SerializeField, Range(0.5f, 1f)] private float letterboxContentHeightRatio = 880f / 1080f;
+
+    [SerializeField] private RectTransform imageViewport;
 
     private TextMeshProUGUI activeText;
 
@@ -487,8 +502,8 @@ public class Epliogue : BaseScene
          mySceneManager.ChangeScene(nextScene);
      }*/
 
-
-    private void AdjustImageSize()
+    #region 5번째 빌드 전 함수
+    /*private void AdjustImageSize()
     {
         RectTransform rectTransform = epliogueImage.GetComponent<RectTransform>();
         Sprite currentSprite = epliogueImage.sprite;
@@ -512,6 +527,84 @@ public class Epliogue : BaseScene
                 rectTransform.sizeDelta = new Vector2(baseHeight * aspectRatio, baseHeight);
             }
         }
+    }*/
+    #endregion
+
+    private void AdjustImageSize()
+    {
+        if (epliogueImage == null || epliogueImage.sprite == null)
+            return;
+
+        RectTransform imageRect = epliogueImage.rectTransform;
+
+        RectTransform parentRect = imageViewport != null
+            ? imageViewport.parent as RectTransform
+            : imageRect.parent as RectTransform;
+
+        if (parentRect == null)
+            return;
+
+        float screenW = parentRect.rect.width;
+        float screenH = parentRect.rect.height;
+
+        if (screenW <= 0f || screenH <= 0f)
+        {
+            screenW = Screen.width;
+            screenH = Screen.height;
+        }
+
+        float spriteW = epliogueImage.sprite.rect.width;
+        float spriteH = epliogueImage.sprite.rect.height;
+
+        float targetW = screenW;
+        float targetH = screenH;
+
+        if (imageFitMode == EpilogueImageFitMode.FixedLetterboxCrop)
+        {
+            if (imageViewport == null)
+            {
+                Debug.LogWarning("[Epliogue] FixedLetterboxCrop을 쓰려면 imageViewport를 연결하는 것을 권장합니다.");
+            }
+            else
+            {
+                imageViewport.anchorMin = new Vector2(0f, 0.5f);
+                imageViewport.anchorMax = new Vector2(1f, 0.5f);
+                imageViewport.pivot = new Vector2(0.5f, 0.5f);
+                imageViewport.anchoredPosition = Vector2.zero;
+
+                targetH = screenH * letterboxContentHeightRatio;
+                imageViewport.sizeDelta = new Vector2(0f, targetH);
+
+                if (imageViewport.GetComponent<RectMask2D>() == null)
+                    imageViewport.gameObject.AddComponent<RectMask2D>();
+            }
+
+            targetW = screenW;
+            targetH = screenH * letterboxContentHeightRatio;
+        }
+
+        float scale;
+
+        switch (imageFitMode)
+        {
+            case EpilogueImageFitMode.FixedLetterboxCrop:
+            case EpilogueImageFitMode.FullscreenCover:
+                // 영역을 꽉 채움. 비율이 안 맞으면 일부 크롭됨.
+                scale = Mathf.Max(targetW / spriteW, targetH / spriteH);
+                break;
+
+            case EpilogueImageFitMode.Contain:
+            default:
+                // 이미지 전체 표시. 대신 여백이 생길 수 있음.
+                scale = Mathf.Min(targetW / spriteW, targetH / spriteH);
+                break;
+        }
+
+        imageRect.anchorMin = new Vector2(0.5f, 0.5f);
+        imageRect.anchorMax = new Vector2(0.5f, 0.5f);
+        imageRect.pivot = new Vector2(0.5f, 0.5f);
+        imageRect.anchoredPosition = Vector2.zero;
+        imageRect.sizeDelta = new Vector2(spriteW * scale, spriteH * scale);
     }
 
     IEnumerator AutoAdvanceRoutine(int stepIndex)
