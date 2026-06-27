@@ -118534,6 +118534,7 @@ MonoBehaviour:
   requiredPullTime: 2
   pullAxis: 2
   maxVisualPullDistance: 0.5
+  pullVisualFrontOffsetAdd: 0
   restoreDelay: 0.35
   restoreSpeed: 1.5
   maxPlayerDistance: 4
@@ -163799,6 +163800,7 @@ MonoBehaviour:
   requiredPullTime: 2
   pullAxis: 0
   maxVisualPullDistance: 2
+  pullVisualFrontOffsetAdd: 0.4
   restoreDelay: 0.35
   restoreSpeed: 1.5
   maxPlayerDistance: 15
@@ -211746,6 +211748,7 @@ MonoBehaviour:
   requiredPullTime: 2
   pullAxis: 4
   maxVisualPullDistance: 2
+  pullVisualFrontOffsetAdd: -0.5
   restoreDelay: 0.35
   restoreSpeed: 1.5
   maxPlayerDistance: 8
@@ -314579,7 +314582,7 @@ PrefabInstance:
       objectReference: {fileID: 1022998007}
     - target: {fileID: 3574012884217296427, guid: 3bb9e9ad130c59146bbf8e62f1d1c328, type: 3}
       propertyPath: items.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3574012884217296427, guid: 3bb9e9ad130c59146bbf8e62f1d1c328, type: 3}
       propertyPath: itemUseBroadcaster
@@ -314588,7 +314591,7 @@ PrefabInstance:
     - target: {fileID: 3574012884217296427, guid: 3bb9e9ad130c59146bbf8e62f1d1c328, type: 3}
       propertyPath: 'items.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 491537d06bcd1eb43a883c0aa01f74f9, type: 2}
+      objectReference: {fileID: 11400000, guid: deb9923b9a95ed743aba9d370caccfc7, type: 2}
     - target: {fileID: 3574012884217296427, guid: 3bb9e9ad130c59146bbf8e62f1d1c328, type: 3}
       propertyPath: 'items.Array.data[1]'
       value: 
@@ -422402,7 +422405,7 @@ MonoBehaviour:
   showDestinationVfx: 1
   hideDestinationVfxWhenPlayerNear: 1
   destinationVfxHideDistance: 6
-  hideDestinationVfxAfterFirstDialogue: 0
+  hideDestinationVfxAfterFirstDialogue: 1
   useWorldRotationForDestinationVfx: 1
   destinationVfxWorldEuler: {x: 0, y: 0, z: 0}
   destinationVfxScale: {x: 2, y: 2, z: 2}
@@ -464146,10 +464149,10 @@ MonoBehaviour:
   showDestinationVfx: 1
   hideDestinationVfxWhenPlayerNear: 1
   destinationVfxHideDistance: 6
-  hideDestinationVfxAfterFirstDialogue: 0
+  hideDestinationVfxAfterFirstDialogue: 1
   useWorldRotationForDestinationVfx: 1
   destinationVfxWorldEuler: {x: 0, y: 0, z: 0}
-  destinationVfxScale: {x: 1, y: 1, z: 1}
+  destinationVfxScale: {x: 1.5, y: 1.5, z: 1.5}
   followDestinationVfxPoint: 0
 --- !u!1001 &1945683864
 PrefabInstance:

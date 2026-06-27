@@ -15,7 +15,7 @@ MonoBehaviour:
   messageKorean: "\uC870\uC774\uC2A4\uD2F1\uC744 \uC6C0\uC9C1\uC5EC\\n\uBE44\uB2D0\uBD09\uC9C0
     \uAC00\uAE4C\uC774 \uAC00\uBCFC\uAE4C\uC694?"
   messageEnglish: 
-  conditionPrefab: {fileID: -7529927152016545428, guid: 4304598fc65d7c5488b53b9f22473b48, type: 3}
+  conditionPrefab: {fileID: 355915398756100229, guid: 736f8f7e717a27c479c99ad29e895df6, type: 3}
   highlightTargetId: joystick
   targetsToShow: []
   targetsToHide: []

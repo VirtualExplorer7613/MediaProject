@@ -11,7 +11,7 @@ public class PullTrashStrategy : IInteractionStrategy
    /* private int activeFingerId = -1;
     private bool isDragging = false;*/
 
-    private const float AcquireRadius = 0.9f;
+    private const float AcquireRadius = 2f;
 
     private const string PullCompleteSfx = "SFX/Tweezers 2";
 
@@ -416,8 +416,10 @@ public class PullTrashStrategy : IInteractionStrategy
 
         Vector3 basePos = currentTarget.transform.position;
 
+        float frontOffset = PullVisualFrontOffset + currentTarget.PullVisualFrontOffsetAdd;
+
         Vector3 offset =
-       pullDir * PullVisualFrontOffset +
+       pullDir * frontOffset +
        sideDir * PullVisualSideOffset +
        upDir * PullVisualUpOffset;
 
