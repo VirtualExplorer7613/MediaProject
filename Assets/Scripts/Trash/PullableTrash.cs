@@ -38,6 +38,11 @@ public class PullableTrash : MonoBehaviour
 
     //[SerializeField] private Vector2 validScreenDirection = Vector2.up;
 
+    [Header("Pull Visual Offset")]
+    [Tooltip("핀셋 위치를 쓰레기별로 추가 보정합니다. 음수면 쓰레기 쪽으로 가까워지고, 양수면 더 멀어집니다.")]
+    [SerializeField] private float pullVisualFrontOffsetAdd = 0f;
+
+    public float PullVisualFrontOffsetAdd => pullVisualFrontOffsetAdd;
 
     [Header("Restore")]
     [Tooltip("손을 뗀 뒤 복원이 시작되기까지 대기 시간")]
@@ -55,8 +60,6 @@ public class PullableTrash : MonoBehaviour
 
     [Tooltip("후반 저항감. 1에 가까울수록 정상 속도")]
     [SerializeField, Range(0.05f, 2f)] private float endResistanceMultiplier = 1.0f;
-
-
 
     /*[Header("Feedback")]
     [SerializeField] private GameObject highlightObject;*/
