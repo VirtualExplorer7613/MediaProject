@@ -73,7 +73,7 @@
         },
         {
             "type": "whale",
-            "expression": "Eyes_Sad",
+            "expression": "Eyes_LookIn",
             "dialogue": "익숙하다니, 그게 무슨 말이야?",
             "voice": "Dubbing_Squid/Squid_Audio_10"
         },

@@ -39,7 +39,7 @@
         {
             "type": "beluga",
             "expression": "Eyes_Blink",
-            "dialogue": "나는 <color=#2458C9>'52헤르츠'라는 주파수로 이야기하는 고래</color>야.",
+            "dialogue": "나는 <color=#2458C9>'52헤르츠'</color>라는 주파수로 이야기하는 고래야.",
             "voice": "Dubbing_Beluga/Beluga_Audio_11"
         },
         {

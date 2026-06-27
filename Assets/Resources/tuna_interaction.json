@@ -57,7 +57,7 @@
         {
             "type": "whale",
             "expression": "Eyes_Blink",
-            "dialogue": "(싹둑 자른다면... 아까 연어 부부가 준 <color=#E00A3F>그 물건</color>으로\n바로 해결할 수 있을 것 같아!)",
+            "dialogue": "(싹둑 자른다면... 아까 연어 부부가 준 그 물건으로\n바로 해결할 수 있을 것 같아!)",
             "voice": "Dubbing_Tuna/Tuna_Audio_08"
         },
         {

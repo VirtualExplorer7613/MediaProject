@@ -81,7 +81,7 @@ public class DialogueManager : MonoBehaviour
         { "seahorse", new CharacterInfo { displayName = "해마", nameColor = new Color(1f, 0.9f, 0.5f) } },
         { "tuna", new CharacterInfo { displayName = "참치", nameColor = new Color(0.6f, 0.85f, 0.95f) } },
         { "turtle", new CharacterInfo { displayName = "거북이", nameColor = new Color(0.7f, 0.9f, 0.6f) } },
-        { "octopus", new CharacterInfo { displayName = "문어", nameColor = new Color(1f, 0.7f, 0.8f) } },
+        { "octopus", new CharacterInfo { displayName = "문어", nameColor = new Color(1f, 0.55f, 0.63f) } },
         { "crab", new CharacterInfo { displayName = "게", nameColor = new Color(1f, 0.7f, 0.7f) } },
         { "clownfish", new CharacterInfo { displayName = "흰동가리", nameColor = new Color(1f, 0.8f, 0.5f) } },
         { "orca", new CharacterInfo { displayName = "범고래", nameColor = new Color(0.8f, 0.8f, 0.85f) } },
@@ -92,7 +92,7 @@ public class DialogueManager : MonoBehaviour
         { "jellyfish", new CharacterInfo { displayName = "해파리", nameColor = new Color(1f, 0.8f, 0.9f) } },
         { "salmon", new CharacterInfo { displayName = "연어", nameColor = new Color(0.65f, 0.8f, 0.5f) } },
         { "prawn", new CharacterInfo { displayName = "새우", nameColor = new Color(1f, 0.8f, 0.6f) } },
-        { "beluga", new CharacterInfo { displayName = "벨루가", nameColor = new Color(1f, 0.55f, 0.63f) } },
+        { "beluga", new CharacterInfo { displayName = "벨루가", nameColor = new Color(1f, 0.7f, 0.8f) } },
     };
 
     private readonly HashSet<string> endingRequiredNpcNames = new HashSet<string>
