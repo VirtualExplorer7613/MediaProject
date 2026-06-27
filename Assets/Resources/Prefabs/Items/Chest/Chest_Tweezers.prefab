@@ -103,3 +103,7 @@ MonoBehaviour:
   rotate: 1
   rotateSpeedY: 60
   randomPhase: 1
+  useCustomRotationAxis: 1
+  alignLocalZToWorldUp: 1
+  customRotationAxis: {x: 0, y: 0, z: 1}
+  customRotationSpace: 1
