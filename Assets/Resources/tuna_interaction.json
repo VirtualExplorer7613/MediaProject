@@ -91,7 +91,7 @@
         {
             "type": "tuna",
             "expression": "Eyes_Excited",
-            "dialogue": "그건 그렇고, 내가 아까 발버둥 치다가 봤는데\n<color=#2458C9>저기 바위 뒤</color>에 수상한 <color=#6B2500>상자</color>가 하나 있더라고?",
+            "dialogue": "그건 그렇고, 내가 아까 발버둥 치다가 봤는데\n<color=#2458C9>저기 바위 뒤</color>에 <color=#6B2500>수상한 상자</color>가 하나 있더라고?",
             "voice": "Dubbing_Tuna/Tuna_Audio_13"
         },
         {

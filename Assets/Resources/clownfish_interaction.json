@@ -68,13 +68,13 @@
         {
             "type": "clownfish",
             "expression": "Eyes_Blink",
-            "dialogue": "예전에 쉴 곳이 없어서 바다를 헤맬 때,\n어디선가 들려온 <color=#FF4674>따뜻한 목소리</color>가 알려준 소중한 보금자리예요.",
+            "dialogue": "예전에 쉴 곳이 없어서 바다를 헤맬 때,\n어디선가 들려온 <color=#FF8DA1>따뜻한 목소리</color>가 알려준 소중한 보금자리예요.",
             "voice": "Dubbing_Clownfish/Clownfish_Audio_09"
         },
         {
             "type": "whale",
             "expression": "Eyes_LookIn",
-            "dialogue": "(<color=#FF4674>따뜻한 목소리</color>라면… 정어리 때도 그렇고,\n아무래도 바다 친구들을 돕고 있는 그 주인공이 확실한 것 같아!)",
+            "dialogue": "(<color=#FF8DA1>따뜻한 목소리</color>라면… 정어리 때도 그렇고,\n아무래도 바다 친구들을 돕고 있는 그 주인공이 확실한 것 같아!)",
             "voice": "Dubbing_Clownfish/Clownfish_Audio_10"
         },
         {
