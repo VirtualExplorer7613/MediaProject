@@ -83,4 +83,4 @@
 
 - [🎬 시연 영상]() *(링크 추가 시 반영)*
 - [📄 프로젝트 발표자료]() *(PDF 링크 추가 시 반영)*
-- [📌 Notion 문서]() *(팀 위키, 기술문서 등)*
+- [📌 Notion 문서](https://app.notion.com/p/The-Whale-Knows-9bdb929099e78310bd5c810d188b5800?source=copy_link) *(팀 위키, 기술문서 등)*
