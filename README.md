@@ -19,6 +19,10 @@
 
 > 🌊 바다는 기억하고 있다. 그 속의 이야기와 상처를…
 
+<img width="1040" height="509" alt="image" src="https://github.com/user-attachments/assets/b5392f13-a307-42c8-b637-095e26bf2a10" />
+
+[모바일 출시](https://play.google.com/store/apps/details?id=com.team52hz.thewhaleknows) 
+
 ---
 
 ## 🧩 주요 기능
